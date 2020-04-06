@@ -1,0 +1,30 @@
+﻿.botones {
+    background-color: #47525E;
+    color: white;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.botonPulsado {
+    background-color: #969FAA;
+    color: white;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.tablas {
+    
+}
+
+    .tablas th {
+        border-left: 0px;
+        border-right: 0px;
+        background-color: #EFF2F7;
+        padding: 12px;
+    }
+
+    .tablas td {
+        border-left: 0px;
+        border-right: 0px;
+        padding: 12px;
+    }

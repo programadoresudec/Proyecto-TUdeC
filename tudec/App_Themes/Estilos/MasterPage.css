@@ -1,0 +1,142 @@
+﻿body {
+    height:100%;
+    margin:0;
+    overflow:hidden; /*No debería hacerce más pequeño de lo que debe porque aparece las barras de desplazamiento*/  
+}
+/*CONTROL CABECERA*/
+.cabecera {
+    background-color:#87f0b1;
+    width:100%;
+    height: 100px;
+}
+
+/*Control del logo*/
+#espacio_para_logo{
+    position:absolute;
+    height:10%;
+    width:14%;
+    top:7%;
+}
+
+#logo_tudec {
+    height:100%;
+    width:70%;
+}
+
+/*Contol de buscador(es)*/
+#espacio_buscador {
+    width:48%;
+    position:absolute;
+    float:right;
+    top:9%;
+    right:38%;
+}
+
+.buscador{
+    width:100%;
+}
+
+#espacio_boton_ingresar{
+    position:absolute;
+    right:20%;
+    top:8%;
+    height:6%;
+    width:14%;
+}
+
+.iniciar_sesion {
+    width: 100%;
+    height: 100%;
+    background-color:#344154;
+}
+
+
+#espacio_boton_registrar {
+    position: absolute;
+    right: 3%;
+    top: 8%;
+    height: 6%;
+    width: 14%;
+}
+
+.registrar {
+    width: 100%;
+    height: 100%;
+    background-color:#344154;
+}
+/*FIN CONTROL CABECERA*/
+
+/*CONTROL PIE DE PÁGINA*/
+.pie_de_pagina {
+    position:absolute;
+    bottom:0;
+    background-color: #87f0b1;
+    height: 100px;
+    width: 100%;
+}
+
+/*Textos*/
+#campo_contactanos{
+    position:absolute;
+    bottom:37%;
+    width:12%;
+}
+
+#contactanos{
+    font-style:italic;
+    font-weight:bold;
+    font-size:120%;
+}
+
+#campo_tutorias_udec {
+    position: absolute;
+    bottom: 60%;
+    left:12%;
+    width: 13%;
+}
+
+#tutorias_udec {
+    color:dimgray;
+    font-weight:bold;
+}
+
+#campo_correo_electronico {
+    position: absolute;
+    bottom: 40%;
+    left: 12%;
+    width: 37%;
+}
+
+#correo_del_proyecto {
+    color: dimgray;
+    font-weight: bold;
+}
+
+#campo_numero_telefono {
+    position: absolute;
+    bottom: 20%;
+    left: 12%;
+    width: 18%;
+}
+
+#num_de_telefono {
+    color: dimgray;
+    font-weight: bold;
+}
+
+/*Boton*/
+#campo_boton_sobre_nosotros {
+    background-color:blue;
+    position:absolute;
+    width:20%;
+    height:20%;
+    bottom: 37%;
+    left:50%;
+}
+
+.boton_sobre_nosotros {
+    width: 100%;
+    height: 100%;
+    background-color:darkgreen;
+}
+/*FIN CONTROL PIE DE PÁGINA*/
