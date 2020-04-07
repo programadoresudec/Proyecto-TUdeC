@@ -34,19 +34,9 @@ public class Buscador:Base
     public List<ECurso> GetCursos(string curso, string tutor, string area, int puntuacion)
     {
 
-        if(tutor == null)
-        {
+        if(tutor == null) tutor = "";
 
-            tutor = "";
-
-        }
-
-        if(curso == null)
-        {
-
-            curso = "";
-
-        }
+        if(curso == null) curso = "";
 
         List<ECurso> cursos;
 
@@ -64,13 +54,21 @@ public class Buscador:Base
 
     }
 
-    public List<ECurso> GetCursosSrc(string curso)
+    public List<string> GetCursosSrc(string nombre)
     {
         
-        List<ECurso> cursos = TablaCursos.Where(x => x.Nombre.Contains(curso)).ToList();
+        List<ECurso> cursos = TablaCursos.Where(x => x.Nombre.ToLower().Contains(nombre.ToLower())).ToList();
 
-        return cursos;
+        List<string> nombresCursos = new List<string>();
 
+        foreach(ECurso curso in cursos)
+        {
+
+            nombresCursos.Add(curso.Nombre);
+
+        }
+
+        return nombresCursos;
 
     }
 
@@ -81,23 +79,18 @@ public class Buscador:Base
   
         List<EUsuario> tutores;
 
-        if(tutor == null)
-        {
-
-            tutor = "";
-
-        }
+        if(tutor == null) tutor = "";
 
         if(tutor == "" && puntuacion == 0)
         {
 
-            tutores = TablaUsuarios.ToList();
+            tutores = TablaUsuarios.Where(x => x.Rol.Equals("usuario")).ToList();
 
         }
         else
         {
 
-            tutores = TablaUsuarios.Where(x => (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower())) && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
+            tutores = TablaUsuarios.Where(x => x.Rol.Equals("usuario") && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower())) && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
 
         }
 
@@ -110,6 +103,24 @@ public class Buscador:Base
         }
 
         return tutores;
+
+    }
+
+    public List<string> GetTutoresSrc(string nombre)
+    {
+
+        List<EUsuario> tutores = TablaUsuarios.Where(x => x.Rol.Equals("usuario") &&  x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
+
+        List<string> nombresTutores = new List<string>();
+
+        foreach (EUsuario tutor in tutores)
+        {
+
+            nombresTutores.Add(tutor.NombreDeUsuario);
+
+        }
+
+        return nombresTutores;
 
     }
 

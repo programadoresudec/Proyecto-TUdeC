@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,6 +10,8 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        tablaTutores.DataBind();
 
     }
 
@@ -24,7 +27,7 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
     }
 
-    protected void tablaTutores_RowCreated(object sender, GridViewRowEventArgs e)
+    protected void tablaTutores_RowDataBound(object sender, GridViewRowEventArgs e)
     {
 
         GridViewRow fila = e.Row;
@@ -64,6 +67,18 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
             celdaPerfilUsuario.Controls.Add(icono);
 
         }
+
+    }
+
+    [WebMethod]
+    public static List<string> GetNombresTutores(string prefixText)
+    {
+
+        Buscador gestorBuscador = new Buscador();
+
+        List<string> nombres = gestorBuscador.GetTutoresSrc(prefixText);
+
+        return nombres;
 
     }
 

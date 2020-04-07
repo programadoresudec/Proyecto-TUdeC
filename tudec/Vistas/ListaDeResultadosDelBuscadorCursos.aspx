@@ -30,8 +30,17 @@
             </tr>
             <tr>
                 <td>
-                    <asp:TextBox ID="cajaBuscador" runat="server"></asp:TextBox>
                     <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager>
+                    <table class="auto-style3">
+                        <tr>
+                            <td class="auto-style2">
+                    <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Buscar curso" Width="217px"></asp:TextBox>
+                            </td>
+                            <td>
+                    <asp:ImageButton ID="botonBuscar" runat="server" ImageUrl="~/Recursos/Imagenes/Busqueda/Lupa.png" Width="30px" />
+                            </td>
+                        </tr>
+                    </table>
                     <ajaxToolkit:AutoCompleteExtender 
                         MinimumPrefixLength="1"
                         CompletionInterval="10"
@@ -39,10 +48,9 @@
                         FirstRowSelected="false"
                         ID="cajaBuscador_AutoCompleteExtender"
                         runat="server"
-                        ServiceMethod="Ejemplo" 
+                        ServiceMethod="GetNombresCursos" 
                         TargetControlID="cajaBuscador">
                     </ajaxToolkit:AutoCompleteExtender>
-                    <asp:Button ID="botonBuscar" runat="server" OnClick="botonBuscar_Click" Text="Buscar" />
                 </td>
             </tr>
             <tr>
@@ -60,6 +68,20 @@
 
                                     <asp:Label ID="Label5" runat="server" Text="Tutor"></asp:Label>
                                     <asp:TextBox ID="cajaTutor" runat="server"></asp:TextBox>
+                                    <ajaxToolkit:AutoCompleteExtender 
+                                        ID="cajaTutor_AutoCompleteExtender" 
+                                        runat="server" 
+                                        BehaviorID="cajaTutor_AutoCompleteExtender" 
+                                        DelimiterCharacters="" 
+                                        ServicePath="" 
+                                        TargetControlID="cajaTutor"
+                                        
+                                        MinimumPrefixLength="1"
+                                        CompletionInterval="10"
+                                        CompletionSetCount="1"
+                                        FirstRowSelected="false"
+                                        ServiceMethod="GetNombresTutores">
+                                    </ajaxToolkit:AutoCompleteExtender>
                                     <asp:Label ID="Label6" runat="server" Text="Área"></asp:Label>
                                     <asp:DropDownList ID="desplegableArea" runat="server" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
                                     </asp:DropDownList>
@@ -83,7 +105,7 @@
             <tr>
                 <td>
                     
-                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated">
+                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound">
                         <Columns>
                             <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False" >
                             <ItemStyle HorizontalAlign="Center" />
@@ -119,4 +141,17 @@
     <br />
  
 
+</asp:Content>
+<asp:Content ID="Content1" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 231px;
+        }
+        .auto-style3 {
+            width: 21%;
+        }
+    </style>
 </asp:Content>

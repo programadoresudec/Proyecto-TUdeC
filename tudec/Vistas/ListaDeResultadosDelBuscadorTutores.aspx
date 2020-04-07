@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
     <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
@@ -22,8 +24,31 @@
             </tr>
             <tr>
                 <td>
-                    <asp:TextBox ID="cajaBuscador" runat="server"></asp:TextBox>
-                    <asp:Button ID="botonBuscar" runat="server" OnClick="botonBuscar_Click" Text="Buscar" />
+                    <table class="auto-style3">
+                        <tr>
+                            <td class="auto-style2">
+                    <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Buscar tutor" Height="24px" Width="218px"></asp:TextBox>
+                            </td>
+                            <td>
+                    <asp:ImageButton ID="botonBuscar" runat="server" ImageUrl="~/Recursos/Imagenes/Busqueda/Lupa.png" Width="30px" />
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager>
+                    <ajaxToolkit:AutoCompleteExtender 
+                        ID="cajaBuscador_AutoCompleteExtender" 
+                        runat="server" 
+                        BehaviorID="cajaBuscador_AutoCompleteExtender" 
+                        DelimiterCharacters="" 
+                        ServicePath="" 
+                        TargetControlID="cajaBuscador"
+                        
+                        MinimumPrefixLength="1"
+                        CompletionInterval="10"
+                        CompletionSetCount="1"
+                        FirstRowSelected="false"
+                        ServiceMethod="GetNombresTutores">
+                    </ajaxToolkit:AutoCompleteExtender>
                 </td>
             </tr>
             <tr>
@@ -53,7 +78,7 @@
             <tr>
                 <td>
                     
-                        <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowCreated">
+                        <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound">
                             <Columns>
                                 <asp:BoundField DataField="ImagenPerfil" HeaderText="Imagen de<br/>la cuenta" HtmlEncode="false" SortExpression="ImagenPerfil" >
                                 <ItemStyle HorizontalAlign="Center" />
@@ -84,4 +109,17 @@
             </tr>
         </table>
 
+</asp:Content>
+<asp:Content ID="Content1" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 233px;
+        }
+        .auto-style3 {
+            width: 21%;
+        }
+    </style>
 </asp:Content>

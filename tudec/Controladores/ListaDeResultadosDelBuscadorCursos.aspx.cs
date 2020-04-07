@@ -19,6 +19,8 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
 
         }
 
+        tablaCursos.DataBind();
+
     }
 
     protected void botonTutor_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
 
     }
 
-    protected void tablaCursos_RowCreated(object sender, GridViewRowEventArgs e)
+    protected void tablaCursos_RowDataBound(object sender, GridViewRowEventArgs e)
     {
       
         GridViewRow fila = e.Row;
@@ -72,32 +74,27 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static List<string> Ejemplo(string prefixText)
+    public static List<string> GetNombresCursos(string prefixText)
     {
 
-        List<string> lista = new List<string>();
+        Buscador gestorBuscador = new Buscador();
 
-        lista.Add("Hola");
-        lista.Add("Hello");
-        lista.Add("Abaco");
-        lista.Add("Éter");
-        lista.Add("Pikachu");
-        lista.Add("Raichu");
-        lista.Add("Excelente");
-        lista.Add("Palabra");
-        lista.Add("Resultado");
-        lista.Add("Zapato");
-        lista.Add("Easter");
-        lista.Add("Control");
-        lista.Add("Ubicación");
-        lista.Add("Camaleón");
-        lista.Add("Comunal");
+        List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
 
-        lista = lista.Where(x => x.ToLower().Contains(prefixText.ToLower())).ToList();
-
-        return lista;
+        return nombres;
 
     }
 
+    [WebMethod]
+    public static List<string> GetNombresTutores(string prefixText)
+    {
+
+        Buscador gestorBuscador = new Buscador();
+
+        List<string> nombres = gestorBuscador.GetTutoresSrc(prefixText);
+
+        return nombres;
+
+    }
 
 }
