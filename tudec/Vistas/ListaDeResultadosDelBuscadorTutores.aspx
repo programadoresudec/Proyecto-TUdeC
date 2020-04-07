@@ -27,7 +27,7 @@
                     <table class="auto-style3">
                         <tr>
                             <td class="auto-style2">
-                    <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Buscar tutor" Height="24px" Width="218px"></asp:TextBox>
+                    <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Buscar tutor" Height="24px" Width="218px" OnTextChanged="cajaBuscador_TextChanged"></asp:TextBox>
                             </td>
                             <td>
                     <asp:ImageButton ID="botonBuscar" runat="server" ImageUrl="~/Recursos/Imagenes/Busqueda/Lupa.png" Width="30px" />

@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.Page
 {
+    private bool indicador = false;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -18,7 +20,18 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
     protected void botonCurso_Click(object sender, EventArgs e)
     {
 
-        Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+        if (!indicador)
+        {
+
+            Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+
+        }
+        else
+        {
+
+            indicador = false;
+
+        }
 
     }
 
@@ -82,4 +95,9 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
     }
 
+
+    protected void cajaBuscador_TextChanged(object sender, EventArgs e)
+    {
+        indicador = true;
+    }
 }
