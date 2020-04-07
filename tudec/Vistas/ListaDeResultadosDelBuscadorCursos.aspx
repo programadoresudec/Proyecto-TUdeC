@@ -5,6 +5,11 @@
 
 
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
+
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
     <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
@@ -26,6 +31,17 @@
             <tr>
                 <td>
                     <asp:TextBox ID="cajaBuscador" runat="server"></asp:TextBox>
+                    <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager>
+                    <ajaxToolkit:AutoCompleteExtender 
+                        MinimumPrefixLength="1"
+                        CompletionInterval="10"
+                        CompletionSetCount="1"
+                        FirstRowSelected="false"
+                        ID="cajaBuscador_AutoCompleteExtender"
+                        runat="server"
+                        ServiceMethod="Ejemplo" 
+                        TargetControlID="cajaBuscador">
+                    </ajaxToolkit:AutoCompleteExtender>
                     <asp:Button ID="botonBuscar" runat="server" OnClick="botonBuscar_Click" Text="Buscar" />
                 </td>
             </tr>

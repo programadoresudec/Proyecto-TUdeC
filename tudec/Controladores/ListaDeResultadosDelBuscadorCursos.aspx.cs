@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -67,6 +68,34 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
             celdaArea.Controls.Add(icono);
 
         }
+
+    }
+
+    [WebMethod]
+    public static List<string> Ejemplo(string prefixText)
+    {
+
+        List<string> lista = new List<string>();
+
+        lista.Add("Hola");
+        lista.Add("Hello");
+        lista.Add("Abaco");
+        lista.Add("Éter");
+        lista.Add("Pikachu");
+        lista.Add("Raichu");
+        lista.Add("Excelente");
+        lista.Add("Palabra");
+        lista.Add("Resultado");
+        lista.Add("Zapato");
+        lista.Add("Easter");
+        lista.Add("Control");
+        lista.Add("Ubicación");
+        lista.Add("Camaleón");
+        lista.Add("Comunal");
+
+        lista = lista.Where(x => x.ToLower().Contains(prefixText.ToLower())).ToList();
+
+        return lista;
 
     }
 
