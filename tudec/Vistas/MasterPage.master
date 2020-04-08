@@ -43,13 +43,13 @@
                     <img runat="server" src="~/App_Themes/Master/img/EscudoUdec.png" alt="Logo" title="TUdeC" style="height: 80px;" />
                 </a></h1>
                 <div class="form-group">
-                    <br/>
+                    <br />                  
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        </div>
                         <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda"
-                            OnTextChanged="cajaBuscador_TextChanged" Width="500px"></asp:TextBox>
+                            OnTextChanged="cajaBuscador_TextChanged" Width="300px"></asp:TextBox>
+                        <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
+                            CssClass="btn btn-default">
+                            <i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
                     </div>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -171,9 +171,21 @@
             </div>
         </div>
         <!-- //footer -->
-        <!-- Js files -->
-        <!-- JavaScript -->
-        <!-- //banner slider -->
+
+        <!-- //SCRIPTS COMIENZO-->
+        <asp:ScriptManager ID="ScriptManagers" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="../App_Themes/Master/js/jquery-2.2.3.min.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/slider.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/move-top.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/easing.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/jquery.flexisel.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/SmoothScroll.min.js" />
+                <asp:ScriptReference Path="../App_Themes/Master/js/bootstrap.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        <!-- //SCRIPTS FINAL -->
+
         <script type="text/javascript">
             $(window).load(function () {
                 $("#flexiselDemo1").flexisel({
@@ -212,9 +224,7 @@
                 });
             });
         </script>
-        <!-- start-smoth-scrolling -->
 
-        <!-- smooth scrolling-bottom-to-top -->
         <script>
             $(document).ready(function () {
                 $().UItoTop({
@@ -223,16 +233,5 @@
             });
         </script>
     </form>
-    <%-- referencias de los scripts --%>
-    <script src="~/App_Themes/Master/js/SmoothScroll.min.js"></script>
-    <script src="~/App_Themes/Master/js/move-top.js"></script>
-    <script src="~/App_Themes/Master/js/easing.js"></script>
-    <script type="text/javascript" src="~/App_Themes/Master/js/jquery.flexisel.js"></script>
-    <script src="~/App_Themes/Master/js/jquery-2.2.3.min.js"></script>
-    <!-- Default-JavaScript-File -->
-    <!-- banner slider -->
-    <script src="~/App_Themes/Master/js/slider.js"></script>
-    <script src="~/App_Themes/Master/js/bootstrap.js"></script>
-    <%-- fin de referencias --%>
 </body>
 </html>

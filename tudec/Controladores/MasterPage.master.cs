@@ -63,4 +63,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
 
     }
+
+    protected void btnBuscar_Click(object sender, EventArgs e)
+    {
+
+    }
 }
