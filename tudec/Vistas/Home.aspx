@@ -26,7 +26,7 @@
 			<div class="banner-text-whtree">
 				<h3 class="text-capitalize text-white text-center p-4">Experimenta con TUdeC Crea-Aprende
 				</h3>
-				<p class="px-4 py-3 text-center text-white mx-auto">.</p>
+				<p class="px-4 py-3 text-center text-white mx-auto">tudec te permite hacer tutorias o aprender</p>
 			</div>
 		</div>
     </div>
