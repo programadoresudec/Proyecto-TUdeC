@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager>
+                    
                     <table class="auto-style3">
                         <tr>
                             <td class="auto-style2">

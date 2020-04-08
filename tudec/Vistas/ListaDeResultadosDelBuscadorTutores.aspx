@@ -34,7 +34,6 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager>
                     <ajaxToolkit:AutoCompleteExtender 
                         ID="cajaBuscador_AutoCompleteExtender" 
                         runat="server" 

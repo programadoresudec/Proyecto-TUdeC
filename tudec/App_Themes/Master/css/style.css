@@ -147,7 +147,99 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 /*-- //navigation --*/
 
 /*-- //header --*/
+
+
+/* banner */
+.inicio,
+.segundaimagen,
+.terceraimagen,
+.banner-agile {
+    min-height: 780px;
+}
+
+.inicio {
+    background: url(../img/inicio.png) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.segundaimagen {
+    background: url(../img/inicio.png) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner-w3ls-2 {
+    background: url(../img/terceraimagen.jpg) no-repeat;
+    background-size: cover;    
+    background-attachment: fixed;
+}
+
+
+
+/* slider */
+
+.slider {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .slider li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 0vw;
+        overflow: hidden;
+        transition: width 800ms cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    }
+
+        .slider li.active {
+            z-index: 2;
+            width: 100%;
+        }
+
+        .slider li.prev {
+            z-index: 1;
+            width: 100%;
+        }
+
+.pager {
+    z-index: 100;
+    position: absolute;
+    bottom: 150px;
+    left: 45%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .pager li {
+        display: inline-block;
+        border: 2px solid #fff;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+    }
+
+        .pager li.active {
+            background: linear-gradient(to right, #a400fd, #a400fd);
+        }
+
+/* //slider */
+
+
+
 /* banner text */
+
+
+
+
 
 .banner-agile {
     position: relative;
@@ -171,17 +263,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     width: 67%;
 }
 /* //banner text */
-
-.inicio,
-.banner-agile {
-    min-height: 780px;
-}
-
-.inicio {
-    background: url(../img/inicio.png) no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
 
 h5.card-title {
     font-size: 20px;
@@ -1009,7 +1090,7 @@ h4.modal-title {
     height: 32px;
     border: none;
     text-indent: 100%;
-    background: url(../images/move-top.png) no-repeat 0px 0px;
+    background: url(../img/move-top.png) no-repeat 0px 0px;
 }
 
 #toTopHover {
