@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/About.aspx.cs" Inherits="Views_About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
-    <link href="`~/App_Themes/Estilos/About.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../App_Themes/About/css/About.css" type="text/css" rel="stylesheet" media="all">
     <!-- about-->
     <section class="wthree-row py-sm-5" id="why">
         <div class="container py-lg-5">
             <div class="row abbot-main py-lg-5 py-4">
                 <div class="col-lg-6 abbot-right mt-lg-0 mt-3">
-                    <img src="../Recursos/Imagenes/About/logo.png" class="img-fluid img-thumbnail" alt="" />
+                    <img src="../App_Themes/About/img/logo.png" class="img-fluid img-thumbnail" alt="" />
                 </div>
                 <div class="col-lg-6 about-text-grid">
                     <br>
@@ -45,7 +45,7 @@
             <div class="d-flex team-agile-row pt-sm-5 pt-3">
                 <div class="col-lg-4 col-md-6">
                     <div class="box20">
-                        <img src="../Recursos/Imagenes/About/Miguel.png" alt="" class="img-fluid" />
+                        <img src="../App_Themes/About/img/Miguel.png" alt="" class="img-fluid" />
                         <div class="box-content">
                             <br>
                             <h3 class="title">MiguelTellez</h3>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                     <div class="box20">
-                        <img src="../Recursos/Imagenes/About/Diego.png" alt="" class="img-fluid" />
+                        <img src="../App_Themes/About/img/Diego.png" alt="" class="img-fluid" />
                         <div class="box-content">
                             <br>
                             <h3 class="title">Diegoaparra</h3>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mt-lg-0 mt-4 mx-auto">
                     <div class="box20">
-                        <img src="../Recursos/Imagenes/About/Frand.png" alt="" class="img-fluid" />
+                        <img src="../App_Themes/About/img/Frand.png" alt="" class="img-fluid" />
                         <div class="box-content">
                             <br>
                             <h3 class="title">frandCasitas</h3>
