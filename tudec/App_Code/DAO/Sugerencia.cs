@@ -7,36 +7,29 @@ using System.Web;
 /// <summary>
 /// Descripción breve de Sugerencia
 /// </summary>
-public class Sugerencia: Base
+public class Sugerencia
 {
-    public Sugerencia()
-    {
-        
-    }
-
-    DbSet<EArchivo> TablaArchivos { get; set; }
-    DbSet<ESugerencia> TablaSugerencias { get; set; }
-
+    private Base db = new Base();
     public void AlmacenarImagen(EArchivo archivo)
     {
 
-        TablaArchivos.Add(archivo);
-        SaveChanges();
+        db.TablaArchivos.Add(archivo);
+        db.SaveChanges();
 
     }
 
     public void Enviar(ESugerencia sugerencia)
     {
 
-        TablaSugerencias.Add(sugerencia);
-        SaveChanges();
+        db.TablaSugerencias.Add(sugerencia);
+        db.SaveChanges();
 
     }
 
     public List<ESugerencia> GetSugerencias()
     {
 
-        List<ESugerencia> sugerencias = TablaSugerencias.ToList();
+        List<ESugerencia> sugerencias = db.TablaSugerencias.ToList();
 
         return sugerencias;
 
@@ -45,19 +38,14 @@ public class Sugerencia: Base
     public int GetCantidadImagenes(EUsuario usuario)
     {
 
-        List<ESugerencia> sugerencias = TablaSugerencias.Where(x => x.Emisor.Equals(usuario.NombreDeUsuario)).ToList();
+        List<ESugerencia> sugerencias = db.TablaSugerencias.Where(x => x.Emisor.Equals(usuario.NombreDeUsuario)).ToList();
 
         int cantidad = 0;
 
-        foreach(ESugerencia sugerencia in sugerencias)
+        foreach (ESugerencia sugerencia in sugerencias)
         {
-
-            cantidad += TablaArchivos.Where(x => x.IdSugerencia == sugerencia.Id).Count();
-
+            cantidad += db.TablaArchivos.Where(x => x.IdSugerencia == sugerencia.Id).Count();
         }
-
         return cantidad;
-
     }
-
 }

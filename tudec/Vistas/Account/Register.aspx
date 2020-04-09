@@ -1,0 +1,110 @@
+﻿<%@ Page Title="Registrar" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Register.aspx.cs" Inherits="Views_Account_Register" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container" style="width:50%">
+        <div class="h"></div>
+        <br />
+        <h2 style="text-align: center; color: #25B4ED; font-size: x-large;"><strong>Crear Nueva Cuenta</strong></h2>
+        <br />
+        <div class="form-group row">
+            <div class="form-group col-12">
+                <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"
+                    TextMode="Password"
+                    CssClass="form-control" />
+            </div>
+            <asp:RequiredFieldValidator ID="nombreRequerido"
+                runat="server"
+                ControlToValidate="cajaNombreUsuario"
+                ErrorMessage="nombre de usuario requerido!"
+                SetFocusOnError="True" Display="Dynamic" />
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-6">
+                <asp:TextBox ID="cajaPrimerNombre" runat="server" placeHolder="Primer Nombre" CssClass="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <asp:TextBox ID="cajaSegundoNombre" runat="server" placeHolder="Segundo Nombre" CssClass="form-control" />
+            </div>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                ControlToValidate="cajaPrimerNombre"
+                ErrorMessage="Primer nombre es requerido!"
+                SetFocusOnError="True" Display="Dynamic" />
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-6">
+                <asp:TextBox ID="cajaPrimerApellido" runat="server" placeHolder="Primer Apellido" CssClass="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <asp:TextBox ID="cajaSegundoApellido" runat="server" placeHolder="Segundo Apellido" CssClass="form-control" />
+            </div>
+            <asp:RequiredFieldValidator ID="ApellidoRequerido" runat="server"
+                ControlToValidate="cajaPrimerApellido"
+                ErrorMessage="primer Apellido es requerido!"
+                SetFocusOnError="True" Display="Dynamic" />
+        </div>
+
+
+        <div class="form-group row">
+            <div class="form-group col-6">
+                <asp:TextBox ID="cajaEmail" runat="server" placeHolder="Correo Institucional" CssClass="form-control" />
+            </div>
+            <div class="form-group col-6">
+                <asp:Label ID="labelCorreoUdec" runat="server" Text="Label">@ucundinamarca.edu.co</asp:Label>
+            </div>
+            <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
+                ControlToValidate="cajaEmail"
+                ErrorMessage="email es requerido!"
+                SetFocusOnError="True" Display="Dynamic" />
+        </div>
+
+        <div class="form-group row">
+            <div class="form-group col-12">
+                <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
+                    TextMode="Password"
+                    CssClass="form-control" />
+            </div>
+            <asp:RequiredFieldValidator ID="passRequerida"
+                runat="server"
+                ControlToValidate="cajaPass"
+                ErrorMessage="contraseña es requerida!"
+                SetFocusOnError="True" Display="Dynamic" />
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-12">
+                <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
+                    TextMode="Password"
+                    CssClass="form-control" />
+            </div>
+            <asp:RequiredFieldValidator ID="confirmarPassRequerida"
+                runat="server"
+                ControlToValidate="cajaConfirmarPass"
+                ErrorMessage="contraseña confirmada es requerida!"
+                SetFocusOnError="True"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group row justify-content-center">
+            <asp:CompareValidator ID="comparePasswords"
+                runat="server"
+                ControlToCompare="cajaPass"
+                ControlToValidate="cajaConfirmarPass"
+                ErrorMessage="Las contraseñas no son iguales!"
+                Display="Dynamic" />
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-12">
+                <strong>
+                    <asp:Button runat="server" OnClick="btnRegistrar_Click" Text="Registrar"
+                        CssClass="btn btn-primary btn-lg btn-block"
+                        Style="font-size: medium; background-color: #25B4ED" />
+                </strong>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+

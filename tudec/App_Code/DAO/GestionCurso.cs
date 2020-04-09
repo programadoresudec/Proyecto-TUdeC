@@ -7,25 +7,17 @@ using System.Web;
 /// <summary>
 /// Descripción breve de GestionCurso
 /// </summary>
-public class GestionCurso: Base
+public class GestionCurso
 {
+    private Base db = new Base();
     public GestionCurso()
     {
       
     }
-
-    public DbSet<ECurso> TablaCursos { get; set; }
-    public DbSet<EExamen> TablaExamenes { get; set; }
-    public DbSet<ETema> TablaTemas { get; set; }
-    public DbSet<EUsuario> TablaUsuarios { get; set; }
-    public DbSet<EArea> TablaAreas { get; set; }
-    public DbSet<EEstadosCurso> TablaEstados { get; set; }
-    public DbSet<EInscripcionesCursos> TablaInscripciones { get; set; }
-
     public EUsuario GetUsuario(string nombreUsuario)
     {
 
-        EUsuario usuario = TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).FirstOrDefault();
+        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).FirstOrDefault();
         return usuario;
 
     }
@@ -52,7 +44,7 @@ public class GestionCurso: Base
         if (nombre.Equals("") && fechaCreacion.Equals("") && (area == null || area.Equals("Área del conocimiento")) && (estado == null || estado.Equals("Estado")))
         {
 
-            cursos = TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario)).ToList();
+            cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario)).ToList();
 
         }
         else
@@ -69,7 +61,7 @@ public class GestionCurso: Base
 
             }
             
-            cursos = TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area)) && (estado.Equals("Estado") || x.Estado.Equals(estado))).ToList();
+            cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area)) && (estado.Equals("Estado") || x.Estado.Equals(estado))).ToList();
         }
 
 
@@ -82,12 +74,12 @@ public class GestionCurso: Base
 
         List<ECurso> cursos = new List<ECurso>();
 
-        List<EInscripcionesCursos> inscripciones = TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
+        List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
 
         foreach(EInscripcionesCursos inscripcion in inscripciones)
         {
 
-            ECurso curso = TablaCursos.Where(x => x.Id == inscripcion.IdCurso).FirstOrDefault();
+            ECurso curso = db.TablaCursos.Where(x => x.Id == inscripcion.IdCurso).FirstOrDefault();
 
             cursos.Add(curso);
 
@@ -140,7 +132,7 @@ public class GestionCurso: Base
     public List<EArea> GetAreasSrc()
     {
 
-        List<EArea> areas =  TablaAreas.ToList();
+        List<EArea> areas =  db.TablaAreas.ToList();
 
         EArea areaPorDefecto = new EArea();
         areaPorDefecto.Area = "Área del conocimiento";
@@ -154,7 +146,7 @@ public class GestionCurso: Base
     public List<EEstadosCurso> GetEstadosSrc()
     {
 
-        List<EEstadosCurso> estados = TablaEstados.ToList();
+        List<EEstadosCurso> estados = db.TablaEstados.ToList();
 
         EEstadosCurso estadoPorDefecto = new EEstadosCurso();
         estadoPorDefecto.Estado = "Estado";
@@ -168,7 +160,7 @@ public class GestionCurso: Base
     public List<string> GetCursosCreadosSrc(EUsuario usuario, string nombre)
     {
 
-        List<ECurso> cursos = TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && x.Nombre.ToLower().Contains(nombre.ToLower())).ToList();
+        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && x.Nombre.ToLower().Contains(nombre.ToLower())).ToList();
 
         List<string> nombresCursos = new List<string>();
 
@@ -189,12 +181,12 @@ public class GestionCurso: Base
         List<ECurso> cursos = new List<ECurso>();
         List<string> nombresCursos = new List<string>();
 
-        List<EInscripcionesCursos> inscripciones = TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
+        List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
 
         foreach (EInscripcionesCursos inscripcion in inscripciones)
         {
 
-            ECurso curso = TablaCursos.Where(x => x.Id == inscripcion.IdCurso && x.Nombre.ToLower().Contains(nombre.ToLower())).FirstOrDefault();
+            ECurso curso = db.TablaCursos.Where(x => x.Id == inscripcion.IdCurso && x.Nombre.ToLower().Contains(nombre.ToLower())).FirstOrDefault();
 
             if(curso != null) cursos.Add(curso);
 
@@ -217,12 +209,12 @@ public class GestionCurso: Base
         List<ECurso> cursos = new List<ECurso>();
         List<string> nombresTutores = new List<string>();
 
-        List<EInscripcionesCursos> inscripciones = TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
+        List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
 
         foreach (EInscripcionesCursos inscripcion in inscripciones)
         {
 
-            ECurso curso = TablaCursos.Where(x => x.Id == inscripcion.IdCurso).FirstOrDefault();
+            ECurso curso = db.TablaCursos.Where(x => x.Id == inscripcion.IdCurso).FirstOrDefault();
 
             cursos.Add(curso);
 

@@ -15,6 +15,7 @@ using System.Web;
 public class EUsuario
 {
 
+    #region attributes
     private string nombreDeUsuario;
     private string rol;
     private string estado;
@@ -25,12 +26,16 @@ public class EUsuario
     private string correoInstitucional;
     private string pass;
     private DateTime fechaCreacion;
-    private DateTime fechaDesbloqueo;
+    private Nullable<DateTime> fechaDesbloqueo;
     private Nullable<int> puntuacion;
     private string token;
+    private Nullable<DateTime> vencimientoToken;
+    private string session;
     private string imagenPerfil;
-    private int numCursos;
+    private int numCursos; 
+    #endregion
 
+    #region properties
     [Key]
     [Column("nombre_de_usuario")]
     public string NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; }
@@ -53,13 +58,19 @@ public class EUsuario
     [Column("fecha_creacion")]
     public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     [Column("fecha_desbloqueo")]
-    public DateTime FechaDesbloqueo { get => fechaDesbloqueo; set => fechaDesbloqueo = value; }
+    public DateTime? FechaDesbloqueo { get => fechaDesbloqueo; set => fechaDesbloqueo = value; }
     [Column("puntuacion")]
     public int? Puntuacion { get => puntuacion; set => puntuacion = value; }
     [Column("token")]
     public string Token { get => token; set => token = value; }
     [Column("imagen_perfil")]
     public string ImagenPerfil { get => imagenPerfil; set => imagenPerfil = value; }
+    [Column("vencimiento_token")]
+    public DateTime? VencimientoToken { get => vencimientoToken; set => vencimientoToken = value; }
+    [Column("session")]
+    public string Session { get => session; set => session = value; }
     [NotMapped]
     public int NumCursos { get => numCursos; set => numCursos = value; }
+
+    #endregion
 }

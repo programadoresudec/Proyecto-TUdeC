@@ -14,9 +14,13 @@ using System.Web;
 public class EEstadosCurso
 {
 
+    #region attributes
     private string estado;
+    #endregion
 
+    #region properties
     [Key]
     [Column("estado")]
     public string Estado { get => estado; set => estado = value; }
+    #endregion
 }

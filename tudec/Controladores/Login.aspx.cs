@@ -14,18 +14,21 @@ public partial class Views_Account_Login : System.Web.UI.Page
 
     protected void botonIniciar_Click(object sender, EventArgs e)
     {
-
-        Login gestorLogin = new Login();
-
-        EUsuario usuario = gestorLogin.GetUsuario(campoUsuario.Text, campoPass.Text);
-
+        var usuario = new EUsuario();
+        if (campoUsuario.Text.Contains("@"))
+        {
+            usuario = new DaoAccount().GetUsuarioxCorreo(campoUsuario.Text, campoPass.Text);
+        }
+        else
+        {
+           usuario = new DaoAccount().GetUsuario(campoUsuario.Text, campoPass.Text);
+        }
+     
         Session["Usuario"] = usuario;
 
-        if(usuario != null)
+        if (usuario != null)
         {
-
             Response.Redirect("~/Vistas/Home.aspx");
-
         }
 
     }

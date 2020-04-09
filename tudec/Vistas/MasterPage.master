@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head runat="server">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -33,6 +34,7 @@
     <!-- //Web-Fonts -->
     <%-- fin de referencias de bootstrap --%>
 </head>
+
 <body data-spy="scroll" data-target=".fixed-top">
     <form id="form1" runat="server">
         <!-- header -->
@@ -40,16 +42,17 @@
             <!-- navbar -->
             <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 <h1><a runat="server" class="navbar-brand text-white font-weight-bold" href="~/Vistas/Home.aspx">TUdeC
-                    <img runat="server" src="~/App_Themes/Master/img/EscudoUdec.png" alt="Logo" title="TUdeC" style="height: 80px;" />
+						<img runat="server" src="~/App_Themes/Master/img/EscudoUdec.png" alt="Logo" title="TUdeC"
+                            style="height: 80px;" />
                 </a></h1>
                 <div class="form-group">
                     <br />
                     <div class="input-group mb-3">
-                        <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda"
-                            Width="300px"></asp:TextBox>
+                        <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" Width="300px">
+                        </asp:TextBox>
                         <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
                             CssClass="btn btn-default">
-                            <i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
+							<i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
                     </div>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -67,11 +70,13 @@
                             <AnonymousTemplate>
 
                                 <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                    <a runat="server" class="nav-link" href="~/Vistas/Login.aspx">Iniciar Sesión</a>
+                                    <a runat="server" class="nav-link" href="~/Vistas/Account/Login.aspx">Iniciar
+										Sesión</a>
 
                                 </li>
                                 <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                    <a runat="server" class="nav-link" href="~/Vistas/Register.aspx">Registrarse</a>
+                                    <a runat="server" class="nav-link"
+                                        href="~/Vistas/Account/Register.aspx">Registrarse</a>
                                 </li>
 
                             </AnonymousTemplate>
@@ -93,8 +98,8 @@
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mis Cursos
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a runat="server" class="dropdown-item" href="~/Views/Cursos/CursosInscritos">Cursos Inscritos</a>
-                                                <a runat="server" class="dropdown-item" href="~/Views/Cursos/CursosCreados">Cursos Creados</a>
+                                                <a runat="server" class="dropdown-item" href="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx">Cursos Inscritos</a>
+                                                <a runat="server" class="dropdown-item" href="~/Vstas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx">Cursos Creados</a>
                                             </div>
                                         </li>
 
@@ -114,8 +119,6 @@
             <asp:ContentPlaceHolder ID="BodyContentMaster" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
-        <!-- //news -->
         <!--footer-->
         <footer>
             <div class="container py-md-4 mt-md-3">
@@ -146,7 +149,6 @@
                 </div>
             </div>
         </footer>
-        <!---->
         <div class="copyright py-3">
             <div class="container">
                 <div class="copyrighttop">

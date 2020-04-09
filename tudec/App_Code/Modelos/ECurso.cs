@@ -14,6 +14,7 @@ using System.Web;
 public class ECurso
 {
 
+    #region attributes
     private int id;
     private string creador;
     private string area;
@@ -22,8 +23,10 @@ public class ECurso
     private DateTime fechaCreacion;
     private DateTime fechaInicio;
     private string codigoInscripcion;
-    private Nullable<int> puntuacion;
+    private Nullable<int> puntuacion; 
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -42,6 +45,7 @@ public class ECurso
     [Column("codigo_inscripcion")]
     public string CodigoInscripcion { get => codigoInscripcion; set => codigoInscripcion = value; }
     [Column("puntuacion")]
-    public int? Puntuacion { get => puntuacion; set => puntuacion = value; }
+    public int? Puntuacion { get => puntuacion; set => puntuacion = value; } 
+    #endregion
 
 }

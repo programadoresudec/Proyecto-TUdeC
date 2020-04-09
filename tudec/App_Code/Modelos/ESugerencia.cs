@@ -14,11 +14,14 @@ using System.Web;
 public class ESugerencia
 {
 
+    #region attributes
     private int id;
     private string emisor;
     private string contenido;
     private bool estado;
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -27,5 +30,6 @@ public class ESugerencia
     [Column("contenido")]
     public string Contenido { get => contenido; set => contenido = value; }
     [Column("estado")]
-    public bool Estado { get => estado; set => estado = value; }
+    public bool Estado { get => estado; set => estado = value; } 
+    #endregion
 }

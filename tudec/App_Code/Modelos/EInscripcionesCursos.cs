@@ -14,11 +14,14 @@ using System.Web;
 public class EInscripcionesCursos
 {
 
+    #region attributes
     private int id;
     private string nombreUsuario;
     private int idCurso;
     private DateTime fechaInscripcion;
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -27,6 +30,7 @@ public class EInscripcionesCursos
     [Column("fk_id_curso")]
     public int IdCurso { get => idCurso; set => idCurso = value; }
     [Column("fecha_de_inscripcion")]
-    public DateTime FechaInscripcion { get => fechaInscripcion; set => fechaInscripcion = value; }
+    public DateTime FechaInscripcion { get => fechaInscripcion; set => fechaInscripcion = value; } 
+    #endregion
 
 }

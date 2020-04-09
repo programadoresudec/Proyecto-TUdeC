@@ -13,11 +13,14 @@ using System.Web;
 [Table("temas", Schema="temas")]
 public class ETema
 {
+    #region attributes
     private int id;
     private int idCurso;
     private string titulo;
     private string informacion;
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -27,4 +30,5 @@ public class ETema
     public string Titulo { get => titulo; set => titulo = value; }
     [Column("informacion")]
     public string Informacion { get => informacion; set => informacion = value; }
-}
+} 
+#endregion
