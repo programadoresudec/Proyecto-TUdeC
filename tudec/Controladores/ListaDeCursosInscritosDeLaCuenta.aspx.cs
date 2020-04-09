@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Page
 {
+
+    private static EUsuario usuario;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
         GestionCurso gestor = new GestionCurso();
         Session["Usuario"] = gestor.GetUsuario("Frand");
+        usuario = (EUsuario)Session["Usuario"];
 
     }
 
@@ -61,6 +66,30 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             celdaCancelar.Controls.Add(iconoCancelar);
 
         }
+
+    }
+
+    [WebMethod]
+    public static List<string> GetNombresCursos(string prefixText)
+    {
+
+        GestionCurso gestorCurso = new GestionCurso();
+
+        List<string> nombres = gestorCurso.GetCursosInscritosSrc(usuario, prefixText);
+
+        return nombres;
+
+    }
+
+    [WebMethod]
+    public static List<string> GetNombresTutores(string prefixText)
+    {
+
+        GestionCurso gestorCurso = new GestionCurso();
+
+        List<string> nombres = gestorCurso.GetTutoresSrc(usuario, prefixText);
+
+        return nombres;
 
     }
 
