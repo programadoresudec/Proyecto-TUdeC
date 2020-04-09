@@ -13,10 +13,52 @@
     <center><h1>Cursos Creados</h1></center>
     <table class="auto-style1">
         <tr>
-            <td>
-                <asp:TextBox ID="cajaBuscador" runat="server"></asp:TextBox>
-                <asp:Button ID="botonBuscar" runat="server" Text="Buscar" />
-            </td>
+            <td class="auto-style3">
+                
+                <table id="filtrosCursos">
+                    <tr>
+                        <td>
+                <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Nombre del curso"></asp:TextBox>
+                <ajaxToolkit:AutoCompleteExtender 
+                    ID="cajaBuscador_AutoCompleteExtender" 
+                    runat="server" 
+                    BehaviorID="cajaBuscador_AutoCompleteExtender" 
+                    DelimiterCharacters="" 
+                    ServicePath="" 
+                    TargetControlID="cajaBuscador"
+                    
+                    MinimumPrefixLength="1"
+                    CompletionInterval="10"
+                    CompletionSetCount="1"
+                    FirstRowSelected="false"
+                    ServiceMethod="GetNombresCursos">
+                </ajaxToolkit:AutoCompleteExtender>
+                            <asp:TextBox ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
+                            <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="desplegableArea" runat="server" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
+                            </asp:DropDownList>
+                            <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:DropDownList ID="desplegableEstado" runat="server" DataSourceID="EstadosCursoSource" DataTextField="Estado" DataValueField="Estado">
+                            </asp:DropDownList>
+                            <asp:ObjectDataSource ID="EstadosCursoSource" runat="server" SelectMethod="GetEstadosSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button CssClass="botones" ID="botonFiltrar" runat="server" Text="Filtrar" />
+                        </td>
+                    </tr>
+                </table>
+                  
+                    </td>
             <td rowspan="2">
                 <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated">
                     <Columns>
@@ -50,43 +92,14 @@
                     <SelectParameters>
                         <asp:SessionParameter Name="usuario" SessionField="Usuario" Type="Object" />
                         <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="cajaFechaCreacion" Name="fechaCreacion" PropertyName="Text" Type="DateTime" />
+                        <asp:ControlParameter ControlID="cajaFechaCreacion" Name="fechaCreacion" PropertyName="Text" Type="String" />
                         <asp:ControlParameter ControlID="desplegableArea" Name="area" PropertyName="SelectedValue" Type="String" />
                         <asp:ControlParameter ControlID="desplegableEstado" Name="estado" PropertyName="SelectedValue" Type="String" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
             </td>
         </tr>
-        <tr>
-            <td>
-                <table class="auto-style1">
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="cajaFechaCreacion" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList ID="desplegableArea" runat="server" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
-                            </asp:DropDownList>
-                            <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList ID="desplegableEstado" runat="server" DataSourceID="EstadosCursoSource" DataTextField="Estado" DataValueField="Estado">
-                            </asp:DropDownList>
-                            <asp:ObjectDataSource ID="EstadosCursoSource" runat="server" SelectMethod="GetEstadosSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button CssClass="botones" ID="botonFiltrar" runat="server" Text="Filtrar" />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+        
     </table>
 
     <br />
@@ -101,6 +114,9 @@
         .auto-style2 {
             width: 64px;
             height: 64px;
+        }
+        .auto-style3 {
+            height: 35px;
         }
     </style>
 </asp:Content>
