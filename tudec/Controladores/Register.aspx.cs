@@ -15,7 +15,16 @@ public partial class Views_Account_Register : System.Web.UI.Page
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
         EUsuario usuarioEnRegistro = new EUsuario();
-        //usuarioEnRegistro.CorreoInstitucional = ;
-        
+        usuarioEnRegistro.NombreDeUsuario = cajaNombreUsuario.Text;
+        usuarioEnRegistro.Pass = cajaPass.Text;
+        usuarioEnRegistro.PrimerNombre = cajaPrimerNombre.Text;
+        usuarioEnRegistro.SegundoNombre = cajaSegundoNombre.Text;
+        usuarioEnRegistro.PrimerApellido = cajaPrimerApellido.Text;
+        usuarioEnRegistro.SegundoApellido = cajaSegundoApellido.Text;
+        usuarioEnRegistro.FechaCreacion = DateTime.Now;
+        usuarioEnRegistro.CorreoInstitucional = cajaEmail.Text + labelCorreoUdec.Text;
+        usuarioEnRegistro.Rol = "usuario";
+        usuarioEnRegistro.Estado = "espera de activacion";
+
     }
 }

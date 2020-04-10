@@ -16,20 +16,31 @@
                 <div class="terceraimagen">
                 </div>
             </li>
+            <li>
+                <div class="terceraimagen">
+                </div>
+            </li>
+            <li>
+                <div class="terceraimagen">
+                </div>
+            </li>
         </ul>
         <ul class="pager">
             <li data-index="0" class="active"></li>
             <li data-index="1"></li>
             <li data-index="2"></li>
+            <li data-index="3"></li>
+            <li data-index="4"></li>
         </ul>
         <div class="banner-text-posi-w3ls">
-			<div class="banner-text-whtree">
-				<h3 class="text-capitalize text-white text-center p-4">Experimenta con TUdeC Crea-Aprende
-				</h3>
-				<p class="px-4 py-3 text-center text-white mx-auto">tudec te permite hacer tutorias o aprender</p>
-			</div>
-		</div>
+            <div class="banner-text-whtree">
+                <h3 class="text-capitalize text-white text-center p-4">Experience The Best Trip Ever
+                </h3>
+                <p class="px-4 py-3 text-center text-white mx-auto">Lorem Ipsum is simply into dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry’s.</p>
+            </div>
+        </div>
     </div>
     <!-- //banner -->
+    <script src="../App_Themes/Master/js/slider.js"></script>
 </asp:Content>
 
