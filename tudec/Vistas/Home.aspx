@@ -54,7 +54,20 @@
         </div>
     </div>
     <!-- //Buzón de Sugerencias -->
+    <center>
+        <asp:TextBox ID="cajaTitulo" runat="server" Width="300px"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px"></asp:TextBox>
+        <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" BehaviorID="buzon_HtmlEditorExtender" TargetControlID="buzon">
+        
+            <Toolbar>
 
+                <ajaxToolkit:InsertImage />
+
+            </Toolbar>
+        
+        </ajaxToolkit:HtmlEditorExtender>
+    </center>
     <!-- //Script movimiento de las imagenes del banner -->
     <script src="../App_Themes/Master/js/slider.js"></script>
     <!-- //Script movimiento de las imagenes del banner -->
