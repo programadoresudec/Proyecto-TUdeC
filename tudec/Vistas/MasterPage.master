@@ -179,7 +179,7 @@
             <Scripts>
                 <asp:ScriptReference Path="~/App_Themes/Master/js/jquery-2.2.3.min.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
-                <asp:ScriptReference Path="~/App_Themes/Master/js/SmoothScroll.min.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/js/easing.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/bootstrap.js" />
             </Scripts>
         </asp:ScriptManager>

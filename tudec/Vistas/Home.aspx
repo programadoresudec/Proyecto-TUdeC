@@ -5,23 +5,23 @@
     <div class="banner-agile">
         <ul class="slider">
             <li class="active">
-                <div class="inicio">
+                <div class="banner-inicio">
                 </div>
             </li>
             <li>
-                <div class="segundaimagen">
+                <div class="banner-segundo">
                 </div>
             </li>
             <li>
-                <div class="terceraimagen">
+                <div class="banner-tercero">
                 </div>
             </li>
             <li>
-                <div class="terceraimagen">
+                <div class="banner-cuarto">
                 </div>
             </li>
-            <li>
-                <div class="terceraimagen">
+            <li class="prev">
+                <div class="banner-fin">
                 </div>
             </li>
         </ul>
@@ -34,13 +34,29 @@
         </ul>
         <div class="banner-text-posi-w3ls">
             <div class="banner-text-whtree">
-                <h3 class="text-capitalize text-white text-center p-4">Experience The Best Trip Ever
+                <h3 class="text-capitalize text-white text-center p-4">Experimenta con TUdeC Crea-Aprende
                 </h3>
-                <p class="px-4 py-3 text-center text-white mx-auto">Lorem Ipsum is simply into dummy text of the printing and typesetting of industry. Lorem Ipsum has been the industry’s.</p>
+                <p class="px-4 py-3 text-center text-white mx-auto">tudec te permite hacer tutorias o aprender.</p>
             </div>
         </div>
     </div>
     <!-- //banner -->
+    <br />
+    <br />
+    <!-- //Buzón de Sugerencias -->
+    <div class="container">
+        <div class="form-group row justify-content-center">
+            <div class=" form-group col-md-auto">
+                <br />
+                <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De Sugerencias</strong></h2>
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- //Buzón de Sugerencias -->
+
+    <!-- //Script movimiento de las imagenes del banner -->
     <script src="../App_Themes/Master/js/slider.js"></script>
+    <!-- //Script movimiento de las imagenes del banner -->
 </asp:Content>
 

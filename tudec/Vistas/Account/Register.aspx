@@ -21,7 +21,6 @@
                         SetFocusOnError="True" Display="Dynamic" />
                     <div class="form-group col-12">
                         <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"
-                            TextMode="Password"
                             CssClass="form-control" />
                     </div>
                 </div>

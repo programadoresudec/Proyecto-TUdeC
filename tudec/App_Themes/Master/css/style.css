@@ -148,34 +148,46 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 
 /*-- //header --*/
 
-
 /* banner */
-.inicio,
-.segundaimagen,
-.terceraimagen,
+
+.banner-inicio,
+.banner-segundo,
+.banner-tercero,
+.banner-cuarto,
+.banner-fin,
 .banner-agile {
     min-height: 780px;
 }
 
-.inicio {
+.banner-inicio {
+    background: url(../img/inicio.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner-segundo {
+    background: url(../img/segundo.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner-tercero {
+    background: url(../img/tercero.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.banner-cuarto {
     background: url(../img/inicio.png) no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.segundaimagen {
-    background: url(../img/inicio.png) no-repeat;
+.banner-fin {
+    background: url(../img/tercero.jpg) no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
-
-.banner-w3ls-2 {
-    background: url(../img/terceraimagen.jpg) no-repeat;
-    background-size: cover;    
-    background-attachment: fixed;
-}
-
-
 
 /* slider */
 
@@ -233,8 +245,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 
 /* //slider */
 
-
-
 /* banner text */
 
 .banner-agile {
@@ -259,6 +269,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     width: 67%;
 }
 /* //banner text */
+
+/* //banner */
 
 h5.card-title {
     font-size: 20px;
@@ -373,7 +385,6 @@ button.btn1 {
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-o-transition: 0.5s all;
-	-ms-transition: 0.5s all;
 	transition: 0.5s all;
 	float: right;
 	cursor: pointer;
