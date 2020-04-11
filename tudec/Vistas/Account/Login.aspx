@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
-<link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+<link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
     <br />
     <br />

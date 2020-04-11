@@ -45,22 +45,24 @@
 						<img runat="server" src="~/App_Themes/Master/img/EscudoUdec.png" alt="Logo" title="TUdeC"
                             style="height: 80px;" />
                 </a></h1>
-                <div class="form-group">
-                    <br />
-                    <div class="input-group mb-3">
-                        <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" Width="300px">
-                        </asp:TextBox>
-                        <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
-                            CssClass="btn btn-default">
-							<i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
-                    </div>
-                </div>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="form-group">
+                        <br />
+                        <div class="input-group mb-3">
+                            <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px">
+                            </asp:TextBox>
+                            <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
+                                CssClass="btn btn-default">
+							<i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
+                        </div>
+                    </div>
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
@@ -119,6 +121,9 @@
             <asp:ContentPlaceHolder ID="BodyContentMaster" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
+
+
         <!--footer-->
         <footer>
             <div class="container py-md-4 mt-md-3">
@@ -173,9 +178,8 @@
             </div>
         </div>
         <!-- //footer -->
-
         <!-- //SCRIPTS COMIENZO-->
-        <asp:ScriptManager ID="ScriptManagers" runat="server" EnablePageMethods="true">
+        <asp:ScriptManager ID="ScriptManagers" runat="server" EnableScriptGlobalization="true">
             <Scripts>
                 <asp:ScriptReference Path="~/App_Themes/Master/js/jquery-2.2.3.min.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
