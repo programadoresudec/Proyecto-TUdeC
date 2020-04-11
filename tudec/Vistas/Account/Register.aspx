@@ -14,32 +14,39 @@
                 <h2 style="text-align: center; color: #25B4ED; font-size: x-large;"><strong>Crear Nueva Cuenta</strong></h2>
                 <br />
                 <div class="form-group row justify-content-center">
-                    <asp:RequiredFieldValidator ID="nombreRequerido"
+                    <asp:RequiredFieldValidator ID="NombreUsuarioRequerido"
                         runat="server"
                         ControlToValidate="cajaNombreUsuario"
                         ErrorMessage="nombre de usuario requerido!"
-                        SetFocusOnError="True" Display="Dynamic" />
+                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
+                        <!-- //validacion de no tener espacios.-->
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
+                        runat="server" ErrorMessage="no debe contener espacios verifique."
+                        ControlToValidate="cajaNombreUsuario" CssClass="text-danger"
+                    
+                        ValidationExpression="^[A-Za-z][A-Za-z0-9]*$">
+                    </asp:RegularExpressionValidator>
                     <div class="form-group col-12">
                         <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"
                             CssClass="form-control" />
                     </div>
                 </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                        ControlToValidate="cajaPrimerNombre"
-                        ErrorMessage="Primer nombre es requerido!"
-                        SetFocusOnError="True" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="NombreRequerido" runat="server"
+                    ControlToValidate="cajaPrimerNombre"
+                    ErrorMessage="Primer nombre es requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="form-group row">
-                    <div class="form-group col-6"> 
+                    <div class="form-group col-6">
                         <asp:TextBox ID="cajaPrimerNombre" runat="server" placeHolder="Primer Nombre" CssClass="form-control" />
                     </div>
                     <div class="form-group col-6">
                         <asp:TextBox ID="cajaSegundoNombre" runat="server" placeHolder="Segundo Nombre" CssClass="form-control" />
                     </div>
                 </div>
-                 <asp:RequiredFieldValidator ID="ApellidoRequerido" runat="server"
-                        ControlToValidate="cajaPrimerApellido"
-                        ErrorMessage="primer Apellido es requerido!"
-                        SetFocusOnError="True" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="ApellidoRequerido" runat="server"
+                    ControlToValidate="cajaPrimerApellido"
+                    ErrorMessage="primer Apellido es requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="form-group row">
                     <div class="form-group col-6">
                         <asp:TextBox ID="cajaPrimerApellido" runat="server" placeHolder="Primer Apellido" CssClass="form-control" />
@@ -48,12 +55,12 @@
                         <asp:TextBox ID="cajaSegundoApellido" runat="server" placeHolder="Segundo Apellido" CssClass="form-control" />
                     </div>
                 </div>
-                 <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
-                        ControlToValidate="cajaEmail"
-                        ErrorMessage="email es requerido!"
-                        SetFocusOnError="True" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
+                    ControlToValidate="cajaEmail"
+                    ErrorMessage="email es requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="form-group row">
-                    <div class="form-group col-6">                       
+                    <div class="form-group col-6">
                         <asp:TextBox ID="cajaEmail" runat="server" placeHolder="Correo Institucional" CssClass="form-control" />
                     </div>
                     <div class="form-group col-6">
@@ -65,7 +72,7 @@
                         runat="server"
                         ControlToValidate="cajaPass"
                         ErrorMessage="contraseña es requerida!"
-                        SetFocusOnError="True" Display="Dynamic" />
+                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                     <div class="form-group col-12">
                         <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
                             TextMode="Password"
@@ -79,7 +86,7 @@
                         ControlToValidate="cajaConfirmarPass"
                         ErrorMessage="contraseña confirmada es requerida!"
                         SetFocusOnError="True"
-                        Display="Dynamic" />
+                        Display="Dynamic" CssClass="text-danger" />
                     <div class="form-group col-12">
                         <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
                             TextMode="Password"
@@ -93,7 +100,7 @@
                         ControlToCompare="cajaPass"
                         ControlToValidate="cajaConfirmarPass"
                         ErrorMessage="Las contraseñas no son iguales!"
-                        Display="Dynamic" />
+                        Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <div class="form-group row">
                     <div class="form-group col-12">
@@ -103,6 +110,10 @@
                                 Style="font-size: medium; background-color: #25B4ED" />
                         </strong>
                     </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <asp:Label ID="labelValidandoCuenta" runat="server" CssClass="text-success" Visible="False"></asp:Label>
+                    <asp:Label ID="LB_ErrorUsuario_Correo" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
                 </div>
             </div>
         </div>

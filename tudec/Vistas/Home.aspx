@@ -32,12 +32,12 @@
             <li data-index="3"></li>
             <li data-index="4"></li>
         </ul>
-        <div class="banner-text-posi-w3ls">
-            <div class="banner-text-whtree">
-                <h3 class="text-capitalize text-white text-center p-4">Experimenta con TUdeC Crea-Aprende
+        <div class="banner-texto-posicion">
+            <div class="banner-texto">
+                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con TUdeC 
                 </h3>
-                <p class="px-4 py-3 text-center text-white mx-auto">tudec te permite hacer tutorias o aprender.</p>
-            </div>
+                <p class="px-4 py-3 text-center text-white mx-auto">Plataforma web Ingenieria De Sistemas universidad Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.</p>
+			</div>
         </div>
     </div>
     <!-- //banner -->
@@ -50,24 +50,22 @@
                 <br />
                 <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De Sugerencias</strong></h2>
                 <br />
+                <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
+                <br />
+                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
+                <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" BehaviorID="buzon_HtmlEditorExtender" TargetControlID="buzon">
+
+                    <Toolbar>
+
+                        <ajaxToolkit:InsertImage />
+
+                    </Toolbar>
+
+                </ajaxToolkit:HtmlEditorExtender>
             </div>
         </div>
     </div>
     <!-- //Buzón de Sugerencias -->
-    <center>
-        <asp:TextBox ID="cajaTitulo" runat="server" Width="300px"></asp:TextBox>
-        <br />
-        <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px"></asp:TextBox>
-        <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" BehaviorID="buzon_HtmlEditorExtender" TargetControlID="buzon">
-        
-            <Toolbar>
-
-                <ajaxToolkit:InsertImage />
-
-            </Toolbar>
-        
-        </ajaxToolkit:HtmlEditorExtender>
-    </center>
     <!-- //Script movimiento de las imagenes del banner -->
     <script src="../App_Themes/Master/js/slider.js"></script>
     <!-- //Script movimiento de las imagenes del banner -->

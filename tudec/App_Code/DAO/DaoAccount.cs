@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -38,11 +39,15 @@ public class DaoAccount
         }
         catch (DbUpdateException ex) // catch DbUpdateException explicitly
         {
-            var sqlException = GetInnerException<SqlException>(ex);
-
-            if (sqlException != null
-                && (sqlException.Number == 2627 || sqlException.Number == 2601))
+            if (ex.GetBaseException() is NpgsqlException pgException)
             {
+                switch (pgException.SqlState)
+                {
+                    case "23505":
+                        
+                    default:
+                        throw;
+                }
             }
         }
     }
