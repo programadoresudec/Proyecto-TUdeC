@@ -33,10 +33,10 @@ public partial class Views_Account_Register : System.Web.UI.Page
         new DaoAccount().registroUsuario(usuarioEnRegistro);
         if (usuarioEnRegistro.Estado.Equals("en uso"))
         {
-            //if (u)
-            //{
             LB_ErrorUsuario_Correo.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
+            LB_ErrorUsuario_Correo.Visible = true;
             usuarioEnRegistro = null;
+  
             //}
             //else if (true)
             //{

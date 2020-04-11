@@ -31,7 +31,7 @@ public class DaoAccount
     //Metodo que registra el usuario
     public void registroUsuario(EUsuario registro)
     {
-     
+
         db.TablaUsuarios.Add(registro);
         try
         {
@@ -39,12 +39,13 @@ public class DaoAccount
         }
         catch (DbUpdateException ex) // catch DbUpdateException explicitly
         {
-            if (ex.GetBaseException() is NpgsqlException pgException)
+            if (ex.GetBaseException() is PostgresException pgException)
             {
                 switch (pgException.SqlState)
                 {
                     case "23505":
-                        
+                        registro.Estado = "en uso";
+                        break;
                     default:
                         throw;
                 }
