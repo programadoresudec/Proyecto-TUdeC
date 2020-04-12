@@ -1,0 +1,98 @@
+﻿/* start editing from here */
+
+html, body {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    font-size: 100% !important;
+    background: #0086E5 !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/*--element style start here--*/
+
+.element-main {
+    width: 27%;
+    background: #fff;
+    margin: 4em auto 0em;
+    border-radius: 5px;
+    padding: 3em 2em;
+    position: absolute !important;
+    left: 50% !important;
+    top: 40% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+}
+
+    .element-main h1 {
+        text-align: center;
+        font-size: 2.3em;
+        color: #0086E5;
+        font-weight: 700;
+    }
+
+
+
+/*--media quiries start here--*/
+
+@media(max-width:1440px) {
+}
+
+@media(max-width:1366px) {
+}
+
+@media(max-width:1280px) {
+
+    .element-main {
+        width: 30%;
+    }
+}
+
+@media(max-width:1024px) {
+    .element-main {
+        width: 37%;
+    }
+}
+
+@media(max-width:768px) {
+    .element-main {
+        width: 49%;
+    }
+
+    .element-main {
+        width: 60%;
+    }
+
+        .element-main h1 {
+            font-size: 2em;
+        }
+}
+
+@media(max-width:640px) {
+}
+
+@media(max-width:480px) {
+    .element-main {
+        width: 80%;
+        padding: 3em 1.5em;
+    }
+}
+
+@media(max-width:320px) {
+
+    .element-main h1 {
+        font-size: 1.5em;
+    }
+
+    .element-main {
+        width: 80%;
+        margin: 2em auto 0em;
+        padding: 1.5em 1.5em;
+    }
+}
+

@@ -17,11 +17,11 @@ public partial class Views_Account_Login : System.Web.UI.Page
         var usuario = new EUsuario();
         if (campoUsuario.Text.Contains("@"))
         {
-            usuario = new DaoAccount().GetUsuarioxCorreo(campoUsuario.Text, campoPass.Text);
+            usuario = new DaoLogin().GetUsuarioxCorreo(campoUsuario.Text, campoPass.Text);
         }
         else
         {
-           usuario = new DaoAccount().GetUsuario(campoUsuario.Text, campoPass.Text);
+           usuario = new DaoLogin().GetUsuario(campoUsuario.Text, campoPass.Text);
         }
      
         Session["Usuario"] = usuario;

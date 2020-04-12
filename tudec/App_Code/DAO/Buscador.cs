@@ -43,7 +43,10 @@ public class Buscador
         }
         else
         {
-            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower())) && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower())) && (area.Equals("Seleccionar") || x.Area.Equals(area)) && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
+            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower())) 
+            && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower())) 
+            && (area.Equals("Seleccionar") || x.Area.Equals(area)) 
+            && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
         }
 
         return cursos;
@@ -80,13 +83,15 @@ public class Buscador
         if(tutor == "" && puntuacion == 0)
         {
 
-            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals("usuario")).ToList();
+            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER)).ToList();
 
         }
         else
         {
 
-            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals("usuario") && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower())) && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
+            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) 
+            && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower())) 
+            && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
 
         }
 
@@ -105,7 +110,8 @@ public class Buscador
     public List<string> GetTutoresSrc(string nombre)
     {
 
-        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals("usuario") &&  x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
+        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&  
+        x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
 
         List<string> nombresTutores = new List<string>();
 

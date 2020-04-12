@@ -6,7 +6,6 @@
     <br />
     <br />
     <br />
-
     <div class="container">
         <div class="form-group row justify-content-center">
             <div class=" form-group col-md-auto">
@@ -23,8 +22,7 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
                         runat="server" ErrorMessage="no debe contener espacios verifique."
                         ControlToValidate="cajaNombreUsuario" CssClass="text-danger"
-                    
-                        ValidationExpression="^[A-Za-z][A-Za-z0-9]*$">
+                        ValidationExpression="^[\S]*$">
                     </asp:RegularExpressionValidator>
                     <div class="form-group col-12">
                         <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"

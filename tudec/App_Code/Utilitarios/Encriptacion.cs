@@ -8,9 +8,9 @@ using System.Web;
 /// <summary>
 /// Summary description for seguridad
 /// </summary>
-public class seguridad
+public partial class Encriptacion
 {
-    public seguridad()
+    public Encriptacion()
     {
      
     }
@@ -25,4 +25,5 @@ public class seguridad
         output.Append(hashedBytes[i].ToString("x2").ToLower());
         return output.ToString();
     }
+
 }
