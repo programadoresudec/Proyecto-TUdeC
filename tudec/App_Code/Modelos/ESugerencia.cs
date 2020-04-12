@@ -19,6 +19,7 @@ public class ESugerencia
     private string emisor;
     private string contenido;
     private bool estado;
+    private List<string> imagenes;
     #endregion
 
     #region properties
@@ -30,6 +31,10 @@ public class ESugerencia
     [Column("contenido")]
     public string Contenido { get => contenido; set => contenido = value; }
     [Column("estado")]
-    public bool Estado { get => estado; set => estado = value; } 
+    public bool Estado { get => estado; set => estado = value; }
+    [Column("imagenes")]
+    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
+
+
     #endregion
 }

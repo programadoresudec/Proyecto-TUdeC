@@ -35,6 +35,23 @@ public class Sugerencia
 
     }
 
+    public int GetCantidadSugerencias()
+    {
+
+        return db.TablaArchivos.Count();
+
+    }
+
+    public int GetCantidadUsuariosAnonimos()
+    {
+
+        //int cantidad = 0;
+
+        //List<ESugerencia> sugerencias = db.TablaSugerencias.Where(x => x.Emisor == null).ToList();
+        return 0;
+
+    }
+
     public int GetCantidadImagenes(EUsuario usuario)
     {
 

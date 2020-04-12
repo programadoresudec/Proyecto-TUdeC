@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+
+    <script>
+
+    <%--window.onload = function () {
+
+            var buzon = $find("<%= buzon_HtmlEditorExtender.ClientID %>");
+            buzon._editableDiv.innerHTML = "Lo que sea";
+        }--%>
+
+    </script>
+
     <!-- banner -->
     <div class="banner-agile">
         <ul class="slider">
@@ -50,10 +61,11 @@
                 <br />
                 <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De Sugerencias</strong></h2>
                 <br />
-                <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
                 <br />
-                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
-                <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" BehaviorID="buzon_HtmlEditorExtender" TargetControlID="buzon">
+                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control" ></asp:TextBox>
+                <asp:Button ID="enviar" runat="server" Text="Enviar sugerencia"  Width="300px" CssClass="form-control" OnClick="enviar_Click"/>
+                <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 
                     <Toolbar>
 
