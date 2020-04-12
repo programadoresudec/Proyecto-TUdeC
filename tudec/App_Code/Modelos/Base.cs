@@ -12,7 +12,6 @@ public class Base: DbContext
     public Base(): base("cadena"){}
     public DbSet<EArea> TablaAreas { get; set; }
     public DbSet<ECurso> TablaCursos { get; set; }
-    public DbSet<EArchivo> TablaArchivos { get; set; }
     public DbSet<ESugerencia> TablaSugerencias { get; set; }
     public DbSet<EUsuario> TablaUsuarios { get; set; }
     public DbSet<EExamen> TablaExamenes { get; set; }

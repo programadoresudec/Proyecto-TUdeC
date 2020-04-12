@@ -93,19 +93,8 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         Sugerencia gestorSugerencias = new Sugerencia();
         ESugerencia sugerencia = new ESugerencia();
 
-        if (nombreUsuario == null)
-        {
-
-            
-
-        }
-        else
-        {
-
-            sugerencia.Emisor = nombreUsuario;
-
-        }
-        
+        sugerencia.Titulo = cajaTitulo.Text;
+        sugerencia.Emisor = nombreUsuario;
         sugerencia.Estado = false;
         sugerencia.Contenido = contenido;
         sugerencia.Imagenes = new List<string>();
@@ -115,14 +104,18 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         foreach(byte[] archivo in archivos)
         {
             
-            FileStream archivoImagen = File.Create(Server.MapPath("/Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + ".png");
+            FileStream archivoImagen = File.Create(Server.MapPath("Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + ".png");
 
             archivoImagen.Write(archivo, 0, archivo.Length);
             contadorImagen++;
 
+            string valor = archivoImagen.Name;
+
             sugerencia.Imagenes.Add(archivoImagen.Name);
 
         }
+
+        
 
         gestorSugerencias.Enviar(sugerencia);
 
