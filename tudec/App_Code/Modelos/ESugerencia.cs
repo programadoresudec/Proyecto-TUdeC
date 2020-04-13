@@ -22,6 +22,7 @@ public class ESugerencia
     private bool estado;
     private List<string> imagenes;
     private string imagenesJson;
+    private DateTime fecha;
     #endregion
 
     #region properties
@@ -40,6 +41,8 @@ public class ESugerencia
     public List<string> Imagenes { get => imagenes; set => imagenes = value; }
     [Column("imagenes")]
     public string ImagenesJson { get => imagenesJson; set => imagenesJson = value; }
+    [Column("fecha")]
+    public DateTime Fecha { get => fecha; set => fecha = value; }
 
     #endregion
 }

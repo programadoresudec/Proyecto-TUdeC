@@ -67,7 +67,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style2">
-                                    <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button ID="botonFiltrar" CssClass="botones" runat="server" Text="Filtrar" />
+                                    <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button ID="botonFiltrar" CssClass="botones" runat="server" Text="Filtrar"/>
                                 </td>
                         </tr>
                     </table>

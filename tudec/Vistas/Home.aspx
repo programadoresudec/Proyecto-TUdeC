@@ -4,12 +4,6 @@
 
     <script>
 
-    <%--window.onload = function () {
-
-            var buzon = $find("<%= buzon_HtmlEditorExtender.ClientID %>");
-            buzon._editableDiv.innerHTML = "Lo que sea";
-        }--%>
-
     </script>
 
     <!-- banner -->
@@ -63,7 +57,7 @@
                 <br />
                 <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
                 <br />
-                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control" ></asp:TextBox>
+                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
                 <asp:Button ID="enviar" runat="server" Text="Enviar sugerencia"  Width="300px" CssClass="form-control" OnClick="enviar_Click"/>
                 <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 

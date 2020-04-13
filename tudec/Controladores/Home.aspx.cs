@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,6 +45,8 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
     }
 
+
+
     protected void enviar_Click(object sender, EventArgs e)
     {
 
@@ -51,19 +54,28 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         string contenidoAuxiliar = contenido;
 
         List<byte[]> archivos = new List<byte[]>();
+        List<string> extensiones = new List<string>();
 
-        do
-        {
 
-            int indiceInicial = contenidoAuxiliar.IndexOf("fileId=") + 7;
-            int indiceFinal = contenidoAuxiliar.IndexOf('>') - 2;
-            int longitud = indiceFinal - indiceInicial + 1;
-            string idArchivo = contenidoAuxiliar.Substring(indiceInicial, longitud);
-            byte[] archivo = (byte[])Session["fileContents_" + idArchivo];
-            archivos.Add(archivo);
-            contenidoAuxiliar = contenidoAuxiliar.Substring(indiceFinal + 1);
+        if (contenidoAuxiliar.Contains("img")){
 
-        } while (contenidoAuxiliar.Contains("fileId"));
+            do
+            {
+
+                int indiceInicial = contenidoAuxiliar.IndexOf("fileId=") + 7;
+                int indiceFinal = contenidoAuxiliar.IndexOf('>') - 2;
+                int longitud = indiceFinal - indiceInicial + 1;
+                string idArchivo = contenidoAuxiliar.Substring(indiceInicial, longitud);
+                byte[] archivo = (byte[])Session["fileContents_" + idArchivo];
+                string extension = (string)Session["fileContentType_" + idArchivo];
+                archivos.Add(archivo);
+                extensiones.Add(extension);
+                contenidoAuxiliar = contenidoAuxiliar.Substring(indiceFinal + 3);
+
+            } while (contenidoAuxiliar.Contains("fileId"));
+
+        }
+        
 
         List<string> contenidoAReemplazar = new List<string>();
         contenidoAuxiliar = contenido;
@@ -97,6 +109,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         sugerencia.Emisor = nombreUsuario;
         sugerencia.Estado = false;
         sugerencia.Contenido = contenido;
+        sugerencia.Fecha = DateTime.Now;
         sugerencia.Imagenes = new List<string>();
 
         int contadorImagen = 0;
@@ -104,18 +117,19 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         foreach(byte[] archivo in archivos)
         {
             
-            FileStream archivoImagen = File.Create(Server.MapPath("Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + ".png");
-
+            
+            FileStream archivoImagen = File.Create(Server.MapPath("../Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + ".png");
+            
             archivoImagen.Write(archivo, 0, archivo.Length);
+                        
+            sugerencia.Imagenes.Add("..//Recursos//Imagenes//SugerenciasEnviadas//Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + extensiones[archivos.IndexOf(archivo)]);
             contadorImagen++;
 
-            string valor = archivoImagen.Name;
-
-            sugerencia.Imagenes.Add(archivoImagen.Name);
+            archivoImagen.Close();
 
         }
 
-        
+        sugerencia.ImagenesJson = JsonConvert.SerializeObject(sugerencia.Imagenes);
 
         gestorSugerencias.Enviar(sugerencia);
 

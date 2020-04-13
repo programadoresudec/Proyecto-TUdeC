@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,9 +14,18 @@ public class Sugerencia
 
     public void Enviar(ESugerencia sugerencia)
     {
-        sugerencia.ImagenesJson = JsonConvert.SerializeObject(sugerencia.Imagenes);
+        
         db.TablaSugerencias.Add(sugerencia);
         db.SaveChanges();
+
+    }
+
+    public ESugerencia GetSugerencia(int id)
+    {
+
+        ESugerencia sugerencia = db.TablaSugerencias.Where(x => x.Id == id).FirstOrDefault();
+
+        return sugerencia;
 
     }
 

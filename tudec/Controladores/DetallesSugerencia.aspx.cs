@@ -10,5 +10,9 @@ public partial class Vistas_DetallesSugerencia : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
+        string valor = sugerencia.Contenido;
+        titulo.Text = sugerencia.Titulo;
+
     }
 }
