@@ -24,12 +24,12 @@ public class DaoRegister:IToken
 
 
     //Metodo que registra el usuario
-    public void registroUsuario(EUsuario registro)
+    public async void registroUsuario(EUsuario registro)
     {
         db.TablaUsuarios.Add(registro);
         try
         {
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
         catch (DbUpdateException ex) // catch DbUpdateException
         {

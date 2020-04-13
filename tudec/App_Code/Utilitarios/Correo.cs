@@ -13,21 +13,37 @@ public partial class Correo
     {
     }
 
-    public void enviarCorreo(String correoDestino, String userToken, String mensaje, String url)
+    public void enviarCorreo(string correoDestino, string userToken, string mensaje, string url, string estado)
     {
+        // inicializar variable var
+        var Emailtemplate = (dynamic)null;
         try
         {
-            var Emailtemplate = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory.Insert(AppDomain.CurrentDomain.BaseDirectory.Length, "Recursos\\SendMail\\SenderMail.html"));
+            if (estado.Equals(Constantes.ESTADO_EN_ESPERA))
+            {
+                Emailtemplate = new System.IO.StreamReader
+                (AppDomain.CurrentDomain.BaseDirectory.Insert
+                (AppDomain.CurrentDomain.BaseDirectory.Length,
+                "Recursos\\SendMail\\ActivarCuenta.html"));
+            }
+            else if (estado.Equals(Constantes.ESTADO_CAMBIO_PASS))
+            {
+                Emailtemplate = new System.IO.StreamReader
+               (AppDomain.CurrentDomain.BaseDirectory.Insert
+               (AppDomain.CurrentDomain.BaseDirectory.Length,
+               "Recursos\\SendMail\\CambiarPassword.html"));
+            }    
             var strBody = string.Format(Emailtemplate.ReadToEnd(), userToken);
-            Emailtemplate.Close(); Emailtemplate.Dispose(); Emailtemplate = null;
+            Emailtemplate.Close();
+            Emailtemplate.Dispose();
+            Emailtemplate = null;
             string hostPuerto = HttpContext.Current.Request.Url.Authority;
-            strBody = strBody.Replace("#TOKEN#", "Por favor recupere su cuenta ingresando al siguiente link: " + "su link de acceso es: " +
-               hostPuerto + url + "?" + userToken);
+            strBody = strBody.Replace("token", "http://" + hostPuerto + url + userToken);
             //Configuración del Mensaje
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
-            mail.From = new MailAddress("tudec@gmail.com", "udec");
+            mail.From = new MailAddress("tudec@losmejores.com", "udec");
             SmtpServer.Host = "smtp.gmail.com";
             //Aquí ponemos el asunto del correo
             mail.Subject = mensaje;
@@ -43,7 +59,7 @@ public partial class Correo
             //Configuracion del SMTP
             SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios
             //Especificamos las credenciales con las que enviaremos el mail
-            SmtpServer.Credentials = new System.Net.NetworkCredential("tudec@gmail.com", "programadoresudec2020");
+            SmtpServer.Credentials = new System.Net.NetworkCredential(Constantes.CORREO, Constantes.PASSWORD);
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             mail.Dispose();

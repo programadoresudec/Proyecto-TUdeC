@@ -86,9 +86,6 @@
 
                             <LoggedInTemplate>
 
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <% %> !</a></li>
-                                <li></li>
-
                             </LoggedInTemplate>
 
                             <RoleGroups>

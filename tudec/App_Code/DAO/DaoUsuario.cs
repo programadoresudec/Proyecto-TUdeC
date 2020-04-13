@@ -15,7 +15,7 @@ public class DaoUsuario
 
     }
 
-    public void actualizarUsuario(EUsuario usuario)
+    public async void  actualizarUsuario(EUsuario usuario)
     {
         EUsuario actualizar = db.TablaUsuarios.Where(x => x.NombreDeUsuario == usuario.NombreDeUsuario).First();
         actualizar.NombreDeUsuario = usuario.NombreDeUsuario;
@@ -24,6 +24,7 @@ public class DaoUsuario
         actualizar.PrimerApellido = usuario.PrimerApellido;
         actualizar.SegundoApellido = usuario.SegundoApellido;
         actualizar.CorreoInstitucional = usuario.CorreoInstitucional;
+        actualizar.Estado = usuario.Estado;
         actualizar.Token = usuario.Token;
         actualizar.VencimientoToken = usuario.VencimientoToken;
         actualizar.PrimerApellido = usuario.PrimerApellido;
@@ -32,7 +33,7 @@ public class DaoUsuario
         db.TablaUsuarios.Attach(actualizar);
         var entry = db.Entry(actualizar);
         entry.State = EntityState.Modified;
-        db.SaveChanges();
+        await db.SaveChangesAsync();
 
     }
 }

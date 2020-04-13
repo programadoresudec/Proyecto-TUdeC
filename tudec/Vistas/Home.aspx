@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
-
-    <script>
-
-    </script>
-
     <!-- banner -->
     <div class="banner-agile">
         <ul class="slider">

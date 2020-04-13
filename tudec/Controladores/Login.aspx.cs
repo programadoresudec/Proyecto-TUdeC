@@ -30,6 +30,10 @@ public partial class Views_Account_Login : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
-
+        else
+        {
+            LB_usuarioNoExiste.Text = "No Existe ese usuario.";
+            LB_usuarioNoExiste.Visible = true;
+        }
     }
 }

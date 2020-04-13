@@ -19,7 +19,6 @@ public class DaoLogin:IToken
     {
         return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)
         && x.Pass.Equals(pass)).FirstOrDefault();
-        
     }
 
     //Metodo que valida el logeo por nombre de usuario

@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/CuentaActivada.aspx.cs" Inherits="Vistas_Account_CuentaActivada" %>
+﻿<%@ Page Async="true" Title="Cuenta Activada" Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/CuentaActivada.aspx.cs" Inherits="Vistas_Account_CuentaActivada" %>
 
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title>Cuenta Activada</title>
-    <link href="~/App_Themes/Estilos/EstilosCuentaVerificada.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/App_Themes/Estilos/EstilosCuentaActivada.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/App_Themes/Master/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 
     <!-- Custom Theme files -->

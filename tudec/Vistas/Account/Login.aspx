@@ -16,20 +16,29 @@
         <br />
         <table class="auto-style1" style="width: 30%">
             <tr>
-                <td>Nombre de usuario:</td>
+                <td><strong>Nombre de usuario:</strong></td>
                 <td>
-                    <asp:TextBox ID="campoUsuario" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="campoUsuario" CssClass="form-control" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td>Contraseña</td>
                 <td>
-                    <asp:TextBox ID="campoPass" runat="server" TextMode="Password"></asp:TextBox>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Contraseña</strong></td>
+                <td>
+                    <asp:TextBox ID="campoPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                   <center> <asp:Button ID="botonIniciar" CssClass="botones" runat="server" Text="Iniciar sesión" OnClick="botonIniciar_Click" /> </center> 
+                   <center> 
+                       <br />
+                       <asp:Label ID="LB_usuarioNoExiste" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
+                       <br />
+                       <asp:Button ID="botonIniciar" CssClass="botones" runat="server" Text="Iniciar sesión" OnClick="botonIniciar_Click" /> </center> 
                 </td>
             </tr>
         </table>
