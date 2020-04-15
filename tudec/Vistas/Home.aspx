@@ -44,28 +44,32 @@
     <br />
     <br />
     <!-- //Buzón de Sugerencias -->
-    <div class="container">
-        <div class="form-group row justify-content-center">
-            <div class=" form-group col-md-auto">
+    <asp:Panel CssClass="container" runat="server">
+
+        <asp:Panel CssClass="form-group row justify-content-center" runat="server">
+            <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
                 <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De Sugerencias</strong></h2>
                 <br />
-                <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
-                <asp:Button ID="enviar" runat="server" Text="Enviar sugerencia"  Width="300px" CssClass="form-control" OnClick="enviar_Click"/>
-                <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
+                <asp:Panel ID="panelCamposBuzon" runat="server">
+                    <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
+                    <br />
+                    <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
+                    <asp:Button ID="enviar" runat="server" Text="Enviar sugerencia"  Width="300px" CssClass="form-control" OnClick="enviar_Click"/>
+                    <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 
-                    <Toolbar>
+                        <Toolbar>
 
-                        <ajaxToolkit:InsertImage />
+                            <ajaxToolkit:InsertImage />
 
-                    </Toolbar>
+                        </Toolbar>
 
-                </ajaxToolkit:HtmlEditorExtender>
-            </div>
-        </div>
-    </div>
+                    </ajaxToolkit:HtmlEditorExtender>
+                </asp:Panel>
+            </asp:Panel>
+        </asp:Panel>
+
+    </asp:Panel>
     <!-- //Buzón de Sugerencias -->
     <!-- //Script movimiento de las imagenes del banner -->
     <script src="../App_Themes/Master/js/slider.js"></script>

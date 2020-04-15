@@ -13,6 +13,26 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        EUsuario usuario = (EUsuario)(Session["Usuario"]);
+
+        if (usuario != null)
+        {
+
+            if (usuario.Rol.Equals("administrador"))
+            {
+
+                Button botonVerSugerencias = new Button();
+                botonVerSugerencias.Text = "Ver Sugerencias";
+                botonVerSugerencias.CssClass = "form-control";
+                botonVerSugerencias.Click += new EventHandler(VerSugerencias);
+
+                panelBuzon.Controls.Remove(panelCamposBuzon);
+                panelBuzon.Controls.Add(botonVerSugerencias);
+
+            }
+
+        }
+
         if (Request.QueryString["preview"] == "1" && !string.IsNullOrEmpty(Request.QueryString["fileId"]))
         {
             var fileId = Request.QueryString["fileId"];
@@ -45,7 +65,12 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
     }
 
+    protected void VerSugerencias(object sender, EventArgs e)
+    {
 
+        Response.Redirect("~/Vistas/VisualizacionDeSugerencias.aspx");
+
+    }
 
     protected void enviar_Click(object sender, EventArgs e)
     {
