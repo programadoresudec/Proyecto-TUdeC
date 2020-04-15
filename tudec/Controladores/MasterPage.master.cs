@@ -57,4 +57,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
 
     }
+
+    protected void cajaBuscador_TextChanged(object sender, EventArgs e)
+    {
+
+        Session["Buscador"] = cajaBuscador.Text;
+
+        Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+
+    }
 }

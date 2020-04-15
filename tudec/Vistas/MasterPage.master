@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <br />
                         <div class="input-group mb-3">
-                            <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px">
+                            <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
                                 CssClass="btn btn-default">
