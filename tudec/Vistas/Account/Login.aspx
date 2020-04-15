@@ -1,59 +1,71 @@
 ﻿<%@ Page Title="Iniciar Sesión" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Login.aspx.cs" Inherits="Views_Account_Login" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
-
-<link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
-
+<asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <br />
     <br />
     <br />
     <br />
     <br />
-    <center>
-
-        <h1 style="color: darkblue" >Iniciar sesión</h1>
-
-        <br />
-        <table class="auto-style1" style="width: 30%">
-            <tr>
-                <td><strong>Nombre de usuario:</strong></td>
-                <td>
-                    <asp:TextBox ID="campoUsuario" CssClass="form-control" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br />
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Contraseña</strong></td>
-                <td>
-                    <asp:TextBox ID="campoPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                   <center> 
-                       <br />
-                       <asp:Label ID="LB_usuarioNoExiste" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
-                       <br />
-                       <asp:Button ID="botonIniciar" CssClass="botones" runat="server" Text="Iniciar sesión" OnClick="botonIniciar_Click" /> </center> 
-                </td>
-            </tr>
-        </table>
-
-    </center>
-
-    <br />
+    <div class="container">
+        <div class="form-group row justify-content-center">
+            <div class=" form-group col-md-6">
+                <br />
+                <h2 style="text-align: center; color: darkblue; font-size: xx-large;"><strong>Login</strong></h2>
+                <br />
+                <div class="col-12 input-group justify-content-center">
+                <asp:Label ID="LB_Validacion" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
+                </div>
+                <div class="col-12 input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                    <asp:TextBox ID="campoUsuario" CssClass="form-control" placeHolder="Email o Usuario" runat="server">
+                    </asp:TextBox>
+                </div>
+                <div class="col-12 input-group justify-content-center">
+                    <asp:RequiredFieldValidator ID="UsuarioRequerido"
+                        runat="server"
+                        ControlToValidate="campoUsuario"
+                        ErrorMessage="!requerido!"
+                        SetFocusOnError="True"
+                        Display="Dynamic" CssClass="text-danger" />
+                </div>
+                <br />
+                <div class="col-12 input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-key"></i>
+                        </div>
+                    </div>
+                    <asp:TextBox ID="campoPass" runat="server" CssClass="form-control" placeHolder="Contraseña" TextMode="Password">
+                    </asp:TextBox>
+                </div>
+                <div class="col-12 input-group justify-content-center">
+                    <asp:RequiredFieldValidator ID="PassRequerida"
+                        runat="server"
+                        ControlToValidate="campoPass"
+                        ErrorMessage="!requerido!"
+                        SetFocusOnError="True"
+                        Display="Dynamic" CssClass="text-danger" />
+                </div>
+                <br />
+                <div class="col-12 input-group justify-content-center">
+                    <asp:HyperLink ID="cambiarPassword" CssClass="btn btn-link" runat="server"
+                        NavigateUrl="~/Vistas/Account/VerificarEmail.aspx">¿Has olvidado la contraseña?</asp:HyperLink>
+                </div>
+                <div class="form-group col-12">
+                    <strong>
+                        <asp:Button ID="botonIniciar" CssClass="btn btn-primary btn-lg btn-block" runat="server" Text="Iniciar sesión" OnClick="botonIniciar_Click"
+                            Style="font-size: medium; background-color: #000000" />
+                    </strong>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 
-<asp:Content ID="Content1" runat="server" contentplaceholderid="head">
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-    </style>
-</asp:Content>
+
 
 

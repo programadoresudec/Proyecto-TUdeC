@@ -11,4 +11,9 @@ public partial class Vistas_Account_VerificarEmail : System.Web.UI.Page
     {
 
     }
+
+    protected void botonEnviarToken_Click(object sender, EventArgs e)
+    {
+
+    }
 }

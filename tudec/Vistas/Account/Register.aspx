@@ -91,7 +91,6 @@
                             CssClass="form-control" />
                     </div>
                 </div>
-
                 <div class="form-group row justify-content-center">
                     <asp:CompareValidator ID="comparePasswords"
                         runat="server"

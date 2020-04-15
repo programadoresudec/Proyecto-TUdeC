@@ -28,12 +28,36 @@ public partial class Views_Account_Login : System.Web.UI.Page
 
         if (usuario != null)
         {
-            Response.Redirect("~/Vistas/Home.aspx");
+            if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
+            {
+               
+                return;
+            }
+            else if (usuario.Estado.Equals(Constantes.ESTADO_CAMBIO_PASS))
+            {
+                LB_Validacion.Text = "";
+                return;
+            }
+            else if (usuario.Estado.Equals(Constantes.ESTADO_ACTIVO))
+            {
+                LB_Validacion.CssClass = "text-success";
+                LB_Validacion.Text = "Satisfactorio.";
+                LB_Validacion.Visible = true;
+                Response.Redirect("~/Vistas/Home.aspx");
+            }
         }
+
+
+
         else
         {
-            LB_usuarioNoExiste.Text = "No Existe ese usuario.";
-            LB_usuarioNoExiste.Visible = true;
+            LB_Validacion.Text = "No Existe ese usuario.";
+            LB_Validacion.Visible = true;
         }
+    }
+
+    protected void RestablecerPass_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Vistas/Account/VerificarEmail.aspx");
     }
 }

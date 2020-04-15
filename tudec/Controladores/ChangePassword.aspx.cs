@@ -11,4 +11,9 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
     {
 
     }
+
+    protected void btnRestablecer_Click(object sender, EventArgs e)
+    {
+
+    }
 }
