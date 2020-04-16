@@ -1,6 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+
+    <script>
+
+        $(document).ready(function () {
+            $('#enviar').click(function () {
+
+                var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
+                var titulo = <%=cajaTitulo.ClientID%>;
+                titulo = titulo.value;
+                
+                buzon = buzon._editableDiv;
+
+                var datos = "{'titulo':'" + titulo +  "','contenido':'" + buzon.innerHTML + "'}";
+
+                $.ajax({
+
+                    type: "POST",                                              
+                    url: 'Home.aspx/EnviarHtml',                   
+                    data: datos,                                              
+                                                                               
+                    contentType: "application/json; charset=utf-8",           
+                    dataType: "json",                                        
+                    async: true,                                             
+                    
+                });
+
+                alert("Sugerencia enviada");
+
+            });
+        });
+
+    </script>
+
     <!-- banner -->
     <div class="banner-agile">
         <ul class="slider">
@@ -55,7 +88,9 @@
                     <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
                     <br />
                     <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
-                    <asp:Button ID="enviar" runat="server" Text="Enviar sugerencia"  Width="300px" CssClass="form-control" OnClick="enviar_Click"/>
+               
+                    <input id="enviar" type="button" value="Enviar sugerencia" width="300px" class="form-control" />
+                    
                     <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 
                         <Toolbar>
