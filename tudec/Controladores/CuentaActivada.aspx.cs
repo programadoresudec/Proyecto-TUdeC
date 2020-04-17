@@ -10,33 +10,36 @@ public partial class Vistas_Account_CuentaActivada : System.Web.UI.Page
     IToken verificarToken = new DaoRegister();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString.Count > 0)
+        // IspostBack solo se ejecuta una vez. el page Load.
+        if (!IsPostBack)
         {
-            EUsuario usuario = verificarToken.buscarUsuarioxToken(Request.QueryString[0] == null ? "" : Request.QueryString[0]);
-
-            if (usuario == null)
+            if (Request.QueryString.Count > 0)
             {
-                RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('El Token es invalido. Genere uno nuevo');window.location=\"Login.aspx\"</script>");
+                EUsuario usuario = verificarToken.buscarUsuarioxToken(Request.QueryString[0] == null ? "" : Request.QueryString[0]);
 
-            }
-            else if (usuario.VencimientoToken < DateTime.Now)
-            {
-                RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('El Token esta vencido. Genere uno nuevo');window.location=\"Login.aspx\"</script>");
+                if (usuario == null)
+                {
+                    Response.Redirect("~/Vistas/Account/ValidacionToken.aspx?token=");
+                }
+                else if (usuario.VencimientoToken < DateTime.Now)
+                {
+                    Session[Constantes.VALIDAR_TOKEN] = Constantes.VALIDAR_TOKEN;
+                    Response.Redirect("~/Vistas/Account/ValidacionToken.aspx?token=" + usuario.Token);
+                }
+                else
+                {
+                    Session["nombre_usuario"] = usuario;
+                    usuario.Estado = Constantes.ESTADO_ACTIVO;
+                    usuario.Token = null;
+                    usuario.VencimientoToken = null;
+                    usuario.Session = usuario.NombreDeUsuario;
+                    new DaoUsuario().actualizarUsuario(usuario);
+                }
             }
             else
             {
-                Session["nombre_usuario"] = usuario;
-                usuario.Estado = Constantes.ESTADO_ACTIVO;
-                usuario.Token = null;
-                usuario.VencimientoToken = null;
-                usuario.Session = usuario.NombreDeUsuario;
-                new DaoUsuario().actualizarUsuario(usuario);
+                Response.Redirect("~/Vistas/Home.aspx");
             }
-        }
-
-        else
-        {
-            Response.Redirect("~/Vistas/Home.aspx");
         }
     }
 

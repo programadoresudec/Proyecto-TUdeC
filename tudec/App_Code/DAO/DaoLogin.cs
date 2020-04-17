@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 /// <summary>
 /// Summary description for DaoLogin
 /// </summary>
-public class DaoLogin:IToken
+public class DaoLogin : IToken
 {
     private Base db = new Base();
     public DaoLogin()
     {
-    
+
     }
 
     //Metodo que valida el logeo por nombre de usuario
@@ -30,7 +31,12 @@ public class DaoLogin:IToken
 
     public EUsuario buscarUsuarioxToken(string token)
     {
-        return db.TablaUsuarios.Where(x => x.Token.Equals(token) 
+        return db.TablaUsuarios.Where(x => x.Token.Equals(token)
         && x.Estado.Equals(Constantes.ESTADO_CAMBIO_PASS)).FirstOrDefault();
+    }
+
+    public EUsuario buscarCorreo(string correo)
+    {
+        return db.TablaUsuarios.Where(x => x.CorreoInstitucional.Equals(correo)).FirstOrDefault();
     }
 }

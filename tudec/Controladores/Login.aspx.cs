@@ -9,7 +9,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
 
     protected void botonIniciar_Click(object sender, EventArgs e)
@@ -46,18 +46,10 @@ public partial class Views_Account_Login : System.Web.UI.Page
                 Response.Redirect("~/Vistas/Home.aspx");
             }
         }
-
-
-
         else
         {
             LB_Validacion.Text = "No Existe ese usuario.";
             LB_Validacion.Visible = true;
         }
-    }
-
-    protected void RestablecerPass_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Vistas/Account/VerificarEmail.aspx");
     }
 }

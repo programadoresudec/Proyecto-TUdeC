@@ -23,7 +23,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         if (usuario != null)
         {
 
-            if (usuario.Rol.Equals("administrador"))
+            if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
 
                 Button botonVerSugerencias = new Button();

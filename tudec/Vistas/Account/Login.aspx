@@ -28,7 +28,7 @@
                     <asp:RequiredFieldValidator ID="UsuarioRequerido"
                         runat="server"
                         ControlToValidate="campoUsuario"
-                        ErrorMessage="!requerido!"
+                        ErrorMessage="¡requerido!"
                         SetFocusOnError="True"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>
@@ -46,7 +46,7 @@
                     <asp:RequiredFieldValidator ID="PassRequerida"
                         runat="server"
                         ControlToValidate="campoPass"
-                        ErrorMessage="!requerido!"
+                        ErrorMessage="¡requerido!"
                         SetFocusOnError="True"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>

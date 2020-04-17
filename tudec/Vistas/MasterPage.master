@@ -55,18 +55,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
-                        <div class="input-group mb-3">
+                        <div class="mx-3 input-group">
                             <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
-                            <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
-                                CssClass="btn btn-default">
+
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
+                                        CssClass="btn btn-default">
 							<i class="fa fa-search"></i>&nbsp;</asp:LinkButton>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/About.aspx">Acerca De Nosotros</asp:HyperLink>
+                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/About.aspx">Acerca De Nosotros</asp:HyperLink>
                         </li>
                         <asp:LoginView ID="vistaLogin" runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
@@ -82,7 +87,6 @@
 
 
                             <LoggedInTemplate>
-
                             </LoggedInTemplate>
 
                             <RoleGroups>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Cambiar Contraseña" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ChangePassword.aspx.cs" Inherits="Vistas_Account_ChangePassword" %>
+﻿<%@ Page Title="Cambiar Contraseña" Async="true" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ChangePassword.aspx.cs" Inherits="Vistas_Account_ChangePassword" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <br />
@@ -30,7 +30,7 @@
                     <asp:RequiredFieldValidator ID="passRequerida"
                         runat="server"
                         ControlToValidate="cajaPass"
-                        ErrorMessage="contraseña es requerida!"
+                        ErrorMessage="¡requerido!"
                         SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
@@ -48,7 +48,7 @@
                     <asp:RequiredFieldValidator ID="confirmarPassRequerida"
                         runat="server"
                         ControlToValidate="cajaConfirmarPass"
-                        ErrorMessage="contraseña confirmada es requerida!"
+                        ErrorMessage="¡requerido!"
                         SetFocusOnError="True"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>

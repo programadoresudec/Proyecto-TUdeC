@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VerificarEmail.aspx.cs" Inherits="Vistas_Account_VerificarEmail" %>
+﻿<%@ Page Title="Verificar Email" Async="true" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VerificarEmail.aspx.cs" Inherits="Vistas_Account_VerificarEmail" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <br />
@@ -24,9 +24,16 @@
                         </div>
                     </div>
                     <asp:TextBox ID="campoCorreo" TextMode="Email" CssClass="form-control" placeHolder="E-mail" runat="server"></asp:TextBox>
-                    <cc1:FilteredTextBoxExtender ID="FTBE_RCorreo" runat="server"
+                    <ajaxToolkit:FilteredTextBoxExtender ID="filtroCorreo" runat="server"
                         TargetControlID="campoCorreo" FilterType="Numbers,LowercaseLetters, UppercaseLetters, Custom"
                         ValidChars="_-ñ@." InvalidChars=" " />
+                </div>
+                <div class="col-12 input-group justify-content-center">
+                <asp:RequiredFieldValidator ID="correoRequerido"
+                        runat="server"
+                        ControlToValidate="campoCorreo"
+                        ErrorMessage="¡requerido!"
+                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
                 <div class="form-group col-12">

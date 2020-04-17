@@ -9,7 +9,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         EUsuario usuario = (EUsuario)(Session["Usuario"]);
 
         if (usuario != null)
@@ -17,7 +16,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             HyperLink hiperEnlaceConfiguracionUsuario;
 
-            if (usuario.Rol.Equals("usuario"))
+            if (usuario.Rol.Equals(Constantes.ROL_USER))
             {
                 HyperLink hiperEnlaceCreacionCurso = acercaDeNosotros;
                 HyperLink hiperEnlaceCursosCuenta = (HyperLink)(vistaLogin.FindControl("iniciarSesion"));

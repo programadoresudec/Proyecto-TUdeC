@@ -10,7 +10,7 @@ public static class Constantes
 {
     #region const attributes
     public const string ESTADO_EN_ESPERA = "espera de activacion";
-    public const string ESTADO_CAMBIO_PASS = "changepass";
+    public const string ESTADO_CAMBIO_PASS = "change pass";
     public const string ESTADO_PK = "pk";
     public const string ESTADO_UNIQUE = "unique";
     public const string ROL_ADMIN = "administrador";
@@ -22,5 +22,7 @@ public static class Constantes
     public const string ESTADO_ACTIVO = "activo";
     public const string CORREO = "tudec2020@gmail.com";
     public const string PASSWORD = "programadoresudec2020";
+    public const string CORREO_INSTITUCIONAL = "@ucundinamarca.edu.co";
+    public const string VALIDAR_TOKEN = "validarToken";
     #endregion
 }

@@ -24,31 +24,32 @@ public partial class Views_Account_Register : System.Web.UI.Page
         usuarioEnRegistro.PrimerApellido = cajaPrimerApellido.Text;
         usuarioEnRegistro.SegundoApellido = cajaSegundoApellido.Text;
         usuarioEnRegistro.FechaCreacion = DateTime.Now;
-        usuarioEnRegistro.CorreoInstitucional = cajaEmail.Text + labelCorreoUdec.Text;
+        usuarioEnRegistro.CorreoInstitucional = cajaEmail.Text + Constantes.CORREO_INSTITUCIONAL;
         usuarioEnRegistro.Rol = Constantes.ROL_USER;
         usuarioEnRegistro.Estado = Constantes.ESTADO_EN_ESPERA;
         usuarioEnRegistro.Token = new Encriptacion().encriptar(JsonConvert.SerializeObject(usuarioEnRegistro));
-        usuarioEnRegistro.VencimientoToken = DateTime.Now.AddHours(3);
+        usuarioEnRegistro.VencimientoToken = DateTime.Now.AddHours(8);
         new DaoRegister().registroUsuario(usuarioEnRegistro);
         if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_UNIQUE))
         {
-            LB_ErrorUsuario_Correo.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
-            LB_ErrorUsuario_Correo.Visible = true;
+            labelValidar.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
+            labelValidar.Visible = true;
             usuarioEnRegistro = null;
         }
         else if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_PK))
         {
-            LB_ErrorUsuario_Correo.Text = "Ese Nombre de usuario ya está en uso. Prueba con otro.";
-            LB_ErrorUsuario_Correo.Visible = true;
+            labelValidar.Text = "Ese Nombre de usuario ya está en uso. Prueba con otro.";
+            labelValidar.Visible = true;
             usuarioEnRegistro = null;
         }
 
         if (usuarioEnRegistro != null)
         {
             new Correo().enviarCorreo(usuarioEnRegistro.CorreoInstitucional, usuarioEnRegistro.Token,
-                Constantes.MENSAJE_VALIDAR_CUENTA, Constantes.URL_VALIDAR_CUENTA, Constantes.ESTADO_EN_ESPERA);
-            labelValidandoCuenta.Text = "Revise el correo para activar su cuenta.";
-            labelValidandoCuenta.Visible = true;
+                Constantes.MENSAJE_VALIDAR_CUENTA, Constantes.URL_VALIDAR_CUENTA, usuarioEnRegistro.Estado);
+            labelValidar.CssClass = "text-success";
+            labelValidar.Text = "Revise el correo para activar su cuenta.";
+            labelValidar.Visible = true;
         }
     }
 }
