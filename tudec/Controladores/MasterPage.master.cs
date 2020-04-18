@@ -18,7 +18,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             if (usuario.Rol.Equals(Constantes.ROL_USER))
             {
-                conexion();
+               
                 HyperLink hiperEnlaceCreacionCurso = acercaDeNosotros;
                 HyperLink hiperEnlaceCursosCuenta = (HyperLink)(vistaLogin.FindControl("iniciarSesion"));
                 hiperEnlaceConfiguracionUsuario = (HyperLink)(vistaLogin.FindControl("registrarse"));
@@ -31,8 +31,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
-
-                conexion();
                 HyperLink hiperEnlaceAdministrarUsuarios = acercaDeNosotros;
                 hiperEnlaceConfiguracionUsuario = (HyperLink)(vistaLogin.FindControl("registrarse"));
                 hiperEnlaceAdministrarUsuarios.Text = "Administrar Usuarios";
@@ -70,17 +68,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
 
-    }
-
-    protected void conexion()
-    {
-        EAutentication autenticar = new EAutentication();
-        Mac conexion = new Mac();
-        autenticar.FechaInicio = DateTime.Now;
-        autenticar.Ip = conexion.ip();
-        autenticar.Mac = conexion.mac();
-        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIOS_LOGEADOS]).NombreDeUsuario;
-        autenticar.Session = Session.SessionID;
-        new DaoSeguridad().insertarAutentication(autenticar);
     }
 }

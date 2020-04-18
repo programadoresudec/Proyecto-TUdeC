@@ -55,9 +55,9 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         if (fila.RowIndex > -1)
         {
             int calificacion = Int32.Parse(celdaCalificacion.Text);
-            ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
-            estrellasMostradas.Calificacion = calificacion;
-            celdaCalificacion.Controls.Add(estrellasMostradas);
+           // ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
+            //estrellasMostradas.Calificacion = calificacion;
+            //celdaCalificacion.Controls.Add(estrellasMostradas);
             celdaCalificacion.Enabled = false;
 
             Buscador buscador = new Buscador();
