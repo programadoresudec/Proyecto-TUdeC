@@ -14,7 +14,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
 
     protected void botonIniciar_Click(object sender, EventArgs e)
     {
-        var usuario = new EUsuario();
+        EUsuario usuario = new EUsuario();
         if (campoUsuario.Text.Contains("@"))
         {
             usuario = new DaoLogin().GetUsuarioxCorreo(campoUsuario.Text, campoPass.Text);
@@ -24,19 +24,29 @@ public partial class Views_Account_Login : System.Web.UI.Page
            usuario = new DaoLogin().GetUsuario(campoUsuario.Text, campoPass.Text);
         }
      
-        Session["Usuario"] = usuario;
+        Session[Constantes.USUARIOS_LOGEADOS] = usuario;
 
         if (usuario != null)
         {
             if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
-               
+
+                LB_Validacion.Text = "Su cuenta no ha sido activada.¡revise su correo!";
+                LB_Validacion.Visible = true;
                 return;
             }
             else if (usuario.Estado.Equals(Constantes.ESTADO_CAMBIO_PASS))
             {
-                LB_Validacion.Text = "";
-                return;
+                LB_Validacion.CssClass = "text-success";
+                LB_Validacion.Text = "Satisfactorio.";
+                LB_Validacion.Visible = true;
+                
+                usuario.Token = null;
+                usuario.Session = usuario.NombreDeUsuario;
+                usuario.VencimientoToken = null;
+                usuario.Estado = Constantes.ESTADO_ACTIVO;
+                new DaoUsuario().actualizarUsuario(usuario);
+                Response.Redirect("~/Vistas/Home.aspx");
             }
             else if (usuario.Estado.Equals(Constantes.ESTADO_ACTIVO))
             {
@@ -52,4 +62,5 @@ public partial class Views_Account_Login : System.Web.UI.Page
             LB_Validacion.Visible = true;
         }
     }
+  
 }

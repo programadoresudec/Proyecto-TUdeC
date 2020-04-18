@@ -16,7 +16,6 @@ public partial class Vistas_Account_VerificarEmail : System.Web.UI.Page
         EUsuario usuarioCambioPass = new DaoLogin().buscarCorreo(campoCorreo.Text);
         if (usuarioCambioPass != null)
         {
-            usuarioCambioPass.Pass = "";
             usuarioCambioPass.Estado = Constantes.ESTADO_CAMBIO_PASS;
             usuarioCambioPass.Token = new Encriptacion().encriptar(JsonConvert.SerializeObject(usuarioCambioPass));
             usuarioCambioPass.VencimientoToken = DateTime.Now.AddHours(8);

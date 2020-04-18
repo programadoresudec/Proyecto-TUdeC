@@ -24,5 +24,6 @@ public static class Constantes
     public const string PASSWORD = "programadoresudec2020";
     public const string CORREO_INSTITUCIONAL = "@ucundinamarca.edu.co";
     public const string VALIDAR_TOKEN = "validarToken";
+    public const string USUARIOS_LOGEADOS = "usuarioLogeado";
     #endregion
 }

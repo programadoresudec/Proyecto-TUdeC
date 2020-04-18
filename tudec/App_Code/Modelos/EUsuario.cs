@@ -32,6 +32,7 @@ public class EUsuario
     private Nullable<DateTime> vencimientoToken;
     private string session;
     private string imagenPerfil;
+    private Nullable<DateTime> lastModify;
     private int numCursos; 
     #endregion
 
@@ -69,8 +70,9 @@ public class EUsuario
     public DateTime? VencimientoToken { get => vencimientoToken; set => vencimientoToken = value; }
     [Column("session")]
     public string Session { get => session; set => session = value; }
+    [Column("ultima_modificacion")]
+    public DateTime? LastModify { get => lastModify; set => lastModify = value; }
     [NotMapped]
     public int NumCursos { get => numCursos; set => numCursos = value; }
-
     #endregion
 }

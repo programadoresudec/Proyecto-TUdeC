@@ -18,11 +18,9 @@ public partial class Vistas_Account_ValidacionToken : System.Web.UI.Page
                 if (token.Equals(Constantes.VALIDAR_TOKEN))
                 {
                     LB_TextoOne.Text = "NO SE HA PODIDO VERIFICAR LA DIRECCIÓN DE CORREO ELECTRÓNICO";
-                    LB_TextoTwo.Text = "Esta solicitud de verificación es demasiado antigua. Intenta crear otro token.";
+                    LB_TextoTwo.Text = "Esta solicitud de verificación es demasiado antigua. Intenta crear otro.";
                 }
             }
-        }
-
-       
+        } 
     }
 }
