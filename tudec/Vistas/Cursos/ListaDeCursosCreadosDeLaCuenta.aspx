@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosCreadosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosDeLaCuenta" %>
 
+<%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
