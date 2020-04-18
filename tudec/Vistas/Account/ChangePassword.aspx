@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Cambiar Contraseña" Async="true" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ChangePassword.aspx.cs" Inherits="Vistas_Account_ChangePassword" %>
+﻿<%@ Page Title="Cambiar Contraseña" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ChangePassword.aspx.cs" Inherits="Vistas_Account_ChangePassword" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <br />

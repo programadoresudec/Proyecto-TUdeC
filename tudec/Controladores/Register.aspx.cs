@@ -15,7 +15,6 @@ public partial class Views_Account_Register : System.Web.UI.Page
 
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
-        ClientScriptManager cm = this.ClientScript;
         EUsuario usuarioEnRegistro = new EUsuario();
         usuarioEnRegistro.NombreDeUsuario = cajaNombreUsuario.Text;
         usuarioEnRegistro.Pass = cajaPass.Text;

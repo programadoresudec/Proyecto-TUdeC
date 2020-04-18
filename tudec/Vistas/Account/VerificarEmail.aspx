@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Verificar Email" Async="true" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VerificarEmail.aspx.cs" Inherits="Vistas_Account_VerificarEmail" %>
+﻿<%@ Page Title="Verificar Email" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VerificarEmail.aspx.cs" Inherits="Vistas_Account_VerificarEmail" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 

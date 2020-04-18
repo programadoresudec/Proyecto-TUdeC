@@ -28,7 +28,6 @@ public partial class Views_Account_Login : System.Web.UI.Page
 
         if (usuario != null)
         {
-            
             if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
                 LB_Validacion.Text = "Su cuenta no ha sido activada.¡revise su correo!";

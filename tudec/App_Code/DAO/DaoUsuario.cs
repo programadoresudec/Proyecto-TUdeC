@@ -15,11 +15,11 @@ public class DaoUsuario
 
     }
 
-    public async void  actualizarUsuario(EUsuario usuario)
+    public void  actualizarUsuario(EUsuario usuario)
     {
         //EntityState Enum
         //System.Data.Entity
         db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
-        await db.SaveChangesAsync();
+         db.SaveChanges();
     }
 }

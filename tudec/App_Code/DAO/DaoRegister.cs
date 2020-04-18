@@ -22,14 +22,13 @@ public class DaoRegister:IToken
         && x.Estado.Equals(Constantes.ESTADO_EN_ESPERA)).FirstOrDefault();
     }
 
-
     //Metodo que registra el usuario
-    public async void registroUsuario(EUsuario registro)
+    public  void registroUsuario(EUsuario registro)
     {
         db.TablaUsuarios.Add(registro);
         try
         {
-            await db.SaveChangesAsync();
+           db.SaveChanges();
         }
         catch (DbUpdateException ex) // catch DbUpdateException
         {

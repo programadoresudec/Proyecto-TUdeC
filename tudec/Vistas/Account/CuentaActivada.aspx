@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="Cuenta Activada" Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/CuentaActivada.aspx.cs" Inherits="Vistas_Account_CuentaActivada" %>
+﻿<%@ Page Title="Cuenta Activada" Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/CuentaActivada.aspx.cs" Inherits="Vistas_Account_CuentaActivada" %>
 
 <!DOCTYPE html>
 <html>
