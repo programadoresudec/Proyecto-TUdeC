@@ -70,7 +70,7 @@
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/About.aspx">Acerca De Nosotros</asp:HyperLink>
+                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca De Nosotros</asp:HyperLink>
                         </li>
                         <asp:LoginView ID="vistaLogin" runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>

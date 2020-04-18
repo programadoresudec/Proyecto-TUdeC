@@ -18,7 +18,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        EUsuario usuario = (EUsuario)(Session["Usuario"]);
+        EUsuario usuario = (EUsuario)(Session[Constantes.USUARIOS_LOGEADOS]);
 
         if (usuario != null)
         {
@@ -73,7 +73,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     protected void VerSugerencias(object sender, EventArgs e)
     {
 
-        Response.Redirect("~/Vistas/VisualizacionDeSugerencias.aspx");
+        Response.Redirect("~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx");
 
     }
 
