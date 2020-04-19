@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -26,7 +27,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 hiperEnlaceCursosCuenta.Text = "Mis Cursos";
                 hiperEnlaceConfiguracionUsuario.Visible = false;
                 hiperEnlaceCreacionCurso.NavigateUrl = "";
-                hiperEnlaceCursosCuenta.NavigateUrl = "~/Vistas/ListaDeCursosCreadosDeLaCuenta.aspx";
+                hiperEnlaceCursosCuenta.NavigateUrl = "~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx";
            
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
@@ -45,7 +46,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Session["Buscador"] = cajaBuscador.Text;
 
-        Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+        Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
 
     }
 
@@ -66,7 +67,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         Session["Buscador"] = cajaBuscador.Text;
 
-        Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+        Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
+
+    }
+
+    [WebMethod]
+    public static List<string> GetNombresCursos(string prefixText)
+    {
+
+        Buscador gestorBuscador = new Buscador();
+
+        List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
+
+        return nombres;
 
     }
 }

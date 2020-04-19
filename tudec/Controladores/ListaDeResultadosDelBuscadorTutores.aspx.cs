@@ -23,7 +23,7 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
         if (!indicador)
         {
 
-            Response.Redirect("~/Vistas/ListaDeResultadosDelBuscadorCursos.aspx");
+            Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
 
         }
         else
@@ -45,41 +45,59 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
         GridViewRow fila = e.Row;
 
-        TableCell celdaPerfilUsuario = fila.Cells[0];
-        TableCell celdaCalificacion = fila.Cells[4];
 
-        string nombreArea = celdaPerfilUsuario.Text;
-
-        Image icono = new Image();
-        icono.Width = 32;
-        icono.Height = 32;
-
-        if (fila.RowIndex > -1)
+        if (fila.Cells.Count > 1)
         {
-            int calificacion = Int32.Parse(celdaCalificacion.Text);
-            ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
-            estrellasMostradas.Calificacion = calificacion;
-            celdaCalificacion.Controls.Add(estrellasMostradas);
-            celdaCalificacion.Enabled = false;
 
-            Buscador buscador = new Buscador();
+            TableCell celdaPerfilUsuario = fila.Cells[0];
+            TableCell celdaCalificacion = fila.Cells[4];
 
-            string nombreUsuario = fila.Cells[1].Text;
+            Image icono = new Image();
+            icono.Width = 64;
+            icono.Height = 64;
 
-            EUsuario usuario = buscador.GetUsuario(nombreUsuario);
-
-            icono.ImageUrl = usuario.ImagenPerfil;
-
-            if (icono.ImageUrl == "")
+            if (fila.RowIndex > -1)
             {
+                int calificacion;
 
-                icono.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/Usuario.png";
+                if (celdaCalificacion.Text.Equals("&nbsp;"))
+                {
+                    calificacion = 0;
+                }
+                else
+                {
+
+                    calificacion = Int32.Parse(celdaCalificacion.Text);
+
+                }
+                
+                ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
+                estrellasMostradas.Calificacion = calificacion;
+                celdaCalificacion.Controls.Add(estrellasMostradas);
+                celdaCalificacion.Enabled = false;
+
+                Buscador buscador = new Buscador();
+
+                string nombreUsuario = fila.Cells[1].Text;
+
+                EUsuario usuario = buscador.GetUsuario(nombreUsuario);
+
+                icono.ImageUrl = usuario.ImagenPerfil;
+
+                if (icono.ImageUrl == "")
+                {
+
+                    icono.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/Usuario.png";
+
+                }
+
+                celdaPerfilUsuario.Controls.Add(icono);
 
             }
 
-            celdaPerfilUsuario.Controls.Add(icono);
-
         }
+
+        
 
     }
 

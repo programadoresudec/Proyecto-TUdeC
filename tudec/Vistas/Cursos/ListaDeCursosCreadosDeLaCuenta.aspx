@@ -2,8 +2,11 @@
 
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
-    <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
     <br />
     <br />
@@ -19,20 +22,23 @@
                 <table id="filtrosCursos">
                     <tr>
                         <td>
+                            <asp:Button CssClass="botonPulsado" ID="botonCreados" runat="server" Text="Creados" />
+                            <asp:Button CssClass="botones" ID="botonInscritos" runat="server" Text="Inscritos" OnClick="botonInscritos_Click"/>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
                 <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Nombre del curso"></asp:TextBox>
                 <ajaxToolkit:AutoCompleteExtender 
-                    ID="cajaBuscador_AutoCompleteExtender" 
-                    runat="server" 
-                    BehaviorID="cajaBuscador_AutoCompleteExtender" 
-                    DelimiterCharacters="" 
-                    ServicePath="" 
-                    TargetControlID="cajaBuscador"
-                    
                     MinimumPrefixLength="1"
                     CompletionInterval="10"
                     CompletionSetCount="1"
                     FirstRowSelected="false"
-                    ServiceMethod="GetNombresCursos">
+                    ID="cajaBuscador_AutoCompleteExtender" 
+                    runat="server" 
+                    ServiceMethod="GetNombresCursos"
+                    TargetControlID="cajaBuscador">
                 </ajaxToolkit:AutoCompleteExtender>
                             <asp:TextBox ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
@@ -54,14 +60,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button CssClass="botones" ID="botonFiltrar" runat="server" Text="Filtrar" />
+                            <img class="auto-style2" src="../../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button CssClass="botones" ID="botonFiltrar" runat="server" Text="Filtrar" />
                         </td>
                     </tr>
                 </table>
                   
                     </td>
             <td rowspan="2">
-                <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated">
+                <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" AllowPaging="True">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre">
                             <ItemStyle HorizontalAlign="Center" />

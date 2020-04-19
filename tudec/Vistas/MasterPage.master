@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -36,7 +38,23 @@
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
+
+
     <form id="form1" runat="server">
+
+             <!-- //SCRIPTS COMIENZO-->
+        <asp:ScriptManager ID="ScriptManagers" runat="server" EnableScriptGlobalization="true" >
+            <Scripts>
+                <asp:ScriptReference Path="~/App_Themes/Master/js/jquery-2.2.3.min.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/js/easing.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/js/bootstrap.js" />
+            </Scripts>
+
+        </asp:ScriptManager>
+        <!-- //SCRIPTS FINAL -->
+
+
         <!-- header -->
         <header>
             <!-- navbar -->
@@ -51,13 +69,31 @@
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
                         <div class="mx-3 input-group">
-                            <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
+                            
+                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
+                    
+                        <ajaxToolkit:AutoCompleteExtender 
+                               
+                                MinimumPrefixLength="1"
+                                CompletionInterval="10"
+                                CompletionSetCount="1"
+                                FirstRowSelected="false"
+                                ID="cajaBuscador_AutoCompleteExtender"
+                                runat="server"
+                                ServiceMethod="GetNombresCursos" 
+                                TargetControlID="cajaBuscador"
+
+                        >
+                                
+                            </ajaxToolkit:AutoCompleteExtender>
+                            
+                            
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
@@ -66,6 +102,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
@@ -96,12 +133,16 @@
             <!-- //navbar ends here -->
         </header>
         <!-- //header -->
+
         <div>
+            
+
             <asp:ContentPlaceHolder ID="BodyContentMaster" runat="server">
             </asp:ContentPlaceHolder>
+
+
+
         </div>
-
-
 
         <!--footer-->
         <footer>
@@ -157,17 +198,7 @@
             </div>
         </div>
         <!-- //footer -->
-        <!-- //SCRIPTS COMIENZO-->
-        <asp:ScriptManager ID="ScriptManagers" runat="server" EnableScriptGlobalization="true">
-            <Scripts>
-                <asp:ScriptReference Path="~/App_Themes/Master/js/jquery-2.2.3.min.js" />
-                <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
-                <asp:ScriptReference Path="~/App_Themes/Master/js/easing.js" />
-                <asp:ScriptReference Path="~/App_Themes/Master/js/bootstrap.js" />
-            </Scripts>
-        </asp:ScriptManager>
-        <!-- //SCRIPTS FINAL -->
-
+   
 
         <script>
             $(document).ready(function () {

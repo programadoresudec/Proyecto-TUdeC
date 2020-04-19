@@ -3,8 +3,6 @@
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
 
-
-
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 
 
@@ -12,7 +10,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
-    <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
         <br />
     <br />
@@ -105,7 +103,7 @@
             <tr>
                 <td>
                     
-                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound">
+                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound" AllowPaging="True">
                         <Columns>
                             <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False" >
                             <ItemStyle HorizontalAlign="Center" />

@@ -1,10 +1,13 @@
-﻿<%@ Title="Cursos Inscritos" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosInscritosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosInscritosDeLaCuenta" %>
+﻿<%@ Page Title="Cursos Inscritos" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosInscritosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosInscritosDeLaCuenta" %>
 
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
-    <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
     <br />
     <br />
@@ -22,13 +25,17 @@
                    <table class="auto-style1">
                         <tr>
                             <td>
+                                <asp:Button CssClass="botones" ID="botonCreados" runat="server" Text="Creados" OnClick="botonCreados_Click"/>
+                                <asp:Button CssClass="botonPulsado" ID="botonInscritos" runat="server" Text="Inscritos" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                     <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Nombre del curso"></asp:TextBox>
                     <ajaxToolkit:AutoCompleteExtender 
                         ID="cajaBuscador_AutoCompleteExtender" 
                         runat="server" 
-                        BehaviorID="cajaBuscador_AutoCompleteExtender" 
-                        DelimiterCharacters="" 
-                        ServicePath="" 
+             
                         TargetControlID="cajaBuscador"
                         
                         MinimumPrefixLength="1"
@@ -54,9 +61,7 @@
                                 <ajaxToolkit:AutoCompleteExtender 
                                     ID="cajaTutor_AutoCompleteExtender" 
                                     runat="server" 
-                                    BehaviorID="cajaTutor_AutoCompleteExtender"
-                                    DelimiterCharacters="" 
-                                    ServicePath="" 
+                              
                                     TargetControlID="cajaTutor"
                                     
                                     MinimumPrefixLength="1"
@@ -69,13 +74,13 @@
                         </tr>
                         <tr>
                             <td class="auto-style2">
-                                    <img class="auto-style2" src="../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button ID="botonFiltrar" CssClass="botones" runat="server" Text="Filtrar"/>
+                                    <img class="auto-style2" src="../../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button ID="botonFiltrar" CssClass="botones" runat="server" Text="Filtrar"/>
                                 </td>
                         </tr>
                     </table>
                 </td>
                 <td rowspan="2">
-                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px">
+                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Curso" SortExpression="Nombre">
                             <ItemStyle HorizontalAlign="Center" />

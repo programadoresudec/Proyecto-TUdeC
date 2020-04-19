@@ -19,22 +19,42 @@ public partial class Controles_Estrellas : System.Web.UI.UserControl
 
         ImageButton estrella = (ImageButton)sender;
 
-        Calificacion = estrellas.IndexOf(estrella) + 1;
+        int nuevaCalificacion = estrellas.IndexOf(estrella) + 1;
 
-
-        for (int i = 0; i < estrellas.IndexOf(estrella) + 1; i++)
+        if (Calificacion != nuevaCalificacion)
         {
 
-            estrellas[i].ImageUrl  = "~/Controles/Estrellas/EstrellaMarcada.png";
+            Calificacion = estrellas.IndexOf(estrella) + 1;
+
+
+            for (int i = 0; i < estrellas.IndexOf(estrella) + 1; i++)
+            {
+
+                estrellas[i].ImageUrl = "~/Controles/Estrellas/EstrellaMarcada.png";
+
+            }
+
+
+
+            for (int i = estrellas.IndexOf(estrella) + 1; i < estrellas.Count(); i++)
+            {
+
+                estrellas[i].ImageUrl = "~/Controles/Estrellas/Estrella.png";
+
+            }
 
         }
-
-
-
-        for (int i = estrellas.IndexOf(estrella) + 1; i < estrellas.Count(); i++)
+        else
         {
 
-            estrellas[i].ImageUrl = "~/Controles/Estrellas/Estrella.png";
+            Calificacion = 0;
+
+            foreach(ImageButton estrellaIteradora in estrellas)
+            {
+
+                estrellaIteradora.ImageUrl = "~/Controles/Estrellas/Estrella.png";
+
+            }
 
         }
 

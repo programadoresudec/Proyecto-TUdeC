@@ -1,4 +1,4 @@
-﻿<%@ Title="Búsqueda Tutores" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeResultadosDelBuscadorTutores.aspx.cs" Inherits="Vistas_ListaDeResultadosDelBuscadorTutores" %>
+﻿<%@ Page Title="Búsqueda Tutores" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeResultadosDelBuscadorTutores.aspx.cs" Inherits="Vistas_ListaDeResultadosDelBuscadorTutores" %>
 
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
@@ -6,7 +6,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
-    <link href="../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
         <br />
     <br />
@@ -37,9 +37,7 @@
                     <ajaxToolkit:AutoCompleteExtender 
                         ID="cajaBuscador_AutoCompleteExtender" 
                         runat="server" 
-                        BehaviorID="cajaBuscador_AutoCompleteExtender" 
-                        DelimiterCharacters="" 
-                        ServicePath="" 
+                        
                         TargetControlID="cajaBuscador"
                         
                         MinimumPrefixLength="1"
@@ -77,7 +75,7 @@
             <tr>
                 <td>
                     
-                        <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound">
+                        <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="ImagenPerfil" HeaderText="Imagen de<br/>la cuenta" HtmlEncode="false" SortExpression="ImagenPerfil" >
                                 <ItemStyle HorizontalAlign="Center" />
