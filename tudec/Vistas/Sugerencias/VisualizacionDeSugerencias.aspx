@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VisualizacionDeSugerencias.aspx.cs" Inherits="Vistas_VisualizacionDeSugerencias" %>
+﻿<%@ Page Title="Sugerencias" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/VisualizacionDeSugerencias.aspx.cs" Inherits="Vistas_VisualizacionDeSugerencias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosCreadosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosDeLaCuenta" %>
+﻿<%@ Page Title="Cursos Creados" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosCreadosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosDeLaCuenta" %>
 
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 
