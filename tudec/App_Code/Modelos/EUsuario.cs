@@ -14,6 +14,7 @@ using System.Web;
 [Table("usuarios", Schema="usuarios")]
 public class EUsuario
 {
+    internal object nombreUsuario;
 
     #region attributes
     private string nombreDeUsuario;
