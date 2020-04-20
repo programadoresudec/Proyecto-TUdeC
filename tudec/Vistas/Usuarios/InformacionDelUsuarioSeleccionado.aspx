@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="InformacionDelUsuarioSeleccionado.aspx.cs" Inherits="Vistas_InformacionDelUsuarioSeleccionado" %>
+﻿<%@ Page Title="Usuario" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/InformacionDelUsuarioSeleccionado.aspx.cs" Inherits="Vistas_InformacionDelUsuarioSeleccionado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../../App_Themes/Estilos/InformacioDelUsuarioSeleccionado.css" rel="stylesheet" />
@@ -12,6 +12,9 @@
         .auto-style2 {
             left: 45%;
             bottom: 40%;
+        }
+        .auto-style3 {
+            margin-left: 40px;
         }
     </style>
 </asp:Content>
@@ -90,10 +93,21 @@
 
     <div class="cursos_creados"> <!--Este div es para los cursos creados por la persona-->  
                     <h3>CURSOS ACTIVOS CREADOS POR ESTA PERSONA</h3>
-        <div>
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="InformaciónUsuarioDataSource"></asp:GridView>
-            <asp:ObjectDataSource ID="InformacionUsuarioSeleccionadoDataSource" runat="server"></asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="InformaciónUsuarioDataSource" runat="server"></asp:ObjectDataSource>
+        <div class="auto-style3">
+            <asp:GridView ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource">
+                <Columns>
+                    <asp:BoundField DataField="Area" HeaderText="Area" SortExpression="Area" />
+                    <asp:BoundField DataField="Nombre" HeaderText="Curso " SortExpression="Nombre" />
+                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de creación" SortExpression="FechaCreacion" />
+                    <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+                    <asp:BoundField DataField="Puntuacion" HeaderText="Puntuacion" SortExpression="Puntuacion" />
+                </Columns>
+            </asp:GridView>
+            <asp:ObjectDataSource ID="DatosUsuarioSeleccionadoDataSource" runat="server" SelectMethod="GetCursos" TypeName="GestionUsuario">
+                <SelectParameters>
+                    <asp:SessionParameter Name="eUsuario" SessionField="UsuarioSeleccionado" Type="Object" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
         </div>
     </div>
     <br />
