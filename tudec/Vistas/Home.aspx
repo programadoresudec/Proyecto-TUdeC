@@ -10,21 +10,21 @@
                 var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
                 var titulo = <%=cajaTitulo.ClientID%>;
                 titulo = titulo.value;
-                
+
                 buzon = buzon._editableDiv;
 
-                var datos = "{'titulo':'" + titulo +  "','contenido':'" + buzon.innerHTML + "'}";
+                var datos = "{'titulo':'" + titulo + "','contenido':'" + buzon.innerHTML + "'}";
 
                 $.ajax({
 
-                    type: "POST",                                              
-                    url: 'Home.aspx/EnviarHtml',                   
-                    data: datos,                                              
-                                                                               
-                    contentType: "application/json; charset=utf-8",           
-                    dataType: "json",                                        
-                    async: true,                                             
-                    
+                    type: "POST",
+                    url: 'Home.aspx/EnviarHtml',
+                    data: datos,
+
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+
                 });
 
                 alert("Sugerencia enviada");
@@ -67,10 +67,11 @@
         </ul>
         <div class="banner-texto-posicion">
             <div class="banner-texto">
-                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con TUdeC 
+                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con TUdeC
                 </h3>
-                <p class="px-4 py-3 text-center text-white mx-auto">Plataforma web Ingenieria De Sistemas universidad Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.</p>
-			</div>
+                <p class="px-4 py-3 text-center text-white mx-auto">Plataforma web Ingenieria De Sistemas universidad
+                    Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.</p>
+            </div>
         </div>
     </div>
     <!-- //banner -->
@@ -82,16 +83,21 @@
         <asp:Panel CssClass="form-group row justify-content-center" runat="server">
             <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
-                <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De Sugerencias</strong></h2>
+                <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De
+                        Sugerencias</strong></h2>
                 <br />
                 <asp:Panel ID="panelCamposBuzon" runat="server">
-                    <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control" placeHolder="Título"></asp:TextBox>
+                    <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
+                        placeHolder="Título"></asp:TextBox>
                     <br />
-                    <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control"></asp:TextBox>
-               
-                    <input id="enviar" type="button" value="Enviar sugerencia" width="300px" class="form-control" />
-                    
-                    <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"  TargetControlID="buzon" OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
+                    <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control">
+                    </asp:TextBox>
+
+                    <input id="enviar" type="button" value="Enviar sugerencia" style="width:300px"
+                        class="btn btn-success" />
+
+                    <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" TargetControlID="buzon"
+                        OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 
                         <Toolbar>
 
@@ -110,4 +116,3 @@
     <script src="../App_Themes/Master/js/slider.js"></script>
     <!-- //Script movimiento de las imagenes del banner -->
 </asp:Content>
-

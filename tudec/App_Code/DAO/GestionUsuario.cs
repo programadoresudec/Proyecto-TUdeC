@@ -15,7 +15,7 @@ public class GestionUsuario
     }
 
     public List<ECurso> GetCursos(EUsuario eUsuario){
-        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.nombreUsuario)).ToList();
+        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.NombreDeUsuario)).ToList();
         return cursos;
     }
 
