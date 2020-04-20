@@ -52,7 +52,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
         Sugerencia gestorSugerencias = new Sugerencia();
         ESugerencia sugerencia = gestorSugerencias.GetSugerencia(Int32.Parse(boton.ID));
         Session["Sugerencia"] = sugerencia;
-        Response.Redirect("~/Vistas/DetallesSugerencia.aspx");
+        Response.Redirect("~/Vistas/Sugerencias/DetallesSugerencia.aspx");
 
     }
 }

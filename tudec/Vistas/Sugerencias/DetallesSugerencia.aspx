@@ -39,8 +39,12 @@
             var contenido = "<%= contenido %>";
 
 
-
             buzon._editableDiv.innerHTML = contenido;
+
+            buzon._editableDiv.setAttribute("contenteditable", "false");
+
+            $(".ajax__html_editor_extender_buttoncontainer").hide();
+
         }
 
 
@@ -60,7 +64,7 @@
         
                 <br />
                 <br />
-                <asp:TextBox ID="cajaSugerencia" runat="server" Height="300px" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="cajaSugerencia" runat="server" Height="500px" Width="300px"></asp:TextBox>
             </div>
         </div>
     </div>
@@ -69,7 +73,7 @@
 
         <Toolbar>
 
-            <ajaxToolkit:InsertImage />
+
 
         </Toolbar>
 

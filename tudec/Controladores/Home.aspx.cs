@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -58,12 +59,42 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
     protected void buzon_HtmlEditorExtender_ImageUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
     {
+        MemoryStream datosImagen = new MemoryStream(e.GetContents());
+        System.Drawing.Image imagen = System.Drawing.Image.FromStream(datosImagen);
+
+        if (imagen.Width > imagen.Height)
+        {
+
+            if(imagen.Width > 250)
+            {
+
+                int alturaImagen = 250 * imagen.Height / imagen.Width;
+
+                imagen = new Bitmap(imagen, 250, alturaImagen);
+
+            }
+
+        }
+        else
+        {
+
+            if (imagen.Height > 250)
+            {
+
+                int anchuraImagen = 250 * imagen.Width / imagen.Height;
+
+                imagen = new Bitmap(imagen, anchuraImagen, 250);
+
+            }
+        }
+        ImageConverter conversor = new ImageConverter();
+        byte[] datosImagenRedimensionada = (byte[])conversor.ConvertTo(imagen, typeof(byte[]));
 
         if (e.ContentType.Contains("jpg") || e.ContentType.Contains("gif")
             || e.ContentType.Contains("png") || e.ContentType.Contains("jpeg"))
         {
             Session["fileContentType_" + e.FileId] = e.ContentType;
-            Session["fileContents_" + e.FileId] = e.GetContents();
+            Session["fileContents_" + e.FileId] = datosImagenRedimensionada;
         }
 
         e.PostedUrl = string.Format("?preview=1&fileId={0}", e.FileId);
@@ -153,7 +184,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
             archivoImagen.Write(archivo, 0, archivo.Length);
 
-            sugerencia.Imagenes.Add("..//Recursos//Imagenes//SugerenciasEnviadas//Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + extensiones[archivos.IndexOf(archivo)]);
+            sugerencia.Imagenes.Add("..\\\\..\\\\Recursos\\\\Imagenes\\\\SugerenciasEnviadas\\\\Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + extensiones[archivos.IndexOf(archivo)]);
             contadorImagen++;
 
             archivoImagen.Close();
