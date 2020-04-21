@@ -11,8 +11,22 @@ public partial class Vistas_DetallesSugerencia : System.Web.UI.Page
     {
 
         ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
+        Sugerencia gestorSugerencias = new Sugerencia();
         string valor = sugerencia.Contenido;
         titulo.Text = sugerencia.Titulo;
+        emisor.Text = sugerencia.Emisor;
+
+        if(sugerencia.Emisor == null)
+        {
+
+            imagenUsuario.Visible = false;
+            emisor.Visible = false;
+
+        }
+
+        sugerencia.Estado = true;
+
+        Base.Actualizar(sugerencia);
 
     }
 }

@@ -9,7 +9,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
-
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
     <br />
     <br />
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td colspan="5">
-                <asp:GridView ID="tablaSugerencias" runat="server" AutoGenerateColumns="False" DataSourceID="SugerenciasSource" OnRowDataBound="tablaSugerencias_RowDataBound">
+                <asp:GridView ID="tablaSugerencias" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="SugerenciasSource" OnRowDataBound="tablaSugerencias_RowDataBound">
                     <Columns>
                         <asp:BoundField DataField="Emisor" HeaderText="Emisor" SortExpression="Emisor">
                         <ItemStyle HorizontalAlign="Center" />

@@ -107,7 +107,7 @@
                     </asp:GridView>
                     <asp:ObjectDataSource ID="CursosSource" runat="server" SelectMethod="GetCursosInscritos" TypeName="GestionCurso">
                         <SelectParameters>
-                            <asp:SessionParameter Name="usuario" SessionField="Usuario" Type="Object" />
+                            <asp:SessionParameter Name="usuario" SessionField="usuarioLogeado" Type="Object" />
                             <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text" Type="String" />
                             <asp:ControlParameter ControlID="cajaTutor" Name="tutor" PropertyName="Text" Type="String" />
                             <asp:ControlParameter ControlID="cajaFechaCreacion" Name="fechaCreacion" PropertyName="Text" Type="String" DefaultValue="" />

@@ -14,10 +14,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        GestionCurso gestor = new GestionCurso();
-
-        Session["Usuario"] = gestor.GetUsuario("Frand");
-        usuario = (EUsuario)Session["Usuario"];
+        
 
     }
 

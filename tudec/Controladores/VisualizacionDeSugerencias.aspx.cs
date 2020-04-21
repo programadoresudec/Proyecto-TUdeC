@@ -32,7 +32,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
             ESugerencia sugerencia = (ESugerencia)fila.DataItem;
             botonVerDetalles.ID = sugerencia.Id.ToString();
 
-            if(celdaEmisor.Controls.Count == 0)
+            if (celdaEmisor.Text.Equals("&nbsp;"))
             {
 
                 celdaEmisor.Text = "Anónimo";
