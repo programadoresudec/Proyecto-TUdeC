@@ -59,17 +59,17 @@
 }
 
 #texto_cal {
-    width: 38%;
+    width: 40%;
     position: absolute;
     bottom: 40%;
     left: 5%;
 }
 
 #promedio_estrellas {
-    width: 10%;
+    width: 40%;
     position: absolute;
-    bottom: 41%;
-    left: 37%;
+    bottom: 40%;
+    left: 45%;
 }
 
 #descripcion {

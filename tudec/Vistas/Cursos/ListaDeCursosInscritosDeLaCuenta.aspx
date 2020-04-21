@@ -15,11 +15,14 @@
     <br />
     <br />
 
-        <center>
-            <h1>Cursos Inscritos</h1>
-        </center>
+        
 
         <table class="auto-style1">
+            <tr><td>
+                </td>
+                <td style="padding-left:35%"><center>
+            <h1>Cursos Inscritos</h1>
+        </center></td></tr>
             <tr>
                 <td>
                    <table class="auto-style1">
@@ -79,7 +82,7 @@
                         </tr>
                     </table>
                 </td>
-                <td rowspan="2">
+                <td style="padding-left:15%" rowspan="2">
                     <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Curso" SortExpression="Nombre">

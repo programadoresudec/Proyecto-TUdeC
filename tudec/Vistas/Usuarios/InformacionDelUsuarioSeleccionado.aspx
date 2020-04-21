@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../../App_Themes/Estilos/InformacioDelUsuarioSeleccionado.css" rel="stylesheet" />
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
             left: 5%;
@@ -10,7 +11,7 @@
             right: 337px;
         }
         .auto-style2 {
-            left: 45%;
+            left: 47%;
             bottom: 40%;
         }
         .auto-style3 {
@@ -67,12 +68,17 @@
 
         
         <div id="texto_cal" class="auto-style1">
-            <p>Calificación por estrellas:</p>
+            <center>
+
+                <asp:Label ID="Label4" runat="server" Text="Calificación:"></asp:Label>
+
+            </center>
+            
         </div>
 
 
         <div id="promedio_estrellas" class="auto-style2">
-            <asp:Label ID="Label4" Text="text" runat="server" />
+           
         </div>
 
 
@@ -94,13 +100,23 @@
     <div class="cursos_creados"> <!--Este div es para los cursos creados por la persona-->  
                     <h3>CURSOS ACTIVOS CREADOS POR ESTA PERSONA</h3>
         <div class="auto-style3">
-            <asp:GridView ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource">
+            <asp:GridView CssClass="tablas" ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource">
                 <Columns>
-                    <asp:BoundField DataField="Area" HeaderText="Area" SortExpression="Area" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Curso " SortExpression="Nombre" />
-                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de creación" SortExpression="FechaCreacion" />
-                    <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
-                    <asp:BoundField DataField="Puntuacion" HeaderText="Puntuacion" SortExpression="Puntuacion" />
+                    <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Nombre" HeaderText="Curso " SortExpression="Nombre" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de creación" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Puntuacion" HeaderText="Puntuación" SortExpression="Puntuacion" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
                 </Columns>
             </asp:GridView>
             <asp:ObjectDataSource ID="DatosUsuarioSeleccionadoDataSource" runat="server" SelectMethod="GetCursos" TypeName="GestionUsuario">

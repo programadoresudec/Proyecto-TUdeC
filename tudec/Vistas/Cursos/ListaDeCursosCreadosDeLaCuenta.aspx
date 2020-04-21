@@ -14,8 +14,12 @@
     <br />
     <br />
 
-    <center><h1>Cursos Creados</h1></center>
+    
     <table class="auto-style1">
+        <tr>
+            <td></td>
+            <td style="padding-left: 35%"><center><h1>Cursos Creados</h1></center></td>
+        </tr>
         <tr>
             <td class="auto-style3">
                 
@@ -66,8 +70,9 @@
                 </table>
                   
                     </td>
-            <td rowspan="2">
-                <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" AllowPaging="True">
+            <td rowspan="2" style="padding-left: 15%">
+                
+                <asp:GridView ID="tablaCursos" CssClass="tablas" style="align-content:center" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" AllowPaging="True">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre">
                             <ItemStyle HorizontalAlign="Center" />
@@ -95,6 +100,8 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                    
+                    
                 <asp:ObjectDataSource ID="CursosSource" runat="server" SelectMethod="GetCursosCreados" TypeName="GestionCurso">
                     <SelectParameters>
                         <asp:SessionParameter Name="usuario" SessionField="usuarioLogeado" Type="Object" />

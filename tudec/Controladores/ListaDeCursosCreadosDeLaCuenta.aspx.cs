@@ -14,7 +14,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        
+        usuario = (EUsuario)Session[Constantes.USUARIOS_LOGEADOS];
 
     }
 
@@ -83,7 +83,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     {
 
         GestionCurso gestorCurso = new GestionCurso();
-
+        
         List<string> nombres = gestorCurso.GetCursosCreadosSrc(usuario, prefixText);
 
         return nombres;

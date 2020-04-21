@@ -14,7 +14,7 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
     protected void Page_Load(object sender, EventArgs e)
     {
 
-    
+        usuario = (EUsuario)Session[Constantes.USUARIOS_LOGEADOS];
 
     }
 

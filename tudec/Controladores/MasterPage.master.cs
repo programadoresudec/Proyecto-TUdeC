@@ -11,6 +11,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIOS_LOGEADOS];
+
+        
+
         if (usuario != null)
         {
             LinkButton cerrarSesion = (LinkButton)(vistaLogin.FindControl("LinkBtnCerrarSesion"));
@@ -19,7 +22,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             if (usuario.Rol.Equals(Constantes.ROL_USER))
             {
-               
+
                 HyperLink hiperEnlaceCreacionCurso = acercaDeNosotros;
                 HyperLink hiperEnlaceCursosCuenta = (HyperLink)(vistaLogin.FindControl("iniciarSesion"));
                 hiperEnlaceConfiguracionUsuario = (HyperLink)(vistaLogin.FindControl("registrarse"));
@@ -28,7 +31,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 hiperEnlaceConfiguracionUsuario.Visible = false;
                 hiperEnlaceCreacionCurso.NavigateUrl = "";
                 hiperEnlaceCursosCuenta.NavigateUrl = "~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx";
-           
+
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
