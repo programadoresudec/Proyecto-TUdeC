@@ -19,4 +19,32 @@ public class Base: DbContext
     public DbSet<EEstadosCurso> TablaEstados { get; set; }
     public DbSet<EInscripcionesCursos> TablaInscripciones { get; set; }
     public DbSet<EAutentication> TablaAutenticaciones { get; set; }
+
+    public static void Insertar(Object entidad)
+    {
+
+        Base db = new Base();
+        db.Entry(entidad).State = System.Data.Entity.EntityState.Added;
+        db.SaveChanges();
+
+    }
+
+    public static void Actualizar(Object entidad)
+    {
+
+        Base db = new Base();
+        db.Entry(entidad).State = System.Data.Entity.EntityState.Modified;
+        db.SaveChanges();
+
+    }
+
+    public static void Eliminar(Object entidad)
+    {
+
+        Base db = new Base();
+        db.Entry(entidad).State = System.Data.Entity.EntityState.Deleted;
+        db.SaveChanges();
+
+    }
+
 }

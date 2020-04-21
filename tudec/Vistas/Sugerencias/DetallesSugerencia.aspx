@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="Detalles Sugerencia" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/DetallesSugerencia.aspx.cs" Inherits="Vistas_DetallesSugerencia" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 64px;
+            height: 64px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
 
@@ -60,7 +66,11 @@
     <div class="container">
         <div class="form-group row justify-content-center">
             <div class=" form-group col-md-auto">
-                <center><asp:Label ID="titulo" runat="server" Text="Título de sugerencia"></asp:Label></center>
+                <center><asp:Label ID="titulo" runat="server" Text="Título de sugerencia"></asp:Label>
+                    <br />
+                    <asp:Image ID="imagenUsuario" ImageUrl="../../Recursos/Imagenes/PerfilUsuarios/Usuario.png"  runat="server"></asp:Image>
+                    <asp:Label ID="emisor" runat="server" Text="Usuario"></asp:Label>
+                </center>
         
                 <br />
                 <br />

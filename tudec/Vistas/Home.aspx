@@ -7,27 +7,41 @@
         $(document).ready(function () {
             $('#enviar').click(function () {
 
+                
+
                 var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
-                var titulo = <%=cajaTitulo.ClientID%>;
-                titulo = titulo.value;
-
                 buzon = buzon._editableDiv;
+                var titulo = <%=cajaTitulo.ClientID%>;
 
-                var datos = "{'titulo':'" + titulo + "','contenido':'" + buzon.innerHTML + "'}";
+                if (titulo.value != "" && buzon.innerHTML != "") {
 
-                $.ajax({
+                    textoTitulo = titulo.value;
 
-                    type: "POST",
-                    url: 'Home.aspx/EnviarHtml',
-                    data: datos,
+                    var datos = "{'titulo':'" + textoTitulo + "','contenido':'" + buzon.innerHTML + "'}";
 
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: true,
+                    $.ajax({
 
-                });
+                        type: "POST",
+                        url: 'Home.aspx/EnviarHtml',
+                        data: datos,
 
-                alert("Sugerencia enviada");
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+
+                    });
+
+                    titulo.value = "";
+                    buzon.innerHTML = "";
+
+                    alert("Sugerencia enviada");
+
+                }
+                else {
+
+                    alert("Rellene los campos antes de enviar la sugerencia")
+
+                }
 
             });
         });

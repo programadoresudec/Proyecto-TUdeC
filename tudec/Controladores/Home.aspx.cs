@@ -162,13 +162,23 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
         }
 
-        string nombreUsuario = (string)HttpContext.Current.Session["Usuario"];
+        EUsuario usuario = (EUsuario)HttpContext.Current.Session[Constantes.USUARIOS_LOGEADOS];
+
+        string nombreUsuario;
+
 
         Sugerencia gestorSugerencias = new Sugerencia();
         ESugerencia sugerencia = new ESugerencia();
 
         sugerencia.Titulo = titulo;
-        sugerencia.Emisor = nombreUsuario;
+
+        if (usuario != null)
+        {
+            nombreUsuario = usuario.NombreDeUsuario;
+            sugerencia.Emisor = nombreUsuario;
+
+        }
+
         sugerencia.Estado = false;
         sugerencia.Contenido = contenido;
         sugerencia.Fecha = DateTime.Now;
