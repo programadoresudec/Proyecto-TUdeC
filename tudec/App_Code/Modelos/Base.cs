@@ -19,6 +19,7 @@ public class Base: DbContext
     public DbSet<EEstadosCurso> TablaEstados { get; set; }
     public DbSet<EInscripcionesCursos> TablaInscripciones { get; set; }
     public DbSet<EAutentication> TablaAutenticaciones { get; set; }
+    public DbSet<ETiposPregunta> TablaTiposPregunta { get; set; }
 
     public static void Insertar(Object entidad)
     {
