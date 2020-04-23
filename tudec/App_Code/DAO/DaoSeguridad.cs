@@ -8,12 +8,15 @@ using System.Web;
 /// </summary>
 public class DaoSeguridad
 {
+
     Base db = new Base();
+
     public void insertarAutentication(EAutentication autentication)
     {
         db.TablaAutenticaciones.Add(autentication);
         db.SaveChanges();
     }
+
     public void actualizarUsuarioAutentication(EAutentication autenticar)
     {
         EAutentication autenticacion = db.TablaAutenticaciones.Where(x => x.Session == autenticar.Session

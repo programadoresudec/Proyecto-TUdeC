@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Descripción breve de GestionCurso
+/// Clase GestionCurso
 /// </summary>
 public class GestionCurso
 {

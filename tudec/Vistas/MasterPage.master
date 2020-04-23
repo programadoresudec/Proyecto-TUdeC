@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 
@@ -12,16 +12,6 @@
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-
     <%-- referencias de los estilos con Bootstrap --%>
     <!-- Bootstrap-Core-CSS -->
     <link rel="stylesheet" href="~/App_Themes/Master/css/bootstrap.css" type="text/css" media="all" />

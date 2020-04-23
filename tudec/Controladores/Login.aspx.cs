@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,13 +25,13 @@ public partial class Views_Account_Login : System.Web.UI.Page
            usuario = new DaoLogin().GetUsuario(campoUsuario.Text, campoPass.Text);
         }
      
-        Session[Constantes.USUARIOS_LOGEADOS] = usuario;
+        Session[Constantes.USUARIO_LOGEADO] = usuario;
 
         if (usuario != null)
         {
             if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
-                LB_Validacion.Text = "Su cuenta no ha sido activada.¡revise su correo!";
+                LB_Validacion.Text = "El nombre de la cuenta, correo y/ o la contraseña que has introducido son incorrectos.";
                 LB_Validacion.Visible = true;
                 return;
             }
@@ -50,16 +51,14 @@ public partial class Views_Account_Login : System.Web.UI.Page
             else if (usuario.Estado.Equals(Constantes.ESTADO_ACTIVO))
             {
                 conexion();
-                LB_Validacion.CssClass = "text-success";
-                LB_Validacion.Text = "Satisfactorio.";
-                LB_Validacion.Visible = true;
                 Response.Redirect("~/Vistas/Home.aspx");
             }
         }
         else
         {
-            LB_Validacion.Text = "No Existe ese usuario.";
+            LB_Validacion.Text = "El nombre de la cuenta, correo  y/o la contraseña que has introducido son incorrectos.";
             LB_Validacion.Visible = true;
+            return;
         }
     }
     protected void conexion()
@@ -67,9 +66,10 @@ public partial class Views_Account_Login : System.Web.UI.Page
         EAutentication autenticar = new EAutentication();
         Mac conexion = new Mac();
         autenticar.FechaInicio = DateTime.Now;
+        autenticar.FechaFin = null;
         autenticar.Ip = conexion.ip();
         autenticar.Mac = conexion.mac();
-        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIOS_LOGEADOS]).NombreDeUsuario;
+        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
         autenticar.Session = Session.SessionID;
         new DaoSeguridad().insertarAutentication(autenticar);
     }

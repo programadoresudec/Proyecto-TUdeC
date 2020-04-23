@@ -18,12 +18,10 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        EUsuario usuario = (EUsuario)(Session[Constantes.USUARIOS_LOGEADOS]);
+        EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
 
         if (usuario != null)
         {
-
             if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
 
@@ -162,7 +160,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
         }
 
-        EUsuario usuario = (EUsuario)HttpContext.Current.Session[Constantes.USUARIOS_LOGEADOS];
+        EUsuario usuario = (EUsuario)HttpContext.Current.Session[Constantes.USUARIO_LOGEADO];
 
         string nombreUsuario;
 

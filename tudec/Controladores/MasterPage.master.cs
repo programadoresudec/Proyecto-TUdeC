@@ -10,7 +10,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        EUsuario usuario = (EUsuario)Session[Constantes.USUARIOS_LOGEADOS];
+
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
             LinkButton cerrarSesion = (LinkButton)(vistaLogin.FindControl("LinkBtnCerrarSesion"));
@@ -53,10 +54,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void LinkBtnCerrarSesion_Click(object sender, EventArgs e)
     {
         EAutentication autenticar = new EAutentication();
-        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIOS_LOGEADOS]).NombreDeUsuario;
+        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
         autenticar.Session = Session.SessionID;
         new DaoSeguridad().actualizarUsuarioAutentication(autenticar);
-        Session[Constantes.USUARIOS_LOGEADOS] = null;
+        Session[Constantes.USUARIO_LOGEADO] = null;
         Session.Abandon();
         Session.Clear();
         Response.Redirect("~/Vistas//Home.aspx");

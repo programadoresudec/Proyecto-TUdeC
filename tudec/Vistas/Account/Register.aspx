@@ -17,13 +17,13 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
                         runat="server" ErrorMessage="El apodo contiene caracteres no válidos"
                         ControlToValidate="cajaNombreUsuario" CssClass="text-danger"
-                        ValidationExpression="[A-Za-z0-9-_]*$"></asp:RegularExpressionValidator>
+                        ValidationExpression="[A-Za-z0-9-_]*$" />
                 </div>
                 <asp:RequiredFieldValidator ID="NombreUsuarioRequerido"
-                        runat="server"
-                        ControlToValidate="cajaNombreUsuario"
-                        ErrorMessage="¡apodo requerido!"
-                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
+                    runat="server"
+                    ControlToValidate="cajaNombreUsuario"
+                    ErrorMessage="¡apodo requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="row justify-content-center ">
                     <div class="col-12 input-group">
                         <div class="input-group-prepend">
@@ -31,7 +31,7 @@
                                 <i class="fa fa-user"></i>
                             </div>
                         </div>
-                        <asp:TextBox ID="cajaNombreUsuario"  placeHolder="Nombre De Usuario (nick)" runat="server"
+                        <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"
                             CssClass="form-control" />
                     </div>
                 </div>
@@ -72,11 +72,10 @@
                 </div>
                 <br />
                 <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
-                        ControlToValidate="cajaEmail"
-                        ErrorMessage="¡requerido!"
-                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
+                    ControlToValidate="cajaEmail"
+                    ErrorMessage="¡requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="row justify-content-center">
-                    
                     <div class="col-12 input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -91,12 +90,18 @@
                         </div>
                     </div>
                 </div>
-                <br />
-                <asp:RequiredFieldValidator ID="passRequerida"
-                        runat="server"
-                        ControlToValidate="cajaPass"
-                        ErrorMessage="¡requerido!"
-                        SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
+
+                <div class=" form-row justify-content-center">   
+                        <asp:RegularExpressionValidator ID="validarCaracteresPass"
+                        runat="server" ErrorMessage="La contraseña debe contener entre 8 y 20 caracteres."
+                        ControlToValidate="cajaPass" CssClass="text-danger"
+                        ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" />
+                </div>
+                 <asp:RequiredFieldValidator ID="passRequerida"
+                    runat="server"
+                    ControlToValidate="cajaPass"
+                    ErrorMessage="¡requerido!"
+                    SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 <div class="row justify-content-center">
                     <div class="col-12 input-group">
                         <div class="input-group-prepend">
@@ -110,11 +115,11 @@
                 </div>
                 <br />
                 <asp:RequiredFieldValidator ID="confirmarPassRequerida"
-                        runat="server"
-                        ControlToValidate="cajaConfirmarPass"
-                        ErrorMessage="¡requerido!"
-                        SetFocusOnError="True"
-                        Display="Dynamic" CssClass="text-danger" />
+                    runat="server"
+                    ControlToValidate="cajaConfirmarPass"
+                    ErrorMessage="¡requerido!"
+                    SetFocusOnError="True"
+                    Display="Dynamic" CssClass="text-danger" />
                 <div class="row justify-content-center">
                     <div class="col-12 input-group">
                         <div class="input-group-prepend">

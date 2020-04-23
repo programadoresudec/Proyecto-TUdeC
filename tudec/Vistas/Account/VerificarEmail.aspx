@@ -23,13 +23,15 @@
                             <i class="fa fa-envelope"></i>
                         </div>
                     </div>
-                    <asp:TextBox ID="campoCorreo" TextMode="Email" CssClass="form-control" placeHolder="E-mail" runat="server"></asp:TextBox>
-                    <ajaxToolkit:FilteredTextBoxExtender ID="filtroCorreo" runat="server"
-                        TargetControlID="campoCorreo" FilterType="Numbers,LowercaseLetters, UppercaseLetters, Custom"
-                        ValidChars="_-ñ@." InvalidChars=" " />
+                    <asp:TextBox ID="campoCorreo" CssClass="form-control" placeHolder="E-mail" runat="server"></asp:TextBox>
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i>@ucundinamarca.edu.co</i>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 input-group justify-content-center">
-                <asp:RequiredFieldValidator ID="correoRequerido"
+                    <asp:RequiredFieldValidator ID="correoRequerido"
                         runat="server"
                         ControlToValidate="campoCorreo"
                         ErrorMessage="¡requerido!"

@@ -28,7 +28,7 @@ public partial class Vistas_Account_CuentaActivada : System.Web.UI.Page
                 }
                 else
                 {
-                    Session["nombre_usuario"] = usuario;
+                    Session[Constantes.USUARIO_ID] = usuario;
                     usuario.Estado = Constantes.ESTADO_ACTIVO;
                     usuario.Token = null;
                     usuario.VencimientoToken = null;

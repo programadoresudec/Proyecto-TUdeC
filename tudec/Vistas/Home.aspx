@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master"  AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
@@ -97,9 +97,13 @@
         <asp:Panel CssClass="form-group row justify-content-center" runat="server">
             <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
+                <div class="row justify-content-center ">
+
+                   </div>
                 <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De
                         Sugerencias</strong></h2>
                 <br />
+                <div class="row justify-content-center ">
                 <asp:Panel ID="panelCamposBuzon" runat="server">
                     <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
                         placeHolder="Título"></asp:TextBox>
@@ -121,6 +125,8 @@
 
                     </ajaxToolkit:HtmlEditorExtender>
                 </asp:Panel>
+                
+                </div>
             </asp:Panel>
         </asp:Panel>
 

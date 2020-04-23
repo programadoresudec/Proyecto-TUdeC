@@ -34,12 +34,14 @@ public partial class Views_Account_Register : System.Web.UI.Page
             labelValidar.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
             labelValidar.Visible = true;
             usuarioEnRegistro = null;
+            return;
         }
         else if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_PK))
         {
             labelValidar.Text = "Ese Nombre de usuario ya está en uso. Prueba con otro.";
             labelValidar.Visible = true;
             usuarioEnRegistro = null;
+            return;
         }
 
         if (usuarioEnRegistro != null)

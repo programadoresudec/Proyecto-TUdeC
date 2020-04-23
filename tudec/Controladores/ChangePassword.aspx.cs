@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -27,7 +28,7 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
                 }
                 else
                 {
-                    Session["nombre_usuario"] = usuario;
+                    Session[Constantes.USUARIO_ID] = usuario;
                 }
             }
 
@@ -40,16 +41,17 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
 
     protected void btnRestablecer_Click(object sender, EventArgs e)
     {
-
-        EUsuario restablecer = (EUsuario)Session["nombre_usuario"];
+        EUsuario restablecer = (EUsuario)Session[Constantes.USUARIO_ID];
         restablecer.Token = null;
         restablecer.Session = restablecer.NombreDeUsuario;
         restablecer.VencimientoToken = null;
         restablecer.Pass = cajaPass.Text;
         restablecer.Estado = Constantes.ESTADO_ACTIVO;
         new DaoUsuario().actualizarUsuario(restablecer);
-        LB_Validacion.CssClass = "text-sucess";
+        LB_Validacion.CssClass = "text-success";
         LB_Validacion.Text = "Su Contraseña ha sido Actualizada.";
         LB_Validacion.Visible = true;
+        Thread.Sleep(3000);    
+        Response.Redirect("~/Vistas/Account/Login.aspx");
     }
 }
