@@ -1,6 +1,6 @@
-﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
 
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
 <html>
@@ -32,8 +32,8 @@
 
     <form id="form1" runat="server">
 
-             <!-- //SCRIPTS COMIENZO-->
-        <asp:ScriptManager ID="ScriptManagers" runat="server" EnableScriptGlobalization="true" >
+        <!-- //SCRIPTS COMIENZO-->
+        <asp:ScriptManager ID="ScriptManagers" runat="server" EnableScriptGlobalization="true">
             <Scripts>
                 <asp:ScriptReference Path="~/App_Themes/Master/js/jquery-2.2.3.min.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
@@ -59,31 +59,27 @@
                     aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
                         <div class="mx-3 input-group">
-                            
+
                             <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
-                    
-                        <ajaxToolkit:AutoCompleteExtender 
-                               
+
+                            <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
                                 CompletionInterval="10"
                                 CompletionSetCount="1"
                                 FirstRowSelected="false"
                                 ID="cajaBuscador_AutoCompleteExtender"
                                 runat="server"
-                                ServiceMethod="GetNombresCursos" 
-                                TargetControlID="cajaBuscador"
-
-                        >
-                                
+                                ServiceMethod="GetNombresCursos"
+                                TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
-                            
-                            
+
+
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
@@ -92,12 +88,8 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
-
-                   
-                        
-                        <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
+                    <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
@@ -110,36 +102,25 @@
                                 <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                                     <asp:HyperLink CssClass="nav-link" ID="registrarse" runat="server" NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
                                 </li>
-                                 <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
-                                    CssClass="nav-link" Visible="false">
+                                <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                    <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
+                                        CssClass="nav-link" Visible="false">
                                     <i class="fa fa-sign-out-alt">Cerrar Sesión</i>
-                                </asp:LinkButton></li>
+                                    </asp:LinkButton></li>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
                             </LoggedInTemplate>
-
                         </asp:LoginView>
                     </ul>
-                           
-
-                    
                 </div>
             </nav>
             <!-- //navbar ends here -->
         </header>
         <!-- //header -->
-
         <div>
-            
-
             <asp:ContentPlaceHolder ID="BodyContentMaster" runat="server">
             </asp:ContentPlaceHolder>
-
-
-
         </div>
-
         <!--footer-->
         <footer>
             <div class="container py-md-4 mt-md-3">
@@ -150,7 +131,6 @@
                         </div>
                         <div class="footer-text">
                             <p>Crea y diviertete aprendiendo en TUdeC</p>
-
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
@@ -194,7 +174,7 @@
             </div>
         </div>
         <!-- //footer -->
-   
+
 
         <script>
             $(document).ready(function () {
