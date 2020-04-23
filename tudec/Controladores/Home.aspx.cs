@@ -107,6 +107,13 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     }
 
     [WebMethod]
+    public static void Test()
+    {
+        Console.WriteLine("");
+
+    }
+
+    [WebMethod]
     public static void EnviarHtml(string titulo, string contenido)
     {
 

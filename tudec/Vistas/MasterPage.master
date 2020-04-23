@@ -94,10 +94,13 @@
                         </div>
                         
                     </div>
-                    <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
+
+                   
+                        
+                        <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca De Nosotros</asp:HyperLink>
+                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
                         </li>
                         <asp:LoginView ID="vistaLogin" runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
@@ -118,6 +121,9 @@
 
                         </asp:LoginView>
                     </ul>
+                           
+
+                    
                 </div>
             </nav>
             <!-- //navbar ends here -->
@@ -143,7 +149,7 @@
                             <h3>TUdeC</h3>
                         </div>
                         <div class="footer-text">
-                            <p>Crea y diviertete aprendiendo de TUdeC</p>
+                            <p>Crea y diviertete aprendiendo en TUdeC</p>
 
                         </div>
                     </div>
@@ -153,7 +159,7 @@
                         </div>
                         <div class="contact-info">
                             <h4>Nos puedes ubicar :</h4>
-                            <p>Universidad Cundinamarca Ingenieria de sistemas.</p>
+                            <p>Universidad Cundinamarca Ingenieria de Sistemas.</p>
                             <div class="phone">
                                 <h4>Telefono:</h4>
                                 <p>telefono: +57 3142061847</p>
