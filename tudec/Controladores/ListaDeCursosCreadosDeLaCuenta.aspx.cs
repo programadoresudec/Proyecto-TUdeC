@@ -22,7 +22,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     {
 
         GridViewRow fila = e.Row;
-
+     
         if (fila.Cells.Count > 1)
         {
 
