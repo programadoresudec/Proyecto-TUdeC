@@ -109,6 +109,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     [WebMethod]
     public static void Test()
     {
+
         Console.WriteLine("");
 
     }

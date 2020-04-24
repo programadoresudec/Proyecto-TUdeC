@@ -17,6 +17,7 @@
 
     $(document).ready(function () {
 
+
         $("#botonCrear").click(function () {
 
             var desplegableTipo = <%=desplegableTipo.ClientID%>;
@@ -58,6 +59,14 @@
 
         });
 
+        $('#botonEnviar').click(function () {
+
+
+            alert(Examen.getJSON());
+            
+
+        })
+
     });
   
 </script>
@@ -92,4 +101,8 @@
 
 
 </div>
+
+
+<input id="botonEnviar" type="button" style="width: 60%" value="Crear examen" />
+
 </center>
