@@ -29,8 +29,110 @@ public class CreacionExamenServicio : System.Web.Services.WebService
     public void EnviarExamen(string examen)
     {
 
-        
-        Console.WriteLine("");
+        JArray preguntasJson = JArray.Parse(examen);
+
+ 
+        foreach(JToken preguntaJson in preguntasJson)
+        {
+
+            EPregunta pregunta = new EPregunta();
+            pregunta.IdExamen = 0;
+            pregunta.TipoPregunta = preguntaJson["tipoPregunta"].ToString();
+            pregunta.Pregunta = preguntaJson["pregunta"].ToString();
+            pregunta.Porcentaje = Int32.Parse(preguntaJson["porcentaje"].ToString());
+
+            Base.Insertar(pregunta);
+
+            if (pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
+            {
+
+                List<JToken> respuestasJson = preguntaJson["respuestas"].ToList();
+                int indiceRespuestaCorrecta = Int32.Parse(preguntaJson["respuestaMarcada"].ToString());
+
+                foreach(JToken respuestaJson in respuestasJson)
+                {
+
+                    ERespuesta respuesta = new ERespuesta();
+                    respuesta.IdPregunta = pregunta.Id;
+                    respuesta.Respuesta = respuestaJson.ToString();
+
+                    if(respuestasJson.IndexOf(respuestaJson) == indiceRespuestaCorrecta)
+                    {
+
+                        respuesta.Estado = true;
+
+                    }
+                    else
+                    {
+
+                        respuesta.Estado = false;
+
+                    }
+
+                    Base.Insertar(respuesta);
+
+                }
+
+
+            }
+
+            if (pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
+            {
+
+                List<JToken> respuestasJson = preguntaJson["respuestas"].ToList();
+                List<JToken> indicesRespuestasMarcadasJson = preguntaJson["respuestasMarcadas"].ToList();
+
+                List<int> indicesRespuestasMarcadas = new List<int>();
+
+                foreach(JToken indiceRespuestaMarcadaJson in indicesRespuestasMarcadasJson)
+                {
+
+                    indicesRespuestasMarcadas.Add(Int32.Parse(indiceRespuestaMarcadaJson.ToString()));
+
+                }
+
+                foreach (JToken respuestaJson in respuestasJson)
+                {
+
+                    ERespuesta respuesta = new ERespuesta();
+                    respuesta.IdPregunta = pregunta.Id;
+                    respuesta.Respuesta = respuestaJson.ToString();
+
+                    if (indicesRespuestasMarcadas.Contains(respuestasJson.IndexOf(respuestaJson)))
+                    {
+
+                        respuesta.Estado = true;
+
+                    }
+                    else
+                    {
+
+                        respuesta.Estado = false;
+
+                    }
+
+                    Base.Insertar(respuesta);
+
+                }
+
+
+            }
+
+            if (pregunta.TipoPregunta.Equals("Abierta"))
+            {
+
+                JToken respuestaJson = preguntaJson["respuesta"];
+                
+                ERespuesta respuesta = new ERespuesta();
+                respuesta.IdPregunta = pregunta.Id;
+                respuesta.Respuesta = respuestaJson.ToString();
+
+                Base.Insertar(respuesta);
+
+            }
+
+
+        }
 
     }
 

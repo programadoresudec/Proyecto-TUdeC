@@ -38,6 +38,7 @@ class PreguntaMultipleUnicaRespuesta {
         objetoRetorno.respuestas = this.getRespuestas();
         objetoRetorno.respuestaMarcada = this.getRespuestaMarcada();
         objetoRetorno.porcentaje = this.getPorcentaje();
+        objetoRetorno.tipoPregunta = "Múltiple con única respuesta"
         return objetoRetorno;
 
     }
@@ -305,11 +306,12 @@ class PreguntaMultipleMultipleRespuesta {
     getInfoPregunta() {
 
         
-        var objetoRetorno = new PreguntaMultipleUnicaRespuesta();
+        var objetoRetorno = new PreguntaMultipleMultipleRespuesta();
         objetoRetorno.pregunta = this.cajaPregunta.value;
         objetoRetorno.respuestas = this.getRespuestas();
         objetoRetorno.respuestasMarcadas = this.getRespuestasMarcadas();
         objetoRetorno.porcentaje = this.getPorcentaje();
+        objetoRetorno.tipoPregunta = "Múltiple con múltiple respuesta"
         return objetoRetorno;
     }
 
@@ -506,6 +508,18 @@ class PreguntaAbierta {
 
 
     }
+
+    getInfoPregunta() {
+
+        var objetoRetorno = new PreguntaAbierta();
+        objetoRetorno.pregunta = this.cajaPregunta.value;
+        objetoRetorno.respuesta = this.getRespuesta();
+        objetoRetorno.porcentaje = this.getPorcentaje();
+        objetoRetorno.tipoPregunta = "Abierta"
+        return objetoRetorno;
+
+    }
+
 
     getRespuesta() {
 

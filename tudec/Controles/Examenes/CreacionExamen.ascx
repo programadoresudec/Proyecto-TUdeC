@@ -62,7 +62,21 @@
         $('#botonEnviar').click(function () {
 
 
-            alert(Examen.getJSON());
+            var datos = "{'examen':'" + Examen.getJSON() + "'}";
+
+            $.ajax({
+
+                type: "POST",
+                url: '../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
+                data: datos,
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+
+            });
+
+            alert("Se ha subido el examen");
             
 
         })
