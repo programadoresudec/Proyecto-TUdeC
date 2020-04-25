@@ -26,21 +26,23 @@ public class DaoUsuario
         return usuario;
     }
 
-    public List<EUsuario> gestionDeUsuarioAdmin(EUsuario usuarios)
+    public List<EUsuario> gestionDeUsuarioAdmin()
     {
         return (from usuario in db.TablaUsuarios
-               
+
                 select new
                 {
                     usuario
-    
+
                 }).ToList().Select(x => new EUsuario
                 {
                     NombreDeUsuario = x.usuario.NombreDeUsuario,
-                    ImagenPerfil = x.usuario.ImagenPerfil,
+                    //ImagenPerfil = x.usuario.ImagenPerfil,
+                    ImagenPerfil = "~/Recursos/Imagenes/PerfilUsuarios/Usuario.png",
                     FechaCreacion = x.usuario.FechaCreacion,
-                    NumCursos =  obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
-                }).ToList();
+                    NumCursos = obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
+                    Rol = x.usuario.Rol
+                }).Where(x => !x.Rol.Equals("administrador")).ToList();
     }
 
     public int obtenerNumeroDeCursosxUsuario(string user)

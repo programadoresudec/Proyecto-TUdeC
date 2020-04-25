@@ -19,16 +19,11 @@
         .auto-style5 {
             width: 75px;
         }
-        .auto-style8 {
-            width: 99px;
-            height: 4px;
+        .auto-style13 {
+            width: 144px;
         }
-        .auto-style10 {
-            height: 9px;
-        }
-        .auto-style12 {
-            height: 2px;
-            width: 91px;
+        .auto-style14 {
+            width: 150px;
         }
         </style>
 
@@ -40,27 +35,36 @@
     <br />
     <br />
     <br />
+
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
+
         <table class="auto-style4" style="width: 956px; height: 217px">
         <tr>
-            <td class="auto-style3" rowspan="8">&nbsp;</td>
-            <td class="auto-style1">&nbsp;</td>
-            <td class="auto-style1"><asp:ImageButton ID="Reportar" ImageUrl="~/App_Themes/Estilos/img/Botón reportar.png" runat="server" Height="34px" Width="94px"/></td>
-            <td class="auto-style5" rowspan="8">&nbsp;</td>
-            <td rowspan="8">&nbsp;            <asp:GridView CssClass="tablas" ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource">
+            <td class="auto-style3" rowspan="9">&nbsp;</td>
+            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style14"><asp:ImageButton ID="Reportar" ImageUrl="~/App_Themes/Estilos/img/Botón reportar.png" runat="server" Height="34px" Width="94px"/></td>
+            <td class="auto-style5" rowspan="9">&nbsp;</td>
+            <td rowspan="9">&nbsp;            
+                <asp:GridView CssClass="tablas" ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True">
                 <Columns>
                     <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" >
+                    <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Nombre" HeaderText="Curso " SortExpression="Nombre" >
+                    <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de creación" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}" >
+                    <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" >
+                    <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Puntuacion" HeaderText="Puntuación" SortExpression="Puntuacion" >
+                    <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                 </Columns>
@@ -78,21 +82,30 @@
         </tr>
 
         <tr>
-            <td colspan="2">
-                <asp:Label ID="etiquetaNombreUsuario" runat="server" Text="Nombre Usuario"></asp:Label>
+            <td>
+                <p>Nombre de usuario:</p>
             </td>
+            <td class="auto-style14">
+               <asp:Label ID="etiquetaNombreUsuario" runat="server" Text="Nombre Usuario"></asp:Label>
+            </td>
+
         </tr>
 
         <tr>
-            <td class="auto-style8">&nbsp;<asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /> </td>
-            <td class="auto-style8">&nbsp;<asp:Label Text="Apellido" runat="server" ID="etiquetaApellido" /></td>
+            <td class="auto-style13"><p>Nombres: </p></td>
+            <td class="auto-style14" ><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /> </td>
         </tr>
 
         <tr>
-            <td class="auto-style10"> <p class="auto-style12">Calificación:</p>
-                &nbsp; 
+            <td class="auto-style13"><p>Apellidos: </p></td>
+            <td class="auto-style14" ><asp:Label Text="Apellido" runat="server" ID="etiquetaApellido" /></td>
+        </tr>
+
+        <tr>
+            <td class="auto-style13" > <p>Calificación:</p>
+                
             </td>
-            <td class="auto-style10">&nbsp; <asp:Label Text="Numero de estrellas" runat="server" ID="etiquetaPuntuacion" />  </td>
+            <td class="auto-style14"><asp:Label Text="Numero de estrellas" runat="server" ID="etiquetaPuntuacion" />  </td>
         </tr>
 
         <tr>
@@ -101,14 +114,14 @@
         </tr>
 
         <tr>
-            <td colspan="2">&nbsp; 
+            <td colspan="2">
                 <asp:Label ID="etiquetaDescripcion" runat="server" Text="Espacio para la descripción" />
             </td>
         </tr>
 
         <tr>
-            <td class="auto-style1">&nbsp;<asp:Label Text="CALIFICAR:" runat="server" /></td>
-            <td class="auto-style1">&nbsp;</td>
+            <td class="auto-style13" ><asp:Label Text="CALIFICAR:" runat="server" /></td>
+            <td class="auto-style14"></td>
         </tr>
 
     </table>
