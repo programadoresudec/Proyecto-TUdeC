@@ -12,9 +12,24 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
+        if (usuario != null)
+        {
+            if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
+            {
+                desplegable = desplegableLectura;
+                tablaSugerencias.DataBind();
+            }
+            else
+            {
+                Response.Redirect("~/Vistas/Home.aspx");
+            }
+        }
+        else
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
 
-        desplegable = desplegableLectura;
-        tablaSugerencias.DataBind();
 
     }
 

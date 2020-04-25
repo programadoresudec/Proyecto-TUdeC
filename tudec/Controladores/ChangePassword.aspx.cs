@@ -51,6 +51,7 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
         LB_Validacion.CssClass = "text-success";
         LB_Validacion.Text = "Su Contraseña ha sido Actualizada.";
         LB_Validacion.Visible = true;
+        restablecer = null;
         return;
     }
 }

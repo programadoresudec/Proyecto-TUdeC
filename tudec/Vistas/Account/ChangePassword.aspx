@@ -13,7 +13,12 @@
                 <br />
                 <h2 style="text-align: center; color: #000000; font-size: x-large;"><strong>Cambiar Contraseña</strong></h2>
                 <br />
-
+                <div class="col-12 input-group justify-content-center">
+                    <asp:RegularExpressionValidator ID="validarCaracteresPass"
+                        runat="server" ErrorMessage="La contraseña debe contener entre 8 y 20 caracteres."
+                        ControlToValidate="cajaPass" CssClass="text-danger"
+                        ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" />
+                </div>
                 <div class="col-12 input-group justify-content-center">
                     <asp:Label ID="LB_Validacion" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
                 </div>
@@ -58,7 +63,7 @@
                         ControlToCompare="cajaPass"
                         ControlToValidate="cajaConfirmarPass"
                         ErrorMessage="Las contraseñas no son iguales!"
-                        Display="Dynamic" CssClass="text-danger" /> 
+                        Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
                 <div class="form-group col-12">
