@@ -65,7 +65,7 @@
                     </asp:BoundField>
                 </Columns>
             </asp:GridView>
-            <asp:ObjectDataSource ID="DatosUsuarioSeleccionadoDataSource" runat="server" SelectMethod="GetCursos" TypeName="GestionUsuario">
+            <asp:ObjectDataSource ID="DatosUsuarioSeleccionadoDataSource" runat="server" SelectMethod="GetCursos" TypeName="DaoUsuario">
                 <SelectParameters>
                     <asp:SessionParameter Name="eUsuario" SessionField="UsuarioSeleccionado" Type="Object" />
                 </SelectParameters>
@@ -79,20 +79,20 @@
 
         <tr>
             <td colspan="2">
-                <asp:Label ID="Label2" runat="server" Text="Nombre Usuario"></asp:Label>
+                <asp:Label ID="etiquetaNombreUsuario" runat="server" Text="Nombre Usuario"></asp:Label>
             </td>
         </tr>
 
         <tr>
-            <td class="auto-style8">&nbsp;<asp:Label Text="Nombre" runat="server" /> </td>
-            <td class="auto-style8">&nbsp;<asp:Label Text="Apellido" runat="server" /></td>
+            <td class="auto-style8">&nbsp;<asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /> </td>
+            <td class="auto-style8">&nbsp;<asp:Label Text="Apellido" runat="server" ID="etiquetaApellido" /></td>
         </tr>
 
         <tr>
             <td class="auto-style10"> <p class="auto-style12">Calificación:</p>
                 &nbsp; 
             </td>
-            <td class="auto-style10">&nbsp; <asp:Label Text="Numero de estrellas" runat="server" />  </td>
+            <td class="auto-style10">&nbsp; <asp:Label Text="Numero de estrellas" runat="server" ID="etiquetaPuntuacion" />  </td>
         </tr>
 
         <tr>
@@ -102,7 +102,7 @@
 
         <tr>
             <td colspan="2">&nbsp; 
-                <asp:Label ID="Label3" runat="server" Text="Espacio para la descripción" />
+                <asp:Label ID="etiquetaDescripcion" runat="server" Text="Espacio para la descripción" />
             </td>
         </tr>
 

@@ -688,9 +688,6 @@ class PreguntaArchivo{
 
             }
 
-            
-            
-
         })
 
      
