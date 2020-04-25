@@ -193,9 +193,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
         foreach (byte[] archivo in archivos)
         {
-
-
-            FileStream archivoImagen = File.Create(System.Web.HttpContext.Current.Server.MapPath("../Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + extensiones[archivos.IndexOf(archivo)]);
+            FileStream archivoImagen = File.Create(System.Web.HttpContext.Current.Server.MapPath("~/Recursos/Imagenes/SugerenciasEnviadas/") + "Sugerencia" + gestorSugerencias.GetCantidadSugerencias() + "Imagen" + contadorImagen + extensiones[archivos.IndexOf(archivo)]);
 
             archivoImagen.Write(archivo, 0, archivo.Length);
 

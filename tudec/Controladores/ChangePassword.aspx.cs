@@ -47,11 +47,10 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
         restablecer.VencimientoToken = null;
         restablecer.Pass = cajaPass.Text;
         restablecer.Estado = Constantes.ESTADO_ACTIVO;
-        new DaoUsuario().actualizarUsuario(restablecer);
+        Base.Insertar(restablecer);
         LB_Validacion.CssClass = "text-success";
         LB_Validacion.Text = "Su Contraseña ha sido Actualizada.";
         LB_Validacion.Visible = true;
-        Thread.Sleep(3000);    
-        Response.Redirect("~/Vistas/Account/Login.aspx");
+        return;
     }
 }

@@ -8,27 +8,36 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class DaoRegister:IToken
+public class DaoRegister : IToken
 {
     private Base db = new Base();
     public DaoRegister()
     {
 
     }
- 
+    /// <summary>
+    /// metodo que buscar el usuario por el token
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns>
+    /// retorna un objeto Eusuario
+    /// </returns>
     public EUsuario buscarUsuarioxToken(string token)
     {
-        return db.TablaUsuarios.Where(x => x.Token.Equals(token) 
+        return db.TablaUsuarios.Where(x => x.Token.Equals(token)
         && x.Estado.Equals(Constantes.ESTADO_EN_ESPERA)).FirstOrDefault();
     }
 
-    //Metodo que registra el usuario
-    public  void registroUsuario(EUsuario registro)
+    /// <summary>
+    /// metodo que registra el usuario
+    /// </summary>
+    /// <param name="registro"></param>
+    public void registroUsuario(EUsuario registro)
     {
         db.TablaUsuarios.Add(registro);
         try
         {
-           db.SaveChanges();
+            db.SaveChanges();
         }
         catch (DbUpdateException ex) // catch DbUpdateException
         {
@@ -40,13 +49,13 @@ public class DaoRegister:IToken
                 {
                     // el error 23505 de postgres clave unica(pk o unique)
                     case "23505":
-                        if (pgsqlException.ConstraintName.Contains(Constantes.ESTADO_UNIQUE))
-                        {
-                            registro.Estado = Constantes.ESTADO_UNIQUE;
-                        }
-                        else if (pgsqlException.ConstraintName.Contains(Constantes.ESTADO_PK))
+                        if (pgsqlException.ConstraintName.Contains(Constantes.ESTADO_PK))
                         {
                             registro.Estado = Constantes.ESTADO_PK;
+                        }
+                        else if (pgsqlException.ConstraintName.Contains(Constantes.ESTADO_UNIQUE))
+                        {
+                            registro.Estado = Constantes.ESTADO_UNIQUE;
                         }
                         break;
                     default:

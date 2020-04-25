@@ -14,12 +14,38 @@ public class DaoUsuario
     {
 
     }
-
-    public void  actualizarUsuario(EUsuario usuario)
+    public List<ECurso> GetCursos(EUsuario eUsuario)
     {
-        //EntityState Enum
-        //System.Data.Entity
-        db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
-         db.SaveChanges();
+        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.NombreDeUsuario)).ToList();
+        return cursos;
+    }
+
+    public EUsuario GetUsuario(string nombreUsuario)
+    {
+        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
+        return usuario;
+    }
+
+    public List<EUsuario> gestionDeUsuarioAdmin(EUsuario usuarios)
+    {
+        return (from usuario in db.TablaUsuarios
+               
+                select new
+                {
+                    usuario
+    
+                }).ToList().Select(x => new EUsuario
+                {
+                    NombreDeUsuario = x.usuario.NombreDeUsuario,
+                    ImagenPerfil = x.usuario.ImagenPerfil,
+                    FechaCreacion = x.usuario.FechaCreacion,
+                    NumCursos =  obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
+                }).ToList();
+    }
+
+    public int obtenerNumeroDeCursosxUsuario(string user)
+    {
+         return db.TablaCursos.Where(x => x.Creador == user).Count();
+        
     }
 }

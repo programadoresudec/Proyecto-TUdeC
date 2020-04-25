@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Views_Account_Login : System.Web.UI.Page
 {
@@ -22,7 +17,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
         }
         else
         {
-           usuario = new DaoLogin().GetUsuario(campoUsuario.Text, campoPass.Text);
+           usuario = new DaoLogin().GetUsuarioxApodo(campoUsuario.Text, campoPass.Text);
         }
      
         Session[Constantes.USUARIO_LOGEADO] = usuario;
@@ -45,7 +40,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
                 usuario.Session = usuario.NombreDeUsuario;
                 usuario.VencimientoToken = null;
                 usuario.Estado = Constantes.ESTADO_ACTIVO;
-                new DaoUsuario().actualizarUsuario(usuario);
+                Base.Actualizar(usuario);
                 Response.Redirect("~/Vistas/Home.aspx");
             }
             else if (usuario.Estado.Equals(Constantes.ESTADO_ACTIVO))

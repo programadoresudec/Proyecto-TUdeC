@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master"  AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Home.aspx.cs" Inherits="Vistas_Inicio" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
@@ -6,9 +6,6 @@
 
         $(document).ready(function () {
             $('#enviar').click(function () {
-
-                
-
                 var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
                 buzon = buzon._editableDiv;
                 var titulo = <%=cajaTitulo.ClientID%>;
@@ -33,7 +30,6 @@
 
                     titulo.value = "";
                     buzon.innerHTML = "";
-
                     alert("Sugerencia enviada");
 
                 }
@@ -81,10 +77,12 @@
         </ul>
         <div class="banner-texto-posicion">
             <div class="banner-texto">
-                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con TUdeC
+                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con <strong>TUdeC</strong> 
                 </h3>
-                <p class="px-4 py-3 text-center text-white mx-auto">Plataforma web Ingenieria De Sistemas universidad
-                    Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.</p>
+                <p class="px-4 py-3 text-center text-white mx-auto">
+                    Plataforma web Ingenieria De Sistemas universidad
+                    Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.
+                </p>
             </div>
         </div>
     </div>
@@ -98,34 +96,33 @@
             <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
                 <div class="row justify-content-center ">
-
-                   </div>
+                </div>
                 <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De
                         Sugerencias</strong></h2>
                 <br />
                 <div class="row justify-content-center ">
-                <asp:Panel ID="panelCamposBuzon" runat="server">
-                    <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
-                        placeHolder="Título"></asp:TextBox>
-                    <br />
-                    <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control">
-                    </asp:TextBox>
+                    <asp:Panel ID="panelCamposBuzon" runat="server">
+                        <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
+                            placeHolder="Título"></asp:TextBox>
+                        <br />
+                        <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control">
+                        </asp:TextBox>
 
-                    <input id="enviar" type="button" value="Enviar sugerencia" style="width:300px"
-                        class="btn btn-success" />
+                        <input id="enviar" type="button" value="Enviar sugerencia" style="width: 300px"
+                            class="btn btn-success" />
 
-                    <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" TargetControlID="buzon"
-                        OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
+                        <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" TargetControlID="buzon"
+                            OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
 
-                        <Toolbar>
+                            <Toolbar>
 
-                            <ajaxToolkit:InsertImage />
+                                <ajaxToolkit:InsertImage />
 
-                        </Toolbar>
+                            </Toolbar>
 
-                    </ajaxToolkit:HtmlEditorExtender>
-                </asp:Panel>
-                
+                        </ajaxToolkit:HtmlEditorExtender>
+                    </asp:Panel>
+
                 </div>
             </asp:Panel>
         </asp:Panel>

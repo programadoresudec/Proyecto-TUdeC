@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using System.Web.UI;
 
 /// <summary>
 /// Descripción breve de Correo
 /// </summary>
 public partial class Correo
 {
+  
     public Correo()
     {
+       
     }
-
     public void enviarCorreo(string correoDestino, string userToken, string mensaje, string url, string estado)
     {
+
+       
         // inicializar variable var
         var Emailtemplate = (dynamic)null;
         try

@@ -14,31 +14,20 @@ public partial class MasterPage : System.Web.UI.MasterPage
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
-            LinkButton cerrarSesion = (LinkButton)(vistaLogin.FindControl("LinkBtnCerrarSesion"));
-            cerrarSesion.Visible = true;
-            HyperLink hiperEnlaceConfiguracionUsuario;
-
+            iniciarSesion.Visible = false;
+            registrarse.Visible = false;
+            LinkBtnCerrarSesion.Visible = true;
             if (usuario.Rol.Equals(Constantes.ROL_USER))
             {
-               
-                HyperLink hiperEnlaceCreacionCurso = acercaDeNosotros;
-                HyperLink hiperEnlaceCursosCuenta = (HyperLink)(vistaLogin.FindControl("iniciarSesion"));
-                hiperEnlaceConfiguracionUsuario = (HyperLink)(vistaLogin.FindControl("registrarse"));
-                hiperEnlaceCreacionCurso.Text = "Crear Curso";
-                hiperEnlaceCursosCuenta.Text = "Mis Cursos";
-                hiperEnlaceConfiguracionUsuario.Visible = false;
-                hiperEnlaceCreacionCurso.NavigateUrl = "";
-                hiperEnlaceCursosCuenta.NavigateUrl = "~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx";
-           
+                
+                misCursos.Visible = true;
+                CursosCreados.Visible = true;
+                CursosInscritos.Visible = true;
+                CrearCurso.Visible = true;
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
-                HyperLink hiperEnlaceAdministrarUsuarios = acercaDeNosotros;
-                hiperEnlaceConfiguracionUsuario = (HyperLink)(vistaLogin.FindControl("registrarse"));
-                hiperEnlaceAdministrarUsuarios.Text = "Administrar Usuarios";
-                hiperEnlaceConfiguracionUsuario.Visible = false;
-                ((HyperLink)(vistaLogin.FindControl("iniciarSesion"))).Visible = false;
-                hiperEnlaceAdministrarUsuarios.NavigateUrl = "";
+                AdministrarUser.Visible = true;
             }
         }
     }

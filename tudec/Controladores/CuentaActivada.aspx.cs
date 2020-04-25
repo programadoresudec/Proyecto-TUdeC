@@ -33,7 +33,7 @@ public partial class Vistas_Account_CuentaActivada : System.Web.UI.Page
                     usuario.Token = null;
                     usuario.VencimientoToken = null;
                     usuario.Session = usuario.NombreDeUsuario;
-                    new DaoUsuario().actualizarUsuario(usuario);
+                    Base.Actualizar(usuario);
                 }
             }
             else

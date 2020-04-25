@@ -9,7 +9,7 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        GestionUsuario gestorUsuarios = new GestionUsuario();
+        DaoUsuario gestorUsuarios = new DaoUsuario();
         EUsuario usuario = gestorUsuarios.GetUsuario("Kali");
         Session["UsuarioSeleccionado"] = usuario;
     }

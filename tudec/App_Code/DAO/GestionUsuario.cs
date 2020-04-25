@@ -14,14 +14,5 @@ public class GestionUsuario
 
     }
 
-    public List<ECurso> GetCursos(EUsuario eUsuario){
-        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.NombreDeUsuario)).ToList();
-        return cursos;
-    }
-
-    public EUsuario GetUsuario(string nombreUsuario)
-    {
-        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
-        return usuario;
-    }
+    
 } 

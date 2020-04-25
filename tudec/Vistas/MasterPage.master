@@ -90,27 +90,48 @@
                         </div>
                     </div>
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
-                        <li class="nav-item active mr-lg-2 mb-lg-0 mb-2"></li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server" NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
+                            <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server"
+                                NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
                         </li>
-                        <asp:LoginView ID="vistaLogin" runat="server" ViewStateMode="Disabled">
-                            <AnonymousTemplate>
-                                <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                    <asp:HyperLink CssClass="nav-link" ID="iniciarSesion" runat="server" NavigateUrl="~/Vistas/Account/Login.aspx">Iniciar Sesión</asp:HyperLink>
-                                </li>
-                                <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                    <asp:HyperLink CssClass="nav-link" ID="registrarse" runat="server" NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
-                                </li>
-                                <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                    <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
-                                        CssClass="nav-link" Visible="false">
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:HyperLink CssClass="nav-link" ID="iniciarSesion" runat="server"
+                                NavigateUrl="~/Vistas/Account/Login.aspx">Iniciar Sesión</asp:HyperLink>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:HyperLink CssClass="nav-link" ID="registrarse" runat="server"
+                                NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:HyperLink CssClass="nav-link" ID="AdministrarUser" runat="server"
+                                NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
+                                        <i class="fa fa-users"></i></asp:HyperLink>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
+                                NavigateUrl="~/Vistas/Admin/CrearCursos.aspx"><i class="fa fa-plus-circle"></i>Crear Curso
+                                        </asp:HyperLink>
+                        </li>
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2 ">
+                            <asp:LinkButton Text="text" runat="server" class="nav-link dropdown-toggle" href="#" ID="misCursos"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">Mis Cursos
+                            </asp:LinkButton>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <asp:HyperLink CssClass="dropdown-item" ID="CursosInscritos" runat="server"
+                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="false">Cursos Inscritos
+                                </asp:HyperLink>
+                                <asp:HyperLink CssClass="dropdown-item" ID="CursosCreados" runat="server"
+                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx" Visible="false">Cursos Creados 
+                                </asp:HyperLink>
+                            </div>
+                        </li>
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
+                                CssClass="nav-link" Visible="false">
                                     <i class="fa fa-sign-out-alt">Cerrar Sesión</i>
-                                    </asp:LinkButton></li>
-                            </AnonymousTemplate>
-                            <LoggedInTemplate>
-                            </LoggedInTemplate>
-                        </asp:LoginView>
+                            </asp:LinkButton>
+                        </li>
+
                     </ul>
                 </div>
             </nav>

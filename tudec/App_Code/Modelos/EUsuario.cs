@@ -11,7 +11,7 @@ using System.Web;
 /// 
 
 [Serializable]
-[Table("usuarios", Schema="usuarios")]
+[Table("usuarios", Schema = "usuarios")]
 public class EUsuario
 {
     #region attributes
@@ -32,7 +32,7 @@ public class EUsuario
     private string session;
     private string imagenPerfil;
     private Nullable<DateTime> lastModify;
-    private int numCursos; 
+    private int numCursos;
     #endregion
 
     #region properties
@@ -73,5 +73,7 @@ public class EUsuario
     public DateTime? LastModify { get => lastModify; set => lastModify = value; }
     [NotMapped]
     public int NumCursos { get => numCursos; set => numCursos = value; }
+    //[NotMapped]
+  
     #endregion
 }

@@ -29,14 +29,8 @@ public partial class Views_Account_Register : System.Web.UI.Page
         usuarioEnRegistro.Token = new Encriptacion().encriptar(JsonConvert.SerializeObject(usuarioEnRegistro));
         usuarioEnRegistro.VencimientoToken = DateTime.Now.AddHours(8);
         new DaoRegister().registroUsuario(usuarioEnRegistro);
-        if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_UNIQUE))
-        {
-            labelValidar.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
-            labelValidar.Visible = true;
-            usuarioEnRegistro = null;
-            return;
-        }
-        else if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_PK))
+
+        if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_PK))
         {
             labelValidar.Text = "Ese Nombre de usuario ya está en uso. Prueba con otro.";
             labelValidar.Visible = true;
@@ -44,6 +38,14 @@ public partial class Views_Account_Register : System.Web.UI.Page
             return;
         }
 
+        else if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_UNIQUE))
+        {
+            labelValidar.Text = "Ese Correo Institucional ya está en uso. Prueba con otro.";
+            labelValidar.Visible = true;
+            usuarioEnRegistro = null;
+            return;
+        }
+        
         if (usuarioEnRegistro != null)
         {
             new Correo().enviarCorreo(usuarioEnRegistro.CorreoInstitucional, usuarioEnRegistro.Token,
@@ -51,6 +53,8 @@ public partial class Views_Account_Register : System.Web.UI.Page
             labelValidar.CssClass = "text-success";
             labelValidar.Text = "Revise el correo para activar su cuenta.";
             labelValidar.Visible = true;
+            usuarioEnRegistro = null;
+            return;
         }
     }
 }

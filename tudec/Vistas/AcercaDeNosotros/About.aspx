@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/About.aspx.cs" Inherits="Views_About" %>
+﻿<%@ Page Title="Acerca De Nosotros" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/About.aspx.cs" Inherits="Views_About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <link href="../../App_Themes/About/css/About.css" type="text/css" rel="stylesheet" media="all">
