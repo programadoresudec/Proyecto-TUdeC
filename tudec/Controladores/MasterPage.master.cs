@@ -28,6 +28,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
                 AdministrarUser.Visible = true;
+                Sugerencias.Visible = true;
             }
         }
     }

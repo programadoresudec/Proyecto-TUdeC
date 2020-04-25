@@ -13,7 +13,7 @@
             <Columns>
                 <asp:BoundField DataField="NombreDeUsuario" HeaderText="NombreDeUsuario" SortExpression="NombreDeUsuario" />
                 <asp:BoundField DataField="FechaCreacion" HeaderText="FechaCreacion" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}" />
-                <asp:BoundField DataField="ImagenPerfil" HeaderText="ImagenPerfil" SortExpression="ImagenPerfil" />
+                <asp:ImageField DataImageUrlField="ImagenPerfil" HeaderText="ImagenPerfil" SortExpression="ImagenPerfil" />
                 <asp:BoundField DataField="NumCursos" HeaderText="NumCursos" SortExpression="NumCursos" />
             </Columns>
         </asp:GridView>

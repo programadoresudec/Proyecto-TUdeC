@@ -107,6 +107,11 @@
                                 NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
                                         <i class="fa fa-users"></i></asp:HyperLink>
                         </li>
+                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                            <asp:HyperLink CssClass="nav-link" ID="Sugerencias" runat="server"
+                                NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Visible="false">Sugerencias
+                                        </asp:HyperLink>
+                        </li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
                                 NavigateUrl="~/Vistas/Admin/CrearCursos.aspx"><i class="fa fa-plus-circle"></i>Crear Curso
