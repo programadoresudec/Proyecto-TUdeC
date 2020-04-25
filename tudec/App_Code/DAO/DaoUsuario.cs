@@ -47,4 +47,5 @@ public class DaoUsuario
     {
          return db.TablaCursos.Where(x => x.Creador == user).Count(); 
     }
+
 }

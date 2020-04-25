@@ -14,7 +14,8 @@
             width: 90px;
         }
         .auto-style4 {
-            width: 31px;
+            width: 956px;
+            height: 217px;
         }
         .auto-style5 {
             width: 75px;
@@ -38,14 +39,14 @@
 
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
-        <table class="auto-style4" style="width: 956px; height: 217px">
+        <table class="auto-style4">
         <tr>
             <td class="auto-style3" rowspan="9">&nbsp;</td>
             <td class="auto-style13">&nbsp;</td>
             <td class="auto-style14"><asp:ImageButton ID="Reportar" ImageUrl="~/App_Themes/Estilos/img/Botón reportar.png" runat="server" Height="34px" Width="94px"/></td>
             <td class="auto-style5" rowspan="9">&nbsp;</td>
             <td rowspan="9">&nbsp;            
-                <asp:GridView CssClass="tablas" ID="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True">
+                <asp:GridView CssClass="tablas"  ID ="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True" Width="675px">
                 <Columns>
                     <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" >
                     <HeaderStyle HorizontalAlign="Center" />

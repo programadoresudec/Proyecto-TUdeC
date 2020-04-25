@@ -50,7 +50,9 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
         {
 
             TableCell celdaPerfilUsuario = fila.Cells[0];
+            TableCell celdaHiperEnlaceUsuario = fila.Cells[1];
             TableCell celdaCalificacion = fila.Cells[4];
+
 
             Image icono = new Image();
             icono.Width = 64;
@@ -58,6 +60,13 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
             if (fila.RowIndex > -1)
             {
+
+                LinkButton hiperEnlaceUsuario = new LinkButton();
+                hiperEnlaceUsuario.Text = celdaHiperEnlaceUsuario.Text;
+                hiperEnlaceUsuario.Click += new EventHandler(VerInformacionUsuario);
+
+                celdaHiperEnlaceUsuario.Controls.Add(hiperEnlaceUsuario);
+
                 int calificacion;
 
                 if (celdaCalificacion.Text.Equals("&nbsp;"))
@@ -98,6 +107,19 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
         }
 
         
+
+    }
+
+    public void VerInformacionUsuario(object sender, EventArgs e)
+    {
+
+        LinkButton hiperEnlace = (LinkButton)sender;
+
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        Session[Constantes.USUARIO_SELECCIONADO] = gestorUsuarios.GetUsuario(hiperEnlace.Text);
+
+        Response.Redirect("~/Vistas/Usuarios/InformacionDelUsuarioSeleccionado.aspx");
 
     }
 

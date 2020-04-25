@@ -33,6 +33,7 @@ public static class Constantes
     /// Constantes De Session
     /// </summary>
     public const string USUARIO_LOGEADO = "usuarioLogeado";
+    public const string USUARIO_SELECCIONADO = "usuarioSeleccionado";
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";
     
