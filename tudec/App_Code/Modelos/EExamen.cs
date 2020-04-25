@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -16,14 +17,19 @@ public class EExamen
     #region attributes
     private int id;
     private int idTema;
-    private DateTime fechaInicion;
+    private DateTime fechaInicio;
     private DateTime fechaFin;
     #endregion
 
     #region properties
+    [Key]
+    [Column("id")]
     public int Id { get => id; set => id = value; }
+    [Column("fk_id_tema")]
     public int IdTema { get => idTema; set => idTema = value; }
-    public DateTime FechaInicion { get => fechaInicion; set => fechaInicion = value; }
+    [Column("fecha_inicio")]
+    public DateTime FechaInicio { get => fechaInicio; set => fechaInicio = value; }
+    [Column("fecha_fin")]
     public DateTime FechaFin { get => fechaFin; set => fechaFin = value; } 
     #endregion
 }

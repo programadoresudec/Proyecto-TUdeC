@@ -17,6 +17,7 @@
 
     $(document).ready(function () {
 
+
         $("#botonCrear").click(function () {
 
             var desplegableTipo = <%=desplegableTipo.ClientID%>;
@@ -43,7 +44,7 @@
                 }
                 else {
 
-                    pregunta = new PreguntaMultipleUnicaRespuesta();
+                    pregunta = new PreguntaArchivo();
 
                 }
 
@@ -58,9 +59,33 @@
 
         });
 
+        $('#botonEnviar').click(function () {
+
+
+            var datos = "{'examen':'" + Examen.getJSON() + "'}";
+
+            $.ajax({
+
+                type: "POST",
+                url: '../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
+                data: datos,
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+
+            });
+
+            alert("Se ha subido el examen");
+            
+
+        })
+
     });
   
 </script>
+
+
 
 <center>
 
@@ -92,4 +117,8 @@
 
 
 </div>
+
+
+<input id="botonEnviar" type="button" style="width: 60%" value="Crear examen" />
+
 </center>

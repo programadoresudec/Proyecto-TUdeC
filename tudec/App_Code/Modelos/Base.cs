@@ -20,6 +20,9 @@ public class Base: DbContext
     public DbSet<EInscripcionesCursos> TablaInscripciones { get; set; }
     public DbSet<EAutentication> TablaAutenticaciones { get; set; }
     public DbSet<ETiposPregunta> TablaTiposPregunta { get; set; }
+    public DbSet<EPregunta> TablaPreguntas { get; set; }
+    public DbSet<ERespuesta> TablaRespuestas { get; set; }
+
 
     public static void Insertar(Object entidad)
     {

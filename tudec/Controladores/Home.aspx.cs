@@ -34,7 +34,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
                 panelBuzon.Controls.Add(botonVerSugerencias);
 
             }
-
+            
         }
 
         if (Request.QueryString["preview"] == "1" && !string.IsNullOrEmpty(Request.QueryString["fileId"]))
@@ -109,6 +109,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
     [WebMethod]
     public static void Test()
     {
+
         Console.WriteLine("");
 
     }

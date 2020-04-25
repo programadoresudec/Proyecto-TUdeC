@@ -11,8 +11,7 @@ public partial class Controles_CreacionExamen : System.Web.UI.UserControl
 
 
     protected void Page_Load(object sender, EventArgs e)
-    {
-
+    {     
 
         for (int hora=0; hora<24; hora++)
         {
@@ -43,5 +42,7 @@ public partial class Controles_CreacionExamen : System.Web.UI.UserControl
         }
 
     }
+
+
 
 }
