@@ -26,9 +26,9 @@ public class DaoUsuario
         return usuario;
     }
 
-    public List<EUsuario> gestionDeUsuarioAdmin(EUsuario usuarios)
+    public List<EUsuario> gestionDeUsuarioAdmin()
     {
-        return (from usuario in db.TablaUsuarios
+        return (from usuario in db.TablaUsuarios where usuario.Rol == Constantes.ROL_USER
                
                 select new
                 {
@@ -45,7 +45,6 @@ public class DaoUsuario
 
     public int obtenerNumeroDeCursosxUsuario(string user)
     {
-         return db.TablaCursos.Where(x => x.Creador == user).Count();
-        
+         return db.TablaCursos.Where(x => x.Creador == user).Count(); 
     }
 }

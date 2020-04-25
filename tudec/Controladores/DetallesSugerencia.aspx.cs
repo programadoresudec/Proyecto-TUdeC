@@ -9,24 +9,26 @@ public partial class Vistas_DetallesSugerencia : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
-        Sugerencia gestorSugerencias = new Sugerencia();
-        string valor = sugerencia.Contenido;
-        titulo.Text = sugerencia.Titulo;
-        emisor.Text = sugerencia.Emisor;
-
-        if(sugerencia.Emisor == null)
+        EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
+        if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
         {
+            ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
+            Sugerencia gestorSugerencias = new Sugerencia();
+            string valor = sugerencia.Contenido;
+            titulo.Text = sugerencia.Titulo;
+            emisor.Text = sugerencia.Emisor;
+            if (sugerencia.Emisor == null)
+            {
 
-            imagenUsuario.Visible = false;
-            emisor.Visible = false;
-
+                imagenUsuario.Visible = false;
+                emisor.Visible = false;
+            }
+            sugerencia.Estado = true;
+            Base.Actualizar(sugerencia);
         }
-
-        sugerencia.Estado = true;
-
-        Base.Actualizar(sugerencia);
-
+        else
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
     }
 }

@@ -27,7 +27,7 @@ public partial class Vistas_Account_VerificarEmail : System.Web.UI.Page
             LB_Validacion.CssClass = "text-success";
             LB_Validacion.Text = "Revise la bandeja de su Correo.";
             LB_Validacion.Visible = true;
-            return;
+            
         }
         else
         {
@@ -35,5 +35,6 @@ public partial class Vistas_Account_VerificarEmail : System.Web.UI.Page
             LB_Validacion.Visible = true;
             return;
         }
+        usuarioCambioPass = null;
     }
 }

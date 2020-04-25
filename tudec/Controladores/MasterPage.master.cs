@@ -10,7 +10,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
@@ -27,6 +26,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
+                acercaDeNosotros.Visible = false;
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }

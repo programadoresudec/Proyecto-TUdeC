@@ -18,9 +18,6 @@
             </Columns>
         </asp:GridView>
         <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario">
-            <SelectParameters>
-                <asp:Parameter Name="usuarios" Type="Object" />
-            </SelectParameters>
         </asp:ObjectDataSource>
         <br />
         <br />

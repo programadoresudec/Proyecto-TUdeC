@@ -6,12 +6,15 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
-        if (usuario!=null)
+        if (usuario==null)
         {
-            if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
-            {
+            Response.Redirect("~/Vistas/Home.aspx");
 
-            }
         }
+        else if (usuario!=null && usuario.Rol.Equals(Constantes.ROL_USER))
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
+           
     }
 }

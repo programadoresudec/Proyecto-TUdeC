@@ -15,6 +15,15 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
     {
 
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+        if (usuario == null)
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+
+        }
+        else if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
 
     }
 
