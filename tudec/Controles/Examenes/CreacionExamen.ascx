@@ -44,7 +44,7 @@
                 }
                 else {
 
-                    pregunta = new PreguntaMultipleUnicaRespuesta();
+                    pregunta = new PreguntaArchivo();
 
                 }
 
@@ -84,6 +84,8 @@
     });
   
 </script>
+
+
 
 <center>
 

@@ -219,7 +219,7 @@ class PreguntaMultipleUnicaRespuesta {
 
         this.espaciosMarcar = [];
         var botonEspacioMarcar1 = document.createElement("img");
-        botonEspacioMarcar1.src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+        botonEspacioMarcar1.src = "https://image.flaticon.com/icons/png/512/9/9022.png";
         botonEspacioMarcar1.width = 16;
 
         var botonEspacioMarcar2 = document.createElement("img");
@@ -616,6 +616,107 @@ class PreguntaAbierta {
 
 class PreguntaArchivo{
 
+    constructor() {
 
+
+
+
+    }
+
+    getPregunta() {
+
+        var objetoSustituto = this;
+
+        this.tabla = document.createElement("table");
+        this.tabla.bgColor = "#c3c9d1";
+        this.tabla.width = "60%";
+        this.tabla.style.borderRadius = "10px";
+
+        var fila;
+
+        for (fila = 0; fila < 4; fila++) {
+
+            var filaTabla = this.tabla.insertRow();
+            var celda = filaTabla.insertCell();
+            celda.style.paddingLeft = "3%";
+            celda.style.paddingTop = "1%";
+            celda.style.paddingBottom = "1%";
+
+        }
+
+        //fila 1
+
+        this.campoPeticion = document.createElement("textarea");
+        this.campoPeticion.setAttribute("placeholder", "Petición");
+        this.campoPeticion.style.width = "95%";
+        this.campoPeticion.style.height = "100px";
+
+        this.tabla.rows[0].cells[0].append(this.campoPeticion);
+
+        //fila 2
+
+        this.botonInsertarArchivo = document.createElement("input");
+        this.botonInsertarArchivo.type = "button";
+        this.botonInsertarArchivo.value = "Insertar archivo";
+        this.botonInsertarArchivo.style.width = "20%";
+
+        this.tabla.rows[1].cells[0].append(this.botonInsertarArchivo);
+
+        //fila 3
+
+        this.botonSubirArchivo = document.createElement("input");
+        this.botonSubirArchivo.type = "file";
+        this.botonSubirArchivo.id = "archivo";    
+
+        this.botonPrueba = document.createElement("input");
+        this.botonPrueba.type = "button";
+        this.botonPrueba.value = "Subir";
+
+        var lector = new FileReader();
+
+        this.botonPrueba.addEventListener("click", function () {
+
+            alert(objetoSustituto.botonSubirArchivo.files[0].name);
+            alert(objetoSustituto.botonSubirArchivo.files[0].size);
+
+            lector.readAsArrayBuffer(objetoSustituto.botonSubirArchivo.files[0]);
+
+            lector.onloadend = function () {
+
+                var conjuntoBytes = new Uint8Array(lector.result);
+                alert(conjuntoBytes);
+
+            }
+
+            
+            
+
+        })
+
+     
+        this.tabla.rows[2].cells[0].append(this.botonSubirArchivo);
+        this.tabla.rows[2].cells[0].append(this.botonPrueba);
+
+        //fila 4
+
+        this.desplegablePorcentaje = document.createElement("select");
+
+        var contadorPorcentaje;
+
+        for (contadorPorcentaje = 1; contadorPorcentaje <= 100; contadorPorcentaje++) {
+
+            var opcion = document.createElement("option");
+            opcion.value = contadorPorcentaje;
+            opcion.innerHTML = opcion.value;
+            this.desplegablePorcentaje.append(opcion);
+
+        }
+
+        this.tabla.rows[3].cells[0].append(this.desplegablePorcentaje);
+
+        return this.tabla;
+
+
+    }
 
 }

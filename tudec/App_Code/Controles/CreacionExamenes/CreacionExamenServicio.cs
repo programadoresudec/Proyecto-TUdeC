@@ -136,5 +136,13 @@ public class CreacionExamenServicio : System.Web.Services.WebService
 
     }
 
+    [WebMethod]
+    public void SubirArchivo()
+    {
 
+        
+
+        Console.WriteLine("");
+
+    }
 }
