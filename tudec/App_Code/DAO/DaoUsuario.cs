@@ -48,4 +48,31 @@ public class DaoUsuario
          return db.TablaCursos.Where(x => x.Creador == user).Count(); 
     }
 
+    public List<EPuntuacion> GetPuntuaciones()
+    {
+
+        List<EPuntuacion> puntuaciones = db.TablaPuntuaciones.ToList();
+
+        return puntuaciones;
+
+    }
+
+    public EPuntuacion GetPuntuacion(EUsuario emisor, EUsuario receptor)
+    {
+
+        EPuntuacion puntuacion = db.TablaPuntuaciones.Where(x => x.Emisor.Equals(emisor.NombreDeUsuario) && x.Receptor.Equals(receptor.NombreDeUsuario)).FirstOrDefault();
+
+        return puntuacion;
+
+    }
+
+    public List<EPuntuacion> GetPuntuacionesUsuario(EUsuario usuario)
+    {
+
+        List<EPuntuacion> puntuaciones = db.TablaPuntuaciones.Where(x => x.Receptor.Equals(usuario.NombreDeUsuario)).ToList();
+
+        return puntuaciones;
+
+    }
+
 }
