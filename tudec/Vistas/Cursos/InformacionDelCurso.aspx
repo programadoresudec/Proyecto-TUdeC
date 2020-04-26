@@ -69,7 +69,7 @@
 
         <tr>
             <td class="auto-style6" colspan="2">
-                <h5>CREADO POR:</h5>
+                <h4>CREADO POR:</h4>
 
             </td>
 
