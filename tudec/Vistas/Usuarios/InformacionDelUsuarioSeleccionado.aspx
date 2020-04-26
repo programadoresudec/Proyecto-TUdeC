@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="Usuario" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/InformacionDelUsuarioSeleccionado.aspx.cs" Inherits="Vistas_InformacionDelUsuarioSeleccionado" %>
 
+<%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
+<%@ Register Src="~/Controles/Estrellas/EstrellasPuntuacion.ascx" TagPrefix="uc1" TagName="EstrellasPuntuacion" %>
+
+
+
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+
 
     <style type="text/css">
         .auto-style1 {
@@ -45,10 +54,13 @@
             <td class="auto-style13">&nbsp;</td>
             <td class="auto-style14"><asp:ImageButton ID="Reportar" ImageUrl="~/App_Themes/Estilos/img/Botón reportar.png" runat="server" Height="34px" Width="94px"/></td>
             <td class="auto-style5" rowspan="9">&nbsp;</td>
-            <td rowspan="9">&nbsp;            
-                <asp:GridView CssClass="tablas"  ID ="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True" Width="675px">
+            <td style="padding-left: 200px" rowspan="9">&nbsp;         
+                
+              
+
+                <asp:GridView CssClass="tablas"  ID ="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True" Width="675px" OnRowDataBound="GridViewUsuSelec_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" >
+                    <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False" >
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
@@ -70,6 +82,7 @@
                     </asp:BoundField>
                 </Columns>
             </asp:GridView>
+
             <asp:ObjectDataSource ID="DatosUsuarioSeleccionadoDataSource" runat="server" SelectMethod="GetCursos" TypeName="DaoUsuario">
                 <SelectParameters>
                     <asp:SessionParameter Name="eUsuario" SessionField="UsuarioSeleccionado" Type="Object" />
@@ -106,7 +119,16 @@
             <td class="auto-style13" > <p>Calificación:</p>
                 
             </td>
-            <td class="auto-style14"><asp:Label Text="Numero de estrellas" runat="server" ID="etiquetaPuntuacion" />  </td>
+            <td class="auto-style14">
+                
+                <asp:Panel ID="panelEstrellas" runat="server">
+
+                    <asp:Label Text="Numero de estrellas" runat="server" ID="etiquetaPuntuacion" />  
+
+                </asp:Panel>
+                
+
+            </td>
         </tr>
 
         <tr>
@@ -122,7 +144,14 @@
 
         <tr>
             <td class="auto-style13" ><asp:Label Text="CALIFICAR:" runat="server" /></td>
-            <td class="auto-style14"></td>
+            <td class="auto-style14">
+
+                
+                <uc1:EstrellasPuntuacion runat="server" id="EstrellasPuntuacion" />
+
+                
+
+            </td>
         </tr>
 
     </table>

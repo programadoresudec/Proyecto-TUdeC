@@ -33,6 +33,7 @@ public class EUsuario
     private string imagenPerfil;
     private Nullable<DateTime> lastModify;
     private int numCursos;
+    private string descripcion;
     #endregion
 
     #region properties
@@ -73,7 +74,9 @@ public class EUsuario
     public DateTime? LastModify { get => lastModify; set => lastModify = value; }
     [NotMapped]
     public int NumCursos { get => numCursos; set => numCursos = value; }
-    //[NotMapped]
-  
+    [Column("descripcion")]
+    public string Descripcion { get => descripcion; set => descripcion = value; }
+    
+
     #endregion
 }
