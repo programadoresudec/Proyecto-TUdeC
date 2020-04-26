@@ -30,8 +30,6 @@ public class CreacionExamenServicio : System.Web.Services.WebService
     {
 
         JArray preguntasJson = JArray.Parse(examen);
-
- 
         foreach(JToken preguntaJson in preguntasJson)
         {
 
@@ -81,14 +79,11 @@ public class CreacionExamenServicio : System.Web.Services.WebService
 
                 List<JToken> respuestasJson = preguntaJson["respuestas"].ToList();
                 List<JToken> indicesRespuestasMarcadasJson = preguntaJson["respuestasMarcadas"].ToList();
-
                 List<int> indicesRespuestasMarcadas = new List<int>();
 
                 foreach(JToken indiceRespuestaMarcadaJson in indicesRespuestasMarcadasJson)
                 {
-
                     indicesRespuestasMarcadas.Add(Int32.Parse(indiceRespuestaMarcadaJson.ToString()));
-
                 }
 
                 foreach (JToken respuestaJson in respuestasJson)
@@ -100,15 +95,11 @@ public class CreacionExamenServicio : System.Web.Services.WebService
 
                     if (indicesRespuestasMarcadas.Contains(respuestasJson.IndexOf(respuestaJson)))
                     {
-
                         respuesta.Estado = true;
-
                     }
                     else
                     {
-
                         respuesta.Estado = false;
-
                     }
 
                     Base.Insertar(respuesta);
@@ -139,10 +130,6 @@ public class CreacionExamenServicio : System.Web.Services.WebService
     [WebMethod]
     public void SubirArchivo()
     {
-
-        
-
         Console.WriteLine("");
-
     }
 }

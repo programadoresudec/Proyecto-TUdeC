@@ -22,8 +22,12 @@ public class Base: DbContext
     public DbSet<ETiposPregunta> TablaTiposPregunta { get; set; }
     public DbSet<EPregunta> TablaPreguntas { get; set; }
     public DbSet<ERespuesta> TablaRespuestas { get; set; }
+    public DbSet<EEstadoUsuario> TablaEstadosUsuario { get; set; }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entidad"></param>
     public static void Insertar(Object entidad)
     {
 
@@ -32,7 +36,10 @@ public class Base: DbContext
         db.SaveChanges();
 
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entidad"></param>
     public static void Actualizar(Object entidad)
     {
 
@@ -41,7 +48,10 @@ public class Base: DbContext
         db.SaveChanges();
 
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entidad"></param>
     public static void Eliminar(Object entidad)
     {
 

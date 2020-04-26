@@ -12,35 +12,85 @@
         <br />
         <br />
         <br />
+        <div class="row justify-content-center">
+             <div class="col-4 input-group">
+                        <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" Width="200px">
+                        </asp:TextBox>
+                        <ajaxToolkit:AutoCompleteExtender
+                            MinimumPrefixLength="1"
+                            CompletionInterval="10"
+                            CompletionSetCount="1"
+                            FirstRowSelected="false"
+                            ID="cajaBuscador_AutoCompleteExtender"
+                            runat="server"
+                            ServiceMethod="GetNombresCursos"
+                            TargetControlID="cajaBuscador">
+                        </ajaxToolkit:AutoCompleteExtender>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <asp:LinkButton ID="botonBuscar" runat="server">
+							<i class="fa fa-search"></i></asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 justify-content-center">
+                        <i class="fas fa-filter"></i>
+                        <asp:DropDownList ID="DDL_Estado" runat="server" DataTextField="Estado" CssClass="dropdown-toggle" DataSourceID="ODS_EstadosUsuario" DataValueField="Estado">
+                        </asp:DropDownList>
+                        <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
+                    </div>
+            <div class=" form-group col-md-auto">
+                <div class="table-responsive">
+                    <table class="table">
+                        <asp:GridView ID="GridViewGestionUsuario" runat="server" CssClass="tablas" AutoGenerateColumns="False" DataSourceID="ODS_DaoUsuario">
 
-        <center>
-        <asp:GridView ID="GridView1" runat="server" CssClass="tablas" AutoGenerateColumns="False" DataSourceID="ODS_DaoUsuario">
-            <Columns>
-                <asp:BoundField DataField="NombreDeUsuario" HeaderText="NombreDeUsuario" SortExpression="NombreDeUsuario" >
-                <HeaderStyle HorizontalAlign="Center" />
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="FechaCreacion" HeaderText="FechaCreacion" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}" >
-                <HeaderStyle HorizontalAlign="Center" />
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:ImageField DataImageUrlField="ImagenPerfil" HeaderText="ImagenPerfil" SortExpression="ImagenPerfil" >
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </asp:ImageField>
-                <asp:BoundField DataField="NumCursos" HeaderText="NumCursos" SortExpression="NumCursos" >
-                <HeaderStyle HorizontalAlign="Center" />
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-            </Columns>
-        </asp:GridView>
+                            <Columns>
+                                <asp:ImageField DataImageUrlField="ImagenPerfil" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:ImageField>
+                                <asp:BoundField DataField="NombreDeUsuario" HeaderText="Nombre De Usuario" SortExpression="NombreDeUsuario">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha De Registro" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="NumCursos" HeaderText="# de Cursos" SortExpression="NumCursos">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="Bloquear">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="botonBloquearUsuario" runat="server"
+                                            CssClass="btn btn-default"><i class="fas fa-user-lock" style="color:red"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Ver Reportes">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="botonVerReportes" runat="server"
+                                            CssClass="btn btn-default"><i class="fa fa-eye" style="color:darkgreen"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
 
-        </center>
-        <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario">
-        </asp:ObjectDataSource>
-        <br />
-        <br />
-        <br />
+                            </Columns>
+                        </asp:GridView>
+
+                        <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario"></asp:ObjectDataSource>
+
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 </asp:Content>

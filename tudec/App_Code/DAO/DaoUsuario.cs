@@ -28,24 +28,31 @@ public class DaoUsuario
 
     public List<EUsuario> gestionDeUsuarioAdmin()
     {
-        return (from usuario in db.TablaUsuarios where usuario.Rol == Constantes.ROL_USER
-               
+        return (from usuario in db.TablaUsuarios
+                where usuario.Rol == Constantes.ROL_USER
+
                 select new
                 {
                     usuario
-    
+
                 }).ToList().Select(x => new EUsuario
                 {
                     NombreDeUsuario = x.usuario.NombreDeUsuario,
                     ImagenPerfil = x.usuario.ImagenPerfil,
                     FechaCreacion = x.usuario.FechaCreacion,
-                    NumCursos =  obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
+                    Estado = x.usuario.Estado,
+                    NumCursos = obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
                 }).ToList();
     }
 
     public int obtenerNumeroDeCursosxUsuario(string user)
     {
-         return db.TablaCursos.Where(x => x.Creador == user).Count(); 
+        return db.TablaCursos.Where(x => x.Creador == user).Count();
+    }
+
+    public List<EEstadoUsuario> obtenerEstadosUsuario()
+    {
+        return db.TablaEstadosUsuario.ToList();
     }
 
 }

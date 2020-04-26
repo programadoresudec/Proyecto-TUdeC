@@ -64,10 +64,8 @@
                     <div class="form-group">
                         <br />
                         <div class="mx-3 input-group">
-
                             <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
-
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
                                 CompletionInterval="10"
@@ -78,8 +76,6 @@
                                 ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
-
-
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
@@ -107,15 +103,15 @@
                                 NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
                                         <i class="fa fa-users"></i></asp:HyperLink>
                         </li>
-                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="Sugerencias" runat="server"
                                 NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Visible="false">Sugerencias
-                                        </asp:HyperLink>
+                            </asp:HyperLink>
                         </li>
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
                                 NavigateUrl="~/Vistas/Admin/CrearCursos.aspx"><i class="fa fa-plus-circle"></i>Crear Curso
-                                        </asp:HyperLink>
+                            </asp:HyperLink>
                         </li>
                         <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2 ">
                             <asp:LinkButton Text="text" runat="server" class="nav-link dropdown-toggle" href="#" ID="misCursos"
@@ -169,7 +165,7 @@
                             <div class="phone">
                                 <h4>Telefono:</h4>
                                 <p>telefono: +57 3142061847</p>
-                                <p>Email : <a href="mailto:tudec.gmail.com">tudec.gmail.com</a></p>
+                                <p>Email : <a href="mailto:tudec2020gmail.com">tudec2020.gmail.com</a></p>
                             </div>
                         </div>
                     </div>
@@ -184,8 +180,8 @@
                             <h4>Siguenos:</h4>
                         </li>
                         <li>
-                            <a class="facebook" href="mailto:tudec.gmail.com">
-                                <i class=" fab fa-google-plus-g"></i>
+                            <a class="facebook" href="mailto:tudec2020gmail.com">
+                                <i class=" fab fa-google"></i>
                             </a>
                         </li>
                     </ul>

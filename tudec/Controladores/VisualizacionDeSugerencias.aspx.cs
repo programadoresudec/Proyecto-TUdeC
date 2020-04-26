@@ -13,24 +13,15 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
-        if (usuario != null)
+        if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
         {
-            if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
-            {
-                desplegable = desplegableLectura;
-                tablaSugerencias.DataBind();
-            }
-            else
-            {
-                Response.Redirect("~/Vistas/Home.aspx");
-            }
+            desplegable = desplegableLectura;
+            tablaSugerencias.DataBind();
         }
         else
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
-
-
     }
 
     protected void tablaSugerencias_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -63,7 +54,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
 
                 if (checkBox.Checked)
                 {
-                    
+
                     celdaVisto.Text = "Sí";
 
                 }
@@ -82,7 +73,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
                 }
 
                 celdaVerDetalles.Controls.Add(botonVerDetalles);
-               
+
 
             }
 
