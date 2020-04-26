@@ -22,6 +22,7 @@ public class Base: DbContext
     public DbSet<ETiposPregunta> TablaTiposPregunta { get; set; }
     public DbSet<EPregunta> TablaPreguntas { get; set; }
     public DbSet<ERespuesta> TablaRespuestas { get; set; }
+    public DbSet<EPuntuacion> TablaPuntuaciones { get; set; }
     public DbSet<EEstadoUsuario> TablaEstadosUsuario { get; set; }
 
     /// <summary>
