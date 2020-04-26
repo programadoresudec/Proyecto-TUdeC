@@ -16,7 +16,7 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         DaoUsuario gestorUsuario = new DaoUsuario();
         EPuntuacion puntuacion;
 
-        if (usuario == null)
+        if (usuario == null || usuario.NombreDeUsuario.Equals(usuarioInformacion.NombreDeUsuario))
         {
 
             EstrellasPuntuacion.Visible = false;
@@ -57,6 +57,49 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         
         panelEstrellas.Controls.Remove(etiquetaPuntuacion);
         panelEstrellas.Controls.Add(estrellas);
+
+    }
+
+
+    protected void GridViewUsuSelec_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+        GridViewRow fila = e.Row;
+
+
+        if (fila.Cells.Count > 1)
+        {
+
+            TableCell celdaArea = fila.Cells[0];
+            TableCell celdaPuntuacion = fila.Cells[4];
+
+            if (fila.RowIndex > -1)
+            {
+
+                string nombreArea = celdaArea.Text;
+
+                Buscador buscador = new Buscador();
+
+                EArea area = buscador.GetAreasSrc().Where(x => x.Area == nombreArea).FirstOrDefault();
+
+                Image iconoArea = new Image();
+                iconoArea.Width = 32;
+                iconoArea.Height = 32;
+
+                ASP.controles_estrellas_estrellas_ascx estrellas = new ASP.controles_estrellas_estrellas_ascx();
+
+                estrellas.Calificacion = Int32.Parse(celdaPuntuacion.Text);
+
+                iconoArea.ImageUrl = area.Icono;
+
+                celdaPuntuacion.Enabled = false;
+
+                celdaArea.Controls.Add(iconoArea);
+                celdaPuntuacion.Controls.Add(estrellas);
+
+            }
+
+        }
 
     }
 }
