@@ -2807,7 +2807,7 @@ fieldset:disabled a.btn {
   color: #6c757d;
   background-color: transparent;
   background-image: none;
-  border-color: #6c757d;
+  border-color: transparent;
 }
 
 .btn-outline-secondary:hover {

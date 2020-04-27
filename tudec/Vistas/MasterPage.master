@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <br />
                         <div class="mb-auto input-group">
-                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="240px" OnTextChanged="cajaBuscador_TextChanged">
+                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="250px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
@@ -128,7 +128,7 @@
                         
                         <li class="nav-item dropdown dropdown mr-lg-2 mb-lg-2 mb-2 mt-3">
                             <asp:Image ID="ImagenPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                CssClass="btn btn-secondary img-fluid" OnDataBinding="ImagenPerfil_DataBinding" runat="server" Visible="false" />
+                                CssClass="btn btn-outline-secondary img-fluid" OnDataBinding="ImagenPerfil_DataBinding" runat="server" Visible="false" />
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <asp:HyperLink CssClass="dropdown-item" ID="ConfiguracionCuenta" runat="server"
                                     NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="false">
