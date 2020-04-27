@@ -11,7 +11,7 @@ public class Buscador
     private Base db = new Base();
     public Buscador()
     {
-        
+
     }
     public List<EArea> GetAreasSrc()
     {
@@ -30,9 +30,9 @@ public class Buscador
     public List<ECurso> GetCursos(string curso, string tutor, string area, int puntuacion)
     {
 
-        if(tutor == null) tutor = "";
+        if (tutor == null) tutor = "";
 
-        if(curso == null) curso = "";
+        if (curso == null) curso = "";
 
         List<ECurso> cursos;
 
@@ -43,9 +43,9 @@ public class Buscador
         }
         else
         {
-            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower())) 
-            && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower())) 
-            && (area.Equals("Seleccionar") || x.Area.Equals(area)) 
+            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower()))
+            && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower()))
+            && (area.Equals("Seleccionar") || x.Area.Equals(area))
             && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
         }
 
@@ -55,12 +55,12 @@ public class Buscador
 
     public List<string> GetCursosSrc(string nombre)
     {
-        
+
         List<ECurso> cursos = db.TablaCursos.Where(x => x.Nombre.ToLower().Contains(nombre.ToLower())).ToList();
 
         List<string> nombresCursos = new List<string>();
 
-        foreach(ECurso curso in cursos)
+        foreach (ECurso curso in cursos)
         {
 
             nombresCursos.Add(curso.Nombre);
@@ -75,12 +75,12 @@ public class Buscador
     {
 
         int prueba = puntuacion;
-  
+
         List<EUsuario> tutores;
 
-        if(tutor == null) tutor = "";
+        if (tutor == null) tutor = "";
 
-        if(tutor == "" && puntuacion == 0)
+        if (tutor == "" && puntuacion == 0)
         {
 
             tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER)).ToList();
@@ -89,8 +89,8 @@ public class Buscador
         else
         {
 
-            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) 
-            && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower())) 
+            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER)
+            && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower()))
             && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
 
         }
@@ -110,7 +110,7 @@ public class Buscador
     public List<string> GetTutoresSrc(string nombre)
     {
 
-        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&  
+        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&
         x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
 
         List<string> nombresTutores = new List<string>();
@@ -128,10 +128,6 @@ public class Buscador
 
     public EUsuario GetUsuario(string nombreUsuario)
     {
-
-        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).FirstOrDefault();
-
-        return usuario;
-        
+        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).FirstOrDefault();
     }
 }

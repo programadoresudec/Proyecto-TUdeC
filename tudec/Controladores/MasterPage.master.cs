@@ -13,6 +13,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
+            acercaDeNosotros.Visible = false;
+            ImagenPerfil.ImageUrl = usuario.ImagenPerfil;
+            ImagenPerfil.Visible = true;
+            ConfiguracionCuenta.Visible = true;
             iniciarSesion.Visible = false;
             registrarse.Visible = false;
             LinkBtnCerrarSesion.Visible = true;
@@ -26,7 +30,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
-                acercaDeNosotros.Visible = false;
+               
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }
@@ -72,5 +76,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         return nombres;
 
+    }
+
+    protected void ImagenPerfil_DataBinding(object sender, EventArgs e)
+    {
+       
     }
 }

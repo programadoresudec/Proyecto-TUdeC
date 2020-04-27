@@ -29,6 +29,7 @@ public static class Constantes
     public const string CORREO_INSTITUCIONAL = "@ucundinamarca.edu.co";
     public const string ROL_ADMIN = "administrador";
     public const string ROL_USER = "usuario";
+    public const string IMAGEN_DEFAULT = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.png";
     /// <summary>
     /// Constantes De Session
     /// </summary>
@@ -36,6 +37,5 @@ public static class Constantes
     public const string USUARIO_SELECCIONADO = "usuarioSeleccionado";
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";
-    
     #endregion
 }

@@ -52,7 +52,11 @@ public class DaoUsuario
 
     public List<EEstadoUsuario> obtenerEstadosUsuario()
     {
-        return db.TablaEstadosUsuario.ToList();
+        List<EEstadoUsuario> estados = db.TablaEstadosUsuario.ToList();
+        EEstadoUsuario estadoPordefecto = new EEstadoUsuario();
+        estadoPordefecto.Estado = "Estado";
+        estados.Insert(0, estadoPordefecto);
+        return estados;
     }
 
     public List<EPuntuacion> GetPuntuaciones()

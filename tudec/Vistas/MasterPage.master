@@ -63,8 +63,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
-                        <div class="mx-3 input-group">
-                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="300px" OnTextChanged="cajaBuscador_TextChanged">
+                        <div class="mb-auto input-group">
+                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="240px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-3">
+                    <ul class="navbar-nav ml-auto  text-center mr-xl-5 mt-lg-0 mt-3">
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server"
                                 NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
@@ -98,26 +98,25 @@
                             <asp:HyperLink CssClass="nav-link" ID="registrarse" runat="server"
                                 NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2 mt-2">
                             <asp:HyperLink CssClass="nav-link" ID="AdministrarUser" runat="server"
                                 NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
                                         <i class="fa fa-users"></i></asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2 mt-2">
                             <asp:HyperLink CssClass="nav-link" ID="Sugerencias" runat="server"
                                 NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Visible="false">Sugerencias
                             </asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <li class="nav-item mr-lg-2 mb-lg-2 mb-2 mt-2">
                             <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
-                                NavigateUrl="~/Vistas/Admin/CrearCursos.aspx"><i class="fa fa-plus-circle"></i>Crear Curso
-                            </asp:HyperLink>
+                                NavigateUrl="~/Vistas/Cursos/CrearCursos.aspx"><i class="fa fa-plus-circle"></i> Crear Curso</asp:HyperLink>
                         </li>
-                        <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2 ">
-                            <asp:LinkButton Text="text" runat="server" class="nav-link dropdown-toggle" href="#" ID="misCursos"
+                        <li class="nav-item dropdown mr-lg-2 mb-lg-2 mb-2 mt-2">
+                            <asp:LinkButton Text="text" runat="server" CssClass="nav-link dropdown-toggle" ID="misCursos"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">Mis Cursos
                             </asp:LinkButton>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <asp:HyperLink CssClass="dropdown-item" ID="CursosInscritos" runat="server"
                                     NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="false">Cursos Inscritos
                                 </asp:HyperLink>
@@ -126,13 +125,19 @@
                                 </asp:HyperLink>
                             </div>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
-                                CssClass="nav-link" Visible="false">
-                                    <i class="fa fa-sign-out-alt">Cerrar Sesión</i>
-                            </asp:LinkButton>
+                        
+                        <li class="nav-item dropdown dropdown mr-lg-2 mb-lg-2 mb-2 mt-3">
+                            <asp:Image ID="ImagenPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                CssClass="btn btn-secondary img-fluid" OnDataBinding="ImagenPerfil_DataBinding" runat="server" Visible="false" />
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <asp:HyperLink CssClass="dropdown-item" ID="ConfiguracionCuenta" runat="server"
+                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="false">
+                                    <i class="fas fa-user-cog"></i> Configuración</asp:HyperLink>
+                                <asp:LinkButton ID="LinkBtnCerrarSesion" runat="server" OnClick="LinkBtnCerrarSesion_Click"
+                                    CssClass="dropdown-item" Visible="false">
+                                    <i class="fa fa-power-off"></i> Cerrar Sesión</asp:LinkButton>
+                            </div>
                         </li>
-
                     </ul>
                 </div>
             </nav>
