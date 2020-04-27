@@ -109,27 +109,9 @@ public class CreacionExamenServicio : System.Web.Services.WebService
 
             }
 
-            if (pregunta.TipoPregunta.Equals("Abierta"))
-            {
-
-                JToken respuestaJson = preguntaJson["respuesta"];
-                
-                ERespuesta respuesta = new ERespuesta();
-                respuesta.IdPregunta = pregunta.Id;
-                respuesta.Respuesta = respuestaJson.ToString();
-
-                Base.Insertar(respuesta);
-
-            }
-
-
         }
 
     }
 
-    [WebMethod]
-    public void SubirArchivo()
-    {
-        Console.WriteLine("");
-    }
+ 
 }

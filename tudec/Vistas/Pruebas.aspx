@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pruebas.aspx.cs" Inherits="Vistas_Pruebas" %>
 
 <%@ Register Src="~/Controles/Examenes/CreacionExamen.ascx" TagPrefix="uc1" TagName="CreacionExamen" %>
+<%@ Register Src="~/Controles/Examenes/ElaboracionExamen.ascx" TagPrefix="uc1" TagName="ElaboracionExamen" %>
+
 
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -22,8 +24,10 @@
        
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-        <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
+        <%--<uc1:CreacionExamen runat="server" ID="CreacionExamen" />--%>
 
+
+        <uc1:ElaboracionExamen runat="server" ID="ElaboracionExamen" />
 
         </form>
 </body>

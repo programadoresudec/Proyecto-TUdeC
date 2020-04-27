@@ -499,13 +499,7 @@ a.facebook {
 
 .contact-middle input[type="text"],
 .contact-middle input[type="email"],
-textarea {
-    width: 100%;
-    padding: 11px 20px;
-    border: none;
-    background: rgba(197, 192, 185, 0.37);
-    color: #fff;
-}
+
 
 .contact-middle p {
     color: #cecece;

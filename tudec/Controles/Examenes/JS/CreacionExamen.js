@@ -513,7 +513,6 @@ class PreguntaAbierta {
 
         var objetoRetorno = new PreguntaAbierta();
         objetoRetorno.pregunta = this.cajaPregunta.value;
-        objetoRetorno.respuesta = this.getRespuesta();
         objetoRetorno.porcentaje = this.getPorcentaje();
         objetoRetorno.tipoPregunta = "Abierta"
         return objetoRetorno;
@@ -588,6 +587,7 @@ class PreguntaAbierta {
         this.campoRespuesta.setAttribute("placeholder", "Respuesta");
         this.campoRespuesta.style.width = "95%";
         this.campoRespuesta.style.height = "100px";
+        this.campoRespuesta.disabled = true;
         this.tabla.rows[1].cells[0].append(this.campoRespuesta);
 
         //fila 3
@@ -623,6 +623,28 @@ class PreguntaArchivo{
 
     }
 
+    getInfoPregunta() {
+
+        var objetoRetorno = new PreguntaAbierta();
+        objetoRetorno.pregunta = this.campoPeticion.value;
+        objetoRetorno.porcentaje = this.getPorcentaje();
+        objetoRetorno.tipoPregunta = "Solicitud archivo"
+        return objetoRetorno;
+
+    }
+
+    getNumArchivos() {
+
+        return this.botonesSubirArchivo.length;
+
+    }
+
+    getPorcentaje() {
+
+        return this.desplegablePorcentaje.value;
+
+    }
+
     getPregunta() {
 
         var objetoSustituto = this;
@@ -648,53 +670,43 @@ class PreguntaArchivo{
 
         this.campoPeticion = document.createElement("textarea");
         this.campoPeticion.setAttribute("placeholder", "Petición");
-        this.campoPeticion.style.width = "95%";
+        this.campoPeticion.style.width = "100%";
         this.campoPeticion.style.height = "100px";
 
-        this.tabla.rows[0].cells[0].append(this.campoPeticion);
+        var botonEliminarPregunta = document.createElement("img");
+        botonEliminarPregunta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+        botonEliminarPregunta.width = 16;
 
-        //fila 2
+        botonEliminarPregunta.addEventListener("click", function () {
 
-        this.botonInsertarArchivo = document.createElement("input");
-        this.botonInsertarArchivo.type = "button";
-        this.botonInsertarArchivo.value = "Insertar archivo";
-        this.botonInsertarArchivo.style.width = "20%";
-
-        this.tabla.rows[1].cells[0].append(this.botonInsertarArchivo);
-
-        //fila 3
-
-        this.botonSubirArchivo = document.createElement("input");
-        this.botonSubirArchivo.type = "file";
-        this.botonSubirArchivo.id = "archivo";    
-
-        this.botonPrueba = document.createElement("input");
-        this.botonPrueba.type = "button";
-        this.botonPrueba.value = "Subir";
-
-        var lector = new FileReader();
-
-        this.botonPrueba.addEventListener("click", function () {
-
-            alert(objetoSustituto.botonSubirArchivo.files[0].name);
-            alert(objetoSustituto.botonSubirArchivo.files[0].size);
-
-            lector.readAsArrayBuffer(objetoSustituto.botonSubirArchivo.files[0]);
-
-            lector.onloadend = function () {
-
-                var conjuntoBytes = new Uint8Array(lector.result);
-                alert(conjuntoBytes);
-
-            }
+            var saltoDeLinea = objetoSustituto.tabla.nextSibling;
+            objetoSustituto.tabla.parentNode.removeChild(objetoSustituto.tabla);
+            Examen.preguntas.splice(Examen.preguntas.indexOf(objetoSustituto), 1);
+            saltoDeLinea.parentNode.removeChild(saltoDeLinea);
 
         })
 
-     
-        this.tabla.rows[2].cells[0].append(this.botonSubirArchivo);
-        this.tabla.rows[2].cells[0].append(this.botonPrueba);
+        this.tabla.rows[0].cells[0].append(this.campoPeticion);
 
-        //fila 4
+        this.tabla.rows[0].insertCell();
+
+        this.tabla.rows[0].cells[1].align = "left";
+        this.tabla.rows[0].cells[1].style.verticalAlign = "top";
+        this.tabla.rows[0].cells[1].append(botonEliminarPregunta);
+        this.tabla.rows[0].cells[1].style.paddingTop = "1%";
+
+        //fila 2
+
+        this.botonSubirArchivo = document.createElement("input");
+        this.botonSubirArchivo.type = "file";
+        this.botonSubirArchivo.disabled = true;
+
+        this.botonesSubirArchivo = [];
+        this.botonesSubirArchivo.push(this.botonSubirArchivo);
+
+        this.tabla.rows[1].cells[0].append(this.botonSubirArchivo);
+        
+        //fila 3
 
         this.desplegablePorcentaje = document.createElement("select");
 
@@ -709,7 +721,7 @@ class PreguntaArchivo{
 
         }
 
-        this.tabla.rows[3].cells[0].append(this.desplegablePorcentaje);
+        this.tabla.rows[2].cells[0].append(this.desplegablePorcentaje);
 
         return this.tabla;
 
