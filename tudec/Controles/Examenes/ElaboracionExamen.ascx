@@ -9,6 +9,6 @@
 
     <asp:Panel ID="panelContenido" runat="server"></asp:Panel>
 
-    <asp:Button ID="botonResponder" runat="server" Text="Responder examen" Width="60%"></asp:Button>
+    <asp:Button ID="botonResponder" runat="server" Text="Responder examen" Width="60%" OnClick="botonResponder_Click"></asp:Button>
 
 </center>

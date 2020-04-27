@@ -9,18 +9,45 @@ using System.Web.UI.WebControls;
 public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 {
 
+
+    private GestionExamen gestorExamenes;
+    private EExamen examen;
+    private List<EPregunta> preguntas;
+
     private List<List<Button>> botonesMarcar;
+    private List<List<CheckBox>> botonesCheckbox;
+    private List<TextBox> camposAbierta;
+    private List<FileUpload> botonesSubirArchivo;
+
+    private List<RespuestasPreguntas> respuestasExamen;
+
+
+    class RespuestasPreguntas
+    {
+
+        private string tipoPregunta;
+        private List<string> respuestas;
+
+        public string TipoPregunta { get => tipoPregunta; set => tipoPregunta = value; }
+        public List<string> Respuestas { get => respuestas; set => respuestas = value; }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        
+        respuestasExamen = new List<RespuestasPreguntas>();
+
         botonesMarcar = new List<List<Button>>();
+        botonesCheckbox = new List<List<CheckBox>>();
+        camposAbierta = new List<TextBox>();
+        botonesSubirArchivo = new List<FileUpload>();
 
-        GestionExamen gestorExamenes = new GestionExamen();
+        gestorExamenes = new GestionExamen();
 
-        EExamen examen = gestorExamenes.GetExamen(0);
+        examen = gestorExamenes.GetExamen(0);
 
-        List<EPregunta> preguntas = gestorExamenes.GetPreguntas(examen);
+        preguntas = gestorExamenes.GetPreguntas(examen);
 
         foreach(EPregunta pregunta in preguntas)
         {
@@ -100,11 +127,16 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
                 botonesMarcar.Add(botonesMarcarPregunta);
 
+                RespuestasPreguntas respuestaPreguntaUnica = new RespuestasPreguntas();
+                respuestaPreguntaUnica.TipoPregunta = "Múltiple con única respuesta";
+                respuestasExamen.Add(respuestaPreguntaUnica);
+
             }
             else if (pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
             {
 
                 List<ERespuesta> respuestas = gestorExamenes.GetRespuestas(pregunta);
+                List<CheckBox> botonesCheckboxPregunta = new List<CheckBox>();
 
                 TableRow filaPregunta = new TableRow();
                 TableCell celdaPregunta = new TableCell();
@@ -127,6 +159,8 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                     TableCell celda = new TableCell();
                     CheckBox checker = new CheckBox();
 
+                    botonesCheckboxPregunta.Add(checker);
+                   
                     Label textoRespuesta = new Label();
                     textoRespuesta.Text = respuesta.Respuesta;
 
@@ -155,6 +189,11 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
+                botonesCheckbox.Add(botonesCheckboxPregunta);
+
+                RespuestasPreguntas respuestasPregunta = new RespuestasPreguntas();
+                respuestasPregunta.TipoPregunta = "Múltiple con múltiple respuesta";
+                respuestasExamen.Add(respuestasPregunta);
 
             }
             else if (pregunta.TipoPregunta.Equals("Abierta"))
@@ -209,6 +248,12 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
+                camposAbierta.Add(campoRespuesta);
+
+                RespuestasPreguntas respuestaPreguntaAbierta = new RespuestasPreguntas();
+                respuestaPreguntaAbierta.TipoPregunta = "Abierta";
+                respuestasExamen.Add(respuestaPreguntaAbierta);
+
             }
             else
             {
@@ -252,6 +297,8 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
+                botonesSubirArchivo.Add(botonArchivo);
+
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
@@ -264,6 +311,10 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
             panelContenido.Controls.Add(panelPregunta);
             panelContenido.Controls.Add(saltoDeLinea);
+
+            RespuestasPreguntas respuestaPreguntaArchivo = new RespuestasPreguntas();
+            respuestaPreguntaArchivo.TipoPregunta = "Solicitud archivo";
+            respuestasExamen.Add(respuestaPreguntaArchivo);
 
         }
 
@@ -309,4 +360,104 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
     }
 
+
+    protected void botonResponder_Click(object sender, EventArgs e)
+    {
+
+        foreach(EPregunta pregunta in preguntas)
+        {
+
+            if(pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
+            {
+
+                List<EPregunta> preguntasUnicas = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con única respuesta")).ToList();
+
+                int indicePregunta = preguntasUnicas.IndexOf(pregunta);
+
+                List<Button> botonesMarcarPregunta = botonesMarcar[indicePregunta];
+
+                int indiceRespuesta = -1;
+
+                foreach(Button botonMarcar in botonesMarcarPregunta)
+                {
+
+                    if(botonMarcar.BackColor == Color.Black)
+                    {
+
+                        indiceRespuesta = botonesMarcarPregunta.IndexOf(botonMarcar);
+                        break;
+
+                    }
+
+                }
+
+                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indiceRespuesta.ToString());
+
+            }
+            else if(pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
+            {
+
+                List<EPregunta> preguntasMultiples = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con múltiple respuesta")).ToList();
+
+                int indicePregunta = preguntasMultiples.IndexOf(pregunta);
+
+                List<CheckBox> botonesCheckboxPregunta = botonesCheckbox[indicePregunta];
+
+                List<int> indicesRespuestas = new List<int>();
+
+
+                foreach (CheckBox checker in botonesCheckboxPregunta)
+                {
+
+                    if (checker.Checked)
+                    {
+
+                        indicesRespuestas.Add(botonesCheckboxPregunta.IndexOf(checker));
+
+                    }
+
+                }
+
+                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+
+                foreach(int indice in indicesRespuestas)
+                {
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indice.ToString());
+
+                }
+
+            }
+            else if(pregunta.TipoPregunta.Equals("Abierta"))
+            {
+
+                List<EPregunta> preguntasAbiertas = preguntas.Where(x => x.TipoPregunta.Equals("Abierta")).ToList();
+
+                int indicePregunta = preguntasAbiertas.IndexOf(pregunta);
+
+                string respuesta = camposAbierta[indicePregunta].Text;
+
+                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+            }
+            else
+            {
+
+
+
+
+            }
+
+
+        }
+
+    }
 }
