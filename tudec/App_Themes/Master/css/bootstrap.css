@@ -477,7 +477,11 @@ mark,
   max-width: 100%;
   height: auto;
 }
-
+.img-user-avatar {
+    max-width:100%;
+    border-radius:50% !important;
+    height: auto;
+}
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
@@ -2804,10 +2808,10 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #6c757d;
-  background-color: transparent;
-  background-image: none;
-  border-color: transparent;
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
 }
 
 .btn-outline-secondary:hover {
@@ -2977,7 +2981,7 @@ fieldset:disabled a.btn {
   color: #f8f9fa;
   background-color: transparent;
   background-image: none;
-  border-color: #f8f9fa;
+  border-color: transparent;
 }
 
 .btn-outline-light:hover {

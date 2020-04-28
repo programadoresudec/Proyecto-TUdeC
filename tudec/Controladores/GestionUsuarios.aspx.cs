@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Web.UI.WebControls;
 
 public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
 {
@@ -15,6 +15,23 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
+    }
+
+    protected void botonVerReportes_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void botonBloquearUsuario_Click(object sender, EventArgs e)
+    {
+        LinkButton btnDetalles = sender as LinkButton;
+        GridViewRow gridV = (GridViewRow)btnDetalles.NamingContainer;
+        
+        this.ModalBloquearUsuario.Show();
+    }
+
+    protected void btnActualizar_Click(object sender, EventArgs e)
+    {
 
     }
 }

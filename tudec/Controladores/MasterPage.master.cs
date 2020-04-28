@@ -16,6 +16,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             acercaDeNosotros.Visible = false;
             ImagenPerfil.ImageUrl = usuario.ImagenPerfil;
             ImagenPerfil.Visible = true;
+            ImagenPerfil.DataBind();
             ConfiguracionCuenta.Visible = true;
             iniciarSesion.Visible = false;
             registrarse.Visible = false;
@@ -80,6 +81,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void ImagenPerfil_DataBinding(object sender, EventArgs e)
     {
-       
+        
     }
 }
