@@ -52,4 +52,17 @@ public class GestionExamen
 
     }
 
+    public void ResponderExamen(EExamen examen, EUsuario usuario, string respuestas)
+    {
+
+        EEjecucionExamen ejecucion = new EEjecucionExamen();
+        ejecucion.NombreUsuario = usuario.NombreDeUsuario;
+        ejecucion.IdExamen = examen.Id;
+        ejecucion.FechaEjecucion = System.DateTime.Now;
+        ejecucion.Respuestas = respuestas;
+
+        Base.Insertar(ejecucion);
+
+    }
+
 }

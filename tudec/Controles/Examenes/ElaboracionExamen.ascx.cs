@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 
 public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 {
@@ -302,6 +303,12 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
+                
+
+                RespuestasPreguntas respuestaPreguntaArchivo = new RespuestasPreguntas();
+                respuestaPreguntaArchivo.TipoPregunta = "Solicitud archivo";
+                respuestasExamen.Add(respuestaPreguntaArchivo);
+
             }
 
             panelPregunta.Controls.Add(tablaPregunta);
@@ -311,10 +318,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
             panelContenido.Controls.Add(panelPregunta);
             panelContenido.Controls.Add(saltoDeLinea);
-
-            RespuestasPreguntas respuestaPreguntaArchivo = new RespuestasPreguntas();
-            respuestaPreguntaArchivo.TipoPregunta = "Solicitud archivo";
-            respuestasExamen.Add(respuestaPreguntaArchivo);
 
         }
 
@@ -363,6 +366,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
     protected void botonResponder_Click(object sender, EventArgs e)
     {
+
 
         foreach(EPregunta pregunta in preguntas)
         {
@@ -415,6 +419,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                     if (checker.Checked)
                     {
 
+                        int indicesito = botonesCheckboxPregunta.IndexOf(checker);
                         indicesRespuestas.Add(botonesCheckboxPregunta.IndexOf(checker));
 
                     }
@@ -451,13 +456,36 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
             else
             {
 
+                List<EPregunta> preguntasArchivos = preguntas.Where(x => x.TipoPregunta.Equals("Solicitud archivo")).ToList();
 
+                int indicePregunta = preguntasArchivos.IndexOf(pregunta);
+
+                string respuesta = botonesSubirArchivo[indicePregunta].FileName;
+
+                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
 
 
             }
+            
 
 
         }
+
+
+        string respuestasExamenJson = JsonConvert.SerializeObject(respuestasExamen);
+
+
+        //EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        EUsuario usuario = gestorUsuarios.GetUsuario("Frand");
+
+        gestorExamenes.ResponderExamen(examen, usuario, respuestasExamenJson);
+
 
     }
 }
