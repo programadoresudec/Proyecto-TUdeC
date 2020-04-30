@@ -56,6 +56,7 @@
             <td colspan="5">
            
                 <asp:GridView ID="tablaSugerencias" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="SugerenciasSource" OnRowDataBound="tablaSugerencias_RowDataBound" AllowPaging="True">
+                    <PagerStyle HorizontalAlign="Center" />
                     <Columns>
                         <asp:BoundField DataField="Emisor" HeaderText="Emisor" SortExpression="Emisor">
                         <HeaderStyle HorizontalAlign="Center" />

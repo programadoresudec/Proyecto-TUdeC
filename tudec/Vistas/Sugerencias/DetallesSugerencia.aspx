@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Detalles Sugerencia" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/DetallesSugerencia.aspx.cs" Inherits="Vistas_DetallesSugerencia" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .auto-style1 {
             width: 64px;
@@ -8,7 +8,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
     <script>
 
@@ -25,15 +25,15 @@
 
         int contador = 0;
 
-        for(int indice=0; indice<contenido.Length; indice++)
+        for (int indice = 0; indice < contenido.Length; indice++)
         {
 
             char caracter = contenido[indice];
 
-            if(caracter == '&')
+            if (caracter == '&')
             {
 
-                contenido = contenido.Substring(0, indice) + imagenes[contador] +  contenido.Substring(indice + 1);
+                contenido = contenido.Substring(0, indice) + imagenes[contador] + contenido.Substring(indice + 1);
                 contador++;
 
             }
@@ -71,23 +71,20 @@
                     <asp:Image ID="imagenUsuario" ImageUrl="../../Recursos/Imagenes/PerfilUsuarios/Usuario.png"  runat="server"></asp:Image>
                     <asp:Label ID="emisor" runat="server" Text="Usuario"></asp:Label>
                 </center>
-        
+
                 <br />
                 <br />
                 <asp:TextBox ID="cajaSugerencia" runat="server" Height="500px" Width="300px"></asp:TextBox>
             </div>
         </div>
     </div>
-                
+
     <ajaxToolkit:HtmlEditorExtender ID="cajaSugerencia_HtmlEditorExtender" runat="server" TargetControlID="cajaSugerencia">
 
         <Toolbar>
-
-
-
         </Toolbar>
 
-        </ajaxToolkit:HtmlEditorExtender>
+    </ajaxToolkit:HtmlEditorExtender>
 
 
     <br />

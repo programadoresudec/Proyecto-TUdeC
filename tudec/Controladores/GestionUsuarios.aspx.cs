@@ -6,6 +6,7 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
+        GridViewGestionUsuario.DataBind();
         if (usuario == null)
         {
             Response.Redirect("~/Vistas/Home.aspx");

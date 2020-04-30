@@ -11,4 +11,9 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
     {
 
     }
+
+    protected void BtnCambiarPass_Click(object sender, EventArgs e)
+    {
+
+    }
 }

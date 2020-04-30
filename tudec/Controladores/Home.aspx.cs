@@ -34,7 +34,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
                 panelBuzon.Controls.Add(botonVerSugerencias);
 
             }
-            
+
         }
 
         if (Request.QueryString["preview"] == "1" && !string.IsNullOrEmpty(Request.QueryString["fileId"]))
@@ -63,7 +63,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
         if (imagen.Width > imagen.Height)
         {
 
-            if(imagen.Width > 250)
+            if (imagen.Width > 250)
             {
 
                 int alturaImagen = 250 * imagen.Height / imagen.Width;
@@ -131,7 +131,7 @@ public partial class Vistas_Inicio : System.Web.UI.Page
             {
 
                 int indiceInicial = contenidoAuxiliar.IndexOf("fileId=") + 7;
-                int indiceFinal = contenidoAuxiliar.IndexOf('>',indiceInicial) - 2;
+                int indiceFinal = contenidoAuxiliar.IndexOf('>', indiceInicial) - 2;
                 int longitud = indiceFinal - indiceInicial + 1;
                 string idArchivo = contenidoAuxiliar.Substring(indiceInicial, longitud);
                 byte[] archivo = (byte[])HttpContext.Current.Session["fileContents_" + idArchivo];
@@ -211,5 +211,4 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
 
     }
-
 }

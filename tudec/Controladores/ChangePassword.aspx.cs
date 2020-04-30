@@ -47,8 +47,8 @@ public partial class Vistas_Account_ChangePassword : System.Web.UI.Page
         restablecer.VencimientoToken = null;
         restablecer.Pass = cajaPass.Text;
         restablecer.Estado = Constantes.ESTADO_ACTIVO;
-        Base.Insertar(restablecer);
-        LB_Validacion.CssClass = "text-success";
+        Base.Actualizar(restablecer);
+        LB_Validacion.CssClass = "alert alert-success";
         LB_Validacion.Text = "Su Contraseña ha sido Actualizada.";
         LB_Validacion.Visible = true;
         restablecer = null;

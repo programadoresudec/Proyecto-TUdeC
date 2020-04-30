@@ -16,11 +16,11 @@
                 <div class="col-12 input-group justify-content-center">
                     <asp:RegularExpressionValidator ID="validarCaracteresPass"
                         runat="server" ErrorMessage="La contraseña debe contener entre 8 y 20 caracteres."
-                        ControlToValidate="cajaPass" CssClass="text-danger"
+                        ControlToValidate="cajaPass" CssClass="alertHome alert-danger" Display="Dynamic"
                         ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" />
                 </div>
                 <div class="col-12 input-group justify-content-center">
-                    <asp:Label ID="LB_Validacion" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
+                    <asp:Label ID="LB_Validacion" runat="server" CssClass="alert alert-danger" Visible="False"></asp:Label>
                 </div>
                 <div class="col-12 input-group">
                     <div class="input-group-prepend">
@@ -57,20 +57,19 @@
                         SetFocusOnError="True"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>
+                <br />
                 <div class="col-12 input-group justify-content-center">
                     <asp:CompareValidator ID="comparePasswords"
                         runat="server"
                         ControlToCompare="cajaPass"
                         ControlToValidate="cajaConfirmarPass"
                         ErrorMessage="Las contraseñas no son iguales!"
-                        Display="Dynamic" CssClass="text-danger" />
+                        Display="Dynamic" CssClass="alertHome alert-danger" />
                 </div>
-                <br />
                 <div class="form-group col-12">
                     <strong>
                         <asp:Button runat="server" OnClick="btnRestablecer_Click" Text="Cambiar Contraseña"
-                            CssClass="btn btn-primary btn-lg btn-block"
-                            Style="font-size: medium; background-color: #000000" />
+                            CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;"  />
                     </strong>
                 </div>
             </div>

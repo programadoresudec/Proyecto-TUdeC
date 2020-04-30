@@ -42,7 +42,7 @@ public class DaoRegister : IToken
         catch (DbUpdateException ex) // catch DbUpdateException
         {
             // variable que le pasa un metodo para obtener el error dentro de postgres
-            var pgsqlException = new Excepciones().GetInnerException<PostgresException>(ex);
+            var pgsqlException = Reutilizables.GetInnerException<PostgresException>(ex);
             if (pgsqlException != null)
             {
                 switch (pgsqlException.SqlState)

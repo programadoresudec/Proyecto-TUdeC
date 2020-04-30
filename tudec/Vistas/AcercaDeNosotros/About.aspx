@@ -3,32 +3,29 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <link href="../../App_Themes/About/css/About.css" type="text/css" rel="stylesheet" media="all">
     <!-- about-->
+    <br />
+    <br />
     <section class="wthree-row py-sm-5" id="why">
-        <div class="container py-lg-5">
+        <div class="container py-lg-5 py">
             <div class="row abbot-main py-lg-5 py-4">
-                <div class="col-lg-6 abbot-right mt-lg-0 mt-3">
+                <div class="col-lg-5 abbot-right mt-lg-0 mt-3">
                     <img src="../../App_Themes/About/img/logo.png" class="img-fluid img-thumbnail" alt="" />
                 </div>
-                <div class="col-lg-6 about-text-grid">
+                <div class="col-lg-7 about-text-grid">
+                    <h4 class="w3pvt-title mt-5" style="text-align:center">TUdeC Objetivo</h4>
                     <br>
                     <br>
-                    <br>
-                    <span class="sub-title">Crea y estudia cursos.</span>
-                    <br>
-                    <br>
-                    <br>
-                    <h4 class="w3pvt-title">TUdeC Objetivo</h4>
-                    <br>
-                    <br>
-                    <p class="mt-3">
+                    <p class="mt-3" style="text-align:center">
                         TUdeC tiene como propósito la creación de una plataforma web educativa que le permite a los estudiantes de la
-                            Universidad de Cundinamarca extensión Facatativá la creación e inscripción de cursos 
-                            para impartir conocimientos y aprender, respectivamente.
+                            Universidad de Cundinamarca extensión Facatativá la creación e inscripción de cursos para impartir conocimientos
+                        y aprender, respectivamente.
                     </p>
                     <br>
                     <br>
-                    <br>
-                    <a href="#team" class="text-capitalize serv_link btn bg-theme scroll">Acerca Del Team</a>
+                    <div class="row mt-4 justify-content-center">
+                        <a href="#team" class="text-capitalize serv_link btn bg-theme scroll">Acerca Del Team</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>

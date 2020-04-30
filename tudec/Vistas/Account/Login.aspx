@@ -57,8 +57,8 @@
                 </div>
                 <div class="form-group col-12">
                     <strong>
-                        <asp:Button ID="botonIniciar" CssClass="btn btn-primary btn-lg btn-block" runat="server" Text="Iniciar sesión" OnClick="botonIniciar_Click"
-                            Style="font-size: medium; background-color: #000000" />
+                        <asp:Button ID="botonIniciar" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;" runat="server" 
+                            Text="Iniciar sesión" OnClick="botonIniciar_Click"/>
                     </strong>
                 </div>
             </div>

@@ -85,5 +85,13 @@ public class DaoUsuario
         return puntuaciones;
 
     }
-
+    /// <summary>
+    /// Metodo que obtiene la imagen si se actualiza.
+    /// </summary>
+    /// <param name="usuario"></param>
+    /// <returns></returns>
+    public string buscarImagen(string usuario)
+    {
+        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(usuario)).Select(x => x.ImagenPerfil).Single();
+    }
 }

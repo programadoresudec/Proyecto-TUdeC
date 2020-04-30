@@ -25,6 +25,7 @@ public class Base: DbContext
     public DbSet<EPuntuacion> TablaPuntuaciones { get; set; }
     public DbSet<EEstadoUsuario> TablaEstadosUsuario { get; set; }
     public DbSet<EEjecucionExamen> TablaEjecucionExamen { get; set; }
+    public DbSet<EMotivoReporte> TablaMotivos { get; set; }
 
     /// <summary>
     /// 

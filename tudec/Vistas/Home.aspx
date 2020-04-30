@@ -3,13 +3,14 @@
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
     <script>
-
         $(document).ready(function () {
+            $("#alertaSatisfactoria").hide();
+            $("#alertaError").hide();
             $('#enviar').click(function () {
+
                 var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
                 buzon = buzon._editableDiv;
                 var titulo = <%=cajaTitulo.ClientID%>;
-
                 if (titulo.value != "" && buzon.innerHTML != "") {
 
                     textoTitulo = titulo.value;
@@ -27,18 +28,18 @@
                         async: true,
 
                     });
-
                     titulo.value = "";
                     buzon.innerHTML = "";
-                    alert("Sugerencia enviada");
+                    $("#alertaSatisfactoria").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#alertaSatisfactoria").slideUp(500);
+                    });
 
                 }
                 else {
-
-                    alert("Rellene los campos antes de enviar la sugerencia")
-
+                    $("#alertaError").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#alertaError").slideUp(500);
+                    });
                 }
-
             });
         });
 
@@ -77,11 +78,11 @@
         </ul>
         <div class="banner-texto-posicion">
             <div class="banner-texto">
-                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con <strong>TUdeC</strong> 
+                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con <strong>TUdeC</strong>
                 </h3>
                 <p class="px-4 py-3 text-center text-white mx-auto">
                     Plataforma web Ingenieria De Sistemas universidad
-                    Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.
+					Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.
                 </p>
             </div>
         </div>
@@ -91,16 +92,21 @@
     <br />
     <!-- //Buzón de Sugerencias -->
     <asp:Panel CssClass="container" runat="server">
-
         <asp:Panel CssClass="form-group row justify-content-center" runat="server">
             <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
-                <div class="row justify-content-center ">
+                <div class="row justify-content-center">
+                    <h2 style="color: #163392; font-size: x-large;"><strong>Buzón De
+							Sugerencias</strong></h2>
                 </div>
-                <h2 style="text-align: center; color: #163392; font-size: x-large;"><strong>Buzón De
-                        Sugerencias</strong></h2>
                 <br />
-                <div class="row justify-content-center ">
+                <div class="alertHome alert-success" id="alertaSatisfactoria">
+                    <strong>Satisfactorio!</strong> Sugerencia enviada
+                </div>
+                <div class="alertHome alert-danger" id="alertaError">
+                    <strong>Error!</strong> Rellene los campos antes de enviar la sugerencia
+                </div>
+                <div class="row justify-content-center">
                     <asp:Panel ID="panelCamposBuzon" runat="server">
                         <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
                             placeHolder="Título"></asp:TextBox>
@@ -111,22 +117,17 @@
                         <input id="enviar" type="button" value="Enviar sugerencia" style="width: 300px"
                             class="btn btn-success" />
 
-                        <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server" TargetControlID="buzon"
+                        <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"
+                            TargetControlID="buzon"
                             OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
-
                             <Toolbar>
-
                                 <ajaxToolkit:InsertImage />
-
                             </Toolbar>
-
                         </ajaxToolkit:HtmlEditorExtender>
                     </asp:Panel>
-
                 </div>
             </asp:Panel>
         </asp:Panel>
-
     </asp:Panel>
     <!-- //Buzón de Sugerencias -->
     <!-- //Script movimiento de las imagenes del banner -->
