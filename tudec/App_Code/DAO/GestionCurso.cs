@@ -22,6 +22,15 @@ public class GestionCurso
 
     }
 
+    public ECurso GetCurso(int id)
+    {
+
+        ECurso curso = db.TablaCursos.Where(x => x.Id == id).FirstOrDefault();
+
+        return curso;
+
+    }
+
     public List<ECurso> GetCursosCreados(EUsuario usuario, string nombre, string fechaCreacion, string area, string estado)
     {
         if (nombre == null)

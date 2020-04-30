@@ -103,8 +103,9 @@
             <tr>
                 <td>
                     
-                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound" AllowPaging="True">
+                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound" AllowPaging="True" DataKeyNames="Id">
                         <Columns>
+                            
                             <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False" >
                             <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>

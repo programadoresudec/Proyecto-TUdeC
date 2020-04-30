@@ -35,6 +35,7 @@ public static class Constantes
     /// </summary>
     public const string USUARIO_LOGEADO = "usuarioLogeado";
     public const string USUARIO_SELECCIONADO = "usuarioSeleccionado";
+    public const string CURSO_SELECCIONADO = "cursoSeleccionado";
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";
     #endregion

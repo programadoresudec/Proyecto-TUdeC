@@ -59,34 +59,34 @@
         <tr>
             <td colspan="4">
                 <center>
-                    <asp:Label Text="TituloCurso" runat="server" /></td>
+                    <asp:Label style="color: #2D732D; font-size: 40px" Text="TituloCurso" runat="server" ID="etiquetaTitulo" /></td>
                 </center>
         </tr>
 
         <tr>
-            <td colspan="4">&nbsp;</td>
+            <td colspan="4"></td>
         </tr>
 
         <tr>
             <td class="auto-style6" colspan="2">
-                <h4>CREADO POR:</h4>
+                <h4 style="color: #2D732D">CREADO POR:</h4>
 
             </td>
 
-            <td class="auto-style3">&nbsp; 
-                <asp:Label Text="NombreDeUsuario" runat="server" />
+            <td class="auto-style3">
+                <asp:Label Text="NombreDeUsuario" runat="server" ID="etiquetaNombreUsuario" />
             </td>
 
-            <td rowspan="4">&nbsp;<h3>ESPACIO PARA LISTA DE TEMAS</h3></td>
+            <td rowspan="4"><h3>ESPACIO PARA LISTA DE TEMAS</h3></td>
         </tr>
 
         <tr>
-            <td class="auto-style6" colspan="2">&nbsp;<asp:Label Text="Nombre" runat="server" /></td>
-            <td class="auto-style3">&nbsp;<asp:Label Text="Apellido" runat="server" /></td>
+            <td class="auto-style6" colspan="2"><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /></td>
+            <td class="auto-style3"><asp:Label Text="Apellido" runat="server" ID="etiquetaApellido" /></td>
         </tr>
         <tr>
-            <td class="auto-style6" colspan="2">&nbsp;<asp:Label Text="CorreoUsuario" runat="server" /></td>
-            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style6" colspan="2"><asp:Label Text="CorreoUsuario" runat="server" ID="etiquetaCorreo" /></td>
+            <td class="auto-style3"></td>
         </tr>
 
         <tr>
@@ -95,7 +95,7 @@
         </tr>
 
         <tr>
-            <td class="auto-style10">&nbsp;<asp:Image ImageUrl="Ícono" runat="server" /></td>
+            <td class="auto-style10"><asp:Image ImageUrl="Ícono" runat="server" /></td>
             <td class="auto-style11">
                 <asp:Label Text="área" runat="server" /></td>
             <td class="auto-style12"></td>

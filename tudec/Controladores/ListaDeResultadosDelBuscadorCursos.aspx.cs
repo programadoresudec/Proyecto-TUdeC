@@ -42,7 +42,6 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
     protected void tablaCursos_RowDataBound(object sender, GridViewRowEventArgs e)
     {
       
-        
         GridViewRow fila = e.Row;
 
         if (fila.Cells.Count > 1)
@@ -50,6 +49,7 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
 
             TableCell celdaArea = fila.Cells[0];
             TableCell celdaCalificacion = fila.Cells[4];
+            TableCell celdaNombre = fila.Cells[1];
 
             string nombreArea = celdaArea.Text;
 
@@ -65,6 +65,12 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
                 celdaCalificacion.Controls.Add(estrellasMostradas);
                 celdaCalificacion.Enabled = false;
 
+                LinkButton hiperenlaceInformacionCurso = new LinkButton();
+                hiperenlaceInformacionCurso.Text = celdaNombre.Text;
+                hiperenlaceInformacionCurso.Click += new EventHandler(VerInformacionCurso);
+
+                celdaNombre.Controls.Add(hiperenlaceInformacionCurso);
+
                 Buscador buscador = new Buscador();
 
                 EArea area = buscador.GetAreasSrc().Where(x => x.Area == nombreArea).FirstOrDefault();
@@ -76,6 +82,43 @@ public partial class ListaDeResultadosDelBuscador : System.Web.UI.Page
             }
 
         }
+
+    }
+
+
+    public void VerInformacionCurso(object sender, EventArgs e)
+    {
+
+
+        LinkButton hiperEnlace = (LinkButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach(GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[1].Controls.Contains(hiperEnlace))
+            {
+
+                filaAEncontrar = fila;
+                break;
+
+            }
+
+
+        }
+
+
+        DataKeyArray arreglo =  tablaCursos.DataKeys;
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
+        
 
     }
 

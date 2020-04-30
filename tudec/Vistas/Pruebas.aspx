@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/Controles/Examenes/CreacionExamen.ascx" TagPrefix="uc1" TagName="CreacionExamen" %>
 <%@ Register Src="~/Controles/Examenes/ElaboracionExamen.ascx" TagPrefix="uc1" TagName="ElaboracionExamen" %>
+<%@ Register Src="~/Controles/Examenes/CalificacionExamen.ascx" TagPrefix="uc1" TagName="CalificacionExamen" %>
+
 
 
 
@@ -26,8 +28,9 @@
 
         <%--<uc1:CreacionExamen runat="server" ID="CreacionExamen" />--%>
 
+        <%--<uc1:ElaboracionExamen runat="server" ID="ElaboracionExamen" />--%>
 
-        <uc1:ElaboracionExamen runat="server" ID="ElaboracionExamen" />
+        <uc1:CalificacionExamen runat="server" ID="CalificacionExamen" />
 
         </form>
 </body>

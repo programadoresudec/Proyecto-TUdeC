@@ -65,4 +65,13 @@ public class GestionExamen
 
     }
 
+    public EEjecucionExamen GetEjecucion(EExamen examen, EUsuario usuario)
+    {
+
+        EEjecucionExamen ejecucion = db.TablaEjecucionExamen.Where(x => x.IdExamen == examen.Id && x.NombreUsuario.Equals(usuario.NombreDeUsuario)).FirstOrDefault();
+
+        return ejecucion;
+
+    }
+
 }
