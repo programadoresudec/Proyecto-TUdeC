@@ -92,6 +92,7 @@ public class DaoUsuario
     /// <returns></returns>
     public string buscarImagen(string usuario)
     {
-        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(usuario)).Select(x => x.ImagenPerfil).Single();
+        string url = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(usuario)).Select(x => x.ImagenPerfil).SingleOrDefault();
+        return url == null ? Constantes.IMAGEN_DEFAULT : url;
     }
 }

@@ -27,7 +27,6 @@ public partial class Views_Account_Register : System.Web.UI.Page
         usuarioEnRegistro.Estado = Constantes.ESTADO_EN_ESPERA;
         usuarioEnRegistro.Token = Reutilizables.encriptar(JsonConvert.SerializeObject(usuarioEnRegistro));
         usuarioEnRegistro.VencimientoToken = DateTime.Now.AddHours(8);
-        usuarioEnRegistro.ImagenPerfil = Constantes.IMAGEN_DEFAULT;
         new DaoRegister().registroUsuario(usuarioEnRegistro);
 
         if (usuarioEnRegistro.Estado.Equals(Constantes.ESTADO_PK))
