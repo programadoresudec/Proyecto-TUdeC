@@ -57,66 +57,73 @@
 
     <table class="auto-style1">
         <tr>
-            <td colspan="4">
+            <td colspan="3">
                 <center>
                     <asp:Label style="color: #2D732D; font-size: 40px" Text="TituloCurso" runat="server" ID="etiquetaTitulo" /></td>
                 </center>
         </tr>
 
         <tr>
-            <td colspan="4"></td>
+            <td colspan="3"></td>
         </tr>
 
         <tr>
-            <td class="auto-style6" colspan="2">
-                <h4 style="color: #2D732D">CREADO POR:</h4>
+            <td class="auto-style6">
+                <h4 style="color: #2D732D">CREADO POR: <asp:Label Text="NombreDeUsuario" runat="server" ID="etiquetaNombreUsuario" />
+                </h4>
 
             </td>
 
-            <td class="auto-style3">
-                <asp:Label Text="NombreDeUsuario" runat="server" ID="etiquetaNombreUsuario" />
+            <td rowspan="4">
+                <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="TemasDataSource">
+                    <Columns>
+                        <asp:BoundField DataField="Titulo" HeaderText="Titulo" SortExpression="Titulo" />
+                    </Columns>
+                </asp:GridView>
+                <asp:ObjectDataSource ID="TemasDataSource" runat="server" SelectMethod="GetTemas" TypeName="GestionTemas">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="curso" SessionField="cursoSeleccionado" Type="Object" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
             </td>
-
-            <td rowspan="4"><h3>ESPACIO PARA LISTA DE TEMAS</h3></td>
         </tr>
 
         <tr>
-            <td class="auto-style6" colspan="2"><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /></td>
-            <td class="auto-style3"><asp:Label Text="Apellido" runat="server" ID="etiquetaApellido" /></td>
+            <td colspan="2"><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /></td>
         </tr>
         <tr>
-            <td class="auto-style6" colspan="2"><asp:Label Text="CorreoUsuario" runat="server" ID="etiquetaCorreo" /></td>
+            <td class="auto-style6"><asp:Label Text="CorreoUsuario" runat="server" ID="etiquetaCorreo" /></td>
             <td class="auto-style3"></td>
         </tr>
 
         <tr>
-            <td class="auto-style7" colspan="2"><asp:Button Text="¡Habla Conmigo!" runat="server" CssClass="auto-style13" BackColor="#666666" ForeColor="White" /></td>
-            <td class="auto-style8"><asp:Button Text="Inscribirse" runat="server" BackColor="#003300" ForeColor="White" /></td>
+            <td class="auto-style7"><asp:Button Text="¡Habla Conmigo!" runat="server" CssClass="auto-style13" BackColor="#666666" ForeColor="White" ID="botonInbox" /><asp:Button Text="Inscribirse" runat="server" BackColor="#003300" ForeColor="White" ID="botonInscribirse" /></td>
+          
         </tr>
 
         <tr>
-            <td class="auto-style10"><asp:Image ImageUrl="Ícono" runat="server" /></td>
-            <td class="auto-style11">
-                <asp:Label Text="área" runat="server" /></td>
+            <td class="auto-style10"><asp:Image ImageUrl="Ícono" runat="server" ID="imagenArea" />
+                <asp:Label Text="área" runat="server" ID="etiquetaArea" /></td>
             <td class="auto-style12"></td>
                     
             <td>&nbsp; </td>
                             
         <tr>
-            <td colspan="4" class="auto-style5"><h3>DESCRIPCIÓN DEL CURSO</h3>
+            <td colspan="3"><center><h3>DESCRIPCIÓN DEL CURSO</h3></center>
             </td>
         </tr>
 
         <tr>
-            <td colspan="4">&nbsp;</td>
+            <td colspan="3">
+                <asp:Label ID="etiquetaDescripcion" runat="server" Text="Contenido descripción"></asp:Label></td>
         </tr>
 
         <tr>
-            <td colspan="4" class="auto-style2"><h3 class="auto-style4">COMENTARIOS</h3></td>
+            <td colspan="3"><center><h3>COMENTARIOS</h3></center></td>
         </tr>
 
         <tr>
-            <td colspan="4">&nbsp;</td>
+            <td colspan="3">&nbsp;</td>
         </tr>
 
     </table>

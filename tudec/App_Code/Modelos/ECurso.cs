@@ -10,6 +10,7 @@ using System.Web;
 /// </summary>
 /// 
 
+[Serializable]
 [Table("cursos", Schema="cursos")]
 public class ECurso
 {
@@ -23,7 +24,8 @@ public class ECurso
     private DateTime fechaCreacion;
     private DateTime fechaInicio;
     private string codigoInscripcion;
-    private Nullable<int> puntuacion; 
+    private Nullable<int> puntuacion;
+    private string descripcion;
     #endregion
 
     #region properties
@@ -45,7 +47,9 @@ public class ECurso
     [Column("codigo_inscripcion")]
     public string CodigoInscripcion { get => codigoInscripcion; set => codigoInscripcion = value; }
     [Column("puntuacion")]
-    public int? Puntuacion { get => puntuacion; set => puntuacion = value; } 
+    public int? Puntuacion { get => puntuacion; set => puntuacion = value; }
+    [Column("descripcion")]
+    public string Descripcion { get => descripcion; set => descripcion = value; }
     #endregion
 
 }

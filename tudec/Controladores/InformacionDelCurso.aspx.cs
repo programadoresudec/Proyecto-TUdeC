@@ -15,11 +15,31 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
         EUsuario creador = gestorUsuarios.GetUsuario(curso.Creador);
 
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
         etiquetaTitulo.Text = curso.Nombre;
         etiquetaNombreUsuario.Text = curso.Creador;
-        etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre;
-        etiquetaApellido.Text = creador.PrimerApellido + " " + creador.SegundoApellido;
+        etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
         etiquetaCorreo.Text = creador.CorreoInstitucional;
+        etiquetaArea.Text = curso.Area;
+        etiquetaDescripcion.Text = curso.Descripcion;
+        imagenArea.Width = 32;
+        imagenArea.Height = 32;
+        imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area  + ".png";
+
+        if(usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
+
+            botonInbox.Visible = false;
+            botonInscribirse.Visible = false;
+
+        }
+        else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
+        {
+
+            botonInscribirse.Visible = false;
+
+        }
 
     }
 }
