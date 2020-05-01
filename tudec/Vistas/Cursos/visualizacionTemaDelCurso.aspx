@@ -21,7 +21,7 @@
     <center>
             <table class="auto-style1" style="width: 100%">
         <tr>
-            <td align="center"><asp:Label style="font-size: 50px"  Text="TÍTULO DEL TEMA" runat="server" /></td>
+            <td align="center"><asp:Label style="font-size: 50px"  Text="TÍTULO DEL TEMA" runat="server" ID="etiquetaTitulo" /></td>
         </tr>
 
         <tr>

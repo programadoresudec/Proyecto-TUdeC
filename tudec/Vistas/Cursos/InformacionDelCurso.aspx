@@ -54,8 +54,9 @@
     <br />
     <br />
 
+    <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
-    <table class="auto-style1">
+    <table  class="auto-style1">
         <tr>
             <td colspan="3">
                 <center>
@@ -74,8 +75,8 @@
 
             </td>
 
-            <td rowspan="4">
-                <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="TemasDataSource">
+            <td style="width:60%" rowspan="4">
+                <asp:GridView style="width:100%" ID="tablaTemas" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TemasDataSource" OnRowDataBound="tablaTemas_RowDataBound" AllowPaging="True" DataKeyNames="Id">
                     <Columns>
                         <asp:BoundField DataField="Titulo" HeaderText="Titulo" SortExpression="Titulo" />
                     </Columns>
@@ -115,7 +116,12 @@
 
         <tr>
             <td colspan="3">
-                <asp:Label ID="etiquetaDescripcion" runat="server" Text="Contenido descripción"></asp:Label></td>
+                <center>
+                <div  style="width:60%; text-align:left">
+                    <asp:Label ID="etiquetaDescripcion" runat="server" Text="Contenido descripción"></asp:Label>
+
+                </div>
+                    </center></td>
         </tr>
 
         <tr>

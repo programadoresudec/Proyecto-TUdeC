@@ -41,5 +41,57 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         }
 
+        tablaTemas.DataBind();
+
+    }
+
+    protected void tablaTemas_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+        GridViewRow fila = e.Row;
+
+        TableCell celdaTema = fila.Cells[0];
+
+        if (fila.RowIndex > -1)
+        {
+
+            LinkButton hiperEnlaceTema = new LinkButton();
+            hiperEnlaceTema.Text = celdaTema.Text;
+            hiperEnlaceTema.Click += new EventHandler(VerTema);
+
+            celdaTema.Controls.Add(hiperEnlaceTema);
+
+        }
+
+    }
+
+    public void VerTema(object sender, EventArgs e)
+    {
+        LinkButton hiperEnlace = (LinkButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach(GridViewRow fila in tablaTemas.Rows)
+        {
+
+            if (fila.Cells[0].Controls.Contains(hiperEnlace))
+            {
+
+                filaAEncontrar = fila;
+                break;
+
+            }
+
+        }
+
+        int idTema = Int32.Parse(tablaTemas.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionTemas gestorTemas = new GestionTemas();
+        ETema tema = gestorTemas.GetTema(idTema);
+
+
+        Session[Constantes.TEMA_SELECCIONADO] = tema;
+
+        Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
+
     }
 }

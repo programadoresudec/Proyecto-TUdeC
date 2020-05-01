@@ -10,5 +10,9 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
+
+        etiquetaTitulo.Text = tema.Titulo;
+
     }
 }

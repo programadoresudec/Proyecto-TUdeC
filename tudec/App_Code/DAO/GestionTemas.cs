@@ -25,4 +25,13 @@ public class GestionTemas
 
     }
 
+    public ETema GetTema(int id)
+    {
+
+        ETema tema = db.TablaTemas.Where(x => x.Id == id).FirstOrDefault();
+
+        return tema;
+
+    }
+
 }
