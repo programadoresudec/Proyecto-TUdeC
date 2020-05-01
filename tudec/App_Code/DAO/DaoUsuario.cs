@@ -45,6 +45,13 @@ public class DaoUsuario
                 }).ToList();
     }
 
+    public void actualizarPass(string nombreDeUsuario, string passNueva, string passActual)
+    {
+        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario == nombreDeUsuario && x.Pass == passActual).First();
+        usuario.Pass = passNueva;
+        Base.Actualizar(usuario);
+    }
+
     public int obtenerNumeroDeCursosxUsuario(string user)
     {
         return db.TablaCursos.Where(x => x.Creador == user).Count();

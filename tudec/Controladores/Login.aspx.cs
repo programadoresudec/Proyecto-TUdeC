@@ -5,7 +5,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
     }
 
     protected void botonIniciar_Click(object sender, EventArgs e)
@@ -17,9 +17,9 @@ public partial class Views_Account_Login : System.Web.UI.Page
         }
         else
         {
-           usuario = new DaoLogin().GetUsuarioxApodo(campoUsuario.Text, campoPass.Text);
+            usuario = new DaoLogin().GetUsuarioxApodo(campoUsuario.Text, campoPass.Text);
         }
-     
+
         Session[Constantes.USUARIO_LOGEADO] = usuario;
 
         if (usuario != null)
@@ -66,7 +66,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
         autenticar.Mac = conexion.mac();
         autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
         autenticar.Session = Session.SessionID;
-        new DaoSeguridad().insertarAutentication(autenticar);
+        Base.Insertar(autenticar);
     }
 
 }

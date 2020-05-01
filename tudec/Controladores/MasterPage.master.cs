@@ -41,9 +41,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
         Session["Buscador"] = cajaBuscador.Text;
-
         Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
-
     }
 
     protected void LinkBtnCerrarSesion_Click(object sender, EventArgs e)
@@ -60,27 +58,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void cajaBuscador_TextChanged(object sender, EventArgs e)
     {
-
         Session["Buscador"] = cajaBuscador.Text;
-
         Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
-
     }
 
     [WebMethod]
     public static List<string> GetNombresCursos(string prefixText)
     {
-
         Buscador gestorBuscador = new Buscador();
-
         List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
-
         return nombres;
-
-    }
-
-    protected void ImagenPerfil_DataBinding(object sender, EventArgs e)
-    {
-        
     }
 }
