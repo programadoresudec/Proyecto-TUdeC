@@ -21,7 +21,7 @@
                             <i class="fa fa-user"></i>
                         </div>
                     </div>
-                    <asp:TextBox ID="campoUsuario" CssClass="form-control" placeHolder="Email o Usuario" runat="server">
+                    <asp:TextBox ID="campoUsuario" ValidationGroup="login" CssClass="form-control" placeHolder="Email o Usuario" runat="server">
                     </asp:TextBox>
                 </div>
                 <div class="col-12 input-group justify-content-center">
@@ -29,7 +29,7 @@
                         runat="server"
                         ControlToValidate="campoUsuario"
                         ErrorMessage="¡requerido!"
-                        SetFocusOnError="True"
+                        SetFocusOnError="True" ValidationGroup="login"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
@@ -39,7 +39,7 @@
                             <i class="fa fa-key"></i>
                         </div>
                     </div>
-                    <asp:TextBox ID="campoPass" runat="server" CssClass="form-control" placeHolder="Contraseña" TextMode="Password">
+                    <asp:TextBox ID="campoPass" runat="server" ValidationGroup="login" CssClass="form-control" placeHolder="Contraseña" TextMode="Password">
                     </asp:TextBox>
                 </div>
                 <div class="col-12 input-group justify-content-center">
@@ -47,7 +47,7 @@
                         runat="server"
                         ControlToValidate="campoPass"
                         ErrorMessage="¡requerido!"
-                        SetFocusOnError="True"
+                        SetFocusOnError="True" ValidationGroup="login"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
