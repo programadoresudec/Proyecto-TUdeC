@@ -19,7 +19,7 @@
                         ValidationExpression="[A-Za-z0-9-_]*$" />
                 </div>
                 <asp:RequiredFieldValidator ID="NombreUsuarioRequerido"
-                    runat="server"
+                    runat="server" ValidationGroup="register"
                     ControlToValidate="cajaNombreUsuario"
                     ErrorMessage="¡apodo requerido!"
                     SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
@@ -31,12 +31,12 @@
                             </div>
                         </div>
                         <asp:TextBox ID="cajaNombreUsuario" placeHolder="Nombre De Usuario (nick)" runat="server"
-                            CssClass="form-control" />
+                            CssClass="form-control" ValidationGroup="register"/>
                     </div>
                 </div>
             <br />
             <asp:RequiredFieldValidator ID="NombreRequerido" runat="server"
-                ControlToValidate="cajaPrimerNombre"
+                ControlToValidate="cajaPrimerNombre" ValidationGroup="register"
                 ErrorMessage="¡Primer nombre requerido!"
                 SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
 
@@ -55,13 +55,13 @@
             <br />
             <asp:RequiredFieldValidator ID="ApellidoRequerido" runat="server"
                 ControlToValidate="cajaPrimerApellido"
-                ErrorMessage="¡Primer apellido requerido!"
+                ErrorMessage="¡Primer apellido requerido!" ValidationGroup="register"
                 SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <ajaxToolkit:FilteredTextBoxExtender ID="FiltroPrimerApellido" runat="server"
                         TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters" />
-                    <asp:TextBox ID="cajaPrimerApellido" runat="server" placeHolder="Primer Apellido" CssClass="form-control" />
+                    <asp:TextBox ID="cajaPrimerApellido" ValidationGroup="register" runat="server" placeHolder="Primer Apellido" CssClass="form-control" />
                 </div>
                 <div class="col-md-6">
                     <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoApellido" runat="server"
@@ -72,7 +72,7 @@
             <br />
             <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
                 ControlToValidate="cajaEmail"
-                ErrorMessage="¡requerido!"
+                ErrorMessage="¡requerido!" ValidationGroup="register"
                 SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
             <div class="row justify-content-center">
                 <div class="col-12 input-group">
@@ -81,7 +81,7 @@
                             <i class="fa fa-envelope"></i>
                         </div>
                     </div>
-                    <asp:TextBox ID="cajaEmail" runat="server" placeHolder="Correo Institucional" CssClass="form-control" />
+                    <asp:TextBox ID="cajaEmail" runat="server" ValidationGroup="register" placeHolder="Correo Institucional" CssClass="form-control" />
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <i>@ucundinamarca.edu.co</i>
@@ -99,7 +99,7 @@
             <asp:RequiredFieldValidator ID="passRequerida"
                 runat="server"
                 ControlToValidate="cajaPass"
-                ErrorMessage="¡requerido!"
+                ErrorMessage="¡requerido!" ValidationGroup="register"
                 SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
             <div class="row justify-content-center">
                 <div class="col-12 input-group">
@@ -109,14 +109,14 @@
                         </div>
                     </div>
                     <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
-                        TextMode="Password" CssClass="form-control" />
+                        TextMode="Password" CssClass="form-control" ValidationGroup="register" />
                 </div>
             </div>
             <br />
             <asp:RequiredFieldValidator ID="confirmarPassRequerida"
                 runat="server"
                 ControlToValidate="cajaConfirmarPass"
-                ErrorMessage="¡requerido!"
+                ErrorMessage="¡requerido!" ValidationGroup="register"
                 SetFocusOnError="True"
                 Display="Dynamic" CssClass="text-danger" />
             <div class="row justify-content-center">
@@ -127,13 +127,13 @@
                         </div>
                     </div>
                     <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
-                        TextMode="Password" CssClass="form-control" />
+                        TextMode="Password" CssClass="form-control" ValidationGroup="register" />
                 </div>
             </div>
                 <br />
             <div class="row justify-content-center">
                 <asp:CompareValidator ID="comparePasswords"
-                    runat="server"
+                    runat="server" ValidationGroup="register"
                     ControlToCompare="cajaPass"
                     ControlToValidate="cajaConfirmarPass"
                     ErrorMessage="¡Las contraseñas no son iguales!"
@@ -143,7 +143,7 @@
             <div class="form-group row">
                 <div class="col-12">
                     <strong>
-                        <asp:Button runat="server" OnClick="btnRegistrar_Click" TabIndex="-1" Text="Registrar"
+                        <asp:Button runat="server" OnClick="btnRegistrar_Click" ValidationGroup="register" TabIndex="-1" Text="Registrar"
                             CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;"/>
                     </strong>
                 </div>

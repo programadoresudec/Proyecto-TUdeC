@@ -15,7 +15,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             acercaDeNosotros.Visible = false;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
-            ImagenPerfil.Visible = true;
+            ImagenPerfil.Visible = true;    
             ImagenPerfil.DataBind();
             ConfiguracionCuenta.Visible = true;
             iniciarSesion.Visible = false;

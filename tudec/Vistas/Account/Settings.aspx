@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row justify-content-center">
-                            <asp:Image ID="ImagenPerfil" CssClass="card-img rounded-circle" Width="150px" runat="server" />
+                            <asp:Image ID="ImagenPerfil" CssClass="card-img rounded-circle" Width="150px" Height="150px" runat="server" />
                         </div>
                     </div>
                     <div class="card-body">

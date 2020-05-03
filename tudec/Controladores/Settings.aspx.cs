@@ -64,6 +64,11 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
     protected void BtnGuardarImagen_Click(object sender, EventArgs e)
     {
         string extension = System.IO.Path.GetExtension(subirImagen.PostedFile.FileName);
+        string urlImagenPerfilExistente = ImagenPerfil.ImageUrl;
+        if (System.IO.File.Exists(Server.MapPath(urlImagenPerfilExistente)))
+        {
+            File.Delete(Server.MapPath(urlImagenPerfilExistente));
+        }
         string saveLocation = Constantes.LOCATION_IMAGEN_PERFIL + usuario.NombreDeUsuario + extension;
         MemoryStream str = new MemoryStream(subirImagen.FileBytes);
         System.Drawing.Image imagenDePerfilFileUpload = System.Drawing.Image.FromStream(str);
@@ -74,6 +79,13 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
             LB_subioImagen.CssClass = "alert alert-success";
             LB_subioImagen.Text = "Tus cambios han sido guardadados con exito.";
             LB_subioImagen.Visible = true;
+            // Actualizar imagen de perfil dentro la vista de settings
+            ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
+            ImagenPerfil.DataBind();
+            // actualizar imagen de perfil en la master
+            Image imagenPerfilMaster = this.Master.FindControl("ImagenPerfil") as Image;
+            imagenPerfilMaster.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
+            imagenPerfilMaster.DataBind();
         }
         else
         {
