@@ -24,6 +24,8 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         GestionCurso gestorCursos = new GestionCurso();
 
+
+
         if(usuario == null)
         {
 
@@ -36,6 +38,25 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             inscripcion = gestorCursos.IsInscrito(usuario, curso);
 
         }
+
+
+
+        if(inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
+
+            botonInscribirse.Visible = false;
+
+        }
+
+
+        if(usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
+
+            botonInbox.Visible = false;
+
+
+        }
+        
 
         etiquetaTitulo.Text = curso.Nombre;
         etiquetaNombreUsuario.Text = curso.Creador;
@@ -74,17 +95,24 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         if (fila.RowIndex > -1)
         {
-
-            if (inscripcion || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+            if(usuario != null)
             {
 
-                LinkButton hiperEnlaceTema = new LinkButton();
-                hiperEnlaceTema.Text = celdaTema.Text;
-                hiperEnlaceTema.Click += new EventHandler(VerTema);
+                if (inscripcion || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+                {
 
-                celdaTema.Controls.Add(hiperEnlaceTema);
+                    LinkButton hiperEnlaceTema = new LinkButton();
+                    hiperEnlaceTema.Text = celdaTema.Text;
+                    hiperEnlaceTema.Click += new EventHandler(VerTema);
+
+                    celdaTema.Controls.Add(hiperEnlaceTema);
+
+                }
+
 
             }
+
+        
 
         }
 

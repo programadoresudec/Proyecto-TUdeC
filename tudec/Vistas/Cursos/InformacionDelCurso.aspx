@@ -98,7 +98,15 @@
         </tr>
 
         <tr>
-            <td class="auto-style7"><asp:Button Text="¡Habla Conmigo!" runat="server" CssClass="auto-style13" BackColor="#666666" ForeColor="White" ID="botonInbox" /><asp:Button Text="Inscribirse" runat="server" BackColor="#003300" ForeColor="White" ID="botonInscribirse" /></td>
+            <td class="auto-style7">
+                
+
+
+                <asp:Button Text="¡Habla Conmigo!" runat="server" CssClass="auto-style13" BackColor="#666666" ForeColor="White" ID="botonInbox" />
+                <asp:Button Text="Inscribirse" runat="server" BackColor="#003300" ForeColor="White" ID="botonInscribirse" />
+
+
+            </td>
           
         </tr>
 
