@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,7 +26,7 @@ public class GestionExamen
     public List<EPregunta> GetPreguntas(EExamen examen)
     {
 
-        List<EPregunta> preguntas = db.TablaPreguntas.Where(x => x.IdExamen == examen.Id).ToList();
+        List<EPregunta> preguntas = db.TablaPreguntas.Where(x => x.IdExamen == examen.Id).OrderBy(x => x.Id).ToList();
 
         return preguntas;
 
@@ -69,6 +71,127 @@ public class GestionExamen
         ejecucion.IdExamen = examen.Id;
         ejecucion.FechaEjecucion = System.DateTime.Now;
         ejecucion.Respuestas = respuestas;
+
+        List<int> notas = new List<int>();
+
+        List<EPregunta> preguntas = GetPreguntas(examen);
+
+
+        JArray respuestasExamenJson = JArray.Parse(respuestas);
+
+        foreach(EPregunta pregunta in preguntas)
+        {
+
+            JArray respuestasPreguntaJson = (JArray)respuestasExamenJson[preguntas.IndexOf(pregunta)]["Respuestas"];
+
+            if (respuestasPreguntaJson.Count == 0)
+            {
+
+                notas.Add(0);
+
+            }
+            else
+            {
+
+                if (pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
+                {
+
+                    int indiceRespuesta = Int32.Parse(respuestasPreguntaJson[0].ToString());
+
+                    List<ERespuesta> respuestasPregunta = GetRespuestas(pregunta);
+                    ERespuesta respuestaCorrecta = respuestasPregunta.Where(x => x.Estado == true).First();
+
+                    int indiceRespuestaCorrecta = respuestasPregunta.IndexOf(respuestaCorrecta);
+
+                    if(indiceRespuesta == indiceRespuestaCorrecta)
+                    {
+
+                        notas.Add(50);
+
+                    }
+                    else
+                    {
+
+                        notas.Add(0);
+
+                    }
+
+                }
+                else if (pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
+                {
+
+                    List<int> indicesRespuestas = new List<int>();
+
+                    foreach(JToken respuesta in respuestasPreguntaJson)
+                    {
+
+                        indicesRespuestas.Add(Int32.Parse(respuesta.ToString()));
+
+                    }
+
+                    List<ERespuesta> respuestasPregunta = GetRespuestas(pregunta);
+                    List<ERespuesta> respuestasCorrectas = respuestasPregunta.Where(x => x.Estado == true).ToList();
+
+                    List<int> indicesRespuestasCorrectas = new List<int>();
+
+                    foreach(ERespuesta respuesta in respuestasCorrectas)
+                    {
+
+                        if (respuesta.Estado)
+                        {
+
+                            indicesRespuestasCorrectas.Add(respuestasCorrectas.IndexOf(respuesta));
+
+                        }
+
+                    }
+
+                    List<int> subNotas = new List<int>();
+
+                    foreach(ERespuesta respuesta in respuestasCorrectas)
+                    {
+
+                        subNotas.Add(0);
+
+                    }
+
+                    foreach(int indice in indicesRespuestas)
+                    {
+
+                        if (indicesRespuestasCorrectas.Contains(indice))
+                        {
+
+                            int posicionIndice = indicesRespuestasCorrectas.IndexOf(indice);
+
+                            subNotas[posicionIndice] = 50;
+
+                        }
+
+                    }
+
+
+                    int nota = (int)subNotas.Average();
+
+                    notas.Add(nota);
+
+
+                }
+                else
+                {
+
+                    notas.Add(-1);
+
+
+                }
+
+            }
+
+
+        }
+
+        string notasJson = JsonConvert.SerializeObject(notas);
+
+        ejecucion.Calificacion = notasJson;
 
         Base.Insertar(ejecucion);
 

@@ -450,7 +450,13 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
 
                 respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+                if(respuesta != "")
+                {
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+                }
 
             }
             else
@@ -460,12 +466,23 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
                 int indicePregunta = preguntasArchivos.IndexOf(pregunta);
 
-                string respuesta = botonesSubirArchivo[indicePregunta].FileName;
+                string valor = botonesSubirArchivo[indicePregunta].FileName;
 
                 int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
 
                 respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+                if (valor != "")
+                {
+
+                    botonesSubirArchivo[indicePregunta].SaveAs(Server.MapPath("~/Recursos/ArchivosExamenes") + "/" + botonesSubirArchivo[indicePregunta].FileName);
+
+                    string respuesta = "~/Recursos/ArchivosExamenes" + "/" + botonesSubirArchivo[indicePregunta].FileName;
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+                }
+              
 
 
             }
@@ -478,13 +495,14 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
         string respuestasExamenJson = JsonConvert.SerializeObject(respuestasExamen);
 
 
-        //EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-
-        DaoUsuario gestorUsuarios = new DaoUsuario();
-
-        EUsuario usuario = gestorUsuarios.GetUsuario("Frand");
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
         gestorExamenes.ResponderExamen(examen, usuario, respuestasExamenJson);
+
+
+        Response.Write("<script>alert('Examen enviado')</script>");
+
+        Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
 
 
     }

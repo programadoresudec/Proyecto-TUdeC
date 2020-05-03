@@ -18,7 +18,7 @@ public class EEjecucionExamen
     private string nombreUsuario;
     private int idExamen;
     private DateTime fechaEjecucion;
-    private Nullable<int> calificacion;
+    private string calificacion;
     private string respuestas;
 
     [Key]
@@ -31,7 +31,8 @@ public class EEjecucionExamen
     [Column("fecha_de_ejecucion")]
     public DateTime FechaEjecucion { get => fechaEjecucion; set => fechaEjecucion = value; }
     [Column("calificacion")]
-    public int? Calificacion { get => calificacion; set => calificacion = value; }
+    public string Calificacion { get => calificacion; set => calificacion = value; }
     [Column("respuestas")]
     public string Respuestas { get => respuestas; set => respuestas = value; }
+    
 }
