@@ -17,7 +17,6 @@ public class EExamen
     #region attributes
     private int id;
     private int idTema;
-    private DateTime fechaInicio;
     private DateTime fechaFin;
     #endregion
 
@@ -27,8 +26,6 @@ public class EExamen
     public int Id { get => id; set => id = value; }
     [Column("fk_id_tema")]
     public int IdTema { get => idTema; set => idTema = value; }
-    [Column("fecha_inicio")]
-    public DateTime FechaInicio { get => fechaInicio; set => fechaInicio = value; }
     [Column("fecha_fin")]
     public DateTime FechaFin { get => fechaFin; set => fechaFin = value; } 
     #endregion

@@ -62,21 +62,51 @@
         $('#botonEnviar').click(function () {
 
 
-            var datos = "{'examen':'" + Examen.getJSON() + "'}";
+            var fecha = <%=cajaFecha.ClientID%>;
+            var hora = <%=desplegableHora.ClientID%>;
+            var minuto = <%=desplegableMinuto.ClientID%>;
 
-            $.ajax({
 
-                type: "POST",
-                url: '../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
-                data: datos,
+            if (Examen.camposVacios() == false && fecha.value != "" && hora.value != "Hora" && minuto.value != "Minuto") {
 
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
+                if (Examen.preguntas.length == 0) {
 
-            });
+                    alert("No hay preguntas en el examen");
 
-            alert("Se ha subido el examen");
+                } else {
+
+                    if (Examen.porcentajeCompleto() == false) {
+
+                        alert("La suma de los porcentajes no da 100%");
+
+                    }
+                    else {
+
+                        var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "'} ";
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: '../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
+                            data: datos,
+
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            async: true,
+
+                        });
+
+                        alert("Se ha subido el examen");
+
+                    }
+
+                }
+
+            } else {
+
+                alert("Hay campos sin llenar");
+
+            }
             
 
         })

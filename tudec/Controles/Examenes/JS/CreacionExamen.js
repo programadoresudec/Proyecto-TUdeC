@@ -18,6 +18,51 @@
 
     }
 
+    static camposVacios() {
+
+        var contador;
+
+        var retorno = false;
+
+        for (contador = 0; contador < this.preguntas.length; contador++) {
+
+            if (this.preguntas[contador].camposVacios() == true) {
+
+                retorno = true;
+                break;
+
+            }
+
+        }
+
+        return retorno;
+
+    }
+
+
+    static porcentajeCompleto() {
+
+        var contador;
+        var acumuladorPorcentaje = 0;
+
+        var retorno = false;
+
+        for (contador = 0; contador < this.preguntas.length; contador++) {
+
+            acumuladorPorcentaje += parseInt(this.preguntas[contador].getPorcentaje());
+
+        }
+
+        if (acumuladorPorcentaje == 100) {
+
+            retorno = true;
+
+        }
+
+        return retorno;
+
+    }
+
 }
 
 
@@ -43,6 +88,33 @@ class PreguntaMultipleUnicaRespuesta {
 
     }
 
+
+    camposVacios() {
+
+        var retorno = false;
+
+        if (this.cajaPregunta.value == "") {
+
+            retorno = true;
+
+        }
+
+        var contador;
+
+        for (contador = 0; contador < this.respuestas.length; contador++) {
+
+            if (this.respuestas[contador].value == "") {
+
+                retorno = true;
+                break;
+
+            }
+
+        }
+
+        return retorno;
+
+    }
     
     getRespuestas() {
 
@@ -303,6 +375,33 @@ class PreguntaMultipleMultipleRespuesta {
 
     }
 
+    camposVacios() {
+
+        var retorno = false;
+
+        if (this.cajaPregunta.value == "") {
+
+            retorno = true;
+
+        }
+
+        var contador;
+
+        for (contador = 0; contador < this.respuestas.length; contador++) {
+
+            if (this.respuestas[contador].value == "") {
+
+                retorno = true;
+                break;
+
+            }
+
+        }
+
+        return retorno;
+
+    }
+
     getInfoPregunta() {
 
         
@@ -509,6 +608,20 @@ class PreguntaAbierta {
 
     }
 
+    camposVacios() {
+
+        var retorno = false;
+
+        if (this.cajaPregunta.value == "") {
+
+            retorno = true;
+
+        }
+
+        return retorno;
+
+    }
+
     getInfoPregunta() {
 
         var objetoRetorno = new PreguntaAbierta();
@@ -620,6 +733,20 @@ class PreguntaArchivo{
 
 
 
+
+    }
+
+    camposVacios() {
+
+        var retorno = false;
+
+        if (this.campoPeticion.value == "") {
+
+            retorno = true;
+
+        }
+
+        return retorno;
 
     }
 

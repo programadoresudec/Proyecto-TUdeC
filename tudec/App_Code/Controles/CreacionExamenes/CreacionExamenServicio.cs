@@ -26,15 +26,28 @@ public class CreacionExamenServicio : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void EnviarExamen(string examen)
+    public void EnviarExamen(string examen, string fecha, string hora, string minuto)
     {
+
+        EExamen examenCreado = new EExamen();
+        examenCreado.IdTema = 0;
+
+        int dia = Int32.Parse(fecha.Split('/')[1]);
+        int mes = Int32.Parse(fecha.Split('/')[0]);
+        int anio = Int32.Parse(fecha.Split('/')[2]);
+
+        DateTime fechaFinalizacion = new DateTime(anio, mes, dia, Int32.Parse(hora), Int32.Parse(minuto), 0);
+
+        examenCreado.FechaFin = fechaFinalizacion;
+
+        Base.Insertar(examenCreado);
 
         JArray preguntasJson = JArray.Parse(examen);
         foreach(JToken preguntaJson in preguntasJson)
         {
 
             EPregunta pregunta = new EPregunta();
-            pregunta.IdExamen = 0;
+            pregunta.IdExamen = examenCreado.Id;
             pregunta.TipoPregunta = preguntaJson["tipoPregunta"].ToString();
             pregunta.Pregunta = preguntaJson["pregunta"].ToString();
             pregunta.Porcentaje = Int32.Parse(preguntaJson["porcentaje"].ToString());

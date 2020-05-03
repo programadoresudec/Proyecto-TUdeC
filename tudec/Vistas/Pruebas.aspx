@@ -26,11 +26,11 @@
        
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-        <%--<uc1:CreacionExamen runat="server" ID="CreacionExamen" />--%>
+        <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
 
         <%--<uc1:ElaboracionExamen runat="server" ID="ElaboracionExamen" />--%>
 
-        <uc1:CalificacionExamen runat="server" ID="CalificacionExamen" />
+        <%--<uc1:CalificacionExamen runat="server" ID="CalificacionExamen" />--%>
 
         </form>
 </body>
