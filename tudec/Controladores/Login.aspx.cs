@@ -33,9 +33,6 @@ public partial class Views_Account_Login : System.Web.UI.Page
             else if (usuario.Estado.Equals(Constantes.ESTADO_CAMBIO_PASS))
             {
                 conexion();
-                LB_Validacion.CssClass = "text-success";
-                LB_Validacion.Text = "Satisfactorio.";
-                LB_Validacion.Visible = true;
                 usuario.Token = null;
                 usuario.Session = usuario.NombreDeUsuario;
                 usuario.VencimientoToken = null;
@@ -51,6 +48,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
         }
         else
         {
+            LB_Validacion.CssClass = "alert alert-danger";
             LB_Validacion.Text = "El nombre de la cuenta, correo  y/o la contraseña que has introducido son incorrectos.";
             LB_Validacion.Visible = true;
             return;

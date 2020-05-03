@@ -30,6 +30,7 @@ public static class Constantes
     public const string ROL_ADMIN = "administrador";
     public const string ROL_USER = "usuario";
     public const string IMAGEN_DEFAULT = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
+    public const string LOCATION_IMAGEN_PERFIL = "~/Recursos/Imagenes/PerfilUsuarios/";
     /// <summary>
     /// Constantes De Session
     /// </summary>

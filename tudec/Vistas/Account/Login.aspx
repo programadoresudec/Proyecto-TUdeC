@@ -13,7 +13,7 @@
                 <h2 style="text-align: center; color: darkblue; font-size: xx-large;"><strong>Login</strong></h2>
                 <br />
                 <div class="col-12 input-group justify-content-center">
-                <asp:Label ID="LB_Validacion" runat="server" CssClass="text-danger" Visible="False"></asp:Label>
+                <asp:Label ID="LB_Validacion" runat="server" Visible="False"></asp:Label>
                 </div>
                 <div class="col-12 input-group">
                     <div class="input-group-prepend">

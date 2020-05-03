@@ -30,19 +30,22 @@ public class DaoUsuario
     {
         return (from usuario in db.TablaUsuarios
                 where usuario.Rol == Constantes.ROL_USER
-
                 select new
                 {
                     usuario
-
                 }).ToList().Select(x => new EUsuario
                 {
                     NombreDeUsuario = x.usuario.NombreDeUsuario,
-                    ImagenPerfil = x.usuario.ImagenPerfil,
+                    ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
                     FechaCreacion = x.usuario.FechaCreacion,
                     Estado = x.usuario.Estado,
                     NumCursos = obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
                 }).ToList();
+    }
+
+    public string buscarDescripcionUsuario(string nombreDeUsuario)
+    {
+        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Select(x => x.Descripcion).First();
     }
 
     public bool validarPassActual(string nombreDeUsuario, string passActual)
@@ -61,6 +64,13 @@ public class DaoUsuario
         return db.TablaCursos.Where(x => x.Creador == user).Count();
     }
 
+    public void actualizarPerfil(string nombreDeUsuario, string descripcion)
+    {
+        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).First();
+        usuario.Descripcion = descripcion;
+        Base.Actualizar(usuario);
+    }
+
     public List<EEstadoUsuario> obtenerEstadosUsuario()
     {
         List<EEstadoUsuario> estados = db.TablaEstadosUsuario.ToList();
@@ -77,6 +87,13 @@ public class DaoUsuario
 
         return puntuaciones;
 
+    }
+
+    public void actualizarImagen(string nombreDeUsuario, string saveLocation)
+    {
+        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).First();
+        usuario.ImagenPerfil = saveLocation;
+        Base.Actualizar(usuario);
     }
 
     public EPuntuacion GetPuntuacion(EUsuario emisor, EUsuario receptor)

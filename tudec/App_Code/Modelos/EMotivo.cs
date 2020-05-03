@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("motivos", Schema = "reportes")]
 public class EMotivoReporte
 {
-
     #region attributes
     private string motivoDelReporte;
     #endregion

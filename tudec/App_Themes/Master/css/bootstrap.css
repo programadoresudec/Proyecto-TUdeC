@@ -3016,16 +3016,17 @@ fieldset:disabled a.btn {
         }
 
 .btn-outline-success {
-    color: #28a745;
+    color: #000000;
     background-color: transparent;
     background-image: none;
-    border-color: #28a745;
+    border-color: #fff;
+    
 }
 
     .btn-outline-success:hover {
         color: #fff;
-        background-color: #28a745;
-        border-color: #28a745;
+        background-color: rgba(39, 169, 102, 0.75);
+        border-color: transparent;
     }
 
     .btn-outline-success:focus, .btn-outline-success.focus {
@@ -4080,7 +4081,7 @@ tbody.collapse.show {
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
         color: #fff;
-        background-color: #007bff;
+        background-color: #17a2b8;
     }
 
 .nav-fill .nav-item {
