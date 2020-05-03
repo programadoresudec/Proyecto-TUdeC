@@ -46,7 +46,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         gestorExamenes = new GestionExamen();
 
-        examen = gestorExamenes.GetExamen(0);
+        examen = (EExamen)Session[Constantes.EXAMEN_A_REALIZAR];
 
         preguntas = gestorExamenes.GetPreguntas(examen);
 

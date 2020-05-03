@@ -38,7 +38,7 @@ public class Buscador
 
         if (curso == "" && tutor == "" && area == "Seleccionar" && puntuacion == 0)
         {
-            cursos = db.TablaCursos.ToList();
+            cursos = db.TablaCursos.OrderBy(x => x.Id).ToList();
 
         }
         else
@@ -46,7 +46,7 @@ public class Buscador
             cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower()))
             && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower()))
             && (area.Equals("Seleccionar") || x.Area.Equals(area))
-            && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
+            && (puntuacion == 0 || x.Puntuacion == puntuacion)).OrderBy(x => x.Id).ToList();
         }
 
         return cursos;

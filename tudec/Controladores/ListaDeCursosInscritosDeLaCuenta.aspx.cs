@@ -25,6 +25,8 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             Response.Redirect("~/Vistas/Home.aspx");
         }
 
+        tablaCursos.DataBind();
+
     }
 
     protected void tablaCursos_RowCreated(object sender, GridViewRowEventArgs e)
@@ -35,6 +37,7 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
         if (fila.Cells.Count > 1)
         {
 
+            TableCell celdaNombreCurso = fila.Cells[0];
             TableCell celdaArea = fila.Cells[1];
             TableCell celdaCalificacion = fila.Cells[4];
             TableCell celdaBoleta = fila.Cells[5];
@@ -58,6 +61,12 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
 
             if (fila.RowIndex > -1)
             {
+
+                LinkButton hiperEnlaceInfoCurso = new LinkButton();
+                hiperEnlaceInfoCurso.Text = celdaNombreCurso.Text;
+                hiperEnlaceInfoCurso.Click += new EventHandler(VerInformacionCurso);
+                celdaNombreCurso.Controls.Add(hiperEnlaceInfoCurso);
+
                 int calificacion = Int32.Parse(celdaCalificacion.Text);
                 ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
                 estrellasMostradas.Calificacion = calificacion;
@@ -78,6 +87,42 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             }
 
         }
+
+    }
+
+
+    public void VerInformacionCurso(object sender, EventArgs e)
+    {
+
+        LinkButton hiperEnlace = (LinkButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[0].Controls.Contains(hiperEnlace))
+            {
+
+                filaAEncontrar = fila;
+                break;
+
+            }
+
+
+        }
+
+
+        DataKeyArray arreglo = tablaCursos.DataKeys;
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
+
 
     }
 

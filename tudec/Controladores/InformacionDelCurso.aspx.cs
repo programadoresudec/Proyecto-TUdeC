@@ -7,15 +7,35 @@ using System.Web.UI.WebControls;
 
 public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 {
+
+    private bool inscripcion;
+    private EUsuario creador;
+    private EUsuario usuario;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
         DaoUsuario gestorUsuarios = new DaoUsuario();
 
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
-        EUsuario creador = gestorUsuarios.GetUsuario(curso.Creador);
+        creador = gestorUsuarios.GetUsuario(curso.Creador);
 
-        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        if(usuario == null)
+        {
+
+            inscripcion = false;
+
+        }
+        else
+        {
+
+            inscripcion = gestorCursos.IsInscrito(usuario, curso);
+
+        }
 
         etiquetaTitulo.Text = curso.Nombre;
         etiquetaNombreUsuario.Text = curso.Creador;
@@ -55,11 +75,16 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         if (fila.RowIndex > -1)
         {
 
-            LinkButton hiperEnlaceTema = new LinkButton();
-            hiperEnlaceTema.Text = celdaTema.Text;
-            hiperEnlaceTema.Click += new EventHandler(VerTema);
+            if (inscripcion || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+            {
 
-            celdaTema.Controls.Add(hiperEnlaceTema);
+                LinkButton hiperEnlaceTema = new LinkButton();
+                hiperEnlaceTema.Text = celdaTema.Text;
+                hiperEnlaceTema.Click += new EventHandler(VerTema);
+
+                celdaTema.Controls.Add(hiperEnlaceTema);
+
+            }
 
         }
 

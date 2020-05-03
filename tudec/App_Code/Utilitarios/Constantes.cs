@@ -40,5 +40,6 @@ public static class Constantes
     public const string TEMA_SELECCIONADO = "temaSeleccionado";
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";
+    public const string EXAMEN_A_REALIZAR = "examenARealizar";
     #endregion
 }

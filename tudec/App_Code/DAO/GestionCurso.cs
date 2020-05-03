@@ -242,4 +242,23 @@ public class GestionCurso
 
     }
 
+
+    public bool IsInscrito(EUsuario usuario, ECurso curso)
+    {
+
+        bool retorno = true;
+
+        EInscripcionesCursos inscripcion = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario) && x.IdCurso == curso.Id).FirstOrDefault();
+
+        if(inscripcion == null)
+        {
+
+            retorno = false;
+
+        }
+
+        return retorno;
+
+    }
+
 }

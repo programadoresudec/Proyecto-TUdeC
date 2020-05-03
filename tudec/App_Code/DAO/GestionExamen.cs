@@ -52,6 +52,15 @@ public class GestionExamen
 
     }
 
+    public EExamen GetExamen(ETema tema)
+    {
+
+        EExamen examen = db.TablaExamenes.Where(x => x.IdTema == tema.Id).FirstOrDefault();
+
+        return examen;
+
+    }
+
     public void ResponderExamen(EExamen examen, EUsuario usuario, string respuestas)
     {
 

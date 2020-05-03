@@ -13,6 +13,23 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
         ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
         etiquetaTitulo.Text = tema.Titulo;
+        etiquetaInformacion.Text = tema.Informacion;
+
+
+        GestionExamen gestorExamenes = new GestionExamen();
+
+        EExamen examen = (EExamen)gestorExamenes.GetExamen(tema);
+
+        Session[Constantes.EXAMEN_A_REALIZAR] = examen;
+
+
+        if(examen != null)
+        {
+
+            ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
+            panelExamen.Controls.Add(examenARealizar);
+
+        }
 
     }
 }

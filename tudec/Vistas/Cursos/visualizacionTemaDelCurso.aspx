@@ -25,13 +25,30 @@
         </tr>
 
         <tr>
-            <td align="center"><asp:Label Text="INFORMACIÓN DEL TEMA" runat="server" /></td>
+            <td align="center">
+                
+                
+                <asp:Panel style="width: 60%; text-align:left" ID="panelInformacion" runat="server">
+
+                    <asp:Label Text="INFORMACIÓN DEL TEMA" runat="server" ID="etiquetaInformacion" />
+
+                </asp:Panel>
+                    
+            </td>
         </tr>
 
         <tr>
             <td align="center">
 
-                <uc1:ElaboracionExamen runat="server" id="ElaboracionExamen" />
+            <asp:Panel ID="panelExamen" runat="server">
+
+
+
+
+
+            </asp:Panel>
+
+                <%--<uc1:ElaboracionExamen runat="server" id="ElaboracionExamen" />--%>
 
             </td>
         </tr>

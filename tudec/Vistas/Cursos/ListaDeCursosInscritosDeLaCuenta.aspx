@@ -83,7 +83,7 @@
                     </table>
                 </td>
                 <td style="padding-left:15%" rowspan="2">
-                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True">
+                    <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True" DataKeyNames="Id">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Curso" SortExpression="Nombre">
                             <ItemStyle HorizontalAlign="Center" />
