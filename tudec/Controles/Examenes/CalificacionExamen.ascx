@@ -18,5 +18,12 @@
 
     </asp:Panel>
 
+    <asp:Button style="width: 60%" ID="botonCalificar" runat="server" Text="Calificar examen" OnClick="botonCalificar_Click"></asp:Button>
+
+    <br />
+    <br />
+
+    <asp:Label ID="etiquetaNota" runat="server" Text="Nota: XX"></asp:Label>
+
 </center>
 

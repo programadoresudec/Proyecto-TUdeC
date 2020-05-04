@@ -9,6 +9,11 @@ using System.Drawing;
 
 public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 {
+
+    private List<DropDownList> desplegablesNotas = new List<DropDownList>();
+    private EEjecucionExamen ejecucion;
+    List<EPregunta> preguntas;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -20,11 +25,11 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
         EExamen examen = gestorExamenes.GetExamen(tema);
 
-        EEjecucionExamen ejecucion = gestorExamenes.GetEjecucion(examen, usuario);
+        ejecucion = gestorExamenes.GetEjecucion(examen, usuario);
 
         JArray respuestasExamenJson = JArray.Parse(ejecucion.Respuestas);
 
-        List<EPregunta> preguntas = gestorExamenes.GetPreguntas(examen);
+        preguntas = gestorExamenes.GetPreguntas(examen);
 
         int minutos = examen.FechaFin.Minute;
         string textoMinutos = minutos.ToString();
@@ -53,8 +58,6 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
             {
 
                 List<ERespuesta> respuestas = gestorExamenes.GetRespuestas(pregunta);
-
-                List<Button> botonesMarcarPregunta = new List<Button>();
 
                 TableRow filaPregunta = new TableRow();
                 TableCell celdaPregunta = new TableCell();
@@ -135,10 +138,10 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
                     Label textoRespuesta = new Label();
                     textoRespuesta.Text = respuesta.Respuesta;
-                    
+
                     celda.Controls.Add(botonMarcar);
                     celda.Controls.Add(textoRespuesta);
-                    if(indicadorCorrecto != null)
+                    if (indicadorCorrecto != null)
                     {
 
                         celda.Controls.Add(indicadorCorrecto);
@@ -154,12 +157,31 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
                 }
 
+
+                TableRow filaRespuestaCorrecta = new TableRow();
+                TableCell celdaRespuestaCorrecta = new TableCell();
+
+                Label textoRespuestaCorrecta = new Label();
+                textoRespuestaCorrecta.Text = "Respuesta correcta: " + respuestaCorrecta.Respuesta;
+
+                celdaRespuestaCorrecta.Controls.Add(textoRespuestaCorrecta);
+
+                celdaRespuestaCorrecta.Controls.Add(textoRespuestaCorrecta);
+                celdaRespuestaCorrecta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaRespuestaCorrecta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaRespuestaCorrecta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaRespuestaCorrecta.Cells.Add(celdaRespuestaCorrecta);
+                tablaPregunta.Rows.Add(filaRespuestaCorrecta);
+
+
+
                 TableRow filaPorcentaje = new TableRow();
                 TableCell celdaPorcentaje = new TableCell();
 
                 Label textoPorcentaje = new Label();
                 textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
-                
+
                 celdaPorcentaje.Controls.Add(textoPorcentaje);
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
@@ -190,178 +212,391 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
             else if (pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
             {
 
-                //List<ERespuesta> respuestas = gestorExamenes.GetRespuestas(pregunta);
-                //List<CheckBox> botonesCheckboxPregunta = new List<CheckBox>();
+                List<ERespuesta> respuestas = gestorExamenes.GetRespuestas(pregunta);
 
-                //TableRow filaPregunta = new TableRow();
-                //TableCell celdaPregunta = new TableCell();
+                TableRow filaPregunta = new TableRow();
+                TableCell celdaPregunta = new TableCell();
 
-                //Label textoPregunta = new Label();
-                //textoPregunta.Text = pregunta.Pregunta;
+                Label textoPregunta = new Label();
+                textoPregunta.Text = pregunta.Pregunta;
 
-                //celdaPregunta.Controls.Add(textoPregunta);
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                celdaPregunta.Controls.Add(textoPregunta);
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
-                //filaPregunta.Cells.Add(celdaPregunta);
-                //tablaPregunta.Rows.Add(filaPregunta);
+                filaPregunta.Cells.Add(celdaPregunta);
+                tablaPregunta.Rows.Add(filaPregunta);
 
-                //foreach (ERespuesta respuesta in respuestas)
-                //{
+                int indicePregunta = preguntas.IndexOf(pregunta);
+                JToken respuestasPreguntasJson = respuestasExamenJson[indicePregunta]["Respuestas"];
 
-                //    TableRow fila = new TableRow();
-                //    TableCell celda = new TableCell();
-                //    CheckBox checker = new CheckBox();
+                List<int> indicesRespuestasMarcadas = new List<int>();
 
-                //    botonesCheckboxPregunta.Add(checker);
+                foreach (JToken respuestaPreguntaJson in respuestasPreguntasJson)
+                {
 
-                //    Label textoRespuesta = new Label();
-                //    textoRespuesta.Text = respuesta.Respuesta;
+                    indicesRespuestasMarcadas.Add(Int32.Parse(respuestaPreguntaJson.ToString()));
 
-                //    celda.Controls.Add(checker);
-                //    celda.Controls.Add(textoRespuesta);
-                //    celda.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //    celda.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //    celda.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                }
 
-                //    fila.Cells.Add(celda);
-                //    tablaPregunta.Rows.Add(fila);
+                List<ERespuesta> respuestasCorrectas = respuestas.Where(x => x.Estado == true).ToList();
 
-                //}
+                List<int> indicesRespuestasCorrectas = new List<int>();
 
-                //TableRow filaPorcentaje = new TableRow();
-                //TableCell celdaPorcentaje = new TableCell();
+                foreach (ERespuesta respuesta in respuestasCorrectas)
+                {
 
-                //Label textoPorcentaje = new Label();
-                //textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
+                    indicesRespuestasCorrectas.Add(respuestas.IndexOf(respuesta));
 
-                //celdaPorcentaje.Controls.Add(textoPorcentaje);
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                }
 
-                //filaPorcentaje.Cells.Add(celdaPorcentaje);
-                //tablaPregunta.Rows.Add(filaPorcentaje);
+                foreach (ERespuesta respuesta in respuestas)
+                {
 
-                //botonesCheckbox.Add(botonesCheckboxPregunta);
+                    TableRow fila = new TableRow();
+                    TableCell celda = new TableCell();
+                    CheckBox checkBox = new CheckBox();
 
-                //RespuestasPreguntas respuestasPregunta = new RespuestasPreguntas();
-                //respuestasPregunta.TipoPregunta = "Múltiple con múltiple respuesta";
-                //respuestasExamen.Add(respuestasPregunta);
+                    checkBox.Enabled = false;
+
+                    System.Web.UI.WebControls.Image indicadorCorrecto = null;
+
+                    if (indicesRespuestasMarcadas.Contains(respuestas.IndexOf(respuesta)))
+                    {
+
+                        checkBox.Checked = true;
+
+                        indicadorCorrecto = new System.Web.UI.WebControls.Image();
+                        indicadorCorrecto.Width = 16;
+                        indicadorCorrecto.Height = 16;
+
+                        if (indicesRespuestasCorrectas.Contains(respuestas.IndexOf(respuesta)))
+                        {
+
+                            indicadorCorrecto.ImageUrl = "https://wisdom-trek.com/wp-content/uploads/2019/05/The-Correct-Answer-1.png";
+
+                        }
+                        else
+                        {
+
+                            indicadorCorrecto.ImageUrl = "https://cdn.clipart.email/e9c7c978dd890a610ef4b53eb7e78352_download-red-cross-clipart-wrong-answer-red-cross-clipart-png-_1600-1600.png";
+
+
+
+                        }
+
+
+                    }
+
+                    Label textoRespuesta = new Label();
+                    textoRespuesta.Text = respuesta.Respuesta;
+
+                    celda.Controls.Add(checkBox);
+                    celda.Controls.Add(textoRespuesta);
+                    if (indicadorCorrecto != null)
+                    {
+
+                        celda.Controls.Add(indicadorCorrecto);
+
+                    }
+
+                    celda.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                    celda.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                    celda.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                    fila.Cells.Add(celda);
+                    tablaPregunta.Rows.Add(fila);
+
+                }
+
+
+                TableRow filaRespuestasCorrectas = new TableRow();
+                TableCell celdaRespuestasCorrectas = new TableCell();
+
+                Label textoRespuestasCorrectas = new Label();
+
+                string respuestasCorrectasString = "";
+
+                foreach (ERespuesta respuesta in respuestasCorrectas)
+                {
+
+                    respuestasCorrectasString += respuesta.Respuesta + ", ";
+
+                }
+
+                respuestasCorrectasString = respuestasCorrectasString.Substring(0, respuestasCorrectasString.Length - 2);
+
+                textoRespuestasCorrectas.Text = "Respuestas correctas: " + respuestasCorrectasString;
+
+                celdaRespuestasCorrectas.Controls.Add(textoRespuestasCorrectas);
+
+                celdaRespuestasCorrectas.Controls.Add(textoRespuestasCorrectas);
+                celdaRespuestasCorrectas.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaRespuestasCorrectas.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaRespuestasCorrectas.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaRespuestasCorrectas.Cells.Add(celdaRespuestasCorrectas);
+                tablaPregunta.Rows.Add(filaRespuestasCorrectas);
+
+                TableRow filaPorcentaje = new TableRow();
+                TableCell celdaPorcentaje = new TableCell();
+
+                Label textoPorcentaje = new Label();
+                textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
+
+                celdaPorcentaje.Controls.Add(textoPorcentaje);
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaPorcentaje.Cells.Add(celdaPorcentaje);
+                tablaPregunta.Rows.Add(filaPorcentaje);
+
+                TableRow filaNota = new TableRow();
+                TableCell celdaNota = new TableCell();
+
+                Label textoNota = new Label();
+
+                JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+                JToken notaJson = notasJson[indicePregunta];
+
+                textoNota.Text = "Nota: " + notaJson.ToString();
+
+                celdaNota.Controls.Add(textoNota);
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaNota.Cells.Add(celdaNota);
+                tablaPregunta.Rows.Add(filaNota);
 
             }
             else if (pregunta.TipoPregunta.Equals("Abierta"))
             {
 
-                //TableRow filaPregunta = new TableRow();
-                //TableCell celdaPregunta = new TableCell();
+                TableRow filaPregunta = new TableRow();
+                TableCell celdaPregunta = new TableCell();
 
-                //Label textoPregunta = new Label();
-                //textoPregunta.Text = pregunta.Pregunta;
+                Label textoPregunta = new Label();
+                textoPregunta.Text = pregunta.Pregunta;
 
-                //celdaPregunta.Controls.Add(textoPregunta);
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                celdaPregunta.Controls.Add(textoPregunta);
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
-                //filaPregunta.Cells.Add(celdaPregunta);
-                //tablaPregunta.Rows.Add(filaPregunta);
-
-
-                //TextBox campoRespuesta = new TextBox();
-                //campoRespuesta.TextMode = TextBoxMode.MultiLine;
-                //campoRespuesta.Attributes.Add("placeholder", "Respuesta");
-                //campoRespuesta.Style.Add(HtmlTextWriterStyle.Width, "95%");
-                //campoRespuesta.Style.Add(HtmlTextWriterStyle.Height, "100px");
-
-                //TableRow filaCampo = new TableRow();
-                //TableCell celdaCampo = new TableCell();
-
-                //celdaCampo.Controls.Add(campoRespuesta);
-                //celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
-                //filaCampo.Controls.Add(celdaCampo);
+                filaPregunta.Cells.Add(celdaPregunta);
+                tablaPregunta.Rows.Add(filaPregunta);
 
 
+                TextBox campoRespuesta = new TextBox();
+                campoRespuesta.TextMode = TextBoxMode.MultiLine;
+                campoRespuesta.Style.Add(HtmlTextWriterStyle.Width, "95%");
+                campoRespuesta.Style.Add(HtmlTextWriterStyle.Height, "100px");
+                campoRespuesta.Enabled = false;
 
-                //tablaPregunta.Rows.Add(filaCampo);
+                JArray respuestasJsonExamen = JArray.Parse(ejecucion.Respuestas);
+                JToken respuestasJsonPregunta = respuestasJsonExamen[preguntas.IndexOf(pregunta)];
+
+                campoRespuesta.Text = respuestasJsonPregunta["Respuestas"][0].ToString();
+
+                TableRow filaCampo = new TableRow();
+                TableCell celdaCampo = new TableCell();
+
+                celdaCampo.Controls.Add(campoRespuesta);
+                celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                filaCampo.Controls.Add(celdaCampo);
 
 
-                //TableRow filaPorcentaje = new TableRow();
-                //TableCell celdaPorcentaje = new TableCell();
 
-                //Label textoPorcentaje = new Label();
-                //textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
+                tablaPregunta.Rows.Add(filaCampo);
 
-                //celdaPorcentaje.Controls.Add(textoPorcentaje);
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
-                //filaPorcentaje.Cells.Add(celdaPorcentaje);
-                //tablaPregunta.Rows.Add(filaPorcentaje);
+                TableRow filaPorcentaje = new TableRow();
+                TableCell celdaPorcentaje = new TableCell();
 
-                //camposAbierta.Add(campoRespuesta);
+                Label textoPorcentaje = new Label();
+                textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
 
-                //RespuestasPreguntas respuestaPreguntaAbierta = new RespuestasPreguntas();
-                //respuestaPreguntaAbierta.TipoPregunta = "Abierta";
-                //respuestasExamen.Add(respuestaPreguntaAbierta);
+                celdaPorcentaje.Controls.Add(textoPorcentaje);
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaPorcentaje.Cells.Add(celdaPorcentaje);
+                tablaPregunta.Rows.Add(filaPorcentaje);
+
+
+                TableRow filaNota = new TableRow();
+                TableCell celdaNota = new TableCell();
+
+                DropDownList desplegableNota = new DropDownList();
+
+                ListItem itemInicial = new ListItem();
+                itemInicial.Value = "Nota";
+                itemInicial.Text = itemInicial.Value;
+
+                desplegableNota.Items.Add(itemInicial);
+
+                for (int nota = 0; nota <= 50; nota++)
+                {
+
+                    ListItem item = new ListItem();
+                    item.Value = nota.ToString();
+                    item.Text = item.Value;
+
+                    desplegableNota.Items.Add(item);
+
+                }
+
+                JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+                JToken notaJson = notasJson[preguntas.IndexOf(pregunta)];
+
+                int notaPregunta = Int32.Parse(notaJson.ToString());
+
+                Label textoNota = new Label();
+                textoNota.Text = "Nota: " + notaJson.ToString();
+
+                if(notaPregunta == -1)
+                {
+
+                    celdaNota.Controls.Add(desplegableNota);
+                    desplegablesNotas.Add(desplegableNota);
+                   
+                }
+                else
+                {
+
+                    celdaNota.Controls.Add(textoNota);
+                    
+
+                }
+
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaNota.Cells.Add(celdaNota);
+                tablaPregunta.Rows.Add(filaNota);
 
             }
             else
             {
 
-                //TableRow filaPregunta = new TableRow();
-                //TableCell celdaPregunta = new TableCell();
+                TableRow filaPregunta = new TableRow();
+                TableCell celdaPregunta = new TableCell();
 
-                //Label textoPregunta = new Label();
-                //textoPregunta.Text = pregunta.Pregunta;
+                Label textoPregunta = new Label();
+                textoPregunta.Text = pregunta.Pregunta;
 
-                //celdaPregunta.Controls.Add(textoPregunta);
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                celdaPregunta.Controls.Add(textoPregunta);
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPregunta.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
-                //filaPregunta.Cells.Add(celdaPregunta);
-                //tablaPregunta.Rows.Add(filaPregunta);
+                filaPregunta.Cells.Add(celdaPregunta);
+                tablaPregunta.Rows.Add(filaPregunta);
 
-                //TableRow filaArchivo = new TableRow();
-                //TableCell celdaArchivo = new TableCell();
+                TableRow filaArchivo = new TableRow();
+                TableCell celdaArchivo = new TableCell();
 
-                //FileUpload botonArchivo = new FileUpload();
+                LinkButton hiperEnlaceArchivo = new LinkButton();
 
-                //celdaArchivo.Controls.Add(botonArchivo);
-                //celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+                JArray respuestasJsonExamen = JArray.Parse(ejecucion.Respuestas);
+                JToken respuestasJsonPregunta = respuestasJsonExamen[preguntas.IndexOf(pregunta)];
 
-                //filaArchivo.Cells.Add(celdaArchivo);
+                JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+                JToken notaJson = notasJson[preguntas.IndexOf(pregunta)];
 
-                //tablaPregunta.Rows.Add(filaArchivo);
-
-                //TableRow filaPorcentaje = new TableRow();
-                //TableCell celdaPorcentaje = new TableCell();
-
-                //Label textoPorcentaje = new Label();
-                //textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
-
-                //celdaPorcentaje.Controls.Add(textoPorcentaje);
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
-                //celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
-
-                //botonesSubirArchivo.Add(botonArchivo);
-
-                //filaPorcentaje.Cells.Add(celdaPorcentaje);
-                //tablaPregunta.Rows.Add(filaPorcentaje);
+                int notaPregunta = Int32.Parse(notaJson.ToString());
 
 
+                if(notaPregunta == -1)
+                {
 
-                //RespuestasPreguntas respuestaPreguntaArchivo = new RespuestasPreguntas();
-                //respuestaPreguntaArchivo.TipoPregunta = "Solicitud archivo";
-                //respuestasExamen.Add(respuestaPreguntaArchivo);
+                    hiperEnlaceArchivo.Text = respuestasJsonPregunta["Respuestas"][0].ToString();
+                    hiperEnlaceArchivo.Click += new EventHandler(VerArchivo);
+
+                    celdaArchivo.Controls.Add(hiperEnlaceArchivo);
+                    celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                    celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                    celdaArchivo.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                    filaArchivo.Cells.Add(celdaArchivo);
+
+                    tablaPregunta.Rows.Add(filaArchivo);
+
+                }
+
+
+                TableRow filaPorcentaje = new TableRow();
+                TableCell celdaPorcentaje = new TableCell();
+
+                Label textoPorcentaje = new Label();
+                textoPorcentaje.Text = "Porcentaje: " + pregunta.Porcentaje + "%";
+
+                celdaPorcentaje.Controls.Add(textoPorcentaje);
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+               
+                filaPorcentaje.Cells.Add(celdaPorcentaje);
+                tablaPregunta.Rows.Add(filaPorcentaje);
+
+
+                TableRow filaNota = new TableRow();
+                TableCell celdaNota = new TableCell();
+
+                DropDownList desplegableNota = new DropDownList();
+
+                ListItem itemInicial = new ListItem();
+                itemInicial.Value = "Nota";
+                itemInicial.Text = itemInicial.Value;
+
+                desplegableNota.Items.Add(itemInicial);
+
+                for (int nota = 0; nota <= 50; nota++)
+                {
+
+                    ListItem item = new ListItem();
+                    item.Value = nota.ToString();
+                    item.Text = item.Value;
+
+                    desplegableNota.Items.Add(item);
+
+                }
+
+                
+                Label textoNota = new Label();
+                textoNota.Text = "Nota: " + notaJson.ToString();
+
+                if (notaPregunta == -1)
+                {
+
+                    celdaNota.Controls.Add(desplegableNota);
+                    desplegablesNotas.Add(desplegableNota);
+
+                }
+                else
+                {
+
+                    celdaNota.Controls.Add(textoNota);
+
+
+                }
+
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
+                celdaNota.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
+
+                filaNota.Cells.Add(celdaNota);
+                tablaPregunta.Rows.Add(filaNota);
+
+
 
             }
 
@@ -374,6 +609,98 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
             panelContenido.Controls.Add(saltoDeLinea);
 
         }
+
+    }
+
+    public void VerArchivo(object sender, EventArgs e)
+    {
+
+        LinkButton hiperEnlace = (LinkButton)sender;
+
+        Response.Redirect(hiperEnlace.Text);
+
+    }
+
+
+    protected void botonCalificar_Click(object sender, EventArgs e)
+    {
+
+        bool notasAsignadas = true;
+
+
+        foreach(DropDownList desplegable in desplegablesNotas)
+        {
+
+            if(desplegable.Text == "Nota")
+            {
+
+                notasAsignadas = false;
+                break;
+
+            }
+
+        }
+
+        if (notasAsignadas)
+        {
+
+            JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+
+            int contadorNota = 0;
+
+            for (int conteo = 0; conteo < notasJson.Count; conteo++)
+            {
+
+                int nota = Int32.Parse(notasJson[conteo].ToString());
+
+                if (nota == -1)
+                {
+
+                    notasJson[conteo] = JToken.Parse(desplegablesNotas[contadorNota].Text);
+                    contadorNota++;
+
+                }
+
+            }
+
+       
+            ejecucion.Calificacion = notasJson.ToString();
+
+            Base.Actualizar(ejecucion);
+
+            List<int> porcentajes = new List<int>();
+
+            foreach(EPregunta pregunta in preguntas)
+            {
+
+                porcentajes.Add(pregunta.Porcentaje);
+
+            }
+
+            double notaAcumulada = 0;
+
+            foreach(JToken nota in notasJson)
+            {
+
+                notaAcumulada += double.Parse(nota.ToString()) * porcentajes[notasJson.IndexOf(nota)]/100.0;
+
+            }
+
+            string notaTotal = ((int)notaAcumulada).ToString();
+
+            etiquetaNota.Text = "Nota: " +  notaTotal;
+
+        }
+        else
+        {
+
+            Response.Write("<script>alert('No ha calificado todas las preguntas');</script>");
+
+
+        }
+
+        
+
 
     }
 }
