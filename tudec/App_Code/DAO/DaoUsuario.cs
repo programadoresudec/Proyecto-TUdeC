@@ -123,4 +123,25 @@ public class DaoUsuario
         string url = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(usuario)).Select(x => x.ImagenPerfil).SingleOrDefault();
         return url == null ? Constantes.IMAGEN_DEFAULT : url;
     }
+
+    public List<EUsuario> GetUsuariosExamen(ETema tema)
+    {
+
+        EExamen examen = db.TablaExamenes.Where(x => x.IdTema == tema.Id).First();
+
+        List<EEjecucionExamen> ejecuciones = db.TablaEjecucionExamen.Where(x => x.IdExamen == examen.Id).ToList();
+
+        List<EUsuario> usuarios = new List<EUsuario>();
+
+        foreach(EEjecucionExamen ejecucion in ejecuciones)
+        {
+
+            usuarios.Add(GetUsuario(ejecucion.NombreUsuario));
+
+        }
+
+        return usuarios;
+
+    }
+
 }

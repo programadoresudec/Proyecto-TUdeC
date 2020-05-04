@@ -49,11 +49,12 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             Image iconoArea = new Image();
             Image iconoEditar = new Image();
             Image iconoExpulsar = new Image();
-            Image iconoCalificar = new Image();
+
+            ImageButton botonCalificar = new ImageButton();
 
             iconoEditar.ImageUrl = "~/Recursos/GestionCursos/Editar Curso.png";
             iconoExpulsar.ImageUrl = "~/Recursos/GestionCursos/Expulsar Usuarios.png";
-            iconoCalificar.ImageUrl = "~/Recursos/GestionCursos/Calificar Exámenes.png";
+            botonCalificar.ImageUrl = "~/Recursos/GestionCursos/Calificar Exámenes.png";
 
             iconoArea.Width = 32;
             iconoArea.Height = 32;
@@ -61,8 +62,10 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             iconoEditar.Height = 32;
             iconoExpulsar.Width = 32;
             iconoExpulsar.Height = 32;
-            iconoCalificar.Width = 32;
-            iconoCalificar.Height = 32;
+            botonCalificar.Width = 32;
+            botonCalificar.Height = 32;
+
+            botonCalificar.Click += new ImageClickEventHandler(CalificarExamenes);
 
             if (fila.RowIndex > -1)
             {
@@ -90,11 +93,41 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
                 celdaEditar.Controls.Add(iconoEditar);
                 celdaExpulsar.Controls.Add(iconoExpulsar);
-                celdaCalificar.Controls.Add(iconoCalificar);
+                celdaCalificar.Controls.Add(botonCalificar);
 
             }
 
         }
+
+    }
+
+    public void CalificarExamenes(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach(GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[7].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Examen/CalificarExamenTemario.aspx");
 
     }
 

@@ -10,12 +10,14 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        DaoUsuario gestorUsuarios = new DaoUsuario();
-        EUsuario usuario = gestorUsuarios.GetUsuario("Frand");
+        
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO];
 
         GestionExamen gestorExamenes = new GestionExamen();
-        EExamen examen = gestorExamenes.GetExamen(0);
+
+        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
+
+        EExamen examen = gestorExamenes.GetExamen(tema);
 
         EEjecucionExamen ejecucion = gestorExamenes.GetEjecucion(examen, usuario);
 
@@ -23,7 +25,6 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
         List<EPregunta> preguntas = gestorExamenes.GetPreguntas(examen);
 
-        Console.WriteLine("");
 
     }
 }

@@ -10,6 +10,7 @@ using System.Web;
 /// </summary>
 /// 
 
+[Serializable]
 [Table("temas", Schema="temas")]
 public class ETema
 {
