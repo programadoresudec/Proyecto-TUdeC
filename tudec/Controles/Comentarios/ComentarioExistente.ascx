@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
 
 
-    <table style="width: 60%">
+    <table style="width: 90%">
 
         <tr>
 

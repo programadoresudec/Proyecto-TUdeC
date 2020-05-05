@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/Controles/Examenes/CreacionExamen.ascx" TagPrefix="uc1" TagName="CreacionExamen" %>
 <%@ Register Src="~/Controles/Examenes/ElaboracionExamen.ascx" TagPrefix="uc1" TagName="ElaboracionExamen" %>
+<%@ Register Src="~/Controles/Comentarios/CajaComentarios.ascx" TagPrefix="uc1" TagName="CajaComentarios" %>
+
 
 
 
@@ -28,10 +30,11 @@
             <td align="center">
                 
                 
-                <asp:Panel style="width: 60%; text-align:left" ID="panelInformacion" runat="server">
+                <asp:Panel style="width: 90%; text-align:left" ID="panelInformacion" runat="server">
 
-                    <asp:Label Text="INFORMACIÓN DEL TEMA" runat="server" ID="etiquetaInformacion" />
+                    <asp:TextBox ID="cajaInformacion" TextMode="MultiLine" runat="server" Height="150px" Enabled="false"></asp:TextBox>
 
+                    
                 </asp:Panel>
                     
             </td>
@@ -54,8 +57,19 @@
         </tr>
         
         <tr>
-            <td align="center"><h4>ESPACIO PARA LA CAJA DE COMENTARIOS</h4></td>
+            <td align="center"><h4>COMENTARIOS&nbsp;</h4></td>
         </tr>
+
+                <tr>
+
+
+                    <td>
+
+<uc1:CajaComentarios runat="server" id="CajaComentarios" />
+
+                    </td>
+
+                </tr>
     </table>
     </center>
     

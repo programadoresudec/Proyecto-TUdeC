@@ -24,4 +24,12 @@ public class GestionComentarios
 
     }
 
+    public List<EComentario> GetComentarios(ETema tema)
+    {
+        List<EComentario> comentarios = db.TablaComentarios.Where(x => x.IdTema == tema.Id).ToList();
+
+        return comentarios;
+
+    }
+
 }

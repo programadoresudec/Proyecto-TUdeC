@@ -35,7 +35,23 @@ public partial class Controles_CajaComentarios : System.Web.UI.UserControl
         }
         else
         {
-            
+
+            ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
+            EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+            GestionComentarios gestorComentarios = new GestionComentarios();
+            List<EComentario> comentarios = gestorComentarios.GetComentarios(tema);
+
+            foreach (EComentario comentario in comentarios)
+            {
+
+                ASP.controles_comentarios_comentarioexistente_ascx comentarioExistente = new ASP.controles_comentarios_comentarioexistente_ascx();
+                comentarioExistente.NombreUsuario = comentario.Emisor;
+                comentarioExistente.Contenido = comentario.Comentario;
+
+                panelComentarios.Controls.Add(comentarioExistente);
+
+            }
 
         }
 

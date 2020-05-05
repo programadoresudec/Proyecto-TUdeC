@@ -40,6 +40,15 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         }
 
 
+        if (!inscripcion)
+        {
+
+            CajaComentarios.Visible = false;
+            etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
+
+
+        }
+
 
         if(inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
         {
@@ -63,7 +72,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
         etiquetaCorreo.Text = creador.CorreoInstitucional;
         etiquetaArea.Text = curso.Area;
-        etiquetaDescripcion.Text = curso.Descripcion;
+        campoDescripcion.Text = curso.Descripcion;
         imagenArea.Width = 32;
         imagenArea.Height = 32;
         imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area  + ".png";

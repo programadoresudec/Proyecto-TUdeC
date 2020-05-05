@@ -155,6 +155,7 @@ public class GestionExamen
 
                     }
 
+
                     foreach(int indice in indicesRespuestas)
                     {
 

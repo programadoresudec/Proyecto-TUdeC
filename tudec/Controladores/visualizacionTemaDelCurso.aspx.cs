@@ -13,7 +13,7 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
         ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
         etiquetaTitulo.Text = tema.Titulo;
-        etiquetaInformacion.Text = tema.Informacion;
+        cajaInformacion.Text = tema.Informacion;
 
 
         GestionExamen gestorExamenes = new GestionExamen();
@@ -23,26 +23,31 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
         Session[Constantes.EXAMEN_A_REALIZAR] = examen;
 
 
-        if(gestorExamenes.GetEjecucion(examen, (EUsuario)Session[Constantes.USUARIO_LOGEADO]) != null){
-
-            Label etiquetaExamenRealizado = new Label();
-            etiquetaExamenRealizado.Text = "Ya ha realizado el examen";
-
-            panelExamen.Controls.Add(etiquetaExamenRealizado);
-
-        }
-        else
+        if (examen != null)
         {
 
-            if (examen != null)
+            if (gestorExamenes.GetEjecucion(examen, (EUsuario)Session[Constantes.USUARIO_LOGEADO]) != null)
             {
 
-                ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
-                panelExamen.Controls.Add(examenARealizar);
+                Label etiquetaExamenRealizado = new Label();
+                etiquetaExamenRealizado.Text = "Ya ha realizado el examen";
+
+                panelExamen.Controls.Add(etiquetaExamenRealizado);
 
             }
+            else
+            {
+
+                if (examen != null)
+                {
+
+                    ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
+                    panelExamen.Controls.Add(examenARealizar);
+
+                }
 
 
+            }
         }
 
 
