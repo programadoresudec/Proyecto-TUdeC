@@ -52,7 +52,7 @@
         <tr>
             <td class="auto-style3" rowspan="9">&nbsp;</td>
             <td class="auto-style13">&nbsp;</td>
-            <td class="auto-style14"><asp:ImageButton ID="Reportar" ImageUrl="~/App_Themes/Estilos/img/Botón reportar.png" runat="server" Height="34px" Width="94px"/></td>
+            <td class="auto-style14">&nbsp;</td>
             <td class="auto-style5" rowspan="9">&nbsp;</td>
             <td style="padding-left: 200px" rowspan="9">&nbsp;         
                 
@@ -92,7 +92,12 @@
 
         <tr>
             <td class="auto-style1" colspan="2">
-                <img alt="Alternate Text" class="auto-style2" src="../../App_Themes/Estilos/img/Imagen%20Usuario%20por%20defecto.png" /></td>
+
+                <asp:Image ID="imagenUsuario" CssClass="card-img rounded-circle" style="width: 150px; height:150px" ImageUrl="~/App_Themes/Estilos/img/Imagen Usuario por defecto.png" runat="server" />
+
+                </td>
+            
+
         </tr>
 
         <tr>
@@ -107,7 +112,7 @@
 
         <tr>
             <td class="auto-style13"><p>Nombres: </p></td>
-            <td class="auto-style14" ><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /> </td>
+            <td ><asp:Label Text="Nombre" runat="server" ID="etiquetaNombre" /> </td>
         </tr>
 
         <tr>

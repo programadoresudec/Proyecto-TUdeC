@@ -35,6 +35,12 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         etiquetaApellido.Text = usuarioInformacion.PrimerApellido + " " + usuarioInformacion.SegundoApellido;
         etiquetaDescripcion.Text = usuarioInformacion.Descripcion;
 
+        if(usuarioInformacion.ImagenPerfil != null)
+        {
+            imagenUsuario.ImageUrl = usuarioInformacion.ImagenPerfil;
+
+        }
+        
         
         
         
