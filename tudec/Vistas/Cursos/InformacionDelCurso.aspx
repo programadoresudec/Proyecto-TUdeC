@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/InformacionDelCurso.aspx.cs" Inherits="Vistas_Cursos_InformacionDelCurso" %>
 
+<%@ Register Src="~/Controles/Comentarios/CajaComentarios.ascx" TagPrefix="uc1" TagName="CajaComentarios" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .auto-style1 {
@@ -137,7 +140,11 @@
         </tr>
 
         <tr>
-            <td colspan="3">&nbsp;</td>
+            <td colspan="3">
+
+                <uc1:CajaComentarios runat="server" ID="CajaComentarios" />
+
+            </td>
         </tr>
 
     </table>
