@@ -36,16 +36,11 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-md-auto">
-                <asp:DropDownList ID="DDL_Estado" runat="server" DataTextField="Estado" placeHolder="Estado" CssClass="form-control" DataSourceID="ODS_EstadosUsuario" DataValueField="Estado">
-                </asp:DropDownList>
-                <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
-            </div>
             <div class="table-responsive">
                 <table class="table">
                     <asp:GridView ID="GridViewGestionUsuario" runat="server" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" HorizontalAlign="Center" DataSourceID="ODS_DaoUsuario">
                         <Columns>
-                            <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="30%" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
+                            <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="30%" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:ImageField>
@@ -53,10 +48,7 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado">
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:BoundField>
+
                             <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha De Registro" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -68,15 +60,7 @@
                             <asp:TemplateField HeaderText="Bloquear">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="botonBloquearUsuario" runat="server" OnClick="botonBloquearUsuario_Click"
-                                        CssClass="fas fa-user-lock" Style="color: red"></asp:LinkButton>
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Ver Reportes">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="botonVerReportes" runat="server" OnClick="botonVerReportes_Click"
-                                        CssClass="btn btn-default"><i class="fa fa-eye" style="color:darkgreen"></i></asp:LinkButton>
+                                        CssClass="fa fa-eye"></asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -89,7 +73,7 @@
             <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 
             <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="btnShowPopup" PopupControlID="PanelModalBloqueo"
-                CancelControlID="btnCerrar"  BackgroundCssClass="modal fade" >
+                CancelControlID="btnCerrar" BackgroundCssClass="modal fade">
             </cc1:ModalPopupExtender>
 
             <asp:Panel ID="PanelModalBloqueo" runat="server">
@@ -97,7 +81,19 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="modal-header">
-                                <h4 class="modal-title" style="color:black">Bloquear Usuario</h4>
+                                <h4 class="modal-title" style="color: black">Bloquear Usuario</h4>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-4">
+                                    <asp:DropDownList ID="DDL_Motivo" runat="server" CssClass="form-control">
+                                    </asp:DropDownList>
+                                    <asp:ObjectDataSource ID="ODS_MotivoReporte" runat="server" SelectMethod="getMotivoReporte" TypeName="DaoReporte"></asp:ObjectDataSource>
+
+                                </div>
+                                <div class="col-6">
+                                </div>
+                                <div class="col-2">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <asp:Button ID="btnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />

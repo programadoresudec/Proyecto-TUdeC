@@ -7,9 +7,9 @@ using System.Web;
 /// <summary>
 /// Descripción breve de Base
 /// </summary>
-public class Base: DbContext
+public class Base : DbContext
 {
-    public Base(): base("cadena"){}
+    public Base() : base("cadena") { }
     public DbSet<EArea> TablaAreas { get; set; }
     public DbSet<ECurso> TablaCursos { get; set; }
     public DbSet<ESugerencia> TablaSugerencias { get; set; }
@@ -27,9 +27,11 @@ public class Base: DbContext
     public DbSet<EEjecucionExamen> TablaEjecucionExamen { get; set; }
     public DbSet<EMotivoReporte> TablaMotivos { get; set; }
     public DbSet<EComentario> TablaComentarios { get; set; }
+    public DbSet<EReporte> TablaReportes { get; set; }
+
 
     /// <summary>
-    /// 
+    /// Metodo que sirve para insertar cualquier entidad.
     /// </summary>
     /// <param name="entidad"></param>
     public static void Insertar(Object entidad)
@@ -41,7 +43,7 @@ public class Base: DbContext
 
     }
     /// <summary>
-    /// 
+    /// Metodo que sirve para modificar cualquier entidad.
     /// </summary>
     /// <param name="entidad"></param>
     public static void Actualizar(Object entidad)
@@ -53,16 +55,14 @@ public class Base: DbContext
 
     }
     /// <summary>
-    /// 
+    /// Metodo que sirve para eliminar cualquier entidad.
     /// </summary>
     /// <param name="entidad"></param>
     public static void Eliminar(Object entidad)
     {
-
         Base db = new Base();
         db.Entry(entidad).State = System.Data.Entity.EntityState.Deleted;
         db.SaveChanges();
-
     }
 
 }
