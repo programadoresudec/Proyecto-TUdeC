@@ -3,10 +3,6 @@
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 <%@ Register Src="~/Controles/Estrellas/EstrellasPuntuacion.ascx" TagPrefix="uc1" TagName="EstrellasPuntuacion" %>
 
-
-
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
 
@@ -93,7 +89,7 @@
         <tr>
             <td class="auto-style1" colspan="2">
 
-                <asp:Image ID="imagenUsuario" CssClass="card-img rounded-circle" style="width: 150px; height:150px" ImageUrl="~/App_Themes/Estilos/img/Imagen Usuario por defecto.png" runat="server" />
+                <asp:Image ID="imagenUsuario" CssClass="card-img rounded-circle" style="width: 150px; height:150px" runat="server" />
 
                 </td>
             
@@ -150,95 +146,9 @@
         <tr>
             <td class="auto-style13" ><asp:Label Text="CALIFICAR:" runat="server" /></td>
             <td class="auto-style14">
-
-                
                 <uc1:EstrellasPuntuacion runat="server" id="EstrellasPuntuacion" />
-
-                
-
             </td>
         </tr>
-
     </table>
-
-    <br />
-    <br />
-<%--       <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <!--Control información del usuario-->
-    <div class="conjunto_botn_imgperfil"> <!--Este div es para controlar un gran conjunto de elementos-->  
-
-        <div class="espacio_img_perfil">
-            
-        </div>
-
-
-        <div id="apodo_usuario">
-            <center>
-                <asp:Label ID="Label1" runat="server" Text="Apodo Usuario"></asp:Label>
-            </center>
-        </div>
-
-
-        <div id="nombre_usu">
-            <center>
-               
-            </center>
-        </div>
-
-        
-        <div id="apellidos_usu">
-            <center>
-                <asp:Label ID="Label3" runat="server" Text="Apellido Usuario"></asp:Label>
-            </center>
-        </div>
-
-        
-        <div id="texto_cal" class="auto-style1">
-            <center>
-
-                <asp:Label ID="Label4" runat="server" Text="Calificación:"></asp:Label>
-
-            </center>
-            
-        </div>
-
-
-        <div id="promedio_estrellas" class="auto-style2">
-           
-        </div>
-
-
-        <div id="descripcion">
-            <center>
-                <asp:Label ID="Label5" Text="Descripción del Usuario" runat="server" />
-            </center>
-        </div>
-
-
-        <div id="calificar_usu"><!--Para calificar por estrellas-->
-
-        </div>
-
-
-    </div>
-
-
-    <div class="cursos_creados"> <!--Este div es para los cursos creados por la persona-->  
-                    <h3>CURSOS ACTIVOS CREADOS POR ESTA PERSONA</h3>
-        <div class="auto-style3">
-        </div>
-    </div>--%>
-
-    <br />
-    <br />
-    <br />
-    <br />
-
 </asp:Content>
 

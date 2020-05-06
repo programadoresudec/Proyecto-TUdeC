@@ -42,10 +42,7 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
     protected void tablaTutores_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-
         GridViewRow fila = e.Row;
-
-
         if (fila.Cells.Count > 1)
         {
 
@@ -60,7 +57,6 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
 
             if (fila.RowIndex > -1)
             {
-
                 LinkButton hiperEnlaceUsuario = new LinkButton();
                 hiperEnlaceUsuario.Text = celdaHiperEnlaceUsuario.Text;
                 hiperEnlaceUsuario.Click += new EventHandler(VerInformacionUsuario);
@@ -75,39 +71,17 @@ public partial class Vistas_ListaDeResultadosDelBuscadorTutores : System.Web.UI.
                 }
                 else
                 {
-
                     calificacion = Int32.Parse(celdaCalificacion.Text);
-
                 }
-                
                 ASP.controles_estrellas_estrellas_ascx estrellasMostradas = new ASP.controles_estrellas_estrellas_ascx();
                 estrellasMostradas.Calificacion = calificacion;
                 celdaCalificacion.Controls.Add(estrellasMostradas);
                 celdaCalificacion.Enabled = false;
-
-                Buscador buscador = new Buscador();
-
                 string nombreUsuario = fila.Cells[1].Text;
-
-                EUsuario usuario = buscador.GetUsuario(nombreUsuario);
-
-                icono.ImageUrl = usuario.ImagenPerfil;
-
-                if (icono.ImageUrl == "")
-                {
-
-                    icono.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/Usuario.png";
-
-                }
-
+                icono.ImageUrl = new DaoUsuario().buscarImagen(nombreUsuario);
                 celdaPerfilUsuario.Controls.Add(icono);
-
             }
-
         }
-
-        
-
     }
 
     public void VerInformacionUsuario(object sender, EventArgs e)

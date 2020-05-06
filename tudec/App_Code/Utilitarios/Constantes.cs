@@ -31,6 +31,11 @@ public static class Constantes
     public const string ROL_USER = "usuario";
     public const string IMAGEN_DEFAULT = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
     public const string LOCATION_IMAGEN_PERFIL = "~/Recursos/Imagenes/PerfilUsuarios/";
+    public const string MOTIVO_1 = "Groserias";
+    public const string MOTIVO_2 = "Ofensas al usuario";
+    public const string MOTIVO_3 = "SPAM";
+    public const string MOTIVO_4 = "Contenido +18";
+    public const string MOTIVO_5 = "Ofender Grupo";
     /// <summary>
     /// Constantes De Session
     /// </summary>
@@ -41,5 +46,6 @@ public static class Constantes
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";
     public const string EXAMEN_A_REALIZAR = "examenARealizar";
+    public const string USUARIO_CON_REPORTES = "usuarioConReportes";
     #endregion
 }

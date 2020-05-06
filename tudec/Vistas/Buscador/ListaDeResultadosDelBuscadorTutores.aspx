@@ -27,7 +27,7 @@
                     <table class="auto-style3">
                         <tr>
                             <td class="auto-style2">
-                    <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Buscar tutor" Height="24px" Width="218px" OnTextChanged="cajaBuscador_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="cajaBuscador" runat="server" CssClass="form-control" placeHolder="Buscar tutor" Height="24px" Width="218px" OnTextChanged="cajaBuscador_TextChanged"></asp:TextBox>
                             </td>
                             <td>
                     <asp:ImageButton ID="botonBuscar" runat="server" ImageUrl="~/Recursos/Imagenes/Busqueda/Lupa.png" Width="30px" />
@@ -77,7 +77,7 @@
                     
                         <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound" AllowPaging="True">
                             <Columns>
-                                <asp:BoundField DataField="ImagenPerfil" HeaderText="Imagen de<br/>la cuenta" HtmlEncode="false" SortExpression="ImagenPerfil" >
+                                <asp:BoundField DataField="ImagenPerfil" HeaderText="Imagen de<br/>la cuenta" ControlStyle-CssClass="card-img rounded-circle" HtmlEncode="false" SortExpression="ImagenPerfil" >
                                 <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>
                                 <asp:BoundField DataField="NombreDeUsuario" HeaderText="Nombre del tutor" SortExpression="NombreDeUsuario" >

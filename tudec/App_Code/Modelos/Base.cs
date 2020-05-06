@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 /// <summary>
 /// Descripción breve de Base
@@ -28,8 +25,9 @@ public class Base : DbContext
     public DbSet<EMotivoReporte> TablaMotivos { get; set; }
     public DbSet<EComentario> TablaComentarios { get; set; }
     public DbSet<EReporte> TablaReportes { get; set; }
+    public DbSet<EMensaje> TablaMensajes { get; set; }
 
-
+    #region Metodo Insertar
     /// <summary>
     /// Metodo que sirve para insertar cualquier entidad.
     /// </summary>
@@ -41,7 +39,9 @@ public class Base : DbContext
         db.Entry(entidad).State = System.Data.Entity.EntityState.Added;
         db.SaveChanges();
 
-    }
+    } 
+    #endregion
+    #region Metodo Actualizar
     /// <summary>
     /// Metodo que sirve para modificar cualquier entidad.
     /// </summary>
@@ -53,7 +53,9 @@ public class Base : DbContext
         db.Entry(entidad).State = System.Data.Entity.EntityState.Modified;
         db.SaveChanges();
 
-    }
+    } 
+    #endregion
+    #region Metodo Eliminar
     /// <summary>
     /// Metodo que sirve para eliminar cualquier entidad.
     /// </summary>
@@ -63,6 +65,6 @@ public class Base : DbContext
         Base db = new Base();
         db.Entry(entidad).State = System.Data.Entity.EntityState.Deleted;
         db.SaveChanges();
-    }
-
+    } 
+    #endregion
 }

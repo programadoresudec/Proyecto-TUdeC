@@ -40,7 +40,8 @@
                 <table class="table">
                     <asp:GridView ID="GridViewGestionUsuario" runat="server" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" HorizontalAlign="Center" DataSourceID="ODS_DaoUsuario">
                         <Columns>
-                            <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="30%" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
+                            <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="70px" ControlStyle-Height="70px" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
+
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:ImageField>
@@ -53,14 +54,15 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
+                            <asp:BoundField DataField="FechaDesbloqueo" HeaderText="Fecha de desbloqueo" SortExpression="FechaDesbloqueo" />
                             <asp:BoundField DataField="NumCursos" HeaderText="# de Cursos" SortExpression="NumCursos">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:TemplateField HeaderText="Bloquear">
+                            <asp:TemplateField HeaderText="Ver Reportes">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="botonBloquearUsuario" runat="server" OnClick="botonBloquearUsuario_Click"
-                                        CssClass="fa fa-eye"></asp:LinkButton>
+                                    <asp:LinkButton ID="botonVerReportes" runat="server"
+                                        OnClick="botonVerReportes_Click" CssClass="fa fa-eye" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -73,11 +75,11 @@
             <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 
             <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="btnShowPopup" PopupControlID="PanelModalBloqueo"
-                CancelControlID="btnCerrar" BackgroundCssClass="modal fade">
+                CancelControlID="btnCerrar" BackgroundCssClass="modal fade modal-lg">
             </cc1:ModalPopupExtender>
 
             <asp:Panel ID="PanelModalBloqueo" runat="server">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-lg" role="dialog">
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="modal-header">
@@ -85,12 +87,33 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-4">
-                                    <asp:DropDownList ID="DDL_Motivo" runat="server" CssClass="form-control">
-                                    </asp:DropDownList>
-                                    <asp:ObjectDataSource ID="ODS_MotivoReporte" runat="server" SelectMethod="getMotivoReporte" TypeName="DaoReporte"></asp:ObjectDataSource>
-
                                 </div>
                                 <div class="col-6">
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false"
+                                        aria-controls="multiCollapseExample1"></a>
+                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                        <div class="card card-body">
+                                            <asp:TextBox runat="server" />
+                                        </div>
+                                    </div>
+                                    <asp:GridView ID="DataListReportes" OnItemCommand="DataListReportes_ItemCommand" runat="server" DataSourceID="ODS_reportes" AutoGenerateColumns="False" AllowPaging="True" PageSize="2">
+
+                                        <Columns>
+                                            <asp:TemplateField></asp:TemplateField>
+                                            <asp:BoundField DataField="NombreDeUsuarioDenunciante" HeaderText="NombreDeUsuarioDenunciante" SortExpression="NombreDeUsuarioDenunciante" />
+                                            <asp:BoundField DataField="MotivoDelReporte" HeaderText="MotivoDelReporte" SortExpression="MotivoDelReporte" />
+                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
+                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
+                                            <asp:BoundField DataField="Comentario" ControlStyle-CssClass="collapse multi-collapse" HeaderText="Comentario" SortExpression="Comentario" />
+                                            <asp:BoundField DataField="Mensaje" HeaderText="Mensaje" SortExpression="Mensaje" />
+                                        </Columns>
+
+                                    </asp:GridView>
+                                    <asp:ObjectDataSource ID="ODS_reportes" runat="server" SelectMethod="reportesDelUsuario" TypeName="DaoReporte">
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="nombreDeUsuarioDenunciado" SessionField="usuarioConReportes" Type="String" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
                                 </div>
                                 <div class="col-2">
                                 </div>

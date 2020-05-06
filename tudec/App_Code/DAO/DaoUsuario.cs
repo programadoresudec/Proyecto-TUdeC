@@ -28,10 +28,9 @@ public class DaoUsuario
 
     public List<EUsuario> gestionDeUsuarioAdmin()
     {
-
         return (from usuario in db.TablaUsuarios
                 join reporte in db.TablaReportes on usuario.NombreDeUsuario equals reporte.NombreDeUsuarioDenunciado
-                where usuario.Rol == Constantes.ROL_USER 
+                where usuario.Rol == Constantes.ROL_USER && usuario.NombreDeUsuario == reporte.NombreDeUsuarioDenunciado
                 select new
                 {
                     usuario
@@ -40,15 +39,10 @@ public class DaoUsuario
                     NombreDeUsuario = x.usuario.NombreDeUsuario,
                     ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
                     FechaCreacion = x.usuario.FechaCreacion,
+                    FechaDesbloqueo = x.usuario.FechaDesbloqueo,
                     NumCursos = obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
                 }).ToList();
     }
-
-    private bool HayReportexUsuario(string nombreDeUsuarioDenunciado)
-    {
-        return db.TablaReportes.Any(x => x.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado));
-    }
-
 
 
     public string buscarDescripcionUsuario(string nombreDeUsuario)
@@ -90,7 +84,7 @@ public class DaoUsuario
 
     public List<EPuntuacion> GetPuntuaciones()
     {
-
+       
         List<EPuntuacion> puntuaciones = db.TablaPuntuaciones.ToList();
 
         return puntuaciones;

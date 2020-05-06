@@ -34,16 +34,9 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         etiquetaNombre.Text = usuarioInformacion.PrimerNombre + " " + usuarioInformacion.SegundoNombre;
         etiquetaApellido.Text = usuarioInformacion.PrimerApellido + " " + usuarioInformacion.SegundoApellido;
         etiquetaDescripcion.Text = usuarioInformacion.Descripcion;
-
-        if(usuarioInformacion.ImagenPerfil != null)
-        {
-            imagenUsuario.ImageUrl = usuarioInformacion.ImagenPerfil;
-
-        }
-        
-        
-        
-        
+        imagenUsuario.ImageUrl = new DaoUsuario().buscarImagen(usuarioInformacion.NombreDeUsuario);
+        imagenUsuario.DataBind();
+     
         ASP.controles_estrellas_estrellas_ascx estrellas = new ASP.controles_estrellas_estrellas_ascx();
         panelEstrellas.Style.Add("pointer-events", "none");
         

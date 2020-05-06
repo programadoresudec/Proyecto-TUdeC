@@ -20,6 +20,7 @@ public class EReporte
     private List<string> imagenes;
     private DateTime fecha;
     private string comentario;
+    private string mensaje;
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -43,5 +44,6 @@ public class EReporte
     public DateTime Fecha { get => fecha; set => fecha = value; }
     [NotMapped]
     public string Comentario { get => comentario; set => comentario = value; }
-    
+    [NotMapped]
+    public string Mensaje { get => mensaje; set => mensaje = value; }
 }

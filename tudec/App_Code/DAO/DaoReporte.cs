@@ -22,23 +22,21 @@ public class DaoReporte
 
     public List<EReporte> reportesDelUsuario(string nombreDeUsuarioDenunciado)
     {
-
         return (from reporte in db.TablaReportes
                 join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id
-                where reporte.NombreDeUsuarioDenunciado == nombreDeUsuarioDenunciado
-                && comentario.Emisor == reporte.NombreDeUsuarioDenunciante
+                join message in db.TablaMensajes on reporte.IdMensaje equals message.Id
+                where reporte.NombreDeUsuarioDenunciado == nombreDeUsuarioDenunciado && message.NombreDeUsuarioEmisor == reporte.NombreDeUsuarioDenunciante
                 select new
                 {
                     comentario,
-                    reporte
+                    reporte,
+                    message
                 }).ToList().Select(x => new EReporte
                 {
                     Fecha = x.reporte.Fecha,
-                    IdComentario = x.comentario.Id,
                     MotivoDelReporte = x.reporte.MotivoDelReporte,
                     Comentario = x.comentario.Comentario,
-
-                                      
+                    Mensaje = x.message.Contenido
                 }).ToList();
     }
 }

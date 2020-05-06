@@ -10,6 +10,7 @@ public class EMotivoReporte
     #region attributes
     private string motivoDelReporte;
     #endregion
+
     #region properties
     [Key]
     [Column("motivo")]
