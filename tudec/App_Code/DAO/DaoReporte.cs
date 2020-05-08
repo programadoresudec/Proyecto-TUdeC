@@ -25,7 +25,8 @@ public class DaoReporte
         return (from reporte in db.TablaReportes
                 join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id
                 join message in db.TablaMensajes on reporte.IdMensaje equals message.Id
-                where reporte.NombreDeUsuarioDenunciado == nombreDeUsuarioDenunciado && message.NombreDeUsuarioEmisor == reporte.NombreDeUsuarioDenunciante
+                where reporte.NombreDeUsuarioDenunciado == nombreDeUsuarioDenunciado && 
+                message.NombreDeUsuarioEmisor == reporte.NombreDeUsuarioDenunciante
                 select new
                 {
                     comentario,

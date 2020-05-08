@@ -10,9 +10,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
+            BtnNotificaciones.Visible = true;
             acercaDeNosotros.Visible = false;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
             ImagenPerfil.Visible = true;    

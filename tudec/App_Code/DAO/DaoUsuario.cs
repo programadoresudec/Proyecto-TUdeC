@@ -33,6 +33,7 @@ public class DaoUsuario
                 where usuario.Rol == Constantes.ROL_USER && usuario.NombreDeUsuario == reporte.NombreDeUsuarioDenunciado
                 select new
                 {
+                    reporte,
                     usuario
                 }).ToList().Select(x => new EUsuario
                 {
@@ -40,10 +41,15 @@ public class DaoUsuario
                     ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
                     FechaCreacion = x.usuario.FechaCreacion,
                     FechaDesbloqueo = x.usuario.FechaDesbloqueo,
-                    NumCursos = obtenerNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario)
-                }).ToList();
+                    NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
+                    NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
+                    PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo
+                }).OrderBy(x => x.PuntuacionDeBloqueo).ToList();
     }
-
+    private int getNumeroDeReportesxUsuario(string nombreDeUsuario)
+    {
+        return db.TablaReportes.Where(x => x.NombreDeUsuarioDenunciado == nombreDeUsuario).Count();
+    }
 
     public string buscarDescripcionUsuario(string nombreDeUsuario)
     {
@@ -61,7 +67,7 @@ public class DaoUsuario
         Base.Actualizar(usuario);
     }
 
-    public int obtenerNumeroDeCursosxUsuario(string user)
+    public int getNumeroDeCursosxUsuario(string user)
     {
         return db.TablaCursos.Where(x => x.Creador == user).Count();
     }
@@ -84,7 +90,7 @@ public class DaoUsuario
 
     public List<EPuntuacion> GetPuntuaciones()
     {
-       
+
         List<EPuntuacion> puntuaciones = db.TablaPuntuaciones.ToList();
 
         return puntuaciones;
@@ -102,9 +108,7 @@ public class DaoUsuario
     {
 
         EPuntuacion puntuacion = db.TablaPuntuaciones.Where(x => x.Emisor.Equals(emisor.NombreDeUsuario) && x.Receptor.Equals(receptor.NombreDeUsuario)).FirstOrDefault();
-
         return puntuacion;
-
     }
 
     public List<EPuntuacion> GetPuntuacionesUsuario(EUsuario usuario)
@@ -128,22 +132,13 @@ public class DaoUsuario
 
     public List<EUsuario> GetUsuariosExamen(ETema tema)
     {
-
         EExamen examen = db.TablaExamenes.Where(x => x.IdTema == tema.Id).First();
-
         List<EEjecucionExamen> ejecuciones = db.TablaEjecucionExamen.Where(x => x.IdExamen == examen.Id).ToList();
-
         List<EUsuario> usuarios = new List<EUsuario>();
-
         foreach (EEjecucionExamen ejecucion in ejecuciones)
         {
-
             usuarios.Add(GetUsuario(ejecucion.NombreUsuario));
-
         }
-
         return usuarios;
-
     }
-
 }

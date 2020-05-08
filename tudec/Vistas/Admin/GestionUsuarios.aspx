@@ -54,7 +54,14 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FechaDesbloqueo" HeaderText="Fecha de desbloqueo" SortExpression="FechaDesbloqueo" />
+                            <asp:BoundField DataField="FechaDesbloqueo" HeaderText="Fecha de desbloqueo" SortExpression="FechaDesbloqueo">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                             <asp:BoundField DataField="NumeroDeReportes" HeaderText="# de Reportes" SortExpression="NumeroDeReportes">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="NumCursos" HeaderText="# de Cursos" SortExpression="NumCursos">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -83,40 +90,233 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="modal-header">
-                                <h4 class="modal-title" style="color: black">Bloquear Usuario</h4>
+                                <h4 class="modal-title" style="color: black">Reportes de<label id="LB_NombreDelReportado"></label></h4>
                             </div>
                             <div class="row justify-content-center">
-                                <div class="col-4">
-                                </div>
-                                <div class="col-6">
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false"
-                                        aria-controls="multiCollapseExample1"></a>
-                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                        <div class="card card-body">
-                                            <asp:TextBox runat="server" />
+                                <asp:ListView ID="ListView1" runat="server" DataSourceID="ODS_ReporteUsuario">
+                                    <AlternatingItemTemplate>
+                                        <td runat="server" style="">Id:
+                                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciante:
+                                            <asp:Label ID="NombreDeUsuarioDenuncianteLabel" runat="server" Text='<%# Eval("NombreDeUsuarioDenunciante") %>' />
+                                            <br />
+                                           
+                                            MotivoDelReporte:
+                                            <asp:Label ID="MotivoDelReporteLabel" runat="server" Text='<%# Eval("MotivoDelReporte") %>' />
+                                            <br />
+                                            IdComentario:
+                                            <asp:Label ID="IdComentarioLabel" runat="server" Text='<%# Eval("IdComentario") %>' />
+                                            <br />
+                                            IdMensaje:
+                                            <asp:Label ID="IdMensajeLabel" runat="server" Text='<%# Eval("IdMensaje") %>' />
+                                            <br />
+                                            Descripcion:
+                                            <asp:Label ID="DescripcionLabel" runat="server" Text='<%# Eval("Descripcion") %>' />
+                                            <br />
+                                            <asp:CheckBox ID="EstadoCheckBox" runat="server" Checked='<%# Eval("Estado") %>' Enabled="false" Text="Estado" />
+                                            <br />
+                                            Imagenes:
+                                            <asp:Label ID="ImagenesLabel" runat="server" Text='<%# Eval("Imagenes") %>' />
+                                            <br />
+                                            Fecha:
+                                            <asp:Label ID="FechaLabel" runat="server" Text='<%# Eval("Fecha") %>' />
+                                            <br />
+                                            Comentario:
+                                            <asp:Label ID="ComentarioLabel" runat="server" Text='<%# Eval("Comentario") %>' />
+                                            <br />
+                                            Mensaje:
+                                            <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
+                                            <br />
+                                        </td>
+                                    </AlternatingItemTemplate>
+                                    <EditItemTemplate>
+                                        <td runat="server" style="">Id:
+                                            <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciante:
+                                            <asp:TextBox ID="NombreDeUsuarioDenuncianteTextBox" runat="server" Text='<%# Bind("NombreDeUsuarioDenunciante") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciado:
+                                            <asp:TextBox ID="NombreDeUsuarioDenunciadoTextBox" runat="server" Text='<%# Bind("NombreDeUsuarioDenunciado") %>' />
+                                            <br />
+                                            MotivoDelReporte:
+                                            <asp:TextBox ID="MotivoDelReporteTextBox" runat="server" Text='<%# Bind("MotivoDelReporte") %>' />
+                                            <br />
+                                            IdComentario:
+                                            <asp:TextBox ID="IdComentarioTextBox" runat="server" Text='<%# Bind("IdComentario") %>' />
+                                            <br />
+                                            IdMensaje:
+                                            <asp:TextBox ID="IdMensajeTextBox" runat="server" Text='<%# Bind("IdMensaje") %>' />
+                                            <br />
+                                            Descripcion:
+                                            <asp:TextBox ID="DescripcionTextBox" runat="server" Text='<%# Bind("Descripcion") %>' />
+                                            <br />
+                                            <asp:CheckBox ID="EstadoCheckBox" runat="server" Checked='<%# Bind("Estado") %>' Text="Estado" />
+                                            <br />
+                                            Imagenes:
+                                            <asp:TextBox ID="ImagenesTextBox" runat="server" Text='<%# Bind("Imagenes") %>' />
+                                            <br />
+                                            Fecha:
+                                            <asp:TextBox ID="FechaTextBox" runat="server" Text='<%# Bind("Fecha") %>' />
+                                            <br />
+                                            Comentario:
+                                            <asp:TextBox ID="ComentarioTextBox" runat="server" Text='<%# Bind("Comentario") %>' />
+                                            <br />
+                                            Mensaje:
+                                            <asp:TextBox ID="MensajeTextBox" runat="server" Text='<%# Bind("Mensaje") %>' />
+                                            <br />
+                                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                                        </td>
+                                    </EditItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <table style="">
+                                            <tr>
+                                                <td>No data was returned.</td>
+                                            </tr>
+                                        </table>
+                                    </EmptyDataTemplate>
+                                    <InsertItemTemplate>
+                                        <td runat="server" style="">Id:
+                                            <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciante:
+                                            <asp:TextBox ID="NombreDeUsuarioDenuncianteTextBox" runat="server" Text='<%# Bind("NombreDeUsuarioDenunciante") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciado:
+                                            <asp:TextBox ID="NombreDeUsuarioDenunciadoTextBox" runat="server" Text='<%# Bind("NombreDeUsuarioDenunciado") %>' />
+                                            <br />
+                                            MotivoDelReporte:
+                                            <asp:TextBox ID="MotivoDelReporteTextBox" runat="server" Text='<%# Bind("MotivoDelReporte") %>' />
+                                            <br />
+                                            IdComentario:
+                                            <asp:TextBox ID="IdComentarioTextBox" runat="server" Text='<%# Bind("IdComentario") %>' />
+                                            <br />
+                                            IdMensaje:
+                                            <asp:TextBox ID="IdMensajeTextBox" runat="server" Text='<%# Bind("IdMensaje") %>' />
+                                            <br />
+                                            Descripcion:
+                                            <asp:TextBox ID="DescripcionTextBox" runat="server" Text='<%# Bind("Descripcion") %>' />
+                                            <br />
+                                            <asp:CheckBox ID="EstadoCheckBox" runat="server" Checked='<%# Bind("Estado") %>' Text="Estado" />
+                                            <br />
+                                            Imagenes:
+                                            <asp:TextBox ID="ImagenesTextBox" runat="server" Text='<%# Bind("Imagenes") %>' />
+                                            <br />
+                                            Fecha:
+                                            <asp:TextBox ID="FechaTextBox" runat="server" Text='<%# Bind("Fecha") %>' />
+                                            <br />
+                                            Comentario:
+                                            <asp:TextBox ID="ComentarioTextBox" runat="server" Text='<%# Bind("Comentario") %>' />
+                                            <br />
+                                            Mensaje:
+                                            <asp:TextBox ID="MensajeTextBox" runat="server" Text='<%# Bind("Mensaje") %>' />
+                                            <br />
+                                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+                                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+                                        </td>
+                                    </InsertItemTemplate>
+                                    <ItemTemplate>
+                                        <td runat="server" style="">Id:
+                                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciante:
+                                            <asp:Label ID="NombreDeUsuarioDenuncianteLabel" runat="server" Text='<%# Eval("NombreDeUsuarioDenunciante") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciado:
+                                            <asp:Label ID="NombreDeUsuarioDenunciadoLabel" runat="server" Text='<%# Eval("NombreDeUsuarioDenunciado") %>' />
+                                            <br />
+                                            MotivoDelReporte:
+                                            <asp:Label ID="MotivoDelReporteLabel" runat="server" Text='<%# Eval("MotivoDelReporte") %>' />
+                                            <br />
+                                            IdComentario:
+                                            <asp:Label ID="IdComentarioLabel" runat="server" Text='<%# Eval("IdComentario") %>' />
+                                            <br />
+                                            IdMensaje:
+                                            <asp:Label ID="IdMensajeLabel" runat="server" Text='<%# Eval("IdMensaje") %>' />
+                                            <br />
+                                            Descripcion:
+                                            <asp:Label ID="DescripcionLabel" runat="server" Text='<%# Eval("Descripcion") %>' />
+                                            <br />
+                                            <asp:CheckBox ID="EstadoCheckBox" runat="server" Checked='<%# Eval("Estado") %>' Enabled="false" Text="Estado" />
+                                            <br />
+                                            Imagenes:
+                                            <asp:Label ID="ImagenesLabel" runat="server" Text='<%# Eval("Imagenes") %>' />
+                                            <br />
+                                            Fecha:
+                                            <asp:Label ID="FechaLabel" runat="server" Text='<%# Eval("Fecha") %>' />
+                                            <br />
+                                            Comentario:
+                                            <asp:Label ID="ComentarioLabel" runat="server" Text='<%# Eval("Comentario") %>' />
+                                            <br />
+                                            Mensaje:
+                                            <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
+                                            <br />
+                                        </td>
+                                    </ItemTemplate>
+                                    <LayoutTemplate>
+                                        <table runat="server" border="0" style="">
+                                            <tr id="itemPlaceholderContainer" runat="server">
+                                                <td id="itemPlaceholder" runat="server"></td>
+                                            </tr>
+                                        </table>
+                                        <div style="">
+                                            <asp:DataPager ID="DataPager1" runat="server">
+                                                <Fields>
+                                                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                                    <asp:NumericPagerField />
+                                                    <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
+                                                </Fields>
+                                            </asp:DataPager>
                                         </div>
-                                    </div>
-                                    <asp:GridView ID="DataListReportes" OnItemCommand="DataListReportes_ItemCommand" runat="server" DataSourceID="ODS_reportes" AutoGenerateColumns="False" AllowPaging="True" PageSize="2">
+                                    </LayoutTemplate>
+                                    <SelectedItemTemplate>
+                                        <td runat="server" style="">Id:
+                                            <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciante:
+                                            <asp:Label ID="NombreDeUsuarioDenuncianteLabel" runat="server" Text='<%# Eval("NombreDeUsuarioDenunciante") %>' />
+                                            <br />
+                                            NombreDeUsuarioDenunciado:
+                                            <asp:Label ID="NombreDeUsuarioDenunciadoLabel" runat="server" Text='<%# Eval("NombreDeUsuarioDenunciado") %>' />
+                                            <br />
+                                            MotivoDelReporte:
+                                            <asp:Label ID="MotivoDelReporteLabel" runat="server" Text='<%# Eval("MotivoDelReporte") %>' />
+                                            <br />
+                                            IdComentario:
+                                            <asp:Label ID="IdComentarioLabel" runat="server" Text='<%# Eval("IdComentario") %>' />
+                                            <br />
+                                            IdMensaje:
+                                            <asp:Label ID="IdMensajeLabel" runat="server" Text='<%# Eval("IdMensaje") %>' />
+                                            <br />
+                                            Descripcion:
+                                            <asp:Label ID="DescripcionLabel" runat="server" Text='<%# Eval("Descripcion") %>' />
+                                            <br />
+                                            <asp:CheckBox ID="EstadoCheckBox" runat="server" Checked='<%# Eval("Estado") %>' Enabled="false" Text="Estado" />
+                                            <br />
+                                            Imagenes:
+                                            <asp:Label ID="ImagenesLabel" runat="server" Text='<%# Eval("Imagenes") %>' />
+                                            <br />
+                                            Fecha:
+                                            <asp:Label ID="FechaLabel" runat="server" Text='<%# Eval("Fecha") %>' />
+                                            <br />
+                                            Comentario:
+                                            <asp:Label ID="ComentarioLabel" runat="server" Text='<%# Eval("Comentario") %>' />
+                                            <br />
+                                            Mensaje:
+                                            <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
+                                            <br />
+                                        </td>
+                                    </SelectedItemTemplate>
+                                </asp:ListView>
 
-                                        <Columns>
-                                            <asp:TemplateField></asp:TemplateField>
-                                            <asp:BoundField DataField="NombreDeUsuarioDenunciante" HeaderText="NombreDeUsuarioDenunciante" SortExpression="NombreDeUsuarioDenunciante" />
-                                            <asp:BoundField DataField="MotivoDelReporte" HeaderText="MotivoDelReporte" SortExpression="MotivoDelReporte" />
-                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-                                            <asp:BoundField DataField="Comentario" ControlStyle-CssClass="collapse multi-collapse" HeaderText="Comentario" SortExpression="Comentario" />
-                                            <asp:BoundField DataField="Mensaje" HeaderText="Mensaje" SortExpression="Mensaje" />
-                                        </Columns>
+                                <asp:ObjectDataSource ID="ODS_ReporteUsuario" runat="server" SelectMethod="reportesDelUsuario" TypeName="DaoReporte">
+                                    <SelectParameters>
+                                        <asp:SessionParameter Name="nombreDeUsuarioDenunciado" SessionField="usuarioConReportes" Type="String" />
+                                    </SelectParameters>
+                                </asp:ObjectDataSource>
 
-                                    </asp:GridView>
-                                    <asp:ObjectDataSource ID="ODS_reportes" runat="server" SelectMethod="reportesDelUsuario" TypeName="DaoReporte">
-                                        <SelectParameters>
-                                            <asp:SessionParameter Name="nombreDeUsuarioDenunciado" SessionField="usuarioConReportes" Type="String" />
-                                        </SelectParameters>
-                                    </asp:ObjectDataSource>
-                                </div>
-                                <div class="col-2">
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <asp:Button ID="btnActualizar" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="btnActualizar_Click" />

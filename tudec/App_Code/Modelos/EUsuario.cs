@@ -34,6 +34,8 @@ public class EUsuario
     private Nullable<DateTime> lastModify;
     private int numCursos;
     private string descripcion;
+    private int? puntuacionDeBloqueo;
+    private int numeroDeReportes;
     #endregion
 
     #region properties
@@ -72,11 +74,13 @@ public class EUsuario
     public string Session { get => session; set => session = value; }
     [Column("ultima_modificacion")]
     public DateTime? LastModify { get => lastModify; set => lastModify = value; }
-    [NotMapped]
-    public int NumCursos { get => numCursos; set => numCursos = value; }
     [Column("descripcion")]
     public string Descripcion { get => descripcion; set => descripcion = value; }
-    
-
+    [Column("puntuacion_bloqueo")]
+    public int? PuntuacionDeBloqueo { get => puntuacionDeBloqueo; set => puntuacionDeBloqueo = value; }
+    [NotMapped]
+    public int NumCursos { get => numCursos; set => numCursos = value; }
+    [NotMapped]
+    public int NumeroDeReportes { get => numeroDeReportes; set => numeroDeReportes = value; }
     #endregion
 }

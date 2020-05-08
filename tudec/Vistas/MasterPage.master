@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <br />
                         <div class="mb-auto input-group">
-                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="250px" OnTextChanged="cajaBuscador_TextChanged">
+                            <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="250px" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
@@ -70,6 +70,8 @@
                                 FirstRowSelected="false"
                                 ID="cajaBuscador_AutoCompleteExtender"
                                 runat="server"
+                                ServicePath="MasterPage.master"
+                                UseContextKey="true"
                                 ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
@@ -120,9 +122,15 @@
                                 <asp:HyperLink CssClass="dropdown-item" ID="CursosCreados" runat="server"
                                     NavigateUrl="~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx" Visible="false">Cursos Creados 
                                 </asp:HyperLink>
+
                             </div>
                         </li>
-
+                        <li class="nav-item mr-lg-3 mb-lg-0 mb-2 mt-4">
+                            <asp:LinkButton runat="server" CssClass="btn btn-outline-light fa fa-bell fa-2x rounded-circle" Width="68" Height="51" ID="BtnNotificaciones"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">
+                            <asp:label CssClass="fas fa-sms fa-xs"  Visible="true" runat="server" />
+                            </asp:LinkButton>
+                        </li>
                         <li class="nav-item dropdown dropdown mr-lg-2 mb-lg-2 mb-2 mt-3">
                             <asp:Image ID="ImagenPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 CssClass="btn btn-outline-light img-user-avatar rounded-circle" Width="80px" Height="70px" runat="server" Visible="false" />
@@ -198,8 +206,8 @@
             </div>
         </div>
         <!-- //footer -->
-        
-         <!-- //Script Para desplegar o hacer animación para devolver al sitio inicial de la vista-->
+
+        <!-- //Script Para desplegar o hacer animación para devolver al sitio inicial de la vista-->
         <script>
             $(document).ready(function () {
                 $().UItoTop({

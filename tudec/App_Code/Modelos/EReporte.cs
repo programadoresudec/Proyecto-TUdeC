@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("reportes", Schema = "reportes")]
 public class EReporte
 {
+    #region attributes
     private int id;
     private string nombreDeUsuarioDenunciante;
     private string nombreDeUsuarioDenunciado;
@@ -20,7 +21,10 @@ public class EReporte
     private List<string> imagenes;
     private DateTime fecha;
     private string comentario;
-    private string mensaje;
+    private string mensaje; 
+    #endregion
+
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -45,5 +49,6 @@ public class EReporte
     [NotMapped]
     public string Comentario { get => comentario; set => comentario = value; }
     [NotMapped]
-    public string Mensaje { get => mensaje; set => mensaje = value; }
+    public string Mensaje { get => mensaje; set => mensaje = value; } 
+    #endregion
 }

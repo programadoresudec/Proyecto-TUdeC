@@ -20,11 +20,8 @@ public class Buscador
 
         EArea areaPorDefecto = new EArea();
         areaPorDefecto.Area = "Seleccionar";
-
         areas.Insert(0, areaPorDefecto);
-
         return areas;
-
     }
 
     public List<ECurso> GetCursos(string curso, string tutor, string area, int puntuacion)
@@ -109,25 +106,26 @@ public class Buscador
 
     public List<string> GetTutoresSrc(string nombre)
     {
-
         List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&
         x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
-
         List<string> nombresTutores = new List<string>();
-
         foreach (EUsuario tutor in tutores)
         {
-
             nombresTutores.Add(tutor.NombreDeUsuario);
-
         }
-
         return nombresTutores;
-
     }
 
-    public EUsuario GetUsuario(string nombreUsuario)
+
+    public List<string> GetUsuariosReportados(string nombre)
     {
-        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).FirstOrDefault();
+        List<EUsuario> usuariosReportados = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&
+        x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
+        List<string> nombresUsuario = new List<string>();
+        foreach (EUsuario usuario in usuariosReportados)
+        {
+            nombresUsuario.Add(usuario.NombreDeUsuario);
+        }
+        return nombresUsuario;
     }
 }

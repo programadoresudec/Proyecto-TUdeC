@@ -9,32 +9,36 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
         EUsuario usuarioInformacion = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO];
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
         DaoUsuario gestorUsuario = new DaoUsuario();
-        EPuntuacion puntuacion;
+        EPuntuacion puntuacion = new EPuntuacion();
+    
 
         if (usuario == null || usuario.NombreDeUsuario.Equals(usuarioInformacion.NombreDeUsuario))
         {
-
             EstrellasPuntuacion.Visible = false;
-
         }
         else
         {
-
             puntuacion = gestorUsuario.GetPuntuacion(usuario, usuarioInformacion);
-            EstrellasPuntuacion.Calificacion = puntuacion.Puntuacion;
-
+            if (puntuacion != null)
+            {
+                EstrellasPuntuacion.Calificacion = puntuacion.Puntuacion;
+            }
+            else
+            {
+                EstrellasPuntuacion.Calificacion = 0;
+            }
         }
 
         etiquetaNombreUsuario.Text = usuarioInformacion.NombreDeUsuario;
         etiquetaNombre.Text = usuarioInformacion.PrimerNombre + " " + usuarioInformacion.SegundoNombre;
         etiquetaApellido.Text = usuarioInformacion.PrimerApellido + " " + usuarioInformacion.SegundoApellido;
         etiquetaDescripcion.Text = usuarioInformacion.Descripcion;
-        imagenUsuario.ImageUrl = new DaoUsuario().buscarImagen(usuarioInformacion.NombreDeUsuario);
+        imagenUsuario.ImageUrl = gestorUsuario.buscarImagen(usuarioInformacion.NombreDeUsuario);
         imagenUsuario.DataBind();
      
         ASP.controles_estrellas_estrellas_ascx estrellas = new ASP.controles_estrellas_estrellas_ascx();

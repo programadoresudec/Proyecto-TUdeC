@@ -70,8 +70,8 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
             File.Delete(Server.MapPath(urlImagenPerfilExistente));
         }
         string saveLocation = Constantes.LOCATION_IMAGEN_PERFIL + usuario.NombreDeUsuario + extension;
-        MemoryStream str = new MemoryStream(subirImagen.FileBytes);
-        System.Drawing.Image imagenDePerfilFileUpload = System.Drawing.Image.FromStream(str);
+        MemoryStream datosImagen = new MemoryStream(subirImagen.FileBytes);
+        System.Drawing.Image imagenDePerfilFileUpload = System.Drawing.Image.FromStream(datosImagen);
         if (imagenDePerfilFileUpload.Width >= 200 && imagenDePerfilFileUpload.Height >= 200)
         {
             subirImagen.PostedFile.SaveAs(Server.MapPath(saveLocation));
