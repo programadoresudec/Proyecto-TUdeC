@@ -1,7 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ComentarioExistente.ascx.cs" Inherits="Controles_Comentarios_ComentarioExistente" %>
+<%@ Register Src="~/Controles/Comentarios/NuevoComentario.ascx" TagPrefix="uc1" TagName="NuevoComentario" %>
+
+
+
 
 <div class="row justify-content-center">
-
 
     <table style="width: 90%">
 
@@ -23,8 +26,25 @@
             </td>
 
         </tr>
+        <tr>
+
+            <td>
+            <asp:Panel ID="panelOpcion" runat="server"></asp:Panel>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+
+                <asp:Panel ID="panelHilo" runat="server"></asp:Panel>
+
+            </td>
+
+        </tr>
 
     </table>
+
 
 </div>
     

@@ -25,6 +25,7 @@ public partial class Controles_CajaComentarios : System.Web.UI.UserControl
             {
 
                 ASP.controles_comentarios_comentarioexistente_ascx comentarioExistente = new ASP.controles_comentarios_comentarioexistente_ascx();
+                comentarioExistente.IdComentario = comentario.Id;
                 comentarioExistente.NombreUsuario = comentario.Emisor;
                 comentarioExistente.Contenido = comentario.Comentario;
 

@@ -2,6 +2,8 @@
 
 
 
+
+
 <div class="row justify-content-center">
 
 
@@ -29,8 +31,20 @@
 
         </tr>
         <tr>
+            
+            <td>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
-            <td><asp:Button style="width: 100%" ID="botonEnvio" runat="server" Text="Enviar" OnClick="botonEnvio_Click" /></td>
+                    <ContentTemplate>
+
+                        <asp:Button style="width: 100%" ID="botonEnvio" runat="server" Text="Enviar" OnClick="botonEnvio_Click" />
+
+                    </ContentTemplate>
+                
+                    </asp:UpdatePanel>
+                    
+                    </td>
+            
 
         </tr>
 
@@ -39,4 +53,6 @@
 
    
 </div>
+
+    
 

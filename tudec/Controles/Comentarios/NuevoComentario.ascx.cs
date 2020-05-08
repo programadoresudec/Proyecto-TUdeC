@@ -7,8 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class Controles_Comentarios_NuevoComentario : System.Web.UI.UserControl
 {
+    private int idComentario;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
 
     }
 
@@ -28,7 +31,20 @@ public partial class Controles_Comentarios_NuevoComentario : System.Web.UI.UserC
             EComentario comentario = new EComentario();
 
             comentario.Emisor = usuario.NombreDeUsuario;
-            comentario.IdCurso = curso.Id;
+
+            if(idComentario != 0)
+            {
+
+                comentario.IdComentario = idComentario;
+
+            }
+            else
+            {
+
+                comentario.IdCurso = curso.Id;
+
+            }
+
             comentario.Comentario = cajaComentarios.Text;
             comentario.FechaEnvio = System.DateTime.Now;
 
@@ -48,7 +64,22 @@ public partial class Controles_Comentarios_NuevoComentario : System.Web.UI.UserC
             EComentario comentario = new EComentario();
 
             comentario.Emisor = usuario.NombreDeUsuario;
-            comentario.IdTema = tema.Id;
+
+
+            if (idComentario != 0)
+            {
+
+                comentario.IdComentario = idComentario;
+
+            }
+            else
+            {
+
+                comentario.IdTema = tema.Id;
+
+            }
+
+            
             comentario.Comentario = cajaComentarios.Text;
             comentario.FechaEnvio = System.DateTime.Now;
 
