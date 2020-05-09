@@ -14,7 +14,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
-            BtnNotificaciones.Visible = true;
+            BtnNotificaciones.Visible = true;  
             acercaDeNosotros.Visible = false;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
             ImagenPerfil.Visible = true;    
@@ -23,7 +23,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             iniciarSesion.Visible = false;
             registrarse.Visible = false;
             LinkBtnCerrarSesion.Visible = true;
-            if (usuario.Rol.Equals(Constantes.ROL_USER))
+            if (usuario.Rol.Equals(Constantes .ROL_USER))
             {
                 
                 misCursos.Visible = true;
@@ -37,6 +37,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }
+
+
         }
     }
 
@@ -71,4 +73,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
         List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
         return nombres;
     }
+
 }

@@ -124,13 +124,21 @@
                                 </asp:HyperLink>
 
                             </div>
+
                         </li>
+                        
+                        <!--BOTON NOTIFICACIONES-->
                         <li class="nav-item mr-lg-3 mb-lg-0 mb-2 mt-4">
+
                             <asp:LinkButton runat="server" CssClass="btn btn-outline-light fa fa-bell fa-2x rounded-circle" Width="68" Height="51" ID="BtnNotificaciones"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">
+
                             <asp:label CssClass="fas fa-sms fa-xs"  Visible="true" runat="server" />
+
                             </asp:LinkButton>
+
                         </li>
+
                         <li class="nav-item dropdown dropdown mr-lg-2 mb-lg-2 mb-2 mt-3">
                             <asp:Image ID="ImagenPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 CssClass="btn btn-outline-light img-user-avatar rounded-circle" Width="80px" Height="70px" runat="server" Visible="false" />
