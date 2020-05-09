@@ -21,7 +21,7 @@ public class EComentario
     private Nullable<int> idComentario;
     private string comentario;
     private DateTime fechaEnvio;
-    private string imagenes;
+    private List<string> imagenes;
 
     [Key]
     [Column("id")]
@@ -39,5 +39,5 @@ public class EComentario
     [Column("fecha_envio")]
     public DateTime FechaEnvio { get => fechaEnvio; set => fechaEnvio = value; }
     [Column("imagenes")]
-    public string Imagenes { get => imagenes; set => imagenes = value; }
+    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
 }

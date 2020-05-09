@@ -8,7 +8,6 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
-
         GridViewGestionUsuario.DataBind();
         if (usuario == null)
         {
@@ -26,23 +25,21 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
         LinkButton btnDetalles = sender as LinkButton;
         GridViewRow gridV = (GridViewRow)btnDetalles.NamingContainer;
         Session[Constantes.USUARIO_CON_REPORTES] = gridV.Cells[1].Text;
-        Label reportado = (Label)PanelModalBloqueo.FindControl("LB_NombreDelReportado");
-      
-        this.ModalBloquearUsuario.Show();
-    }
-
-    protected void botonBloquearUsuario_Click(object sender, EventArgs e)
-    {
-
+        Response.Redirect("~/Vistas/Admin/ReportesPorUsuario.aspx");
     }
 
     protected void btnActualizar_Click(object sender, EventArgs e)
     {
-
+        new DaoUsuario().bloquearUsuariosConCuenta();
     }
     [WebMethod]
     public static List<string> GetNombreUsuario(string prefixText)
     {
         return new Buscador().GetUsuariosReportados(prefixText);
+    }
+
+    protected void btnCerrar_Click(object sender, EventArgs e)
+    {
+        ModalBloquearUsuario.Hide();
     }
 }

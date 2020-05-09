@@ -16,14 +16,13 @@ public class DaoUsuario
     }
     public List<ECurso> GetCursos(EUsuario eUsuario)
     {
-        List<ECurso> cursos = db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.NombreDeUsuario)).ToList();
-        return cursos;
+        return db.TablaCursos.Where(x => x.Creador.Equals(eUsuario.NombreDeUsuario)).ToList();
+
     }
 
     public EUsuario GetUsuario(string nombreUsuario)
     {
-        EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
-        return usuario;
+        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
     }
 
     public List<EUsuario> gestionDeUsuarioAdmin()
@@ -43,9 +42,20 @@ public class DaoUsuario
                     FechaDesbloqueo = x.usuario.FechaDesbloqueo,
                     NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
                     NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
-                    PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo
+                    PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo == null ? 0 : x.usuario.PuntuacionDeBloqueo,
                 }).OrderBy(x => x.PuntuacionDeBloqueo).ToList();
     }
+
+    public void bloquearUsuariosConCuenta()
+    {
+        List<EUsuario> usuariosConReportes = db.TablaUsuarios.Where(x => x.PuntuacionDeBloqueo >= Constantes.PUNTUACION_MAXIMA_PARA_SER_REPORTADO).ToList();
+        if (usuariosConReportes.Count > 0)
+        {
+            usuariosConReportes.ForEach(x => { x.Estado = Constantes.ESTADO_BLOQUEADO; });
+            Base.Actualizar(usuariosConReportes);
+        }
+    }
+
     private int getNumeroDeReportesxUsuario(string nombreDeUsuario)
     {
         return db.TablaReportes.Where(x => x.NombreDeUsuarioDenunciado == nombreDeUsuario).Count();

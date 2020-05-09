@@ -18,10 +18,11 @@ public class EReporte
     private int? idMensaje;
     private string descripcion;
     private bool estado;
-    private List<string> imagenes;
     private DateTime fecha;
     private string comentario;
-    private string mensaje; 
+    private List<string> imagenesComentario;
+    private string mensaje;
+    private List<string> imagenesMensaje;
     #endregion
 
     #region properties
@@ -42,13 +43,16 @@ public class EReporte
     public string Descripcion { get => descripcion; set => descripcion = value; }
     [Column("estado")]
     public bool Estado { get => estado; set => estado = value; }
-    [Column("imagenes")]
-    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
     [Column("fecha")]
     public DateTime Fecha { get => fecha; set => fecha = value; }
     [NotMapped]
     public string Comentario { get => comentario; set => comentario = value; }
     [NotMapped]
-    public string Mensaje { get => mensaje; set => mensaje = value; } 
+    public string Mensaje { get => mensaje; set => mensaje = value; }
+    [NotMapped]
+    public List<string> ImagenesComentario { get => imagenesComentario; set => imagenesComentario = value; }
+    [NotMapped]
+    public List<string> ImagenesMensaje { get => imagenesMensaje; set => imagenesMensaje = value; }
+
     #endregion
 }

@@ -13,6 +13,7 @@ public static class Constantes
     /// Constantes de estados en los atributos de algunas entidades.
     /// </summary>
     public const string ESTADO_EN_ESPERA = "espera de activacion";
+    public const string ESTADO_BLOQUEADO = "bloqueado";
     public const string ESTADO_CAMBIO_PASS = "change pass";
     public const string ESTADO_PK = "pk";
     public const string ESTADO_UNIQUE = "unique";
@@ -36,6 +37,17 @@ public static class Constantes
     public const string MOTIVO_3 = "SPAM";
     public const string MOTIVO_4 = "Contenido +18";
     public const string MOTIVO_5 = "Ofender Grupo";
+    public const double DIAS_MOTIVO_1 = 1;
+    public const double DIAS_MOTIVO_2 = 3;
+    public const double DIAS_MOTIVO_3 = 5;
+    public const double DIAS_MOTIVO_4 = 10;
+    public const double DIAS_MOTIVO_5 = 10;
+    public const int PUNTUACION_MOTIVO_1 = 1;
+    public const int PUNTUACION_MOTIVO_2 = 2;
+    public const int PUNTUACION_MOTIVO_3 = 3;
+    public const int PUNTUACION_MOTIVO_4 = 4;
+    public const int PUNTUACION_MOTIVO_5 = 5;
+    public const int PUNTUACION_MAXIMA_PARA_SER_REPORTADO = 20;
     /// <summary>
     /// Constantes De Session
     /// </summary>
