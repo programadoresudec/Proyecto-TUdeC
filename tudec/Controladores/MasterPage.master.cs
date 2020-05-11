@@ -1,39 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
             BtnNotificaciones.Visible = true;
             acercaDeNosotros.Visible = false;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
-            ImagenPerfil.Visible = true;    
+            ImagenPerfil.Visible = true;
             ImagenPerfil.DataBind();
-            ConfiguracionCuenta.Visible = true;
             iniciarSesion.Visible = false;
             registrarse.Visible = false;
-            LinkBtnCerrarSesion.Visible = true;
             if (usuario.Rol.Equals(Constantes.ROL_USER))
             {
-                
+
                 misCursos.Visible = true;
-                CursosCreados.Visible = true;
-                CursosInscritos.Visible = true;
                 CrearCurso.Visible = true;
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
-               
+
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }
@@ -63,7 +55,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session["Buscador"] = cajaBuscador.Text;
         Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
     }
-
     [WebMethod]
     public static List<string> GetNombresCursos(string prefixText)
     {

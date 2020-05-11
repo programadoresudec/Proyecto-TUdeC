@@ -119,12 +119,12 @@ public class Buscador
 
     public List<string> GetUsuariosReportados(string nombre)
     {
-        List<EUsuario> usuariosReportados = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&
-        x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
+        List<EReporte> usuariosReportados = db.TablaReportes.Where(x => 
+        x.NombreDeUsuarioDenunciado.ToLower().Contains(nombre.ToLower())).ToList();
         List<string> nombresUsuario = new List<string>();
-        foreach (EUsuario usuario in usuariosReportados)
+        foreach (EReporte usuario in usuariosReportados)
         {
-            nombresUsuario.Add(usuario.NombreDeUsuario);
+            nombresUsuario.Add(usuario.NombreDeUsuarioDenunciado);
         }
         return nombresUsuario;
     }

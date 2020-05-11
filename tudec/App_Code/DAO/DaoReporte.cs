@@ -16,10 +16,10 @@ public class DaoReporte
 
     public List<EReporte> reportesDelUsuario(string nombreDeUsuarioDenunciado)
     {
-        var query= (from reporte in db.TablaReportes
+        return (from reporte in db.TablaReportes
                 join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id
                 join message in db.TablaMensajes on reporte.IdMensaje equals message.Id
-                where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
+               // where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
                 select new
                 {
                     comentario,
@@ -27,27 +27,38 @@ public class DaoReporte
                     message
                 }).ToList().Select(x => new EReporte
                 {
+                    Id = x.reporte.Id,
                     Fecha = x.reporte.Fecha,
                     MotivoDelReporte = x.reporte.MotivoDelReporte,
+                    NombreDeUsuarioDenunciado = x.reporte.NombreDeUsuarioDenunciado,
                     NombreDeUsuarioDenunciante = x.reporte.NombreDeUsuarioDenunciante,
+                    IdComentario = x.reporte.IdComentario,
+                    IdMensaje = x.reporte.IdMensaje,
+                    Descripcion = x.reporte.Descripcion,
                     Comentario = x.comentario.Comentario,
                     Mensaje = x.message.Contenido,
                     ImagenesComentario = x.comentario.Imagenes,
                     ImagenesMensaje = x.message.Imagenes
-                }).ToList();
-        return query;
+                }).OrderByDescending(x=> x.Fecha).ToList();
     }
 
-    public void bloquearUsuario(EReporte reporte)
+    public void actualizarMotivo(EReporte reporte)
     {
-        db.TablaReportes.Where(x => x.Id == reporte.Id).First();
-        reporte.Estado = true;
-        Base.Actualizar(reporte);
+        EReporte reportado =  db.TablaReportes.Where(x => x.Id == reporte.Id).First();
+        reportado.MotivoDelReporte = reporte.MotivoDelReporte;
+        Base.Actualizar(reportado);
+    }
+
+    public void reportarUsuario(int id)
+    {
+        EReporte reportado = db.TablaReportes.Where(x => x.Id == id).First();
+        
+        Base.Actualizar(reportado);
     }
 
     private void validarMotivoDelReporte(string motivoDelReporte, string nombre)
     {
-        EUsuario user =  new DaoUsuario().GetUsuario(nombre);
+        EUsuario user = new DaoUsuario().GetUsuario(nombre);
         switch (motivoDelReporte)
         {
             case Constantes.MOTIVO_1:

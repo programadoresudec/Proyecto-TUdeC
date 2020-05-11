@@ -8,7 +8,7 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
-        GridViewGestionUsuario.DataBind();
+
         if (usuario == null)
         {
             Response.Redirect("~/Vistas/Home.aspx");
@@ -17,6 +17,10 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
         else if (usuario != null && usuario.Rol.Equals(Constantes.ROL_USER))
         {
             Response.Redirect("~/Vistas/Home.aspx");
+        }
+        else
+        {
+            GridViewGestionUsuario.DataBind();
         }
     }
 
@@ -32,14 +36,12 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     {
         new DaoUsuario().bloquearUsuariosConCuenta();
     }
+
     [WebMethod]
     public static List<string> GetNombreUsuario(string prefixText)
     {
-        return new Buscador().GetUsuariosReportados(prefixText);
+        List<string> nombres = new Buscador().GetUsuariosReportados(prefixText);
+        return nombres;
     }
 
-    protected void btnCerrar_Click(object sender, EventArgs e)
-    {
-        ModalBloquearUsuario.Hide();
-    }
 }

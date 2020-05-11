@@ -52,8 +52,6 @@
             $(".ajax__html_editor_extender_buttoncontainer").hide();
 
         }
-
-
     </script>
 
     <br />
@@ -64,30 +62,31 @@
 
 
     <div class="container">
-        <div class="form-group row justify-content-center">
-            <div class=" form-group col-md-auto">
-                <center><asp:Label ID="titulo" runat="server" Text="Título de sugerencia"></asp:Label>
+        <div class="row justify-content-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    <asp:Image ID="imagenUsuario" CssClass="img-user-avatar rounded-circle" Width="80px" Height="70px" runat="server"></asp:Image>
                     <br />
-                    <asp:Image ID="imagenUsuario" ImageUrl="../../Recursos/Imagenes/PerfilUsuarios/Usuario.png"  runat="server"></asp:Image>
-                    <asp:Label ID="emisor" runat="server" Text="Usuario"></asp:Label>
-                </center>
+                    <strong>
+                        <asp:Label ID="emisor" runat="server" Text="Usuario"></asp:Label>
+                    </strong>
 
-                <br />
-                <br />
-                <asp:TextBox ID="cajaSugerencia" runat="server" Height="500px" Width="300px"></asp:TextBox>
+                    <h5 class="text-info">
+                        <asp:Label ID="titulo" runat="server" Text="Título de sugerencia"></asp:Label>
+                    </h5>
+
+                </div>
+                <div class="card-body">
+                    <h5 class="text-dark mb-4"><strong>Descripción De La Sugerencia</strong></h5>
+                    <div class="row">
+                        <asp:TextBox ID="cajaSugerencia" runat="server" Height="500px" Width="100%"></asp:TextBox>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <ajaxToolkit:HtmlEditorExtender ID="cajaSugerencia_HtmlEditorExtender" runat="server" TargetControlID="cajaSugerencia">
-
-        <Toolbar>
-        </Toolbar>
-
-    </ajaxToolkit:HtmlEditorExtender>
-
-
-    <br />
-
+        <ajaxToolkit:HtmlEditorExtender ID="cajaSugerencia_HtmlEditorExtender" runat="server" TargetControlID="cajaSugerencia">
+            <Toolbar>
+            </Toolbar>
+        </ajaxToolkit:HtmlEditorExtender>
 </asp:Content>
 

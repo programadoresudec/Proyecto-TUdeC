@@ -23,6 +23,10 @@ public partial class Vistas_DetallesSugerencia : System.Web.UI.Page
                 imagenUsuario.Visible = false;
                 emisor.Visible = false;
             }
+            else
+            {
+                imagenUsuario.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
+            }
             sugerencia.Estado = true;
             Base.Actualizar(sugerencia);
         }

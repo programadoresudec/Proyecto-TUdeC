@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.UI;
 
 public partial class Views_Account_Login : System.Web.UI.Page
 {
@@ -66,5 +65,4 @@ public partial class Views_Account_Login : System.Web.UI.Page
         autenticar.Session = Session.SessionID;
         Base.Insertar(autenticar);
     }
-
 }

@@ -22,7 +22,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <i class="fa fa-envelope"></i>
-                            </div>  
+                            </div>
                         </div>
                         <asp:TextBox ID="campoCorreo" CssClass="form-control" placeHolder="E-mail" runat="server"></asp:TextBox>
                         <div class="input-group-prepend">
@@ -33,25 +33,26 @@
                     </div>
                 </div>
                 <div class="col-12 input-group justify-content-center">
-                    <asp:RequiredFieldValidator ID="correoRequerido"
-                        runat="server"
-                        ControlToValidate="campoCorreo"
-                        ErrorMessage="¡requerido!"
+                    <asp:RequiredFieldValidator ID="correoRequerido" runat="server"
+                        ControlToValidate="campoCorreo" ErrorMessage="¡requerido!" ValidationGroup="verificarCorreo"
                         SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
                 <div class=" form-row">
 
                     <div class=" form-group col">
-                        <strong>
-                            <asp:HyperLink ID="BtnCancelar" CssClass="btn btn-info btn-lg btn-block" runat="server"
-                                Text="cancelar" NavigateUrl="~/Vistas/Account/Login.aspx"  Style="font-size: medium;" />
-                        </strong>
+                        <asp:HyperLink ID="BtnCancelar" CssClass="btn btn-info btn-lg btn-block" runat="server"
+                            NavigateUrl="~/Vistas/Account/Login.aspx" Style="font-size: medium;">
+                                <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Cancelar</strong> 
+                        </asp:HyperLink>
                     </div>
                     <div class="form-group col">
                         <strong>
-                            <asp:Button ID="botonEnviar" CssClass="btn btn-dark btn-lg btn-block" runat="server"
-                                Text="Enviar" OnClick="botonEnviarToken_Click" Style="font-size: medium;" />
+                            <asp:LinkButton ID="botonEnviar" ValidationGroup="verificarCorreo"
+                                CssClass=" btn btn-dark btn-lg btn-block" runat="server"
+                                OnClick="botonEnviarToken_Click" Style="font-size: medium; text-align: center">
+                               <strong>Enviar</strong><i class="fas fa-share-square ml-2"></i>
+                            </asp:LinkButton>
                         </strong>
                     </div>
                 </div>

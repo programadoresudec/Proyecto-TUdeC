@@ -211,4 +211,12 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
 
     }
+
+    [WebMethod]
+    public static List<string> GetNombresCursos(string prefixText)
+    {
+        Buscador gestorBuscador = new Buscador();
+        List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
+        return nombres;
+    }
 }

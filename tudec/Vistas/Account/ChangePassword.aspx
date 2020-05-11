@@ -20,7 +20,7 @@
                         ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" />
                 </div>
                 <div class="col-12 input-group justify-content-center">
-                    <asp:Label ID="LB_Validacion" runat="server" CssClass="alert alert-danger" Visible="False"></asp:Label>
+                    <asp:Label ID="LB_Validacion" runat="server" Visible="False"></asp:Label>
                 </div>
                 <div class="col-12 input-group">
                     <div class="input-group-prepend">
@@ -36,6 +36,7 @@
                         runat="server"
                         ControlToValidate="cajaPass"
                         ErrorMessage="¡requerido!"
+                        ValidationGroup="cambio"
                         SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
                 </div>
                 <br />
@@ -53,7 +54,7 @@
                     <asp:RequiredFieldValidator ID="confirmarPassRequerida"
                         runat="server"
                         ControlToValidate="cajaConfirmarPass"
-                        ErrorMessage="¡requerido!"
+                        ErrorMessage="¡requerido!" ValidationGroup="cambio"
                         SetFocusOnError="True"
                         Display="Dynamic" CssClass="text-danger" />
                 </div>
@@ -61,19 +62,32 @@
                 <div class="col-12 input-group justify-content-center">
                     <asp:CompareValidator ID="comparePasswords"
                         runat="server"
-                        ControlToCompare="cajaPass"
+                        ControlToCompare="cajaPass" ValidationGroup="cambio"
                         ControlToValidate="cajaConfirmarPass"
                         ErrorMessage="Las contraseñas no son iguales!"
                         Display="Dynamic" CssClass="alertHome alert-danger" />
                 </div>
                 <div class="form-group col-12">
                     <strong>
-                        <asp:Button runat="server" OnClick="btnRestablecer_Click" Text="Cambiar Contraseña"
-                            CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;"  />
+                        <asp:Button runat="server" OnClick="btnRestablecer_Click"  ValidationGroup="cambio" Text="Cambiar Contraseña"
+                            CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;" />
                     </strong>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(800, function () {
+                    {
+                        window.top.location = "Login.aspx"
+                    }
+                    $(this).remove();
+                });
+            }, 3000);
+
+        });
+    </script>
 </asp:Content>
 

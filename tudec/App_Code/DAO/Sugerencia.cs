@@ -46,7 +46,7 @@ public class Sugerencia
         if (filtro.Equals("Estado de lectura"))
         {
 
-            sugerencias = db.TablaSugerencias.Where(x => titulo.Equals("") || x.Titulo.ToLower().Equals(titulo.ToLower())).ToList();
+            sugerencias = db.TablaSugerencias.Where(x => titulo.Equals("") || x.Titulo.ToLower().Equals(titulo.ToLower())).OrderByDescending(x => x.Fecha).ToList();
 
         }
         else

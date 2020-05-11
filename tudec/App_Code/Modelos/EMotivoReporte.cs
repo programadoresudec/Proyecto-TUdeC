@@ -8,12 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class EMotivoReporte
 {
     #region attributes
-    private string motivoDelReporte;
+    private string motivo;
     #endregion
 
     #region properties
     [Key]
     [Column("motivo")]
-    public string MotivoDelReporte { get => MotivoDelReporte; set => MotivoDelReporte = value; }
+    public string Motivo { get => motivo; set => motivo = value; } 
     #endregion
 }

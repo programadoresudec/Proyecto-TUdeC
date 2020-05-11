@@ -56,10 +56,12 @@
                         NavigateUrl="~/Vistas/Account/VerificarEmail.aspx">¿Has olvidado la contraseña?</asp:HyperLink>
                 </div>
                 <div class="form-group col-12">
-                    <strong>
-                        <asp:Button ID="botonIniciar" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;" runat="server" 
-                            Text="Iniciar sesión" OnClick="botonIniciar_Click"/>
-                    </strong>
+                        <strong>
+                        <asp:Button ID="botonIniciar" ValidationGroup="login" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium; font-weight: bold;" runat="server" 
+                            OnClick="botonIniciar_Click" Text="Iniciar Sesión">
+                        </asp:Button>
+                        </strong>
+                    
                 </div>
             </div>
         </div>

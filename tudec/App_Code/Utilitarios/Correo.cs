@@ -45,7 +45,7 @@ public partial class Correo
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
-            mail.From = new MailAddress("tudec@losmejores.com", "udec");
+            mail.From = new MailAddress("tudec@losmejores.com", "TUdeC");
             SmtpServer.Host = "smtp.gmail.com";
             //Aquí ponemos el asunto del correo
             mail.Subject = mensaje;
