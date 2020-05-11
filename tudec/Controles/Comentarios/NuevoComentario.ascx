@@ -1,7 +1,42 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="NuevoComentario.ascx.cs" Inherits="Controles_Comentarios_NuevoComentario" %>
 
 
+<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+<script>
+
+
+
+        function enviarComentario() {
+
+            var paginaContenedora = "<%=Page.GetType().ToString()%>";
+            var caja = <%=cajaComentarios.ClientID%>;
+
+            var contenidoCaja = caja.value;
+
+            var datos = "{'paginaContenedora':'" + paginaContenedora + "','contenidoCaja':'" + contenidoCaja + "'}";
+
+            $.ajax({
+
+                type: "POST",
+                url: '../../Controles/Comentarios/ComentariosService.asmx/SubirComentario',
+                data: datos,
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+
+            });
+
+            <% cajaComentarios.Text = "";%>;
+            location.reload();
+
+        }
+
+
+
+
+</script>
 
 
 <div class="row justify-content-center">
@@ -33,15 +68,9 @@
         <tr>
             
             <td>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-
-                    <ContentTemplate>
-
-                        <asp:Button style="width: 100%" ID="botonEnvio" runat="server" Text="Enviar" OnClick="botonEnvio_Click" />
-
-                    </ContentTemplate>
                 
-                    </asp:UpdatePanel>
+
+                        <input style="width: 100%"  id="botonEnvio" type="button" onclick="enviarComentario()" value="Enviar" />
                     
                     </td>
             

@@ -9,88 +9,13 @@ public partial class Controles_Comentarios_NuevoComentario : System.Web.UI.UserC
 {
     private int idComentario;
 
+    public int IdComentario { get => idComentario; set => idComentario = value; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
-
-    }
-
-    protected void botonEnvio_Click(object sender, EventArgs e)
-    {
-
+        Session["idComentario"] = IdComentario;
         
-
-        string paginaContenedora = Page.GetType().ToString();
-
-        if (paginaContenedora.Equals("ASP.vistas_cursos_informaciondelcurso_aspx"))
-        {
-
-            ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
-            EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-
-            EComentario comentario = new EComentario();
-
-            comentario.Emisor = usuario.NombreDeUsuario;
-
-            if(idComentario != 0)
-            {
-
-                comentario.IdComentario = idComentario;
-
-            }
-            else
-            {
-
-                comentario.IdCurso = curso.Id;
-
-            }
-
-            comentario.Comentario = cajaComentarios.Text;
-            comentario.FechaEnvio = System.DateTime.Now;
-
-            Base.Insertar(comentario);
-
-            cajaComentarios.Text = "";
-
-            Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
-
-        }
-        else
-        {
-
-            ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
-            EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-
-            EComentario comentario = new EComentario();
-
-            comentario.Emisor = usuario.NombreDeUsuario;
-
-
-            if (idComentario != 0)
-            {
-
-                comentario.IdComentario = idComentario;
-
-            }
-            else
-            {
-
-                comentario.IdTema = tema.Id;
-
-            }
-
-            
-            comentario.Comentario = cajaComentarios.Text;
-            comentario.FechaEnvio = System.DateTime.Now;
-
-            Base.Insertar(comentario);
-
-            cajaComentarios.Text = "";
-
-            Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
-
-
-        }            
-
     }
+
 }

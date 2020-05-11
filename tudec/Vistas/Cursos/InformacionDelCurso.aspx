@@ -16,8 +16,6 @@
 
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
 
-    
-   
     <center>
     <table style="width:90%">
         <tr>

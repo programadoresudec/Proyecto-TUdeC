@@ -3,6 +3,7 @@
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
     <script>
+
         $(document).ready(function () {
             $("#alertaSatisfactoria").hide();
             $("#alertaError").hide();
