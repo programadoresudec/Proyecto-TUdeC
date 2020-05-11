@@ -23,10 +23,10 @@ public class ComentariosService : System.Web.Services.WebService
 
 
     [WebMethod(EnableSession = true)]
-    public void SubirComentario(string paginaContenedora, string contenidoCaja)
+    public void SubirComentario(string paginaContenedora, string contenidoCaja, string idComentarioString)
     {
 
-        int idComentario = (int)Session["idComentario"];
+        int idComentario = Int32.Parse(idComentarioString);
 
         if (paginaContenedora.Equals("ASP.vistas_cursos_informaciondelcurso_aspx"))
         {

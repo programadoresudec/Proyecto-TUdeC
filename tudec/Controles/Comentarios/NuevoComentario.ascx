@@ -18,22 +18,26 @@
 
             var contenidoCaja;
 
+            var idComentario;
+
             if (botones.length > 1 && indiceBoton == 0) {
 
                 var cajas = document.getElementsByClassName("cajas");
                 contenidoCaja = cajas[0].value;
-                <% Session["idComentario"] = 0; %>
+        
+                idComentario = 0;
 
 
             } else {
 
 
                 contenidoCaja = caja.value;
+                idComentario = <%=Session["idComentario"]%>
 
             }
 
-            
-            var datos = "{'paginaContenedora':'" + paginaContenedora + "','contenidoCaja':'" + contenidoCaja + "'}";
+
+            var datos = "{'paginaContenedora':'" + paginaContenedora + "','contenidoCaja':'" + contenidoCaja + "','idComentarioString':'" + idComentario + "" + "'}";
 
             $.ajax({
 
