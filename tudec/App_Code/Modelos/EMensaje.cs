@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
 
 /// <summary>
 /// Summary description for EMensaje
@@ -14,6 +18,7 @@ public class EMensaje
     private string nombreDeUsuarioReceptor;
     private string contenido;
     private List<string> imagenes;
+    private DateTime fecha;
     #endregion
 
     #region properties
@@ -27,6 +32,8 @@ public class EMensaje
     [Column("contenido")]
     public string Contenido { get => contenido; set => contenido = value; }
     [Column("imagenes")]
-    public List<string> Imagenes { get => imagenes; set => imagenes = value; } 
+    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
+    [Column("fecha")]
+    public DateTime Fecha { get => fecha; set => fecha = value; }
     #endregion
 }
