@@ -6,14 +6,33 @@
 <script>
 
 
-
-        function enviarComentario() {
-
+        function enviarComentario(boton) {
+            
             var paginaContenedora = "<%=Page.GetType().ToString()%>";
             var caja = <%=cajaComentarios.ClientID%>;
 
-            var contenidoCaja = caja.value;
+            
+            var botones = document.getElementsByClassName("botones");
+            botones = Array.from(botones);
+            var indiceBoton = botones.indexOf(boton);
 
+            var contenidoCaja;
+
+            if (botones.length > 1 && indiceBoton == 0) {
+
+                var cajas = document.getElementsByClassName("cajas");
+                contenidoCaja = cajas[0].value;
+                <% Session["idComentario"] = 0; %>
+
+
+            } else {
+
+
+                contenidoCaja = caja.value;
+
+            }
+
+            
             var datos = "{'paginaContenedora':'" + paginaContenedora + "','contenidoCaja':'" + contenidoCaja + "'}";
 
             $.ajax({
@@ -46,7 +65,7 @@
 
         <tr>
 
-            <td><asp:TextBox ID="cajaComentarios" runat="server" TextMode="MultiLine" style="width:100%; height:150px" placeholder="Escribe aquí tu comentario"></asp:TextBox>
+            <td><asp:TextBox CssClass="cajas" ID="cajaComentarios" runat="server" TextMode="MultiLine" style="width:100%; height:150px" placeholder="Escribe aquí tu comentario"></asp:TextBox>
 
 
                 <ajaxToolkit:HtmlEditorExtender 
@@ -70,7 +89,7 @@
             <td>
                 
 
-                        <input style="width: 100%"  id="botonEnvio" type="button" onclick="enviarComentario()" value="Enviar" />
+                        <input class="botones" style="width: 100%"  id="botonEnvio" type="button" onclick="enviarComentario(this)" value="Enviar" />
                     
                     </td>
             
