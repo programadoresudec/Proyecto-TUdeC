@@ -8,7 +8,7 @@
     <br />
     <div class="container">
         <div class="form-group row justify-content-center">
-            <div class=" form-group col-md-6">
+            <div class=" form-group col-lg-6">
                 <br />
                 <h2 style="text-align: center; color: darkblue; font-size: xx-large;"><strong>Login</strong></h2>
                 <br />

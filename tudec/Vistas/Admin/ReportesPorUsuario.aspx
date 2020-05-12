@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <br />
         <div class="row justify-content-center">
-            <asp:ListView ID="LV_Reportes" runat="server" DataSourceID="ODS_Reportes" OnItemCommand="LV_Reportes_ItemCommand">
+            <asp:ListView ID="LV_Reportes" runat="server" DataSourceID="ODS_Reportes" >
                 <EditItemTemplate>
                     <asp:TextBox ID="IdTextBox" runat="server" Visible="false" Text='<%# Bind("Id") %>' />
                     <div class="card ml-md-5 mr-md-5 mb-4 w-25">
@@ -174,19 +174,14 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-md-5">
-                                    <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" CssClass="btn btn-info btn-block">
-                                  <i class="fa fa-edit mr-2"></i><strong>Editar</strong>
+                                <div class="col-md-6">
+                                    <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" CssClass="btn btn-danger btn-block">
+                                <i class="fas fa-user-lock mr-2"></i><strong>Reportar</strong>
                                     </asp:LinkButton>
                                 </div>
-                                <div class="col-md-5">
-                                    <asp:LinkButton ID="Bloquear" runat="server" CommandArgument='<%# Eval("Id") %>' OnClick="Bloquear_Click" CssClass="btn btn-danger btn-block">
-                                  <i class="fas fa-user-lock mr-2"></i><strong>Reportar</strong>
-                                    </asp:LinkButton>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:LinkButton ID="Quitar" runat="server" CommandArgument='<%# Eval("Id") %>' OnClick="Quitar_Click" CssClass="btn btn-light">
-                                  <i class="fas fa-times-circle"></i>
+                                <div class="col-md-6">
+                                    <asp:LinkButton ID="Quitar" runat="server"  OnClick="Quitar_Click" CssClass="btn btn-light">
+                                  <i class="fas fa-times-circle mr-2"></i><strong>Quitar Reporte</strong>
                                     </asp:LinkButton>
                                 </div>
                             </div>

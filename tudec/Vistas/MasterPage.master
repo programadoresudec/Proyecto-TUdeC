@@ -117,10 +117,10 @@
                             </asp:LinkButton>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <asp:HyperLink CssClass="btn btn-outline-success" ID="CursosInscritos" runat="server"
-                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="true"><i class="fa fa-power-off mr-2"></i>Cursos Inscritos
+                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx" Visible="true"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Cursos Inscritos
                                 </asp:HyperLink>
                                 <asp:HyperLink CssClass="btn btn-outline-success" ID="CursosCreados" runat="server"
-                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx" Visible="true"> <i class="fa fa-power-off mr-2"></i>Cursos Creados 
+                                    NavigateUrl="~/Vistas/Cursos/ListaDeCursosCreadosDeLaCuenta.aspx" Visible="true"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Cursos Creados 
                                 </asp:HyperLink>
                             </div>
                         </li>

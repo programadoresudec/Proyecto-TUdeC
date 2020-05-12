@@ -5,13 +5,13 @@
     <!-- about-->
     <br />
     <br />
-    <section class="wthree-row py-sm-5" id="why">
+    <section class="row py-sm-5" id="why">
         <div class="container py-lg-5 py">
-            <div class="row abbot-main py-lg-5 py-4">
-                <div class="col-lg-5 abbot-right mt-lg-0 mt-3">
+            <div class="row py-lg-5 py-4">
+                <div class="col-lg-5 mt-lg-0 mt-3">
                     <img src="../../App_Themes/About/img/logo.png" class="img-fluid img-thumbnail" alt="" />
                 </div>
-                <div class="col-lg-7 about-text-grid">
+                <div class="col-lg-7">
                     <h4 class="w3pvt-title mt-5" style="text-align:center">TUdeC Objetivo</h4>
                     <br>
                     <br>

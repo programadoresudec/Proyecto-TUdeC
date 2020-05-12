@@ -1,148 +1,124 @@
 ﻿<%@ Page Title="Cursos Creados" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosCreadosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosDeLaCuenta" %>
-
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
-
     <br />
     <br />
     <br />
     <br />
-    <br />
-
-
-    <table class="auto-style1">
-        <tr>
-            <td></td>
-            <td style="padding-left: 35%">
-                <center><h1>Cursos Creados</h1></center>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style3">
-
-                <table id="filtrosCursos">
-                    <tr>
-                        <td>
-                            <asp:Button CssClass="botonPulsado" ID="botonCreados" runat="server" Text="Creados" />
-                            <asp:Button CssClass="botones" ID="botonInscritos" runat="server" Text="Inscritos" OnClick="botonInscritos_Click" />
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="cajaBuscador" runat="server" placeHolder="Nombre del curso"></asp:TextBox>
-                            <ajaxToolkit:AutoCompleteExtender
-                                MinimumPrefixLength="1"
-                                CompletionInterval="10"
-                                CompletionSetCount="1"
-                                FirstRowSelected="false"
-                                ID="cajaBuscador_AutoCompleteExtender"
-                                runat="server"
-                                ServiceMethod="GetNombresCursos"
-                                TargetControlID="cajaBuscador">
-                            </ajaxToolkit:AutoCompleteExtender>
-                            <div class="col input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar-alt"></i>
-                                    </div>
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row justify-content-around">
+            <div class="col-lg-auto">
+                <div class="row justify-content-center">
+                    <asp:LinkButton CssClass="btn botonPulsado mr-2 disabled" ID="botonCreados" runat="server" Text="Creados" />
+                    <asp:Button CssClass="btn botones mr-2" ID="botonInscritos" runat="server" Text="Inscritos"
+                        OnClick="botonInscritos_Click" />
+                </div>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <div class="col input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-search"></i>
                                 </div>
-                                <asp:TextBox  ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"
-                                    CssClass="form-control" />
                             </div>
+                            <asp:TextBox CssClass=" form-control" ID="cajaBuscador" runat="server"
+                                placeHolder="Nombre del curso"> </asp:TextBox>
+                            <ajaxToolkit:AutoCompleteExtender MinimumPrefixLength="1" CompletionInterval="10"
+                                CompletionSetCount="1" FirstRowSelected="false" ID="cajaBuscador_AutoCompleteExtender"
+                                runat="server" ServiceMethod="GetNombresCursos" TargetControlID="cajaBuscador" />
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                            <asp:TextBox ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"
+                                CssClass="form-control" />
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server"
                                 BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList ID="desplegableArea" runat="server" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
+                        </div>
+                        <br />
+                        <div class="row">
+                            <asp:DropDownList ID="desplegableArea" runat="server" CssClass="form-control" DataSourceID="AreasSource"
+                                DataTextField="Area" DataValueField="Area">
                             </asp:DropDownList>
-                            <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList ID="desplegableEstado" runat="server" DataSourceID="EstadosCursoSource" DataTextField="Estado" DataValueField="Estado">
+                            <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc"
+                                TypeName="GestionCurso"></asp:ObjectDataSource>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <asp:DropDownList ID="desplegableEstado" runat="server" CssClass="form-control" DataSourceID="EstadosCursoSource"
+                                DataTextField="Estado" DataValueField="Estado">
                             </asp:DropDownList>
-                            <asp:ObjectDataSource ID="EstadosCursoSource" runat="server" SelectMethod="GetEstadosSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="auto-style2" src="../../Recursos/Imagenes/ListaDeCursos/Filtro.png" /><asp:Button CssClass="botones" ID="botonFiltrar" runat="server" Text="Filtrar" />
-                        </td>
-                    </tr>
-                </table>
-
-            </td>
-            <td rowspan="2" style="padding-left: 15%">
-
-                <asp:GridView ID="tablaCursos" CssClass="tablas" Style="align-content: center" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" AllowPaging="True" DataKeyNames="Id">
-                    <Columns>
-                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Area" HeaderText="Área del<br/>conocimiento" SortExpression="Area" HtmlEncode="False">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de<br/>Creación" SortExpression="FechaCreacion" HtmlEncode="False" DataFormatString="{0:dd/MM/yyyy}">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Puntuacion" HeaderText="Calificación" SortExpression="Puntuacion">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:TemplateField HeaderText="Editar Curso">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Expulsar<br/>Alumnos">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Calificar<br/>Exámenes">
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-
-
-                <asp:ObjectDataSource ID="CursosSource" runat="server" SelectMethod="GetCursosCreados" TypeName="GestionCurso">
+                            <asp:ObjectDataSource ID="EstadosCursoSource" runat="server" SelectMethod="GetEstadosSrc"
+                                TypeName="GestionCurso"></asp:ObjectDataSource>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <asp:LinkButton CssClass="btn btn-dark" ID="botonFiltrar" runat="server">
+                            <i class="fa fa-filter mr-2"></i>Filtrar
+                    </asp:LinkButton>
+                </div>
+            </div>
+            <div class="col-lg-auto mt-5">
+                <h1 class="text-center"><strong>Cursos Creados</strong></h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <asp:GridView ID="tablaCursos" CssClass="tablas" Style="align-content: center" runat="server"
+                            AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated"
+                            AllowPaging="True" DataKeyNames="Id">
+                            <Columns>
+                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Area" HeaderText="Área del<br/>conocimiento" SortExpression="Area"
+                                    HtmlEncode="False">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de<br/>Creación"
+                                    SortExpression="FechaCreacion" HtmlEncode="False" DataFormatString="{0:dd/MM/yyyy}">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Puntuacion" HeaderText="Calificación" SortExpression="Puntuacion">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="Editar Curso">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Expulsar<br/>Alumnos">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Calificar<br/>Exámenes">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </table>
+                </div>
+                <asp:ObjectDataSource ID="CursosSource" runat="server" SelectMethod="GetCursosCreados"
+                    TypeName="GestionCurso">
                     <SelectParameters>
                         <asp:SessionParameter Name="usuario" SessionField="usuarioLogeado" Type="Object" />
-                        <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="cajaFechaCreacion" Name="fechaCreacion" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="desplegableArea" Name="area" PropertyName="SelectedValue" Type="String" />
-                        <asp:ControlParameter ControlID="desplegableEstado" Name="estado" PropertyName="SelectedValue" Type="String" />
+                        <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text"
+                            Type="String" />
+                        <asp:ControlParameter ControlID="cajaFechaCreacion" Name="fechaCreacion" PropertyName="Text"
+                            Type="String" />
+                        <asp:ControlParameter ControlID="desplegableArea" Name="area" PropertyName="SelectedValue"
+                            Type="String" />
+                        <asp:ControlParameter ControlID="desplegableEstado" Name="estado" PropertyName="SelectedValue"
+                            Type="String" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-            </td>
-        </tr>
-
-    </table>
-
-    <br />
-
-</asp:Content>
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
-    <style type="text/css">
-        .auto-style1 {
-            width: 64px;
-        }
-
-        .auto-style2 {
-            width: 64px;
-            height: 64px;
-        }
-
-        .auto-style3 {
-            height: 35px;
-        }
-    </style>
+            </div>
+        </div>
+    </div>
 </asp:Content>

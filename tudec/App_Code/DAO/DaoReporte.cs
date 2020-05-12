@@ -19,7 +19,7 @@ public class DaoReporte
         return (from reporte in db.TablaReportes
                 join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id
                 join message in db.TablaMensajes on reporte.IdMensaje equals message.Id
-               // where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
+                where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
                 select new
                 {
                     comentario,
@@ -39,20 +39,22 @@ public class DaoReporte
                     Mensaje = x.message.Contenido,
                     ImagenesComentario = x.comentario.Imagenes,
                     ImagenesMensaje = x.message.Imagenes
-                }).OrderByDescending(x=> x.Fecha).ToList();
+                }).OrderByDescending(x => x.Fecha).ToList();
     }
 
     public void actualizarMotivo(EReporte reporte)
     {
-        EReporte reportado =  db.TablaReportes.Where(x => x.Id == reporte.Id).First();
+        EReporte reportado = db.TablaReportes.Where(x => x.Id == reporte.Id).First();
         reportado.MotivoDelReporte = reporte.MotivoDelReporte;
+        reportado.Estado = true;
         Base.Actualizar(reportado);
+        validarMotivoDelReporte(reportado.MotivoDelReporte, reportado.NombreDeUsuarioDenunciado);
     }
 
-    public void reportarUsuario(int id)
+    public void quitarReporte(int id)
     {
         EReporte reportado = db.TablaReportes.Where(x => x.Id == id).First();
-        
+        reportado.Estado = true;
         Base.Actualizar(reportado);
     }
 
@@ -62,32 +64,71 @@ public class DaoReporte
         switch (motivoDelReporte)
         {
             case Constantes.MOTIVO_1:
-                user.FechaDesbloqueo = DateTime.Now.AddDays(Constantes.DIAS_MOTIVO_1);
-                user.PuntuacionDeBloqueo += Constantes.PUNTUACION_MOTIVO_1;
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_1);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_1);
+                if (validarPuntosDeBloqueo(user.NombreDeUsuario))
+                {
+                    user.Estado = Constantes.ESTADO_BLOQUEADO;
+                }
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_2:
-                user.FechaDesbloqueo = DateTime.Now.AddDays(Constantes.DIAS_MOTIVO_2);
-                user.PuntuacionDeBloqueo += Constantes.PUNTUACION_MOTIVO_2;
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_2);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_2);
+                if (validarPuntosDeBloqueo(user.NombreDeUsuario))
+                {
+                    user.Estado = Constantes.ESTADO_BLOQUEADO;
+                }
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_3:
-                user.FechaDesbloqueo = DateTime.Now.AddDays(Constantes.DIAS_MOTIVO_3);
-                user.PuntuacionDeBloqueo += Constantes.PUNTUACION_MOTIVO_3;
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_3);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_3);
+                if (validarPuntosDeBloqueo(user.NombreDeUsuario))
+                {
+                    user.Estado = Constantes.ESTADO_BLOQUEADO;
+                }
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_4:
-                user.FechaDesbloqueo = DateTime.Now.AddDays(Constantes.DIAS_MOTIVO_4);
-                user.PuntuacionDeBloqueo += Constantes.PUNTUACION_MOTIVO_4;
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_4);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_4);
+                if (validarPuntosDeBloqueo(user.NombreDeUsuario))
+                {
+                    user.Estado = Constantes.ESTADO_BLOQUEADO;
+                }
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_5:
-                user.FechaDesbloqueo = DateTime.Now.AddDays(Constantes.DIAS_MOTIVO_5);
-                user.PuntuacionDeBloqueo += Constantes.PUNTUACION_MOTIVO_5;
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_5);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_5);
+                if (validarPuntosDeBloqueo(user.NombreDeUsuario))
+                {
+                    user.Estado = Constantes.ESTADO_BLOQUEADO;
+                }
                 Base.Actualizar(user);
                 break;
             default:
                 break;
         }
+    }
+
+    private bool validarPuntosDeBloqueo(string nombreDeUsuario)
+    {
+        return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Any(x => x.PuntuacionDeBloqueo == Constantes.PUNTUACION_MAXIMA_PARA_SER_REPORTADO);
+    }
+
+    private DateTime? agregarDiasDeBloqueo(string nombreDeUsuario, double diasAgregados)
+    {
+        Nullable<DateTime> fechaDeDesbloqueo = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Select(x => x.FechaDesbloqueo).SingleOrDefault();
+        return fechaDeDesbloqueo = fechaDeDesbloqueo == null ? DateTime.Now.AddDays(diasAgregados)
+            : fechaDeDesbloqueo < DateTime.Now ? DateTime.Now.AddDays(diasAgregados)
+            : fechaDeDesbloqueo.Value.AddDays(diasAgregados);
+    }
+
+    private int? sumarPuntuacionDeBloqueo(string nombreDeUsuario, int puntuacionMotivo)
+    {
+        Nullable<int> puntuacionActual = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Select(x => x.PuntuacionDeBloqueo).SingleOrDefault();
+        return puntuacionActual == null ? puntuacionActual = puntuacionMotivo : (puntuacionActual.Value + puntuacionMotivo);
     }
 }

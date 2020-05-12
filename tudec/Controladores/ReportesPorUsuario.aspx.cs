@@ -14,20 +14,11 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
 
     protected void Quitar_Click(object sender, EventArgs e)
     {
-
-    }
-
-    protected void Bloquear_Click(object sender, EventArgs e)
-    {
-      
-
-    }
-
-
-
-    protected void LV_Reportes_ItemCommand(object sender, ListViewCommandEventArgs e)
-    {
-
-        
+        int id = 0;
+        foreach (ListViewItem item in LV_Reportes.Items)
+        {
+            id = (int)item.DataItemIndex;
+        }
+        new DaoReporte().quitarReporte(id);
     }
 }
