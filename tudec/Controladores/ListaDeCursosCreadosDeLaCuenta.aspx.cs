@@ -186,4 +186,19 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         Response.Redirect("~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx");
 
     }
+
+    protected void tablaCursos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        GridView tabla = (GridView)sender;
+
+        GridViewRow fila = tabla.Rows[e.RowIndex];
+
+        DropDownList control = (DropDownList)fila.Cells[2].Controls[1];
+
+        string valor = control.SelectedItem.Text;
+    
+        var variable = 5;
+
+        
+    }
 }
