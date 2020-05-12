@@ -64,6 +64,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
         panelOpcion.Controls.Add(opcionHilo);
 
         ASP.controles_comentarios_nuevocomentario_ascx nuevoComentario = new ASP.controles_comentarios_nuevocomentario_ascx();
+        nuevoComentario.IdComentario = idComentario;
 
         panelHilo.Controls.Add(nuevoComentario);
 

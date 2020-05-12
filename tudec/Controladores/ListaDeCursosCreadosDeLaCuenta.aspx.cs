@@ -186,4 +186,6 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         Response.Redirect("~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx");
 
     }
+
+   
 }
