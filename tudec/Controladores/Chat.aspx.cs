@@ -91,4 +91,14 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }
+
+    protected void temporizador_Tick(object sender, EventArgs e)
+    {
+        
+        panelMensajes.Controls.Clear();
+        panelMensajes.Controls.Add(GetTablaMensajes());
+
+        ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "bajarBarrita()", true);
+
+    }
 }

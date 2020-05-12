@@ -14,12 +14,18 @@
 
     <script>
 
+        function bajarBarrita() {
 
-        window.onload = function () {
-
+       
             var panel = <%=panelMensajes.ClientID%>;
 
             panel.scrollTop = panel.scrollHeight;
+
+        }
+
+        window.onload = function () {
+
+            bajarBarrita();
 
         }
             
@@ -61,7 +67,20 @@
         <tr>
             <td>
 
-                <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="500" ScrollBars="Vertical"></asp:Panel>
+                <asp:UpdatePanel ID="panelActualizar" runat="server">
+
+                    <ContentTemplate>
+
+
+                        <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="500" ScrollBars="Vertical"></asp:Panel>
+                        <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="5000" runat="server"></asp:Timer>
+
+                    </ContentTemplate>
+
+
+                </asp:UpdatePanel>
+
+                
 
             </td>
         </tr>

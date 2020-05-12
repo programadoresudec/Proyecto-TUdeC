@@ -15,7 +15,7 @@ public class Buscador
     }
     public List<EArea> GetAreasSrc()
     {
-
+        
         List<EArea> areas = db.TablaAreas.ToList();
 
         EArea areaPorDefecto = new EArea();
