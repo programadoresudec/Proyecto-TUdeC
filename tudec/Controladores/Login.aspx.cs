@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Services;
 
 public partial class Views_Account_Login : System.Web.UI.Page
 {
@@ -64,5 +66,12 @@ public partial class Views_Account_Login : System.Web.UI.Page
         autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
         autenticar.Session = Session.SessionID;
         Base.Insertar(autenticar);
+    }
+    [WebMethod]
+    public static List<string> GetNombresCursos(string prefixText)
+    {
+        Buscador gestorBuscador = new Buscador();
+        List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
+        return nombres;
     }
 }

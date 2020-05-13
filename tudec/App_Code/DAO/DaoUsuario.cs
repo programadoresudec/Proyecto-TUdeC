@@ -30,6 +30,7 @@ public class DaoUsuario
         return (from usuario in db.TablaUsuarios
                 join reporte in db.TablaReportes on usuario.NombreDeUsuario equals reporte.NombreDeUsuarioDenunciado
                 where usuario.Rol == Constantes.ROL_USER && usuario.NombreDeUsuario == reporte.NombreDeUsuarioDenunciado
+                
                 select new
                 {
                     reporte,
@@ -43,7 +44,7 @@ public class DaoUsuario
                     NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
                     NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
                     PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo == null ? 0 : x.usuario.PuntuacionDeBloqueo,
-                }).OrderBy(x => x.PuntuacionDeBloqueo).ToList();
+                }).ToList();
     }
 
     public void bloquearUsuariosConCuenta()

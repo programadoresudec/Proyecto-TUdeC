@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,6 +11,10 @@ public partial class Views_Account_Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            CleanControl(this.Controls);
+        }
     }
 
     protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -55,7 +60,39 @@ public partial class Views_Account_Register : System.Web.UI.Page
             labelValidar.Text = "Revise el correo para activar su cuenta.";
             labelValidar.Visible = true;
             usuarioEnRegistro = null;
+            CleanControl(this.Controls);
         }
     }
+    [WebMethod]
+    public static List<string> GetNombresCursos(string prefixText)
+    {
+        Buscador gestorBuscador = new Buscador();
+        List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
+        return nombres;
+    }
 
+    public void CleanControl(ControlCollection controles)
+    {
+
+        foreach (Control control in controles)
+        {
+            if (control is TextBox)
+                ((TextBox)control).Text = string.Empty;
+            else if (control is DropDownList)
+                ((DropDownList)control).ClearSelection();
+            else if (control is RadioButtonList)
+                ((RadioButtonList)control).ClearSelection();
+            else if (control is CheckBoxList)
+                ((CheckBoxList)control).ClearSelection();
+            else if (control is RadioButton)
+                ((RadioButton)control).Checked = false;
+            else if (control is CheckBox)
+                ((CheckBox)control).Checked = false;
+            else if (control.HasControls())
+                //Esta linea detécta un Control que contenga otros Controles
+                //Así ningún control se quedará sin ser limpiado.
+                CleanControl(control.Controls);
+        }
+
+    }
 }

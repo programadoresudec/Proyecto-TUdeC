@@ -7,15 +7,20 @@
     <br />
     <br />
     <br />
+    <br />
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-around">
-            <div class="col-lg-auto">
+            <div class="col-lg-auto mb-5">
                 <div class="row justify-content-center">
-                    <asp:LinkButton CssClass="btn botonPulsado mr-2 disabled" ID="botonCreados" runat="server" Text="Creados" />
-                    <asp:Button CssClass="btn botones mr-2" ID="botonInscritos" runat="server" Text="Inscritos"
+                    <div class="col">
+                    <asp:LinkButton CssClass="btn botonPulsado btn-block mr-2 disabled" ID="botonCreados" runat="server" Text="Creados" />
+                    </div>
+                    <div class="col">
+                         <asp:LinkButton CssClass="btn btn-outline-dark btn-block botones mr-2" ID="botonInscritos" runat="server" Text="Inscritos"
                         OnClick="botonInscritos_Click" />
+                    </div>
                 </div>
-                <div class="card mt-3">
+                <div class="card mt-4">
                     <div class="card-header">
                         <div class="col input-group">
                             <div class="input-group-prepend">
@@ -61,12 +66,12 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <asp:LinkButton CssClass="btn btn-dark" ID="botonFiltrar" runat="server">
+                    <asp:LinkButton CssClass="btn btn-info" ID="botonFiltrar" Width="50%"  runat="server">
                             <i class="fa fa-filter mr-2"></i>Filtrar
                     </asp:LinkButton>
                 </div>
             </div>
-            <div class="col-lg-auto mt-5">
+            <div class="col-lg-7">
                 <h1 class="text-center"><strong>Cursos Creados</strong></h1>
                 <div class="table-responsive">
                     <table class="table">

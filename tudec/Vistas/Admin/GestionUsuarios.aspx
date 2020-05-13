@@ -22,7 +22,7 @@
                    <ajaxToolkit:AutoCompleteExtender
                        runat="server" ID="cajaBuscador_AutoCompleteExtender"
                        ServiceMethod="GetNombreUsuario"
-                       MinimumPrefixLength="1"
+                       MinimumPrefixLength="1" CompletionListCssClass="list-group-item"
                        CompletionInterval="10"
                        EnableCaching="false"
                         CompletionSetCount="1"

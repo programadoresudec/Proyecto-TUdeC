@@ -60,8 +60,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
-                        <div class="mb-auto input-group">
-                            <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" Width="250px" OnTextChanged="cajaBuscador_TextChanged">
+                        <div class="lg-auto input-group">
+                            <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
@@ -69,9 +69,8 @@
                                 CompletionSetCount="1"
                                 FirstRowSelected="false"
                                 ID="cajaBuscador_AutoCompleteExtender"
-                                runat="server"
-                                Enabled="true"
-                                EnableCaching="false"
+                                runat="server" CompletionListItemCssClass="mt-2 btn btn-link"  Enabled="true"
+                                EnableCaching="false" 
                                 ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
@@ -84,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="navbar-nav ml-auto  text-center mr-xl-5 mt-lg-0 mt-3">
+                    <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-5">
                         <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server"
                                 NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
