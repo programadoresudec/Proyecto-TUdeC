@@ -39,7 +39,7 @@ public class DaoReporte
                     Mensaje = x.message.Contenido,
                     ImagenesComentario = x.comentario.Imagenes,
                     ImagenesMensaje = x.message.Imagenes
-                }).ToList();
+                }).OrderByDescending(x => x.Fecha).ToList();
     }
 
     public void actualizarMotivo(EReporte reporte)

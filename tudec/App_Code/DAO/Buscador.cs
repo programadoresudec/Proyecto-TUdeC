@@ -80,13 +80,13 @@ public class Buscador
         if (tutor == "" && puntuacion == 0)
         {
 
-            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER)).ToList();
+            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) && x.Estado.Equals(Constantes.ESTADO_ACTIVO)).ToList();
 
         }
         else
         {
 
-            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER)
+            tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) && x.Estado.Equals(Constantes.ESTADO_ACTIVO)
             && (tutor == "" || x.NombreDeUsuario.ToLower().Contains(tutor.ToLower()))
             && (puntuacion == 0 || x.Puntuacion == puntuacion)).ToList();
 
@@ -106,8 +106,8 @@ public class Buscador
 
     public List<string> GetTutoresSrc(string nombre)
     {
-        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) &&
-        x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
+        List<EUsuario> tutores = db.TablaUsuarios.Where(x => x.Rol.Equals(Constantes.ROL_USER) && x.Estado.Equals(Constantes.ESTADO_ACTIVO)
+       && x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
         List<string> nombresTutores = new List<string>();
         foreach (EUsuario tutor in tutores)
         {
