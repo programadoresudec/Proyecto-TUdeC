@@ -19,6 +19,7 @@ public class EMensaje
     private string contenido;
     private List<string> imagenes;
     private DateTime fecha;
+    private int idCurso;
     #endregion
 
     #region properties
@@ -35,5 +36,7 @@ public class EMensaje
     public List<string> Imagenes { get => imagenes; set => imagenes = value; }
     [Column("fecha")]
     public DateTime Fecha { get => fecha; set => fecha = value; }
+    [Column("id_curso")]
+    public int IdCurso { get => idCurso; set => idCurso = value; }
     #endregion
 }
