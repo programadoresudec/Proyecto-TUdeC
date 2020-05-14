@@ -23,7 +23,30 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         panelMensajes.Controls.Add(GetTablaMensajes());
 
-        
+        if(Session["subiendoImagen"] != null && (bool)Session["subiendoImagen"])
+        {
+
+            MostrarModal();
+
+        }
+     
+
+    }
+
+    public Panel GetModal()
+    {
+
+        Panel fondoModal = new Panel();
+        fondoModal.Style.Add(HtmlTextWriterStyle.ZIndex, "1030");
+        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.8)");
+
+        fondoModal.Width = Unit.Percentage(100);
+        fondoModal.Height = Unit.Percentage(100);
+        fondoModal.Style.Add(HtmlTextWriterStyle.Position, "fixed");
+        fondoModal.Style.Add(HtmlTextWriterStyle.Top, "0px");
+
+
+        return fondoModal;
 
     }
 
@@ -99,6 +122,29 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         panelMensajes.Controls.Add(GetTablaMensajes());
 
         ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "bajarBarrita()", true);
+
+    }
+
+    public void MostrarModal()
+    {
+        Panel modal = GetModal();
+
+        ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx interfazImagen = new ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx();
+
+        modal.Controls.Add(interfazImagen);
+
+        modal.Style.Add(HtmlTextWriterStyle.PaddingLeft, "37%");
+        modal.Style.Add(HtmlTextWriterStyle.PaddingTop, "15%");
+
+        panelModal.Controls.Add(modal);
+
+    }
+
+    protected void botonEnviarImagen_Click(object sender, ImageClickEventArgs e)
+    {
+
+        MostrarModal();
+        Session["subiendoImagen"] = true;
 
     }
 }
