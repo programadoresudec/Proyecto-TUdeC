@@ -25,31 +25,82 @@ public class DaoUsuario
         return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
     }
 
-    public List<EUsuario> gestionDeUsuarioAdmin()
+    public List<EUsuario> gestionDeUsuarioAdmin(string estado, string nombre)
+    {
+        List<EUsuario> usuarios = new List<EUsuario>();
+        if (!string.IsNullOrEmpty(nombre) && estado.Equals("Estado"))
+        {
+            usuarios = filtroNombre(nombre);
+        }
+        else if (!(string.IsNullOrEmpty(estado) || estado.Equals("Estado")))
+        {
+            usuarios = filtroEstado(estado);
+        }
+        else if (estado.Equals("Estado"))
+        {
+            usuarios = (from usuario in db.TablaUsuarios
+                        where usuario.Rol.Equals(Constantes.ROL_USER)
+                        select new
+                        {
+                            usuario
+                        }).ToList().Select(x => new EUsuario
+                        {
+                            NombreDeUsuario = x.usuario.NombreDeUsuario,
+                            ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
+                            FechaCreacion = x.usuario.FechaCreacion,
+                            Estado = x.usuario.Estado,
+                            FechaDesbloqueo = x.usuario.FechaDesbloqueo,
+                            NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
+                            NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
+                            PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo == null ? 0 : x.usuario.PuntuacionDeBloqueo,
+                        }).OrderByDescending(x => x.FechaCreacion).ToList();
+        }
+        return usuarios;
+    }
+
+    private List<EUsuario> filtroNombre(string nombre)
     {
         return (from usuario in db.TablaUsuarios
-                join reporte in db.TablaReportes on usuario.NombreDeUsuario equals reporte.NombreDeUsuarioDenunciado
-                where usuario.Rol == Constantes.ROL_USER && usuario.NombreDeUsuario == reporte.NombreDeUsuarioDenunciado
-                
+                where usuario.Rol.Equals(Constantes.ROL_USER) && usuario.NombreDeUsuario.ToLower().Equals(nombre.ToLower())
                 select new
                 {
-                    reporte,
                     usuario
                 }).ToList().Select(x => new EUsuario
                 {
                     NombreDeUsuario = x.usuario.NombreDeUsuario,
                     ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
                     FechaCreacion = x.usuario.FechaCreacion,
+                    Estado = x.usuario.Estado,
                     FechaDesbloqueo = x.usuario.FechaDesbloqueo,
                     NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
                     NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
                     PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo == null ? 0 : x.usuario.PuntuacionDeBloqueo,
-                }).ToList();
+                }).OrderByDescending(x => x.FechaCreacion).ToList();
+    }
+
+    private List<EUsuario> filtroEstado(string estado)
+    {
+        return (from usuario in db.TablaUsuarios
+                where usuario.Rol.Equals(Constantes.ROL_USER) && usuario.Estado.Equals(estado)
+                select new
+                {
+                    usuario
+                }).ToList().Select(x => new EUsuario
+                {
+                    NombreDeUsuario = x.usuario.NombreDeUsuario,
+                    ImagenPerfil = x.usuario.ImagenPerfil == null ? Constantes.IMAGEN_DEFAULT : x.usuario.ImagenPerfil,
+                    FechaCreacion = x.usuario.FechaCreacion,
+                    Estado = x.usuario.Estado,
+                    FechaDesbloqueo = x.usuario.FechaDesbloqueo,
+                    NumCursos = getNumeroDeCursosxUsuario(x.usuario.NombreDeUsuario),
+                    NumeroDeReportes = getNumeroDeReportesxUsuario(x.usuario.NombreDeUsuario),
+                    PuntuacionDeBloqueo = x.usuario.PuntuacionDeBloqueo == null ? 0 : x.usuario.PuntuacionDeBloqueo,
+                }).OrderByDescending(x => x.FechaCreacion).ToList();
     }
 
     public void bloquearUsuariosConCuenta()
     {
-        List<EUsuario> usuariosConReportes = db.TablaUsuarios.Where(x => x.PuntuacionDeBloqueo >= Constantes.PUNTUACION_MAXIMA_PARA_SER_REPORTADO).ToList();
+        List<EUsuario> usuariosConReportes = db.TablaUsuarios.Where(x => x.PuntuacionDeBloqueo >= Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO).ToList();
         if (usuariosConReportes.Count > 0)
         {
             usuariosConReportes.ForEach(x => { x.Estado = Constantes.ESTADO_BLOQUEADO; });

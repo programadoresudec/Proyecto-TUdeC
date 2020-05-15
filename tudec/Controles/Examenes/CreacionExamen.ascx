@@ -4,7 +4,7 @@
         width: 100%;
     }
 </style>
-<ajaxToolkit:CalendarExtender ID="cajaFecha_CalendarExtender" runat="server" BehaviorID="cajaFecha_CalendarExtender" TargetControlID="cajaFecha" />
+<ajaxToolkit:CalendarExtender ID="cajaFecha_CalendarExtender" runat="server" BehaviorID="cajaFecha_CalendarExtender"  TargetControlID="cajaFecha" />
 <asp:ObjectDataSource ID="sourceTipos" runat="server" SelectMethod="GetTiposPregunta" TypeName="GestionExamen"></asp:ObjectDataSource>
             
 

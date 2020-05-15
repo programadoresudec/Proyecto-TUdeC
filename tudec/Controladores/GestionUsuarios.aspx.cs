@@ -40,7 +40,7 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     [WebMethod]
     public static List<string> GetNombreUsuario(string prefixText)
     {
-        List<string> nombres = new Buscador().GetUsuariosReportados(prefixText);
+        List<string> nombres = new Buscador().GetUsuarios(prefixText);
         return nombres;
     }
 

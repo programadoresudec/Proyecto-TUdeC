@@ -39,20 +39,18 @@
                     ControlToValidate="cajaPrimerNombre" ValidationGroup="register"
                     ErrorMessage="¡Primer nombre requerido!"
                     SetFocusOnError="True" Display="Dynamic" CssClass="text-danger" />
-
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="filtroPrimerNombre" runat="server"
                             TargetControlID="cajaPrimerNombre" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
-                        <asp:TextBox ID="cajaPrimerNombre" runat="server" placeHolder="Primer Nombre" CssClass="form-control" />
+                        <asp:TextBox ID="cajaPrimerNombre" runat="server" placeHolder="Primer Nombre" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoNombre" runat="server" FilterType="LowercaseLetters, UppercaseLetters, Custom"
                             TargetControlID="cajaSegundoNombre" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
-                        <asp:TextBox ID="cajaSegundoNombre" runat="server" placeHolder="Segundo Nombre" CssClass="form-control" />
+                        <asp:TextBox ID="cajaSegundoNombre" runat="server" placeHolder="Segundo Nombre" CssClass="mb-4 form-control" />
                     </div>
                 </div>
-                <br />
                 <asp:RequiredFieldValidator ID="ApellidoRequerido" runat="server"
                     ControlToValidate="cajaPrimerApellido"
                     ErrorMessage="¡Primer apellido requerido!" ValidationGroup="register"
@@ -61,15 +59,14 @@
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroPrimerApellido" runat="server"
                             TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
-                        <asp:TextBox ID="cajaPrimerApellido" ValidationGroup="register" runat="server" placeHolder="Primer Apellido" CssClass="form-control" />
+                        <asp:TextBox ID="cajaPrimerApellido" ValidationGroup="register" runat="server" placeHolder="Primer Apellido" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoApellido" runat="server"
                             TargetControlID="cajaSegundoApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
-                        <asp:TextBox ID="cajaSegundoApellido" runat="server" placeHolder="Segundo Apellido" CssClass="form-control" />
+                        <asp:TextBox ID="cajaSegundoApellido" runat="server" placeHolder="Segundo Apellido" CssClass="mb-4 form-control" />
                     </div>
                 </div>
-                <br />
                 <asp:RequiredFieldValidator ID="emailRequerido" runat="server"
                     ControlToValidate="cajaEmail"
                     ErrorMessage="¡requerido!" ValidationGroup="register"
@@ -83,7 +80,7 @@
                         </div>
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltrarCaja" runat="server"
                             TargetControlID="cajaEmail" FilterType="LowercaseLetters, UppercaseLetters, Numbers" />
-                        <asp:TextBox ID="cajaEmail" runat="server" ValidationGroup="register" placeHolder="Correo Institucional" CssClass="form-control" />
+                        <asp:TextBox ID="cajaEmail" runat="server" ValidationGroup="register" placeHolder="E-mail" CssClass="form-control" />
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <i>@ucundinamarca.edu.co</i>

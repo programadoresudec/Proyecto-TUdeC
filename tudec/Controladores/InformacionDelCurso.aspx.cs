@@ -16,8 +16,8 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
     {
 
         DaoUsuario gestorUsuarios = new DaoUsuario();
-
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+
         creador = gestorUsuarios.GetUsuario(curso.Creador);
 
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];

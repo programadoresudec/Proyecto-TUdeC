@@ -10,39 +10,44 @@
         <br />
         <br />
         <br />
-
-        <div class="form-group row justify-content-center">
-            <h1>Gestión De Usuarios</h1>
+        <div class="row justify-content-center">
+            <h1 class="w3l_header text-center mb-4"><strong>Gestión De Usuarios</strong></h1>
         </div>
-        <div class="form-group row justify-content-center">
-            <div class="form-group col-md-auto">
-                <div class="input-group mb-3">
-                    <asp:TextBox  ID="cajaBuscador" AutoPostBack="true" CssClass="form-control" runat="server" placeHolder="Buscar Usuario" Width="200px">
-                    </asp:TextBox>
-                   <ajaxToolkit:AutoCompleteExtender
-                       runat="server" ID="cajaBuscador_AutoCompleteExtender"
-                       ServiceMethod="GetNombreUsuario"
-                       MinimumPrefixLength="1" CompletionListCssClass="list-group-item"
-                       CompletionInterval="10"
-                       EnableCaching="false"
-                        CompletionSetCount="1"
-                        FirstRowSelected="false"
-                        TargetControlID="cajaBuscador">
-                   </ajaxToolkit:AutoCompleteExtender> 
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <asp:LinkButton ID="botonBuscar" runat="server">
-							<i class="fa fa-search"></i></asp:LinkButton>
-                        </div>
+        <div class="form-row justify-content-center">
+            <div class="col-mb-6 text-center mb-4">
+                <asp:TextBox AutoPostBack="true" ID="cajaBuscador" CssClass="fa fa-search form-control" runat="server" placeHolder="Nombre De Usuario" Width="200px" Height="38px">
+                        </asp:TextBox>
+                <ajaxToolkit:AutoCompleteExtender
+                    MinimumPrefixLength="1"
+                    CompletionInterval="10"
+                    CompletionSetCount="1"
+                    FirstRowSelected="false"
+                    ID="cajaBuscador_AutoCompleteExtender"
+                    runat="server"
+                    ServiceMethod="GetNombreUsuario"
+                    TargetControlID="cajaBuscador">
+                </ajaxToolkit:AutoCompleteExtender>
+            </div>
+            <div class="col-mb-6">
+                <div class="row">
+                    <div class="col-lg-auto mb-4">
+                        <asp:DropDownList ID="DDL_Estado" runat="server" DataTextField="Estado" CssClass="fa fa-filter form-control" DataSourceID="ODS_EstadosUsuario" DataValueField="Estado">
+                        </asp:DropDownList>
+                        <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
+                    </div>
+                    <div class="col-lg-auto text-center mt-1">
+                        <asp:LinkButton ID="Filtrar" CssClass="btn btn-info btn-sm" runat="server">
+							<i class="fa fa-filter"></i></asp:LinkButton>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-center">
             <div class="table-responsive">
                 <table class="table">
                     <asp:GridView ID="GridViewGestionUsuario" runat="server" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" HorizontalAlign="Center" DataSourceID="ODS_DaoUsuario">
                         <Columns>
                             <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="70px" ControlStyle-Height="70px" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
-
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:ImageField>
@@ -50,7 +55,10 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-
+                            <asp:BoundField DataField="Estado" HeaderText="Estado Del Usuario" SortExpression="Estado">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha De Registro" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -81,11 +89,18 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario">
+
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text" Type="String" />
+                            <asp:ControlParameter ControlID="DDL_Estado" DefaultValue="Estado" Name="estado" PropertyName="SelectedValue" Type="String" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+
                 </table>
             </div>
         </div>
     </div>
-    </asp:Content>
+</asp:Content>
 
 

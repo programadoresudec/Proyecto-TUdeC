@@ -14,11 +14,11 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     protected void btnCerrar_Click(object sender, EventArgs e)
     {
-
+        ModalBloquearUsuario.Hide();
     }
 
     protected void btnEnviar_Click(object sender, EventArgs e)
     {
-
+        
     }
 }

@@ -7,7 +7,7 @@
         <br />
         <br />
         <div class="row justify-content-between">
-            <div class="col-md-3 mt-5">
+            <div class="col-lg-3 mt-5">
                 <div class="card">
                     <div class="card-header">
                         <div class="row justify-content-center">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 mt-5">
+            <div class="col-lg-8 mt-5">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade" id="tab-profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="card">
@@ -96,9 +96,9 @@
                                 <div class="row justify-content-center">
                                     <asp:Label ID="LB_subioImagen" runat="server" Visible="false"></asp:Label>
                                 </div>
-                                <div class="row justify-content-center">
+                                <div class="card-text text-center">
                                     <i class="fa fa-upload btn btn-secondary">
-                                        <asp:FileUpload ID="subirImagen" CssClass="btn btn-secondary" accept=".png,.jpg,.jpeg,.gif" runat="server" />
+                                        <asp:FileUpload ID="subirImagen" CssClass="btn btn-secondary btn-sm"  ToolTip="Subir Imagen" accept=".png,.jpg,.jpeg,.gif" runat="server" />
                                     </i>
                                 </div>
                             </div>

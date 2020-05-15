@@ -13,8 +13,15 @@ public class DaoSeguridad
     public void actualizarUsuarioAutentication(EAutentication autenticar)
     {
         EAutentication autenticacion = db.TablaAutenticaciones.Where(x => x.Session == autenticar.Session
-        && x.NombreDeUsuario == autenticar.NombreDeUsuario).First();
-        autenticacion.FechaFin = DateTime.Now;
-        Base.Actualizar(autenticacion);
+        && x.NombreDeUsuario == autenticar.NombreDeUsuario).FirstOrDefault();
+        if (autenticacion != null)
+        {
+            autenticacion.FechaFin = DateTime.Now;
+            Base.Actualizar(autenticacion);
+        }
+        else
+        {
+            return;
+        }
     }
 }

@@ -60,12 +60,24 @@
                         <asp:Button ID="botonIniciar" ValidationGroup="login" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium; font-weight: bold;" runat="server" 
                             OnClick="botonIniciar_Click" Text="Iniciar Sesión">
                         </asp:Button>
-                        </strong>
-                    
+                        </strong> 
                 </div>
             </div>
         </div>
     </div>
+      <script>
+        $(document).ready(function () {
+            window.setTimeout(function () {
+                $(".alertHome").fadeTo(1000, 0).slideUp(800, function () {
+                    {
+                        window.top.location = "Login.aspx"
+                    }
+                    $(this).remove();
+                });
+            }, 3000);
+
+        });
+    </script>
 </asp:Content>
 
 

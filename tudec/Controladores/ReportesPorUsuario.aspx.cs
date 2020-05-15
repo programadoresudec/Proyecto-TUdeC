@@ -37,5 +37,6 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
         }
         new DaoReporte().quitarReporte(id);
         LV_Reportes.DataBind();
+        new DaoUsuario().bloquearUsuariosConCuenta();
     }
 }

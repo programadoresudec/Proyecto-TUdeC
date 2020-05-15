@@ -41,12 +41,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void LinkBtnCerrarSesion_Click(object sender, EventArgs e)
     {
         EAutentication autenticar = new EAutentication();
-        autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
-        autenticar.Session = Session.SessionID;
-        new DaoSeguridad().actualizarUsuarioAutentication(autenticar);
-        Session[Constantes.USUARIO_LOGEADO] = null;
-        Session.Abandon();
-        Session.Clear();
+        EUsuario signOut = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]);
+        if (signOut!= null)
+        {
+            autenticar.NombreDeUsuario = signOut.NombreDeUsuario;
+            autenticar.Session = Session.SessionID;
+            new DaoSeguridad().actualizarUsuarioAutentication(autenticar);
+            Session[Constantes.USUARIO_LOGEADO] = null;
+            Session.Abandon();
+            Session.Clear();
+        } 
         Response.Redirect("~/Vistas//Home.aspx");
     }
 

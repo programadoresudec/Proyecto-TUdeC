@@ -23,16 +23,16 @@
                 <div class="card mt-4">
                     <div class="card-header text-center">
                         <div class="col input-group">
-                            <asp:TextBox ID="TextBox1" runat="server" CssClass=" fa fa-search form-control" placeHolder="Buscar tutor" Width="217px"></asp:TextBox>
+                            <asp:TextBox ID="cajaBuscador" runat="server" CssClass=" fa fa-search form-control" placeHolder="Buscar tutor" Width="217px"></asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false"
-                                ID="AutoCompleteExtender1" CompletionListItemCssClass="btn btn-link"
-                                runat="server" ServiceMethod="GetNombresCursos"
+                                ID="AutoCompleteExtender1" 
+                                runat="server" ServiceMethod="GetNombresTutores"
                                 TargetControlID="cajaBuscador" />
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <i class="fa fa-search"></i>
+                                    <asp:LinkButton CssClass="btn btn-outline-dark btn-sm" runat="server" > <i class="fa fa-search"></i></asp:LinkButton>
                                 </div>
                             </div>
                         </div>

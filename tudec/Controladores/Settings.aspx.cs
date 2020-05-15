@@ -63,11 +63,23 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
 
     protected void BtnGuardarImagen_Click(object sender, EventArgs e)
     {
+
         string extension = System.IO.Path.GetExtension(subirImagen.PostedFile.FileName);
+
+        if (String.IsNullOrEmpty(extension))
+        {
+            LB_subioImagen.CssClass = "alert alert-danger";
+            LB_subioImagen.Text = "Debes subir un archivo.";
+            LB_subioImagen.Visible = true;
+            return;
+        }
         string urlImagenPerfilExistente = ImagenPerfil.ImageUrl;
         if (System.IO.File.Exists(Server.MapPath(urlImagenPerfilExistente)))
         {
-            File.Delete(Server.MapPath(urlImagenPerfilExistente));
+            if (urlImagenPerfilExistente != (Constantes.IMAGEN_DEFAULT))
+            {
+                File.Delete(Server.MapPath(urlImagenPerfilExistente));
+            }
         }
         string saveLocation = Constantes.LOCATION_IMAGEN_PERFIL + usuario.NombreDeUsuario + extension;
         MemoryStream datosImagen = new MemoryStream(subirImagen.FileBytes);

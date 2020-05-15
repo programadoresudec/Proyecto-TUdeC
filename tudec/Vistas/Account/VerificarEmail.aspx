@@ -24,6 +24,8 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                         </div>
+                        <ajaxToolkit:FilteredTextBoxExtender ID="FiltrarCaja" runat="server"
+                            TargetControlID="campoCorreo" FilterType="LowercaseLetters, UppercaseLetters, Numbers" />
                         <asp:TextBox ID="campoCorreo" CssClass="form-control" placeHolder="E-mail" runat="server"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">

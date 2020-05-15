@@ -40,7 +40,7 @@ public class Buscador
         }
         else
         {
-            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower()))
+            cursos = db.TablaCursos.Where(x => (curso == "" || x.Nombre.ToLower().Contains(curso.ToLower())) 
             && (tutor == "" || x.Creador.ToLower().Contains(tutor.ToLower()))
             && (area.Equals("Seleccionar") || x.Area.Equals(area))
             && (puntuacion == 0 || x.Puntuacion == puntuacion)).OrderBy(x => x.Id).ToList();
@@ -117,14 +117,14 @@ public class Buscador
     }
 
 
-    public List<string> GetUsuariosReportados(string nombre)
+    public List<string> GetUsuarios(string nombre)
     {
-        List<EReporte> usuariosReportados = db.TablaReportes.Where(x => 
-        x.NombreDeUsuarioDenunciado.ToLower().Contains(nombre.ToLower())).ToList();
+        List<EUsuario> usuarios = db.TablaUsuarios.Where(x => 
+        x.NombreDeUsuario.ToLower().Contains(nombre.ToLower())).ToList();
         List<string> nombresUsuario = new List<string>();
-        foreach (EReporte usuario in usuariosReportados)
+        foreach (EUsuario usuario in usuarios)
         {
-            nombresUsuario.Add(usuario.NombreDeUsuarioDenunciado);
+            nombresUsuario.Add(usuario.NombreDeUsuario);
         }
         return nombresUsuario;
     }

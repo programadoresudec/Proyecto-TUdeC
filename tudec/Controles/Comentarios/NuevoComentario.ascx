@@ -1,13 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="NuevoComentario.ascx.cs" Inherits="Controles_Comentarios_NuevoComentario" %>
-
-
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
 <script>
 
-
         function enviarComentario(boton) {
-            
             var paginaContenedora = "<%=Page.GetType().ToString()%>";
             var caja = <%=cajaComentarios.ClientID%>;
 

@@ -69,7 +69,7 @@
                                 CompletionSetCount="1"
                                 FirstRowSelected="false"
                                 ID="cajaBuscador_AutoCompleteExtender"
-                                runat="server" CompletionListItemCssClass="mt-2 btn btn-link"  Enabled="true"
+                                runat="server" Enabled="true"
                                 EnableCaching="false" 
                                 ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador">

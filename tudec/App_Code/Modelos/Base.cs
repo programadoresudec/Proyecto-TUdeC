@@ -26,6 +26,7 @@ public class Base : DbContext
     public DbSet<EComentario> TablaComentarios { get; set; }
     public DbSet<EReporte> TablaReportes { get; set; }
     public DbSet<EMensaje> TablaMensajes { get; set; }
+    public DbSet<ENotificacion> TablaNotificaciones{ get; set; }
 
     #region Metodo Insertar
     /// <summary>

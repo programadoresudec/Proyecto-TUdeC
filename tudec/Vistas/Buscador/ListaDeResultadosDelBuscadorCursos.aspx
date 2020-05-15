@@ -27,12 +27,12 @@
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false"
-                                ID="cajaBuscador_AutoCompleteExtender" CompletionListItemCssClass="btn btn-link"
+                                ID="cajaBuscador_AutoCompleteExtender"
                                 runat="server" ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador" />
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <i class="fa fa-search"></i>
+                                    <asp:LinkButton CssClass="btn btn-outline-dark btn-sm" runat="server" > <i class="fa fa-search"></i></asp:LinkButton>
                                 </div>
                             </div>
                         </div>

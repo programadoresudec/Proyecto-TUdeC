@@ -14,6 +14,7 @@ public static class Constantes
     /// </summary>
     public const string ESTADO_EN_ESPERA = "espera de activacion";
     public const string ESTADO_BLOQUEADO = "bloqueado";
+    public const string ESTADO_REPORTADO = "reportado";
     public const string ESTADO_CAMBIO_PASS = "change pass";
     public const string ESTADO_PK = "pk";
     public const string ESTADO_UNIQUE = "unique";
@@ -22,9 +23,9 @@ public static class Constantes
     /// Constantes para el proyecto.
     /// </summary>
     public const string MENSAJE_VALIDAR_CUENTA = "Cuenta Exitosa.";
-    public const string URL_VALIDAR_CUENTA = "/Vistas/Account/CuentaActivada.aspx?";
+    public const string URL_VALIDAR_CUENTA = "~/Vistas/Account/CuentaActivada.aspx?";
     public const string MENSAJE_CAMBIO_PASS = "Cambio De Contraseña";
-    public const string URL_CAMBIO_PASS = "/Vistas/Account/ChangePassword.aspx?";
+    public const string URL_CAMBIO_PASS = "~/Vistas/Account/ChangePassword.aspx?";
     public const string CORREO = "tudec2020@gmail.com";
     public const string PASSWORD = "programadoresudec2020";
     public const string CORREO_INSTITUCIONAL = "@ucundinamarca.edu.co";
@@ -47,7 +48,7 @@ public static class Constantes
     public const int PUNTUACION_MOTIVO_3 = 3;
     public const int PUNTUACION_MOTIVO_4 = 4;
     public const int PUNTUACION_MOTIVO_5 = 5;
-    public const int PUNTUACION_MAXIMA_PARA_SER_REPORTADO = 20;
+    public const int PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO = 20;
     /// <summary>
     /// Constantes De Session
     /// </summary>
