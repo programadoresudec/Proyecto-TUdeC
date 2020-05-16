@@ -13,7 +13,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+        cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR];
 
         if(cursoExistente != null)
         {

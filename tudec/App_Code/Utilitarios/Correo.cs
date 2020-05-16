@@ -62,7 +62,7 @@ public partial class Correo
             SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios
             //Especificamos las credenciales con las que enviaremos el mail
             SmtpServer.Credentials = new System.Net.NetworkCredential(Constantes.CORREO, Constantes.PASSWORD);
-            SmtpServer.EnableSsl = true;
+            SmtpServer.EnableSsl = false;
             SmtpServer.Send(mail);
             mail.Dispose();
         }
