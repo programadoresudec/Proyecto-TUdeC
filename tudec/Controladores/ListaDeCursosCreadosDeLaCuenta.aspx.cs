@@ -41,30 +41,37 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             TableCell celdaArea = fila.Cells[1];
             TableCell celdaCalificacion = fila.Cells[4];
             TableCell celdaEditar = fila.Cells[5];
-            TableCell celdaExpulsar = fila.Cells[6];
-            TableCell celdaCalificar = fila.Cells[7];
+            TableCell celdaEditarTema = fila.Cells[6];
+            TableCell celdaExpulsar = fila.Cells[7];
+            TableCell celdaCalificar = fila.Cells[8];
 
             string nombreArea = celdaArea.Text;
 
             Image iconoArea = new Image();
-            Image iconoEditar = new Image();
+            ImageButton botonEditarCurso = new ImageButton();
             Image iconoExpulsar = new Image();
 
+            ImageButton botonEditarTema = new ImageButton();
             ImageButton botonCalificar = new ImageButton();
 
-            iconoEditar.ImageUrl = "~/Recursos/GestionCursos/Editar Curso.png";
+            botonEditarCurso.ImageUrl = "~/Recursos/GestionCursos/Editar Curso.png";
             iconoExpulsar.ImageUrl = "~/Recursos/GestionCursos/Expulsar Usuarios.png";
+            botonEditarTema.ImageUrl = "~/Recursos/GestionCursos/Crear y Editar Temas.png";
             botonCalificar.ImageUrl = "~/Recursos/GestionCursos/Calificar Exámenes.png";
 
             iconoArea.Width = 32;
             iconoArea.Height = 32;
-            iconoEditar.Width = 32;
-            iconoEditar.Height = 32;
+            botonEditarCurso.Width = 32;
+            botonEditarCurso.Height = 32;
             iconoExpulsar.Width = 32;
             iconoExpulsar.Height = 32;
+            botonEditarTema.Width = 32;
+            botonEditarTema.Height = 32;
             botonCalificar.Width = 32;
             botonCalificar.Height = 32;
 
+            botonEditarCurso.Click += new ImageClickEventHandler(EditarCurso);
+            botonEditarTema.Click += new ImageClickEventHandler(CrearYEditarTemas);
             botonCalificar.Click += new ImageClickEventHandler(CalificarExamenes);
 
             if (fila.RowIndex > -1)
@@ -91,13 +98,76 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
                 celdaArea.Controls.Add(iconoArea);
 
-                celdaEditar.Controls.Add(iconoEditar);
+                celdaEditar.Controls.Add(botonEditarCurso);
                 celdaExpulsar.Controls.Add(iconoExpulsar);
+                celdaEditarTema.Controls.Add(botonEditarTema);
                 celdaCalificar.Controls.Add(botonCalificar);
 
             }
 
         }
+
+    }
+
+    public void EditarCurso(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[5].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/CreacionYEdicionCurso.aspx");
+
+
+    }
+
+    public void CrearYEditarTemas(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[6].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/ListaDeTemasDelCurso.aspx");
+
 
     }
 
@@ -110,7 +180,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach(GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[7].Controls.Contains(boton))
+            if (fila.Cells[8].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
