@@ -99,6 +99,9 @@
                                 <asp:TemplateField HeaderText="Editar Curso">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Crear y Editar Temas">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Expulsar<br/>Alumnos">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>

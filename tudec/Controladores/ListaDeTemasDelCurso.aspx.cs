@@ -20,5 +20,69 @@ public partial class Vistas_Cursos_ListaDeTemasDelCurso : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
+
+        tablaTemario.DataBind();
+
+    }
+
+    protected void tablaTemario_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+        GridViewRow fila = (GridViewRow)e.Row;
+
+        if (fila.RowIndex > -1)
+        {
+
+            TableCell celdaTituloTema = fila.Cells[0];
+
+            LinkButton hiperEnlaceTema = new LinkButton();
+            hiperEnlaceTema.Text = celdaTituloTema.Text;
+            hiperEnlaceTema.Click += new EventHandler(VerTema);
+
+            celdaTituloTema.Controls.Add(hiperEnlaceTema);
+
+        }
+
+    }
+
+    public void VerTema(object sender, EventArgs e)
+    {
+
+        LinkButton hiperEnlace = (LinkButton)sender;
+
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaTemario.Rows)
+        {
+
+            if (fila.Cells[0].Controls.Contains(hiperEnlace))
+            {
+
+                filaAEncontrar = fila;
+                break;
+
+            }
+
+        }
+
+        int indiceTema = Int32.Parse(tablaTemario.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionTemas gestorTemas = new GestionTemas();
+
+        ETema tema = gestorTemas.GetTema(indiceTema);
+
+        Session[Constantes.TEMA_SELECCIONADO] = tema;
+
+        Response.Redirect("~/Vistas/Cursos/CreacionYEdicionTema.aspx");
+
+    }
+
+
+
+    protected void botonAgregarTema_Click(object sender, EventArgs e)
+    {
+
+        Response.Redirect("~/Vistas/Cursos/CreacionYEdicionTema.aspx");
+
     }
 }
