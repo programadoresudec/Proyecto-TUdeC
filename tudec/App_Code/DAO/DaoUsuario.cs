@@ -98,14 +98,26 @@ public class DaoUsuario
                 }).OrderByDescending(x => x.FechaCreacion).ToList();
     }
 
-    public void bloquearUsuariosConCuenta()
+
+    public void bloquearUsuariosConCuenta(string nombreUsuario)
     {
-        List<EUsuario> usuariosConReportes = db.TablaUsuarios.Where(x => x.PuntuacionDeBloqueo >= Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO).ToList();
-        if (usuariosConReportes.Count > 0)
+        EUsuario usuarioParaBloquear = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
+        if (usuarioParaBloquear.PuntuacionDeBloqueo >= Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
         {
-            usuariosConReportes.ForEach(x => { x.Estado = Constantes.ESTADO_BLOQUEADO; });
-            Base.Actualizar(usuariosConReportes);
+            usuarioParaBloquear.Estado = Constantes.ESTADO_BLOQUEADO;
         }
+        Base.Actualizar(usuarioParaBloquear);
+        // Query para modificar varias tablas.
+        //usuariosConReportes.ForEach(x => x.Estado = Constantes.ESTADO_BLOQUEADO);
+        //if (usuariosConReportes.Count > 0)
+        //{
+        //    foreach (var item in usuariosConReportes)
+        //    {
+        //        db.TablaUsuarios.Attach(item);
+        //        db.Entry(item).Property(x => x.Estado).IsModified = true;
+        //    }
+        //}
+        //db.SaveChanges();
     }
 
     private int getNumeroDeReportesxUsuario(string nombreDeUsuario)

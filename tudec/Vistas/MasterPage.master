@@ -60,7 +60,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="form-group">
                         <br />
-                        <div class="lg-auto input-group">
+                        <div class="input-group mb-3">
                             <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
@@ -70,16 +70,14 @@
                                 FirstRowSelected="false"
                                 ID="cajaBuscador_AutoCompleteExtender"
                                 runat="server" Enabled="true"
-                                EnableCaching="false" 
+                                EnableCaching="false"
                                 ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
                             <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
-                                        CssClass="btn btn-default">
+                                <asp:LinkButton ID="botonBuscar" runat="server" OnClick="btnBuscar_Click"
+                                    CssClass="btn btn-light btn-lg">
 							<i class="fa fa-search"></i></asp:LinkButton>
-                                </div>
                             </div>
                         </div>
                     </div>

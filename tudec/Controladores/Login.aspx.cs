@@ -8,7 +8,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       if (!IsPostBack)
+        if (!IsPostBack)
         {
             CleanControl(this.Controls);
         }
@@ -101,7 +101,10 @@ public partial class Views_Account_Login : System.Web.UI.Page
         autenticar.Mac = conexion.mac();
         autenticar.NombreDeUsuario = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]).NombreDeUsuario;
         autenticar.Session = Session.SessionID;
-        Base.Insertar(autenticar);
+        if (autenticar != null)
+        {
+            Base.Insertar(autenticar);
+        }
     }
     [WebMethod]
     public static List<string> GetNombresCursos(string prefixText)

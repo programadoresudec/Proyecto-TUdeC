@@ -45,7 +45,7 @@
                             <asp:TextBox ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"
                                 CssClass="form-control" />
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server"
-                                BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
+                                BehaviorID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" TargetControlID="cajaFechaCreacion" />
                         </div>
                         <br />
                         <div class="row">

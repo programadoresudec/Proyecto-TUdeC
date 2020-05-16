@@ -32,11 +32,6 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
         Response.Redirect("~/Vistas/Admin/ReportesPorUsuario.aspx");
     }
 
-    protected void btnActualizar_Click(object sender, EventArgs e)
-    {
-        new DaoUsuario().bloquearUsuariosConCuenta();
-    }
-
     [WebMethod]
     public static List<string> GetNombreUsuario(string prefixText)
     {
@@ -44,4 +39,8 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
         return nombres;
     }
 
+    protected void DDL_Estado_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Console.WriteLine();
+    }
 }

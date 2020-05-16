@@ -11,8 +11,8 @@ public partial class Controles_CreacionExamen : System.Web.UI.UserControl
 
 
     protected void Page_Load(object sender, EventArgs e)
-    {     
-
+    {
+        cajaFecha_CalendarExtender.StartDate = DateTime.Now;
         for (int hora=0; hora<24; hora++)
         {
             ListItem item = new ListItem();

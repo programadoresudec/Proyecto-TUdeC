@@ -25,18 +25,18 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
     protected void Quitar_Click(object sender, EventArgs e)
     {
         int id = 0;
-        ListViewItem Item = ((LinkButton)sender).NamingContainer as
-         ListViewItem;
+        string usuarioDenunciado = "";
+        ListViewItem Item = ((LinkButton)sender).NamingContainer as ListViewItem;
         if (Item != null)
         {
             //PARA EL DATAKEY
-            int ID = (int)LV_Reportes.DataKeys[Item.DataItemIndex]["Id"];
+            //int ID = (int)LV_Reportes.DataKeys[Item.DataItemIndex]["Id"];
             //BUSCANDO EL ID mediante un label
-            Label labelId = (Label)Item.FindControl("IdReporte");
-           id = Convert.ToInt32(labelId.Text);
+            id = int.Parse(((Label)Item.FindControl("LB_IdReporte")).Text);
+            usuarioDenunciado = ((Label)Item.FindControl("LB_NombreUsuarioDenunciado")).Text;
         }
         new DaoReporte().quitarReporte(id);
         LV_Reportes.DataBind();
-        new DaoUsuario().bloquearUsuariosConCuenta();
+        new DaoUsuario().bloquearUsuariosConCuenta(usuarioDenunciado);
     }
 }
