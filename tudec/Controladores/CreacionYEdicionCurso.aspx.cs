@@ -73,7 +73,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
             curso.Nombre = cajaTitulo.Text;
 
-            curso.FechaCreacion = fechaInicio;
+            curso.FechaCreacion = fechaActual;
             curso.Puntuacion = 0;
 
             if (cajaDescripcion.Text != "")
@@ -83,8 +83,21 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
             }
 
-            if(cursoExistente == null)
+            
+
+
+            if (cursoExistente == null)
             {
+
+                bool validar;
+                string codigo;
+                do
+                {
+                    codigo = Reutilizables.generarCodigoCurso();
+                    validar = new GestionCurso().existeCodigoCurso(codigo);
+                } while (validar != false);
+
+                curso.CodigoInscripcion = codigo;
 
                 Base.Insertar(curso);
 
