@@ -49,6 +49,7 @@ public static class Constantes
     public const int PUNTUACION_MOTIVO_4 = 4;
     public const int PUNTUACION_MOTIVO_5 = 5;
     public const int PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO = 20;
+    public const int LONGITUD_CODIGO = 6;
     /// <summary>
     /// Constantes De Session
     /// </summary>

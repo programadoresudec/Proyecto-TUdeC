@@ -1,21 +1,9 @@
 ﻿<%@ Page Title="Detalles Sugerencia" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/DetallesSugerencia.aspx.cs" Inherits="Vistas_DetallesSugerencia" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 64px;
-            height: 64px;
-        }
-    </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+<asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
     <script>
-
         window.onload = function () {
-
             var buzon = $find("<%= cajaSugerencia_HtmlEditorExtender.ClientID %>");
-
             <%
 
         ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
@@ -53,14 +41,17 @@
 
         }
     </script>
-
     <br />
     <br />
     <br />
     <br />
     <br />
-
-
+     <div class="container flex-md-row">
+        <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
+            NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Style="font-size: medium;">
+                <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Devolver</strong> 
+        </asp:HyperLink>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="card text-center">
@@ -70,11 +61,9 @@
                     <strong>
                         <asp:Label ID="emisor" runat="server" Text="Usuario"></asp:Label>
                     </strong>
-
                     <h5 class="text-info">
                         <asp:Label ID="titulo" runat="server" Text="Título de sugerencia"></asp:Label>
                     </h5>
-
                 </div>
                 <div class="card-body">
                     <h5 class="text-dark mb-4"><strong>Descripción De La Sugerencia</strong></h5>
@@ -84,9 +73,10 @@
                 </div>
             </div>
         </div>
-        <ajaxToolkit:HtmlEditorExtender ID="cajaSugerencia_HtmlEditorExtender" runat="server" TargetControlID="cajaSugerencia">
-            <Toolbar>
-            </Toolbar>
-        </ajaxToolkit:HtmlEditorExtender>
+    </div>
+    <ajaxToolkit:HtmlEditorExtender ID="cajaSugerencia_HtmlEditorExtender" runat="server" TargetControlID="cajaSugerencia">
+        <Toolbar>
+        </Toolbar>
+    </ajaxToolkit:HtmlEditorExtender>
 </asp:Content>
 

@@ -63,8 +63,8 @@ public class GestionCurso
 
             if(fechaCreacion != "") {
 
-                string dia = fechaCreacion.Split('/')[1];
-                string mes = fechaCreacion.Split('/')[0];
+                string dia = fechaCreacion.Split('/')[0];
+                string mes = fechaCreacion.Split('/')[1];
                 string anio = fechaCreacion.Split('/')[2];
                 fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
 
@@ -124,10 +124,10 @@ public class GestionCurso
             if (fechaCreacion != "")
             {
 
-                string dia = fechaCreacion.Split('/')[1];
-                string mes = fechaCreacion.Split('/')[0];
+                string dia = fechaCreacion.Split('/')[0];
+                string mes = fechaCreacion.Split('/')[1];
                 string anio = fechaCreacion.Split('/')[2];
-                fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
+                    fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
 
             }
             cursos = cursos.Where(x => (tutor.Equals("") || x.Creador.Equals(tutor)) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area))).ToList();
@@ -186,7 +186,6 @@ public class GestionCurso
 
     public List<string> GetCursosInscritosSrc(EUsuario usuario, string nombre)
     {
-
         List<ECurso> cursos = new List<ECurso>();
         List<string> nombresCursos = new List<string>();
 
@@ -261,4 +260,13 @@ public class GestionCurso
 
     }
 
+    /// <summary>
+    /// Metodo que verifica si existe el codigo del curso en la base.
+    /// </summary>
+    /// <param name="codigo"></param>
+    /// <returns></returns>
+    public bool existeCodigoCurso(string codigo)
+    {
+        return db.TablaCursos.Any(x => x.CodigoInscripcion.Equals(codigo));
+    }
 }

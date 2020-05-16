@@ -8,10 +8,14 @@ using System.Web;
 /// </summary>
 public class DaoNotificacion
 {
-    public DaoNotificacion()
+    private Base db = new Base();
+    public List<ENotificacion> notificacionesDelUsuario(string nombreUsuario)
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        return db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).ToList();
+    }
+
+    public int numeroDeNotificaciones(string nombreUsuario)
+    {
+        return db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).Count();
     }
 }

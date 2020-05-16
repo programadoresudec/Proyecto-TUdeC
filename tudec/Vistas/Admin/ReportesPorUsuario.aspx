@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <br />
         <div class="row justify-content-center">
-            <asp:ListView ID="LV_Reportes" runat="server"  DataKeyNames="Id" DataSourceID="ODS_Reportes" >
+            <asp:ListView ID="LV_Reportes" runat="server" DataKeyNames="Id" DataSourceID="ODS_Reportes">
                 <EditItemTemplate>
                     <asp:TextBox ID="IdTextBox" runat="server" Visible="false" Text='<%# Bind("Id") %>' />
                     <div class="card ml-md-5 mr-md-5 mb-4">
@@ -102,12 +102,16 @@
                     </div>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
-                    <div class="row justify-content-center">
-                        <h4>No tiene Reportes Por Ver.</h4>
+                    <div class="row justify-content-center mb-5 mt-5" style="padding-top:3%">
+                        <div class="col-lg-auto text-center">
+                        <h1 class="text-info"><i class="fa fa-info-circle mr-2"></i><strong>No tiene Reportes Por Ver.</strong></h1>
+
+                        </div>
                     </div>
                 </EmptyDataTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="IdReporte" runat="server" Visible="false" Text='<%# Eval("Id") %>' />
+                    <asp:Label ID="LB_IdReporte" runat="server" Visible="false" Text='<%# Eval("Id") %>' />
+                    <asp:Label ID="LB_NombreUsuarioDenunciado" runat="server" Visible="false" Text='<%# Eval("NombreDeUsuarioDenunciado") %>' />
                     <div class="card ml-md-5 mr-md-5 mb-4">
                         <div class="card-header text-center">
                             <strong>Nombre Del Usuario Denunciante</strong><br />
@@ -180,7 +184,7 @@
                                     </asp:LinkButton>
                                 </div>
                                 <div class="col-lg-auto">
-                                    <asp:LinkButton ID="Quitar" runat="server"  OnClick="Quitar_Click" CssClass="btn btn-outline-info btn-block">
+                                    <asp:LinkButton ID="Quitar" runat="server" OnClick="Quitar_Click" CssClass="btn btn-outline-info btn-block">
                                   <i class="fas fa-times-circle mr-2"></i><strong>Quitar Reporte</strong>
                                     </asp:LinkButton>
                                 </div>

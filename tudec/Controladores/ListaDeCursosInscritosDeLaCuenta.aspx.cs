@@ -9,11 +9,12 @@ using System.Web.UI.WebControls;
 public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Page
 {
 
+
     private static EUsuario usuario;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        cajaFechaCreacion_CalendarExtender.EndDate = DateTime.Now;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario == null)
         {

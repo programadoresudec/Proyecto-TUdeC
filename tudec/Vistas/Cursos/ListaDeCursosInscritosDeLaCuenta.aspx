@@ -17,7 +17,7 @@
                         <asp:LinkButton CssClass="btn btn-outline-dark btn-block botones mr-2 " ID="botonCreados" runat="server" Text="Creados" OnClick="botonCreados_Click" />
                     </div>
                     <div class="col">
-                        <asp:LinkButton CssClass="btn botonPulsado btn-block mr-2 disabled" ID="Button2" runat="server" Text="Inscritos" />
+                        <asp:LinkButton CssClass="btn botonPulsado btn-block mr-2 disabled" ID="botonInscritos" runat="server" Text="Inscritos" />
                     </div>
                 </div>
                 <div class="card mt-4">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <asp:TextBox ID="cajaFechaCreacion" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
+                            <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
 
                         </div>
                         <br />

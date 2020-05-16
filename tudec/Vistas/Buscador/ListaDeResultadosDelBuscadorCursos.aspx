@@ -31,9 +31,7 @@
                                 runat="server" ServiceMethod="GetNombresCursos"
                                 TargetControlID="cajaBuscador" />
                             <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <asp:LinkButton CssClass="btn btn-outline-dark btn-sm" runat="server" > <i class="fa fa-search"></i></asp:LinkButton>
-                                </div>
+                                <asp:LinkButton CssClass="btn btn-info btn-sm" runat="server"> <i class="fa fa-search"></i></asp:LinkButton>
                             </div>
                         </div>
                     </div>

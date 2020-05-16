@@ -148,6 +148,7 @@ public class DaoReporte
     private int? sumarPuntuacionDeBloqueo(string nombreDeUsuario, int puntuacionMotivo)
     {
         Nullable<int> puntuacionActual = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Select(x => x.PuntuacionDeBloqueo).SingleOrDefault();
-        return puntuacionActual == null ? puntuacionActual = puntuacionMotivo : (puntuacionActual.Value + puntuacionMotivo);
+        return puntuacionActual == null ? puntuacionActual = puntuacionMotivo 
+            : (puntuacionActual.Value + puntuacionMotivo);
     }
 }

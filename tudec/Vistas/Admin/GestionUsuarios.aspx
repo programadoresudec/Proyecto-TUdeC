@@ -3,43 +3,35 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
-    <div class="container">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="row justify-content-center">
-            <h1 class="w3l_header text-center mb-4"><strong>Gestión De Usuarios</strong></h1>
+    <br />
+    <br />
+    <div class="container mt-5">
+        <div class="row justify-content-center mt-5">
+            <h1 class="w3l_header text-center mb-4 mt-5"><strong>Gestión De Usuarios</strong></h1>
         </div>
         <div class="form-row justify-content-center">
             <div class="col-mb-6 text-center mb-4">
-                <asp:TextBox AutoPostBack="true" ID="cajaBuscador" CssClass="fa fa-search form-control" runat="server" placeHolder="Nombre De Usuario" Width="200px" Height="38px">
+                <div class="input-group">
+                    <asp:TextBox ID="cajaBuscador" CssClass="fa fa-search form-control" runat="server" placeHolder="Nombre De Usuario" Width="200px" Height="38px">
                         </asp:TextBox>
-                <ajaxToolkit:AutoCompleteExtender
-                    MinimumPrefixLength="1"
-                    CompletionInterval="10"
-                    CompletionSetCount="1"
-                    FirstRowSelected="false"
-                    ID="cajaBuscador_AutoCompleteExtender"
-                    runat="server"
-                    ServiceMethod="GetNombreUsuario"
-                    TargetControlID="cajaBuscador">
-                </ajaxToolkit:AutoCompleteExtender>
-            </div>
-            <div class="col-mb-6">
-                <div class="row">
-                    <div class="col-lg-auto mb-4">
-                        <asp:DropDownList ID="DDL_Estado" runat="server" DataTextField="Estado" CssClass="fa fa-filter form-control" DataSourceID="ODS_EstadosUsuario" DataValueField="Estado">
-                        </asp:DropDownList>
-                        <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
-                    </div>
-                    <div class="col-lg-auto text-center mt-1">
-                        <asp:LinkButton ID="Filtrar" CssClass="btn btn-info btn-sm" runat="server">
-							<i class="fa fa-filter"></i></asp:LinkButton>
+                    <ajaxToolkit:AutoCompleteExtender
+                        MinimumPrefixLength="1"
+                        CompletionInterval="10"
+                        CompletionSetCount="1"
+                        FirstRowSelected="false"
+                        ID="cajaBuscador_AutoCompleteExtender"
+                        runat="server"
+                        ServiceMethod="GetNombreUsuario"
+                        TargetControlID="cajaBuscador" />
+                    <div class="input-group-append">
+                        <asp:LinkButton CssClass="btn btn-info" runat="server"> <i class="fa fa-search"></i></asp:LinkButton>
                     </div>
                 </div>
+            </div>
+            <div class="col-mb-6">
+                <asp:DropDownList ID="DDL_Estado" runat="server" DataTextField="Estado" OnSelectedIndexChanged="DDL_Estado_SelectedIndexChanged" AutoPostBack="True" CssClass="fa fa-filter form-control" DataSourceID="ODS_EstadosUsuario" DataValueField="Estado">
+                </asp:DropDownList>
+                <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -82,7 +74,7 @@
                             <asp:TemplateField HeaderText="Ver Reportes">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="botonVerReportes" runat="server"
-                                        OnClick="botonVerReportes_Click" CssClass="fa fa-eye" />
+                                        OnClick="botonVerReportes_Click" CssClass="fa fa-eye fa-lg" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -90,13 +82,11 @@
                         </Columns>
                     </asp:GridView>
                     <asp:ObjectDataSource ID="ODS_DaoUsuario" runat="server" SelectMethod="gestionDeUsuarioAdmin" TypeName="DaoUsuario">
-
                         <SelectParameters>
                             <asp:ControlParameter ControlID="cajaBuscador" Name="nombre" PropertyName="Text" Type="String" />
                             <asp:ControlParameter ControlID="DDL_Estado" DefaultValue="Estado" Name="estado" PropertyName="SelectedValue" Type="String" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-
                 </table>
             </div>
         </div>

@@ -17,40 +17,29 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         DaoUsuario gestorUsuarios = new DaoUsuario();
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
-
-        creador = gestorUsuarios.GetUsuario(curso.Creador);
-
+        if (curso != null)
+        {
+            creador = gestorUsuarios.GetUsuario(curso.Creador);
+        
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
         GestionCurso gestorCursos = new GestionCurso();
-
-
-
-        if(usuario == null)
+        if (usuario == null)
         {
-
             inscripcion = false;
-
         }
         else
         {
-
             inscripcion = gestorCursos.IsInscrito(usuario, curso);
-
         }
-
-
         if (!inscripcion)
         {
-
             CajaComentarios.Visible = false;
             etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
-
-
         }
 
 
-        if(inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
         {
 
             botonInscribirse.Visible = false;
@@ -58,26 +47,29 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         }
 
 
-        if(usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
         {
 
             botonInbox.Visible = false;
 
 
         }
-        
 
-        etiquetaTitulo.Text = curso.Nombre;
-        etiquetaNombreUsuario.Text = curso.Creador;
-        etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
-        etiquetaCorreo.Text = creador.CorreoInstitucional;
-        etiquetaArea.Text = curso.Area;
-        campoDescripcion.Text = curso.Descripcion;
-        imagenArea.Width = 32;
-        imagenArea.Height = 32;
-        imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area  + ".png";
+        if (curso!=null)
+        {
+            etiquetaTitulo.Text = curso.Nombre;
+            etiquetaNombreUsuario.Text = curso.Creador;
+            etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
+            etiquetaCorreo.Text = creador.CorreoInstitucional;
+            etiquetaArea.Text = curso.Area;
+            campoDescripcion.Text = curso.Descripcion;
+            imagenArea.Width = 32;
+            imagenArea.Height = 32;
+            imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
+        }
 
-        if(usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+
+        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
         {
 
             botonInbox.Visible = false;
@@ -92,7 +84,11 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         }
 
         tablaTemas.DataBind();
-
+        }
+        else
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
     }
 
     protected void tablaTemas_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -104,7 +100,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         if (fila.RowIndex > -1)
         {
-            if(usuario != null)
+            if (usuario != null)
             {
 
                 if (inscripcion || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
@@ -117,14 +113,8 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
                     celdaTema.Controls.Add(hiperEnlaceTema);
 
                 }
-
-
             }
-
-        
-
         }
-
     }
 
     public void VerTema(object sender, EventArgs e)
@@ -132,7 +122,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         LinkButton hiperEnlace = (LinkButton)sender;
         GridViewRow filaAEncontrar = null;
 
-        foreach(GridViewRow fila in tablaTemas.Rows)
+        foreach (GridViewRow fila in tablaTemas.Rows)
         {
 
             if (fila.Cells[0].Controls.Contains(hiperEnlace))
@@ -142,7 +132,6 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
                 break;
 
             }
-
         }
 
         int idTema = Int32.Parse(tablaTemas.DataKeys[filaAEncontrar.RowIndex].Value.ToString());

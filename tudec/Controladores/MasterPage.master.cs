@@ -6,7 +6,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
@@ -25,7 +24,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
-
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }
@@ -42,15 +40,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         EAutentication autenticar = new EAutentication();
         EUsuario signOut = ((EUsuario)Session[Constantes.USUARIO_LOGEADO]);
-        if (signOut!= null)
+        if (signOut != null)
         {
             autenticar.NombreDeUsuario = signOut.NombreDeUsuario;
             autenticar.Session = Session.SessionID;
             new DaoSeguridad().actualizarUsuarioAutentication(autenticar);
-            Session[Constantes.USUARIO_LOGEADO] = null;
+            Session.Contents.Remove(Constantes.USUARIO_LOGEADO);
             Session.Abandon();
             Session.Clear();
-        } 
+        }
         Response.Redirect("~/Vistas//Home.aspx");
     }
 
