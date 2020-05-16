@@ -7,7 +7,7 @@
     <br />
     <br />
     <br />
-    <div class="container-fluid mt-5 mb-5">
+    <div class="container-fluid mt-5 mb-4">
         <div class="row justify-content-around">
             <div class="col-lg-auto mb-5">
                 <div class="card mt-4">
@@ -32,7 +32,6 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-
                 <asp:Label Style="color: #2D732D; font-size: 40px" CssClass="text-center" Text="TituloCurso" runat="server" ID="etiquetaTitulo" />
                 <div class="table-responsive">
                     <table class="table">
@@ -48,14 +47,19 @@
                         </asp:ObjectDataSource>
                     </table>
                 </div>
-                <br />
-                <h5><strong>Descripción Del Curso</strong></h5>
-                <asp:TextBox Enabled="false" ID="campoDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
             </div>
         </div>
     </div>
 
     <div class="container text-center mb-5">
+        <div class="row justify-content-end">
+            <div class="col-lg-6">
+                <h5 class="mb-4"><strong>Descripción Del Curso</strong></h5>
+                <asp:TextBox Enabled="false" ID="campoDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+        <br />
         <asp:Label ID="etiquetaComentarios" Font-Size="X-Large" CssClass="text-info" runat="server"><strong> Comentarios</strong></asp:Label>
         <uc1:CajaComentarios runat="server" ID="CajaComentarios" />
     </div>
