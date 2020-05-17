@@ -7,6 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.UserControl
 {
+
+    private int idComentario;
+
+    public int IdComentario { get => idComentario; set => idComentario = value; }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
