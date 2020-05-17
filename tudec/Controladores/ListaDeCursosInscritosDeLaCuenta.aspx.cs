@@ -30,6 +30,72 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
 
     }
 
+    public void EliminarInscripcion(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[6].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        EInscripcionesCursos inscripcion = gestorCursos.GetInscripcion(usuario, curso);
+
+        Base.Eliminar(inscripcion);
+
+        Response.Redirect("~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx");
+
+    }
+
+    public void VerCalificaciones(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[5].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_VER_NOTAS] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/VerMisNotas.aspx");
+
+    }
+
     protected void tablaCursos_RowCreated(object sender, GridViewRowEventArgs e)
     {
 
@@ -47,18 +113,21 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             string nombreArea = celdaArea.Text;
 
             Image iconoArea = new Image();
-            Image iconoBoleta = new Image();
-            Image iconoCancelar = new Image();
+            ImageButton botonBoleta = new ImageButton();
+            ImageButton botonCancelar = new ImageButton();
 
-            iconoBoleta.ImageUrl = "~/Recursos/GestionCursos/Boleta Calificaciones.png";
-            iconoCancelar.ImageUrl = "~/Recursos/GestionCursos/Cancelar Inscripción.png";
+            botonBoleta.ImageUrl = "~/Recursos/GestionCursos/Boleta Calificaciones.png";
+            botonCancelar.ImageUrl = "~/Recursos/GestionCursos/Cancelar Inscripción.png";
 
             iconoArea.Width = 32;
             iconoArea.Height = 32;
-            iconoBoleta.Width = 32;
-            iconoBoleta.Height = 32;
-            iconoCancelar.Width = 32;
-            iconoCancelar.Height = 32;
+            botonBoleta.Width = 32;
+            botonBoleta.Height = 32;
+            botonCancelar.Width = 32;
+            botonCancelar.Height = 32;
+
+            botonBoleta.Click += new ImageClickEventHandler(VerCalificaciones);
+            botonCancelar.Click += new ImageClickEventHandler(EliminarInscripcion);
 
             if (fila.RowIndex > -1)
             {
@@ -82,8 +151,8 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
 
                 celdaArea.Controls.Add(iconoArea);
 
-                celdaBoleta.Controls.Add(iconoBoleta);
-                celdaCancelar.Controls.Add(iconoCancelar);
+                celdaBoleta.Controls.Add(botonBoleta);
+                celdaCancelar.Controls.Add(botonCancelar);
 
             }
 

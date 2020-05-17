@@ -54,7 +54,7 @@
                 
               
 
-                <asp:GridView CssClass="tablas"  ID ="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True" Width="675px" OnRowDataBound="GridViewUsuSelec_RowDataBound">
+                <asp:GridView CssClass="tablas"  ID ="GridViewUsuSelec" runat="server" AutoGenerateColumns="False" DataSourceID="DatosUsuarioSeleccionadoDataSource" AllowPaging="True" Width="675px" OnRowDataBound="GridViewUsuSelec_RowDataBound" DataKeyNames="Id">
                 <Columns>
                     <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False" >
                     <HeaderStyle HorizontalAlign="Center" />
