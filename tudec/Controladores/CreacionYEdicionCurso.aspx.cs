@@ -101,6 +101,9 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
                 Base.Insertar(curso);
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "alert('Él código de su curso es " + codigo + "');", true);
+
+
             }
             else
             {

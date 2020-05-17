@@ -99,7 +99,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="botonCrearCurso" CssClass="botonCrearCurso" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" />
+                <asp:Button ID="botonCrearCurso" CssClass="cajaDescripcion" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" />
             </td>
         </tr>
     </table>

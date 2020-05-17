@@ -34,6 +34,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         }
         if (!inscripcion)
         {
+            botonInbox.Visible = false;
             CajaComentarios.Visible = false;
             etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
         }
@@ -89,6 +90,14 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
+
+        if (Session["inscribiendose"] != null && (bool)Session["inscribiendose"])
+        {
+
+            MostrarModal();
+
+        }
+
     }
 
     protected void tablaTemas_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -143,6 +152,53 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         Session[Constantes.TEMA_SELECCIONADO] = tema;
 
         Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
+
+    }
+
+    public Panel GetModal()
+    {
+
+        Panel fondoModal = new Panel();
+        fondoModal.Style.Add(HtmlTextWriterStyle.ZIndex, "1030");
+        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.8)");
+
+        fondoModal.Width = Unit.Percentage(100);
+        fondoModal.Height = Unit.Percentage(100);
+        fondoModal.Style.Add(HtmlTextWriterStyle.Position, "fixed");
+        fondoModal.Style.Add(HtmlTextWriterStyle.Top, "0px");
+
+
+        return fondoModal;
+
+    }
+
+    public void MostrarModal()
+    {
+        Panel modal = GetModal();
+
+        ASP.controles_interfazinscribirsecurso_interfazinscribirsecurso_ascx interfazInscripcion = new ASP.controles_interfazinscribirsecurso_interfazinscribirsecurso_ascx();
+
+        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+        ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+
+        interfazInscripcion.NombreDeUsuario = usuario.NombreDeUsuario;
+        interfazInscripcion.IdCurso = curso.Id;
+        interfazInscripcion.Codigo = curso.CodigoInscripcion;
+
+        modal.Controls.Add(interfazInscripcion);
+
+        modal.Style.Add(HtmlTextWriterStyle.PaddingLeft, "42%");
+        modal.Style.Add(HtmlTextWriterStyle.PaddingTop, "20%");
+
+        panelModal.Controls.Add(modal);
+
+    }
+
+    protected void botonInscribirse_Click(object sender, EventArgs e)
+    {
+
+        MostrarModal();
+        Session["inscribiendose"] = true;
 
     }
 }
