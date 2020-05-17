@@ -164,7 +164,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
         ECurso curso = gestorCursos.GetCurso(idCurso);
 
-        Session[Constantes.CURSO_SELECCIONADO] = curso;
+        Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS] = curso;
 
         Response.Redirect("~/Vistas/Cursos/ListaDeTemasDelCurso.aspx");
 

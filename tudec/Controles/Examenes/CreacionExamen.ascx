@@ -1,17 +1,63 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="CreacionExamen.ascx.cs" Inherits="Controles_CreacionExamen" %>
-<style type="text/css">
-    .auto-style1 {
-        width: 100%;
-    }
-</style>
 <ajaxToolkit:CalendarExtender ID="cajaFecha_CalendarExtender" runat="server" BehaviorID="cajaFecha_CalendarExtender"  TargetControlID="cajaFecha" />
 <asp:ObjectDataSource ID="sourceTipos" runat="server" SelectMethod="GetTiposPregunta" TypeName="GestionExamen"></asp:ObjectDataSource>
             
  
- <script type="text/javascript" src="../Controles/Examenes/JS/CreacionExamen.js"></script>
+ <script type="text/javascript" src="../../Controles/Examenes/JS/CreacionExamen.js"></script>
 
 
 <script>
+
+
+    function enviarExamen(tituloTema, contenidoTema, idCurso) {
+
+        var fecha = <%=cajaFecha.ClientID%>;
+        var hora = <%=desplegableHora.ClientID%>;
+        var minuto = <%=desplegableMinuto.ClientID%>;
+
+
+        if (Examen.camposVacios() == false && fecha.value != "" && hora.value != "Hora" && minuto.value != "Minuto") {
+
+            if (Examen.preguntas.length == 0) {
+
+                alert("No hay preguntas en el examen");
+
+            } else {
+
+                if (Examen.porcentajeCompleto() == false) {
+
+                    alert("La suma de los porcentajes no da 100%");
+
+                }
+                else {
+
+                    var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "','tituloTema':'" + tituloTema + "','contenidoTema':'" + contenidoTema + "','idCurso':'"  + idCurso +  "'} ";
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: '../../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
+                        data: datos,
+
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: false,
+
+                    });
+
+                    alert("Se ha creado el tema");
+
+                }
+
+            }
+
+        } else {
+
+            alert("Hay campos sin llenar");
+
+        }
+
+    }
 
     $(document).ready(function () {
 
@@ -57,58 +103,6 @@
 
         });
 
-        $('#botonEnviar').click(function () {
-
-
-            var fecha = <%=cajaFecha.ClientID%>;
-            var hora = <%=desplegableHora.ClientID%>;
-            var minuto = <%=desplegableMinuto.ClientID%>;
-
-
-            if (Examen.camposVacios() == false && fecha.value != "" && hora.value != "Hora" && minuto.value != "Minuto") {
-
-                if (Examen.preguntas.length == 0) {
-
-                    alert("No hay preguntas en el examen");
-
-                } else {
-
-                    if (Examen.porcentajeCompleto() == false) {
-
-                        alert("La suma de los porcentajes no da 100%");
-
-                    }
-                    else {
-
-                        var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "'} ";
-
-                        $.ajax({
-
-                            type: "POST",
-                            url: '../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
-                            data: datos,
-
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            async: true,
-
-                        });
-
-                        alert("Se ha subido el examen");
-
-                    }
-
-                }
-
-            } else {
-
-                alert("Hay campos sin llenar");
-
-            }
-            
-
-        })
-
     });
   
 </script>
@@ -147,6 +141,4 @@
 </div>
 
 
-<input id="botonEnviar" type="button" style="width: 60%" value="Crear examen" />
-
-</center>
+&nbsp;</center>
