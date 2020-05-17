@@ -36,13 +36,13 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
             if (comentariosHilo.Count > 0)
             {
-
+                opcionHilo.CssClass = "btn btn-link";
                 opcionHilo.Text = "Ver respuestas";
 
             }
             else
             {
-
+                opcionHilo.CssClass = "btn btn-link";
                 opcionHilo.Text = "Responder";
 
             }
@@ -57,6 +57,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
     {
 
         opcionHilo = new LinkButton();
+        opcionHilo.CssClass = "btn btn-link";
         opcionHilo.Text = "Ocultar";
         opcionHilo.Click += new EventHandler(OcultarHilo);
 
@@ -95,17 +96,15 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
         if (comentariosHilo.Count > 0)
         {
-
+            opcionHilo.CssClass = "btn btn-link";
             opcionHilo.Text = "Ver respuestas";
 
         }
         else
         {
-
+            opcionHilo.CssClass = "btn btn-link";
             opcionHilo.Text = "Responder";
-
         }
-
     }
 
 }

@@ -1,17 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ReportarCuenta.ascx.cs" Inherits="Controles_ReportarCuenta_ReportarCuenta" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-
-<asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-info btn-block" runat="server" OnClick="BtnMostrarModal_Click">
+<asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-danger" runat="server" OnClick="BtnMostrarModal_Click">
     <i class="fas fa-ban mr-2"></i>Reportar
 </asp:LinkButton>
-
 <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="btnShowPopup" PopupControlID="PanelModalBloqueo"
     CancelControlID="btnCerrar" BackgroundCssClass="modal fade modal-lg">
 </cc1:ModalPopupExtender>
-
 <asp:Panel ID="PanelModalBloqueo" runat="server">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -31,7 +26,7 @@
                             <div class="col">
                                 <i class="fas fa-pencil-alt prefix mr-2">Descripción Detallada</i>
                                 <br />
-                                <asp:TextBox ID="TB_Descripcion" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="TB_Descripcion" runat="server" Height="150px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
 
                             </div>
                         </div>

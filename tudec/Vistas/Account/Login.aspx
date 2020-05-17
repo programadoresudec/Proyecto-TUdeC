@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Iniciar Sesión"  Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Login.aspx.cs" Inherits="Views_Account_Login" %>
+﻿<%@ Page Title="Iniciar Sesión" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Login.aspx.cs" Inherits="Views_Account_Login" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <br />
@@ -8,12 +8,12 @@
     <br />
     <div class="container">
         <div class="form-group row justify-content-center">
-            <div class=" form-group col-lg-6">
+            <div class="form-group col-lg-6">
                 <br />
                 <h2 style="text-align: center; color: darkblue; font-size: xx-large;"><strong>Login</strong></h2>
                 <br />
                 <div class="col-12 input-group justify-content-center">
-                <asp:Label ID="LB_Validacion" runat="server" Visible="False"></asp:Label>
+                    <asp:Label ID="LB_Validacion" runat="server" Visible="False"></asp:Label>
                 </div>
                 <div class="col-12 input-group">
                     <div class="input-group-prepend">
@@ -56,16 +56,15 @@
                         NavigateUrl="~/Vistas/Account/VerificarEmail.aspx">¿Has olvidado la contraseña?</asp:HyperLink>
                 </div>
                 <div class="form-group col-12">
-                        <strong>
-                        <asp:Button ID="botonIniciar" ValidationGroup="login" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium; font-weight: bold;" runat="server" 
-                            OnClick="botonIniciar_Click" Text="Iniciar Sesión">
-                        </asp:Button>
-                        </strong> 
+                    <strong>
+                        <asp:Button ID="botonIniciar" ValidationGroup="login" CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium; font-weight: bold;" runat="server"
+                            OnClick="botonIniciar_Click" Text="Iniciar Sesión"></asp:Button>
+                    </strong>
                 </div>
             </div>
         </div>
     </div>
-      <script>
+    <script>
         $(document).ready(function () {
             window.setTimeout(function () {
                 $(".alertHome").fadeTo(1000, 0).slideUp(800, function () {

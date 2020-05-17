@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="container text-center mb-5">
+    <div class="container text-center">
         <div class="row justify-content-end">
             <div class="col-lg-6">
                 <h5 class="mb-4"><strong>Descripción Del Curso</strong></h5>

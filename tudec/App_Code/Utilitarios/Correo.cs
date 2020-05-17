@@ -7,8 +7,7 @@ using System.Web.UI;
 /// Descripción breve de Correo
 /// </summary>
 public partial class Correo
-{
-  
+{ 
     public Correo()
     {
        
@@ -45,7 +44,7 @@ public partial class Correo
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
-            mail.From = new MailAddress("tudec@losmejores.com", "TUdeC");
+            mail.From = new MailAddress("tudec@tudecCundi.com", "TUdeC");
             SmtpServer.Host = "smtp.gmail.com";
             //Aquí ponemos el asunto del correo
             mail.Subject = mensaje;
@@ -62,7 +61,7 @@ public partial class Correo
             SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios
             //Especificamos las credenciales con las que enviaremos el mail
             SmtpServer.Credentials = new System.Net.NetworkCredential(Constantes.CORREO, Constantes.PASSWORD);
-            SmtpServer.EnableSsl = false;
+            SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             mail.Dispose();
         }
