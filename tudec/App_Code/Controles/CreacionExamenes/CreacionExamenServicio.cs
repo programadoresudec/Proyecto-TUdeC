@@ -26,14 +26,22 @@ public class CreacionExamenServicio : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void EnviarExamen(string examen, string fecha, string hora, string minuto)
+    public void EnviarExamen(string examen, string fecha, string hora, string minuto, string tituloTema, string contenidoTema, int idCurso)
     {
 
-        EExamen examenCreado = new EExamen();
-        examenCreado.IdTema = 0;
+        ETema tema = new ETema();
 
-        int dia = Int32.Parse(fecha.Split('/')[1]);
-        int mes = Int32.Parse(fecha.Split('/')[0]);
+        tema.IdCurso = idCurso;
+        tema.Titulo = tituloTema;
+        tema.Informacion = contenidoTema;
+
+        Base.Insertar(tema);
+
+        EExamen examenCreado = new EExamen();
+        examenCreado.IdTema = tema.Id;
+
+        int dia = Int32.Parse(fecha.Split('/')[0]);
+        int mes = Int32.Parse(fecha.Split('/')[1]);
         int anio = Int32.Parse(fecha.Split('/')[2]);
 
         DateTime fechaFinalizacion = new DateTime(anio, mes, dia, Int32.Parse(hora), Int32.Parse(minuto), 0);
