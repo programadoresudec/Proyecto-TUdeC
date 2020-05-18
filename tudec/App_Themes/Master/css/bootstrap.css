@@ -2710,13 +2710,13 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #043d0b;
+    background-color: #567c4d;
     border-color: #6c757d;
 }
 
     .btn-secondary:hover {
         color: #fff;
-        background-color: #000000;
+        background-color: #42633c;
         border-color: #545b62;
     }
 

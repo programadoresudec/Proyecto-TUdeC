@@ -2,7 +2,7 @@
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
-    <div class="text-center" style="padding: 10%">
+    <div class="text-center mt-5" style="padding: 10%">
         <h3 class="text-capitalize text-dark text-center p-4 font-weight-bold" style="font-size: 80px !important">
             <i class="fa fa-exclamation-triangle"></i><strong> ERROR 404</strong>
         </h3>

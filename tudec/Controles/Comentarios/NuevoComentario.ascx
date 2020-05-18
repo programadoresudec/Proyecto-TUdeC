@@ -50,27 +50,27 @@
 
     }
 </script>
-
-<div class="container mt-3">
-    <div class="row justify-content-center">
-        <div class="form-group col-lg-6">
-            <div class="col-12 input-group justify-content-center">
-                <asp:TextBox ID="cajaComentarios" runat="server" Width="100%" Height="170px" placeHolder="Escribe aquí tu comentario"></asp:TextBox>
-                <ajaxToolkit:HtmlEditorExtender
-                    ID="cajaComentarios_HtmlEditorExtender"
-                    runat="server"
-                    TargetControlID="cajaComentarios">
-                    <Toolbar>
-                        <ajaxToolkit:InsertImage />
-                    </Toolbar>
-                </ajaxToolkit:HtmlEditorExtender>
-            </div>
-            <div class="col-12 input-group justify-content-center">
-                <input class="btn btn-dark btn-block" id="botonEnvio" type="button" onclick="enviarComentario(this)" value="Enviar" />
-            </div>
-        </div>
+<div class="row justify-content-center">
+<div class="form-group col-lg-9">
+    <div class="col-lg-12">
+        <asp:TextBox ID="cajaComentarios" runat="server" Width="100%" Height="170px" placeHolder="Escribe aquí tu comentario"></asp:TextBox>
+        <ajaxToolkit:HtmlEditorExtender
+            ID="cajaComentarios_HtmlEditorExtender"
+            runat="server"
+            TargetControlID="cajaComentarios">
+            <Toolbar>
+                <ajaxToolkit:InsertImage />
+            </Toolbar>
+        </ajaxToolkit:HtmlEditorExtender>
+    </div>
+    <div class="col-lg-12">
+        <input class="btn btn-dark btn-block" id="botonEnvio" type="button" onclick="enviarComentario(this)" value="Enviar" />
     </div>
 </div>
+</div>
+
+
+
 
 
 

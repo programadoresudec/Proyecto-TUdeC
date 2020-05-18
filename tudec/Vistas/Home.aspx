@@ -119,7 +119,7 @@
                             class="btn btn-success" />
 
                         <ajaxToolkit:HtmlEditorExtender ID="buzon_HtmlEditorExtender" runat="server"
-                            TargetControlID="buzon"
+                            TargetControlID="buzon"  
                             OnImageUploadComplete="buzon_HtmlEditorExtender_ImageUploadComplete">
                             <Toolbar>
                                 <ajaxToolkit:InsertImage />

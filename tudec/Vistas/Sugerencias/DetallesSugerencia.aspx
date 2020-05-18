@@ -46,12 +46,12 @@
     <br />
     <br />
     <br />
-     <div class="container flex-md-row">
-        <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
-            NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Style="font-size: medium;">
-                <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Devolver</strong> 
-        </asp:HyperLink>
-    </div>
+         <div class="container flex-md-row">
+            <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
+                NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Style="font-size: medium;">
+                    <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Devolver</strong> 
+            </asp:HyperLink>
+        </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="card text-center">
