@@ -55,6 +55,7 @@ public static class Constantes
     /// </summary>
     public const string USUARIO_LOGEADO = "usuarioLogeado";
     public const string USUARIO_SELECCIONADO = "usuarioSeleccionado";
+    public const string USUARIO_SELECCIONADO_CHAT = "usuarioSeleccionadoChat";
     public const string CURSO_SELECCIONADO = "cursoSeleccionado";
     public const string CURSO_SELECCIONADO_PARA_EDITAR = "cursoSeleccionadoParaEditar";
     public const string CURSO_SELECCIONADO_PARA_EDITAR_TEMAS = "cursoSeleccionadoParaEditarTemas";

@@ -98,6 +98,9 @@
                                 <asp:TemplateField HeaderText="Boleta de<br/>Calificaciones">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Chat">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cancelar<br/>Inscripción">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>

@@ -32,8 +32,23 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         }
         else
         {
-            EUsuario primerUsuarioChat = gestorUsuarios.GetUsuarios(curso).FirstOrDefault();
-            receptor = primerUsuarioChat;
+
+            EUsuario usuarioChat;
+
+            if (Session[Constantes.USUARIO_SELECCIONADO_CHAT] == null)
+            {
+
+                usuarioChat = gestorUsuarios.GetUsuarios(curso).FirstOrDefault();
+
+            }
+            else
+            {
+
+                usuarioChat = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO_CHAT];
+
+            }
+            
+            receptor = usuarioChat;
             panelChats.Controls.Add(GetTablaChats());
 
         }
@@ -238,7 +253,9 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         EUsuario usuario = gestorUsuarios.GetUsuario(boton.Text);
 
-        receptor = usuario;
+        Session[Constantes.USUARIO_SELECCIONADO_CHAT] = usuario;
+
+        Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }
 
