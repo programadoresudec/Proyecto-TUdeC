@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class GestionMensajes
 {
-
+    
     private Base db = new Base();
 
     public GestionMensajes()
@@ -18,11 +18,11 @@ public class GestionMensajes
         //
     }
 
-    public List<EMensaje> GetMensajes(EUsuario emisor, EUsuario receptor)
+    public List<EMensaje> GetMensajes(EUsuario emisor, EUsuario receptor, ECurso curso)
     {
 
-        List<EMensaje> mensajes = db.TablaMensajes.Where(x => x.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(receptor.NombreDeUsuario)
-        || x.NombreDeUsuarioEmisor.Equals(receptor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(emisor.NombreDeUsuario)).OrderBy(x => x.Fecha).ToList();
+        List<EMensaje> mensajes = db.TablaMensajes.Where(x => x.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(receptor.NombreDeUsuario) && x.IdCurso == curso.Id
+        || x.NombreDeUsuarioEmisor.Equals(receptor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(emisor.NombreDeUsuario) && x.IdCurso == curso.Id).OrderBy(x => x.Fecha).ToList();
 
         return mensajes;
 

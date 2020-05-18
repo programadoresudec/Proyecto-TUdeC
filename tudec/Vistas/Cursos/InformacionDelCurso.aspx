@@ -32,7 +32,7 @@
 
                 </div>
                 <div class="card-footer text-center">
-                    <asp:LinkButton Text="¡Habla Conmigo!" runat="server" CssClass="btn btn-dark" ID="botonInbox" />
+                    <asp:LinkButton Text="¡Habla Conmigo!" runat="server" CssClass="btn btn-dark" ID="botonInbox" OnClick="botonInbox_Click" />
                     <asp:LinkButton Text="Inscribirse" runat="server" BackColor="#003300" CssClass="btn btn-info" ForeColor="White" ID="botonInscribirse" OnClick="botonInscribirse_Click" />
                 </div>
             </div>

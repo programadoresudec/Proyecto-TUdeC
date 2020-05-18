@@ -201,4 +201,11 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         Session["inscribiendose"] = true;
 
     }
+
+    protected void botonInbox_Click(object sender, EventArgs e)
+    {
+        
+        Response.Redirect("~/Vistas/Chat/Chat.aspx");
+
+    }
 }

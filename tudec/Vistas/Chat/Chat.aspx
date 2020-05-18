@@ -82,14 +82,16 @@
         <tr>
             <td>
 
-                <table class="auto-style1">
-                    <tr>
-                        <td style="width: 20%">
+                <asp:Table Width="100%" ID="Table1" runat="server">
+
+                    <asp:TableRow>
+
+                        <asp:TableCell Width="20%">
 
                             <asp:Panel ID="panelChats" runat="server" Width="100%" Height="500"></asp:Panel>
 
-                        </td>
-                        <td style="width: 79%">
+                        </asp:TableCell>
+                        <asp:TableCell  Width="79%">
 
                             <asp:UpdatePanel ID="panelActualizar" runat="server">
 
@@ -104,9 +106,14 @@
 
                             </asp:UpdatePanel>
 
-                        </td>
-                    </tr>
-                </table>
+
+                        </asp:TableCell>
+
+                    </asp:TableRow>
+
+                </asp:Table>
+
+                
 
             </td>
         </tr>
@@ -119,7 +126,7 @@
                     <tr>
                         <td style="width: 10%" >
                             <center>
-                                <asp:ImageButton style="height: 50px" ID="botonEnviarImagen" runat="server" ImageUrl="https://lh3.googleusercontent.com/proxy/y0U0R7LQrvuFQhnyoqLT2r2pAyB8c69mGEl0Mvt_hzAKZnZS2PZx0aPPINORHvnr2I2FLs_5aWaYLaYq3R0sOFODVChWBaysMJDoWcDE6yXC5KNnj1IcK6ngQCP8VqDxCaSMCYxIxrWLukSaYlrYCHw" OnClick="botonEnviarImagen_Click"/>
+                                <asp:ImageButton style="height: 50px" ID="botonEnviarImagen" runat="server" ImageUrl="https://pngimage.net/wp-content/uploads/2018/06/upload-image-icon-png-8.png" OnClick="botonEnviarImagen_Click"/>
                             </center>
                         </td>
                         <td style="width: 90%">

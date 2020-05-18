@@ -9,6 +9,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 {
     private EUsuario emisor;
     private EUsuario receptor;
+    private ECurso curso;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,9 +17,22 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         DaoUsuario gestorUsuarios = new DaoUsuario();
 
-        emisor = gestorUsuarios.GetUsuario("Frand");
-        receptor = gestorUsuarios.GetUsuario("Miguel500");
+        emisor = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
+        curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+        EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
+
+        if(emisor != creadorCurso)
+        {
+
+            receptor = creadorCurso;
+            Table1.Rows[0].Cells[0].Width = Unit.Percentage(0);
+            Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
+
+        }
+
+
+        etiquetaCurso.Text = curso.Nombre;
         etiquetaNombre.Text = receptor.NombreDeUsuario;
 
         panelMensajes.Controls.Add(GetTablaMensajes());
@@ -58,7 +72,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         GestionMensajes gestorMensajes = new GestionMensajes();
 
-        List<EMensaje> mensajes = gestorMensajes.GetMensajes(emisor, receptor);
+        List<EMensaje> mensajes = gestorMensajes.GetMensajes(emisor, receptor, curso);
 
         foreach(EMensaje mensaje in mensajes)
         {
@@ -108,6 +122,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         mensaje.NombreDeUsuarioReceptor = receptor.NombreDeUsuario;
         mensaje.Contenido = cajaMensaje.Text;
         mensaje.Fecha = DateTime.Now;
+        mensaje.IdCurso = curso.Id;
 
         Base.Insertar(mensaje);
 
