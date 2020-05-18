@@ -1,7 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/InformacionDelCurso.aspx.cs" Inherits="Vistas_Cursos_InformacionDelCurso" %>
 
 <%@ Register Src="~/Controles/Comentarios/CajaComentarios.ascx" TagPrefix="uc1" TagName="CajaComentarios" %>
+<%@ Register Src="~/Controles/InterfazInscribirseCurso/InterfazInscribirseCurso.ascx" TagPrefix="uc1" TagName="InterfazInscribirseCurso" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+ 
+    <asp:Panel ID="panelModal" runat="server" Width="0px" Height="0px"></asp:Panel>
+
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
     <br />
     <br />
@@ -28,7 +33,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <asp:LinkButton Text="¡Habla Conmigo!" runat="server" CssClass="btn btn-dark" ID="botonInbox" />
-                    <asp:LinkButton Text="Inscribirse" runat="server" BackColor="#003300" CssClass="btn btn-info" ForeColor="White" ID="botonInscribirse" />
+                    <asp:LinkButton Text="Inscribirse" runat="server" BackColor="#003300" CssClass="btn btn-info" ForeColor="White" ID="botonInscribirse" OnClick="botonInscribirse_Click" />
                 </div>
             </div>
             <div class="col-lg-6 text-center">

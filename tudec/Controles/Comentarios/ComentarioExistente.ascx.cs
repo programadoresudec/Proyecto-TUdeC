@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.UserControl
 {
     private int idComentario;
+    private Nullable<int> idComentarioSuperior;
     private string nombreUsuario;
     private string contenido;
 
@@ -17,6 +18,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
     public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
     public string Contenido { get => contenido; set => contenido = value; }
     public int IdComentario { get => idComentario; set => idComentario = value; }
+    public int? IdComentarioSuperior { get => idComentarioSuperior; set => idComentarioSuperior = value; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,8 +27,10 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
         cajaComentarios.Text = contenido;
 
         GestionComentarios gestorComentarios = new GestionComentarios();
-        
-        if (idComentario != 0)
+
+        ReportarCuenta.IdComentario = IdComentario;
+
+        if (IdComentarioSuperior == null)
         {
            comentariosHilo = gestorComentarios.GetComentarios(gestorComentarios.GetComentario(idComentario));
             opcionHilo = new LinkButton();
@@ -71,6 +75,8 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
         {
 
             ASP.controles_comentarios_comentarioexistente_ascx comentarioHilo = new ASP.controles_comentarios_comentarioexistente_ascx();
+            comentarioHilo.idComentario = comentario.Id;
+            comentarioHilo.IdComentarioSuperior = comentario.IdComentario;
             comentarioHilo.nombreUsuario = comentario.Emisor;
             comentarioHilo.contenido = comentario.Comentario;
 

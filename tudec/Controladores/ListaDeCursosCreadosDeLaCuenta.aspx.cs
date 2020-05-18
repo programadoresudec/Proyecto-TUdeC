@@ -48,14 +48,15 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             string nombreArea = celdaArea.Text;
 
             Image iconoArea = new Image();
-            ImageButton botonEditarCurso = new ImageButton();
-            Image iconoExpulsar = new Image();
+            
 
+            ImageButton botonEditarCurso = new ImageButton();
             ImageButton botonEditarTema = new ImageButton();
+            ImageButton botonExpulsar = new ImageButton();
             ImageButton botonCalificar = new ImageButton();
 
             botonEditarCurso.ImageUrl = "~/Recursos/GestionCursos/Editar Curso.png";
-            iconoExpulsar.ImageUrl = "~/Recursos/GestionCursos/Expulsar Usuarios.png";
+            botonExpulsar.ImageUrl = "~/Recursos/GestionCursos/Expulsar Usuarios.png";
             botonEditarTema.ImageUrl = "~/Recursos/GestionCursos/Crear y Editar Temas.png";
             botonCalificar.ImageUrl = "~/Recursos/GestionCursos/Calificar Exámenes.png";
 
@@ -63,8 +64,8 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             iconoArea.Height = 32;
             botonEditarCurso.Width = 32;
             botonEditarCurso.Height = 32;
-            iconoExpulsar.Width = 32;
-            iconoExpulsar.Height = 32;
+            botonExpulsar.Width = 32;
+            botonExpulsar.Height = 32;
             botonEditarTema.Width = 32;
             botonEditarTema.Height = 32;
             botonCalificar.Width = 32;
@@ -72,6 +73,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
             botonEditarCurso.Click += new ImageClickEventHandler(EditarCurso);
             botonEditarTema.Click += new ImageClickEventHandler(CrearYEditarTemas);
+            botonExpulsar.Click += new ImageClickEventHandler(ExpulsarAlumnos);
             botonCalificar.Click += new ImageClickEventHandler(CalificarExamenes);
 
             if (fila.RowIndex > -1)
@@ -99,13 +101,43 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
                 celdaArea.Controls.Add(iconoArea);
 
                 celdaEditar.Controls.Add(botonEditarCurso);
-                celdaExpulsar.Controls.Add(iconoExpulsar);
+                celdaExpulsar.Controls.Add(botonExpulsar);
                 celdaEditarTema.Controls.Add(botonEditarTema);
                 celdaCalificar.Controls.Add(botonCalificar);
 
             }
 
         }
+
+    }
+
+    public void ExpulsarAlumnos(object sender, EventArgs e)
+    {
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[7].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_EXPULSAR_ALUMNOS] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/ExpulsarAlumnos.aspx");
+
 
     }
 

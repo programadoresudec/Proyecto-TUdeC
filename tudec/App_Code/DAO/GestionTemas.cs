@@ -13,7 +13,35 @@ public class GestionTemas
 
     public GestionTemas()
     {
-       
+
+    }
+
+    public List<ETema> GetTemasExamenResueltos(EUsuario usuario, ECurso curso)
+    {
+
+        List<ETema> temasConExamen = GetTemasConExamen(curso);
+
+        List<ETema> temas = new List<ETema>();
+
+        foreach(ETema tema in temasConExamen)
+        {
+            GestionExamen gestorExamenes = new GestionExamen();
+
+            EExamen examen = gestorExamenes.GetExamen(tema);
+
+            EEjecucionExamen ejecucion = db.TablaEjecucionExamen.Where(x => x.IdExamen == examen.Id && x.NombreUsuario.Equals(usuario.NombreDeUsuario)).FirstOrDefault();
+
+            if(ejecucion != null)
+            {
+
+                temas.Add(tema);
+
+            }
+
+        }
+
+        return temas;
+
     }
 
     public List<ETema> GetTemas(ECurso curso)

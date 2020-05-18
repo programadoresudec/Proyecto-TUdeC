@@ -25,6 +25,26 @@ public class DaoUsuario
         return db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).First();
     }
 
+    public List<EUsuario> GetUsuarios(ECurso curso)
+    {
+
+        List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.IdCurso == curso.Id).ToList();
+
+        List<EUsuario> usuarios = new List<EUsuario>();
+
+        foreach(EInscripcionesCursos inscripcion in inscripciones)
+        {
+
+            EUsuario usuario = GetUsuario(inscripcion.NombreUsuario);
+
+            usuarios.Add(usuario);
+
+        }
+
+        return usuarios;
+
+    }
+
     public List<EUsuario> gestionDeUsuarioAdmin(string estado, string nombre)
     {
         List<EUsuario> usuarios = new List<EUsuario>();

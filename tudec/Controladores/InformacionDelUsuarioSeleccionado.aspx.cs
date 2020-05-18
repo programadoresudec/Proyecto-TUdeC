@@ -58,8 +58,13 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
+
+        GridViewUsuSelec.DataBind();
+
     }
 
+
+  
 
     protected void GridViewUsuSelec_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -71,6 +76,7 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         {
 
             TableCell celdaArea = fila.Cells[0];
+            TableCell celdaCurso = fila.Cells[1];
             TableCell celdaPuntuacion = fila.Cells[4];
 
             if (fila.RowIndex > -1)
@@ -94,6 +100,11 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
 
                 celdaPuntuacion.Enabled = false;
 
+                LinkButton hiperEnlaceCurso = new LinkButton();
+                hiperEnlaceCurso.Text = celdaCurso.Text;
+                hiperEnlaceCurso.Click += new EventHandler(VerCurso);
+
+                celdaCurso.Controls.Add(hiperEnlaceCurso);
                 celdaArea.Controls.Add(iconoArea);
                 celdaPuntuacion.Controls.Add(estrellas);
 
@@ -102,4 +113,35 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
         }
 
     }
+
+    public void VerCurso(object sender, EventArgs e)
+    {
+
+        LinkButton boton = (LinkButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in GridViewUsuSelec.Rows)
+        {
+
+            if (fila.Cells[1].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(GridViewUsuSelec.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO] = curso;
+
+        Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
+
+    }
+
 }

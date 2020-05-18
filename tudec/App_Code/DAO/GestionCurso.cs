@@ -14,6 +14,16 @@ public class GestionCurso
     {
       
     }
+
+    public EInscripcionesCursos GetInscripcion(EUsuario usuario, ECurso curso)
+    {
+
+        EInscripcionesCursos inscripcion = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario) && x.IdCurso == curso.Id).First();
+
+        return inscripcion;
+
+    }
+
     public EUsuario GetUsuario(string nombreUsuario)
     {
 
@@ -30,6 +40,7 @@ public class GestionCurso
         return curso;
 
     }
+
 
     public List<ECurso> GetCursosCreados(EUsuario usuario, string nombre, string fechaCreacion, string area, string estado)
     {
