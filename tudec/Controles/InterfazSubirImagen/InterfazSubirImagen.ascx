@@ -126,6 +126,7 @@
             <center>
                 
             <asp:FileUpload ID="gestorArchivo" style="width: 300px" runat="server" onchange="mostrarImagen()" />
+                <asp:ImageButton ID="ImageButton1" Width="16px" ImageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Fairytale_button_cancel.svg/1200px-Fairytale_button_cancel.svg.png" runat="server" OnClick="ImageButton1_Click" />
                 </center>
         </td>
     </tr>

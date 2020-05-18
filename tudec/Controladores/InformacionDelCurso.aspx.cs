@@ -204,7 +204,8 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
     protected void botonInbox_Click(object sender, EventArgs e)
     {
-        
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT] = Session[Constantes.CURSO_SELECCIONADO];
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }

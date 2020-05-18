@@ -19,10 +19,10 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         emisor = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
-        curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+        curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT];
         EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
 
-        if(emisor != creadorCurso)
+        if(emisor.NombreDeUsuario != creadorCurso.NombreDeUsuario)
         {
 
             receptor = creadorCurso;
@@ -30,12 +30,38 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
 
         }
+        else
+        {
+            EUsuario primerUsuarioChat = gestorUsuarios.GetUsuarios(curso).FirstOrDefault();
+            receptor = primerUsuarioChat;
+            panelChats.Controls.Add(GetTablaChats());
 
+        }
 
-        etiquetaCurso.Text = curso.Nombre;
-        etiquetaNombre.Text = receptor.NombreDeUsuario;
+        if (receptor != null)
+        {
 
-        panelMensajes.Controls.Add(GetTablaMensajes());
+            etiquetaCurso.Text = curso.Nombre;
+
+            etiquetaNombre.Text = receptor.NombreDeUsuario;
+
+            panelMensajes.Controls.Add(GetTablaMensajes());
+
+        }
+        else
+        {
+
+            etiquetaCurso.Visible = false;
+
+            etiquetaNombre.Visible = false;
+
+            botonEnviar.Enabled = false;
+
+            botonEnviarImagen.Enabled = false;
+
+            temporizador.Enabled = false;
+
+        }
 
         if(Session["subiendoImagen"] != null && (bool)Session["subiendoImagen"])
         {
@@ -114,6 +140,42 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
     }
 
+    public Table GetTablaChats()
+    {
+
+
+        Table tabla = new Table();
+        tabla.Width = Unit.Percentage(100);
+
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        List<EUsuario> usuarios = gestorUsuarios.GetUsuarios(curso);
+
+        foreach (EUsuario usuario in usuarios)
+        {
+
+            TableRow fila = new TableRow();
+            TableCell celdaBoton = new TableCell();
+
+            Button botonChat = new Button();
+            botonChat.Text = usuario.NombreDeUsuario;
+            botonChat.Width = Unit.Percentage(100);
+            botonChat.Click += new EventHandler(CambiarDeChat);
+
+            celdaBoton.Width = Unit.Percentage(100);
+            celdaBoton.Controls.Add(botonChat);
+
+            fila.Cells.Add(celdaBoton);
+
+            tabla.Rows.Add(fila);
+
+        }
+
+
+        return tabla;
+
+
+    }
     protected void botonEnviar_Click(object sender, EventArgs e)
     {
 
@@ -132,7 +194,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
     protected void temporizador_Tick(object sender, EventArgs e)
     {
-        
+
         panelMensajes.Controls.Clear();
         panelMensajes.Controls.Add(GetTablaMensajes());
 
@@ -145,6 +207,8 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         Panel modal = GetModal();
 
         ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx interfazImagen = new ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx();
+
+        interfazImagen.Receptor = receptor;
 
         modal.Controls.Add(interfazImagen);
 
@@ -159,7 +223,23 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     {
 
         MostrarModal();
+
+
         Session["subiendoImagen"] = true;
 
     }
+
+    public void CambiarDeChat(object sender, EventArgs e)
+    {
+
+        Button boton = (Button)sender;
+
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        EUsuario usuario = gestorUsuarios.GetUsuario(boton.Text);
+
+        receptor = usuario;
+
+    }
+
 }

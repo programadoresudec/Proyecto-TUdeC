@@ -3,7 +3,6 @@
 
 <asp:Panel style="background-color:cadetblue; padding: 20px; border-radius: 20px" ID="panelMensaje" runat="server">
 
-
-    <asp:Label ID="etiquetaMensaje" runat="server" Text="Mensaje"></asp:Label>
+    <asp:Literal ID="espacioMensaje" runat="server"></asp:Literal>
 
 </asp:Panel>
