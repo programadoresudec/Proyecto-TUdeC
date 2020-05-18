@@ -32,6 +32,7 @@ public partial class Vistas_InformacionDelUsuarioSeleccionado : System.Web.UI.Pa
                 }
             }
             etiquetaNombreUsuario.Text = usuarioInformacion.NombreDeUsuario;
+            LB_NombreDeUsuario.Text = etiquetaNombreUsuario.Text;
             etiquetaNombre.Text = usuarioInformacion.PrimerNombre + " " + usuarioInformacion.SegundoNombre;
             etiquetaApellido.Text = usuarioInformacion.PrimerApellido + " " + usuarioInformacion.SegundoApellido;
             etiquetaDescripcion.Text = usuarioInformacion.Descripcion;

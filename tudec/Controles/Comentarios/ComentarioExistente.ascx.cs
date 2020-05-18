@@ -32,9 +32,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
         if (IdComentarioSuperior == null)
         {
-
-            comentariosHilo = gestorComentarios.GetComentarios(gestorComentarios.GetComentario(idComentario));
-
+           comentariosHilo = gestorComentarios.GetComentarios(gestorComentarios.GetComentario(idComentario));
             opcionHilo = new LinkButton();
             opcionHilo.Click += new EventHandler(VerHilo);
 
