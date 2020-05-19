@@ -40,19 +40,11 @@
                 <asp:Label Style="color: #2D732D; font-size: 40px" CssClass="text-center" Text="TituloCurso" runat="server" ID="etiquetaTitulo" />
                 <div class="table-responsive">
                     <table class="table">
-
-                        <asp:Panel ID="panelTemas" runat="server">
-
-                            <asp:GridView ID="tablaTemas" Width="100%" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TemasDataSource" OnRowDataBound="tablaTemas_RowDataBound" AllowPaging="True" DataKeyNames="Id">
+                        <asp:GridView ID="tablaTemas" Width="100%" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TemasDataSource" OnRowDataBound="tablaTemas_RowDataBound" AllowPaging="True" DataKeyNames="Id">
                             <Columns>
                                 <asp:BoundField DataField="Titulo" HeaderText="Título" SortExpression="Titulo" />
                             </Columns>
                         </asp:GridView>
-
-
-                        </asp:Panel>
-
-                        
                         <asp:ObjectDataSource ID="TemasDataSource" runat="server" SelectMethod="GetTemas" TypeName="GestionTemas">
                             <SelectParameters>
                                 <asp:SessionParameter Name="curso" SessionField="cursoSeleccionado" Type="Object" />
