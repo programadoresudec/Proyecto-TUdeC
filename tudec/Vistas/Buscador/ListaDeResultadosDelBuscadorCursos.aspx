@@ -23,7 +23,7 @@
                 <div class="card mt-4">
                     <div class="card-header text-center">
                         <div class="col input-group">
-                            <asp:TextBox ID="cajaBuscador" runat="server" CssClass=" fa fa-search form-control" placeHolder="Buscar curso" Width="217px"></asp:TextBox>
+                            <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" CssClass=" fa fa-search form-control" placeHolder="Buscar curso" Width="217px"></asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false"
@@ -46,7 +46,7 @@
                                         <i class="fas fa-chalkboard-teacher"></i>
                                     </div>
                                 </div>
-                                <asp:TextBox ID="cajaTutor" CssClass="form-control" placeHolder="Tutor" runat="server"></asp:TextBox>
+                                <asp:TextBox AutoPostBack="true" ID="cajaTutor" CssClass="form-control" placeHolder="Tutor" runat="server"></asp:TextBox>
                                 <ajaxToolkit:AutoCompleteExtender
                                     ID="cajaTutor_AutoCompleteExtender"
                                     runat="server"
