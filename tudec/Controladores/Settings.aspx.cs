@@ -69,7 +69,7 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
         if (String.IsNullOrEmpty(extension))
         {
             LB_subioImagen.CssClass = "alert alert-danger";
-            LB_subioImagen.Text = "Debe subir un archivo.";
+            LB_subioImagen.Text = "Debes subir un archivo.";
             LB_subioImagen.Visible = true;
             return;
         }

@@ -43,6 +43,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Panel>

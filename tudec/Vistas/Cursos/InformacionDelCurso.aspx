@@ -4,7 +4,7 @@
 <%@ Register Src="~/Controles/InterfazInscribirseCurso/InterfazInscribirseCurso.ascx" TagPrefix="uc1" TagName="InterfazInscribirseCurso" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
-
+ 
     <asp:Panel ID="panelModal" runat="server" Width="0px" Height="0px"></asp:Panel>
 
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />

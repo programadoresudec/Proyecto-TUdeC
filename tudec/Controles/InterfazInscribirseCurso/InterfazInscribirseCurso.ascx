@@ -1,45 +1,50 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="InterfazInscribirseCurso.ascx.cs" Inherits="Controles_InterfazInscribirseCurso_InterfazInscribirseCurso" %>
-<div class="container h-100 mt-5" style="padding-top: 10%">
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-4">
+<style type="text/css">
+    td {
+        text-align: center;
+    }
 
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="modal-header text-center">
-                            <i class="fas fa-badge-check fa-2x"><strong>Inscripción</strong></i>
-                            <asp:LinkButton ID="botonCancelar" runat="server" ForeColor="Red" OnClick="botonCancelar_Click">
-                                <i class="fas fa-times-circle fa-lg"></i>
-                            </asp:LinkButton>
-                        </div>
-                        <div class="row justify-content-center mt-2 mb-2">
-                            <asp:Label ID="LB_Validacion" runat="server" Visible="false"></asp:Label>
-                        </div>
+    table {
+        background-color: white;
+        border-radius: 15px;
+    }
 
-                        <asp:TextBox ID="cajaCodigo" placeholder="Código" CssClass="form-control" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="modal-footer text-center">
-                        <asp:LinkButton ID="botonInscribirse" CssClass="btn btn-success" runat="server" OnClick="botonInscribirse_Click">
-                           <strong>Inscribirse</strong><i class="fas fa-share ml-2"></i>
-                        </asp:LinkButton>
-                    </div>
-                </div>
+    .etiquetaInscripcion {
+        font-size: 30px;
+    }
+</style>
 
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $(document).ready(function () {
-        window.setTimeout(function () {
-            $(".alert").fadeTo(1000, 0).slideUp(800, function () {
-                {
-                    window.top.location = "InformacionDelCurso.aspx"
-                }
-                $(this).remove();
-            });
-        }, 3000);
+<table>
+    <tr>
+        <td>
+            <asp:Label ID="LB_Validacion" runat="server" Visible="false"></asp:Label>
+            <br />
+            <asp:Label CssClass="etiquetaInscripcion" ID="etiquetaInscripcion" runat="server" Text="Inscripción"></asp:Label>
+            <asp:ImageButton ID="botonCancelar" Width="16px" ImageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Fairytale_button_cancel.svg/1200px-Fairytale_button_cancel.svg.png" runat="server" OnClick="botonCancelar_Click" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <asp:TextBox ID="cajaCodigo" placeholder="Código" runat="server"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <asp:Button ID="botonInscribirse" runat="server" Text="Inscribirse" OnClick="botonInscribirse_Click" />
+        </td>
+    </tr>
+</table>
+   <script>
+        $(document).ready(function () {
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(800, function () {
+                    {
+                        window.top.location = "InformacionDelCurso.aspx"
+                    }
+                    $(this).remove();
+                });
+            }, 3000);
 
-    });
-</script>
+        });
+    </script>
 

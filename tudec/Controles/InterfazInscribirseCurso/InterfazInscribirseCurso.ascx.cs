@@ -26,11 +26,13 @@ public partial class Controles_InterfazInscribirseCurso_InterfazInscribirseCurso
 
         if (cajaCodigo.Text.Equals(codigo))
         {
+
             EInscripcionesCursos inscripcion = new EInscripcionesCursos();
+
             inscripcion.FechaInscripcion = DateTime.Now;
             inscripcion.NombreUsuario = nombreDeUsuario;
             inscripcion.IdCurso = idCurso;
-            LB_Validacion.CssClass = "alert alert-success";
+            LB_Validacion.CssClass = "alertHome alert-success";
             LB_Validacion.Text = "¡Se ha inscrito Satisfactoriamente!";
             LB_Validacion.Visible = true;
             Base.Insertar(inscripcion);
@@ -42,12 +44,16 @@ public partial class Controles_InterfazInscribirseCurso_InterfazInscribirseCurso
             LB_Validacion.CssClass = "alertHome alert-danger";
             LB_Validacion.Text = "El codigo es incorrecto.";
             LB_Validacion.Visible = true;
+            Session["inscribiendose"] = false;
         }
 
     }
-    protected void botonCancelar_Click(object sender, EventArgs e)
+
+    protected void botonCancelar_Click(object sender, ImageClickEventArgs e)
     {
+
         Session["inscribiendose"] = false;
         Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
+
     }
 }
