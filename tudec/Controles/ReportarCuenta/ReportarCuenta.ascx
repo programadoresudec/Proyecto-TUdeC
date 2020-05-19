@@ -1,5 +1,19 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ReportarCuenta.ascx.cs" Inherits="Controles_ReportarCuenta_ReportarCuenta" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<script>
+        $(document).ready(function () {
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(800, function () {
+                    {
+                        window.top.location = "InformacionDelCurso.aspx"
+                    }
+                    $(this).remove();
+                });
+            }, 3000);
+
+        });
+    </script>
 <asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
 <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="BtnMostrarModal" PopupControlID="PanelModalBloqueo"
     CancelControlID="btnCerrar" BackgroundCssClass="modalBackground">
@@ -44,6 +58,9 @@
                 </div>
             </div>
         </ContentTemplate>
+         <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnEnviar" EventName="btnEnviar" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Panel>
 

@@ -18,10 +18,10 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
         usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         comentarios = new GestionComentarios().GetComentario(IdComentario);
-        if (comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
-        {
-            BtnMostrarModal.Visible = false;
-        }
+        //if (comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
+        //{
+        //    BtnMostrarModal.Visible = false;
+        //}
     }
 
     protected void btnCerrar_Click(object sender, EventArgs e)

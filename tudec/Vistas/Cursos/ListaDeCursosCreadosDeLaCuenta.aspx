@@ -71,7 +71,7 @@
                     </asp:LinkButton>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <h1 class="text-center"><strong>Cursos Creados</strong></h1>
                 <div class="table-responsive">
                     <table class="table">
