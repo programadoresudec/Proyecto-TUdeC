@@ -40,6 +40,12 @@
         rel="stylesheet">
     <!-- //Web-Fonts -->
     <%-- fin de referencias de bootstrap --%>
+
+   <script>
+
+    
+   </script>
+
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
