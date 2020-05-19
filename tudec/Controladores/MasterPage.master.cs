@@ -7,6 +7,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        if (IsPostBack && cajaBuscador.Text == "")
+        {
+
+            Session["Buscador"] = cajaBuscador.Text;
+            Response.Redirect("~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx");
+
+        }
+
         if (usuario != null)
         {
             BtnNotificaciones.Visible = true;

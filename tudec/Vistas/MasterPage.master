@@ -7,6 +7,18 @@
 <html>
 
 <head runat="server">
+
+    <style>
+
+        .autocomplete_completionListElement{
+
+            z-index: 1031 !important;
+            list-style: none;
+        }
+
+       
+    </style>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <title>Home TUdeC</title>
@@ -61,8 +73,11 @@
                     <div class="form-group">
                         <br />
                         <div class="input-group mb-3">
+
+                            
                             <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
+                           
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
                                 CompletionInterval="10"
@@ -72,6 +87,11 @@
                                 runat="server" Enabled="true"
                                 EnableCaching="false"
                                 ServiceMethod="GetNombresCursos"
+                              
+                                CompletionListCssClass="autocomplete_completionListElement" 
+                                
+                              
+    
                                 TargetControlID="cajaBuscador">
                             </ajaxToolkit:AutoCompleteExtender>
                             <div class="input-group-prepend">
