@@ -20,71 +20,71 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         if (curso != null)
         {
             creador = gestorUsuarios.GetUsuario(curso.Creador);
-        
-        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
-        GestionCurso gestorCursos = new GestionCurso();
-        if (usuario == null)
-        {
-            inscripcion = false;
-        }
-        else
-        {
-            inscripcion = gestorCursos.IsInscrito(usuario, curso);
-        }
-        if (!inscripcion)
-        {
-            botonInbox.Visible = false;
-            CajaComentarios.Visible = false;
-            etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
-        }
+            usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
-
-        if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-        {
-
-            botonInscribirse.Visible = false;
-
-        }
+            GestionCurso gestorCursos = new GestionCurso();
+            if (usuario == null)
+            {
+                inscripcion = false;
+            }
+            else
+            {
+                inscripcion = gestorCursos.IsInscrito(usuario, curso);
+            }
+            if (!inscripcion)
+            {
+                botonInbox.Visible = false;
+                CajaComentarios.Visible = false;
+                etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
+            }
 
 
-        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-        {
+            if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+            {
 
-            botonInbox.Visible = false;
+                botonInscribirse.Visible = false;
 
-
-        }
-
-        if (curso!=null)
-        {
-            etiquetaTitulo.Text = curso.Nombre;
-            etiquetaNombreUsuario.Text = curso.Creador;
-            etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
-            etiquetaCorreo.Text = creador.CorreoInstitucional;
-            etiquetaArea.Text = curso.Area;
-            campoDescripcion.Text = curso.Descripcion;
-            imagenArea.Width = 32;
-            imagenArea.Height = 32;
-            imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
-        }
+            }
 
 
-        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-        {
+            if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+            {
 
-            botonInbox.Visible = false;
-            botonInscribirse.Visible = false;
+                botonInbox.Visible = false;
 
-        }
-        else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
-        {
 
-            botonInscribirse.Visible = false;
+            }
 
-        }
+            if (curso != null)
+            {
+                etiquetaTitulo.Text = curso.Nombre;
+                etiquetaNombreUsuario.Text = curso.Creador;
+                etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
+                etiquetaCorreo.Text = creador.CorreoInstitucional;
+                etiquetaArea.Text = curso.Area;
+                campoDescripcion.Text = curso.Descripcion;
+                imagenArea.Width = 32;
+                imagenArea.Height = 32;
+                imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
+            }
 
-        tablaTemas.DataBind();
+
+            if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+            {
+
+                botonInbox.Visible = false;
+                botonInscribirse.Visible = false;
+
+            }
+            else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
+            {
+
+                botonInscribirse.Visible = false;
+
+            }
+
+            tablaTemas.DataBind();
         }
         else
         {

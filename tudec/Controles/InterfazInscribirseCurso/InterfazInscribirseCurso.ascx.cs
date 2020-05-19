@@ -35,7 +35,7 @@ public partial class Controles_InterfazInscribirseCurso_InterfazInscribirseCurso
             LB_Validacion.Visible = true;
             Base.Insertar(inscripcion);
             Session["inscribiendose"] = false;
- 
+
         }
         else
         {

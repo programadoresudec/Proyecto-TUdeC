@@ -16,12 +16,20 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-        comentarios = new GestionComentarios().GetComentario(IdComentario);
-        //if (comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
-        //{
-        //    BtnMostrarModal.Visible = false;
-        //}
+        if (Session[Constantes.USUARIO_LOGEADO] != null)
+        {
+            
+
+            usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+            comentarios = new GestionComentarios().GetComentario(IdComentario);
+            if (comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
+            {
+                BtnMostrarModal.Visible = false;
+            }
+
+        }
+
+
     }
 
     protected void btnCerrar_Click(object sender, EventArgs e)
