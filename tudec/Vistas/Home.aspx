@@ -97,8 +97,9 @@
             <asp:Panel ID="panelBuzon" CssClass=" form-group col-md-auto" runat="server">
                 <br />
                 <div class="row justify-content-center">
-                    <h2 style="color: #163392; font-size: x-large;"><strong>Buzón De
-							Sugerencias</strong></h2>
+                   
+                    <asp:Label style="color: #163392; font-size: x-large; font-weight:bold" ID="etiquetaBuzon" runat="server" Text="Buzón De Sugerencias"></asp:Label>
+
                 </div>
                 <br />
                 <div class="alertHome alert-success" id="alertaSatisfactoria">

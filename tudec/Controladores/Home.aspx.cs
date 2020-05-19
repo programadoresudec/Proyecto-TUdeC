@@ -25,13 +25,9 @@ public partial class Vistas_Inicio : System.Web.UI.Page
             if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
 
-                Button botonVerSugerencias = new Button();
-                botonVerSugerencias.Text = "Ver Sugerencias";
-                botonVerSugerencias.CssClass = "form-control";
-                botonVerSugerencias.Click += new EventHandler(VerSugerencias);
-
+                etiquetaBuzon.Visible = false;
                 panelBuzon.Controls.Remove(panelCamposBuzon);
-                panelBuzon.Controls.Add(botonVerSugerencias);
+               
 
             }
 
