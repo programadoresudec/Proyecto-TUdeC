@@ -171,7 +171,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         Panel fondoModal = new Panel();
         fondoModal.Style.Add(HtmlTextWriterStyle.ZIndex, "1030");
-        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.8)");
+        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.5)");
 
         fondoModal.Width = Unit.Percentage(100);
         fondoModal.Height = Unit.Percentage(100);
@@ -197,10 +197,6 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         interfazInscripcion.Codigo = curso.CodigoInscripcion;
 
         modal.Controls.Add(interfazInscripcion);
-
-        modal.Style.Add(HtmlTextWriterStyle.PaddingLeft, "42%");
-        modal.Style.Add(HtmlTextWriterStyle.PaddingTop, "20%");
-
         panelModal.Controls.Add(modal);
 
     }
