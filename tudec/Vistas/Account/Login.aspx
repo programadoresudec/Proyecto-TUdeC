@@ -64,19 +64,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            window.setTimeout(function () {
-                $(".alertHome").fadeTo(1000, 0).slideUp(800, function () {
-                    {
-                        window.top.location = "Login.aspx"
-                    }
-                    $(this).remove();
-                });
-            }, 3000);
-
-        });
-    </script>
 </asp:Content>
 
 

@@ -13,24 +13,17 @@
         var contenidoCaja;
 
         var idComentario;
-
         if (botones.length > 1 && indiceBoton == 0) {
-
             var cajas = document.getElementsByClassName("cajas");
             contenidoCaja = cajas[0].value;
 
             idComentario = 0;
 
-
-        } else {
-
-
+        }
+        else {
             contenidoCaja = caja.value;
-            idComentario = <%=Session["idComentario"]%>
-
-            }
-
-
+            idComentario = <%=Session["idComentario"]%>;
+        }
         var datos = "{'paginaContenedora':'" + paginaContenedora + "','contenidoCaja':'" + contenidoCaja + "','idComentarioString':'" + idComentario + "" + "'}";
 
         $.ajax({
@@ -44,29 +37,28 @@
             async: false,
 
         });
-
             <% cajaComentarios.Text = "";%>;
         location.reload();
 
     }
 </script>
 <div class="row justify-content-center">
-<div class="form-group col-lg-9">
-    <div class="col-lg-12">
-        <asp:TextBox ID="cajaComentarios" runat="server" Width="100%" Height="170px" placeHolder="Escribe aquí tu comentario"></asp:TextBox>
-        <ajaxToolkit:HtmlEditorExtender
-            ID="cajaComentarios_HtmlEditorExtender"
-            runat="server"
-            TargetControlID="cajaComentarios">
-            <Toolbar>
-                <ajaxToolkit:InsertImage />
-            </Toolbar>
-        </ajaxToolkit:HtmlEditorExtender>
+    <div class="form-group col-lg-9">
+        <div class="col-lg-12">
+            <asp:TextBox ID="cajaComentarios" runat="server" Width="100%" Height="170px" placeHolder="Escribe aquí tu comentario"></asp:TextBox>
+            <ajaxToolkit:HtmlEditorExtender
+                ID="cajaComentarios_HtmlEditorExtender"
+                runat="server"
+                TargetControlID="cajaComentarios">
+                <Toolbar>
+                    <ajaxToolkit:InsertImage />
+                </Toolbar>
+            </ajaxToolkit:HtmlEditorExtender>
+        </div>
+        <div class="col-lg-12">
+            <input class="btn btn-dark btn-block" id="botonEnvio" type="button" onclick="enviarComentario(this)" value="Enviar" />
+        </div>
     </div>
-    <div class="col-lg-12">
-        <input class="btn btn-dark btn-block" id="botonEnvio" type="button" onclick="enviarComentario(this)" value="Enviar" />
-    </div>
-</div>
 </div>
 
 

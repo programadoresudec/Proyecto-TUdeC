@@ -23,7 +23,6 @@ public class GestionMensajes
 
         List<EMensaje> mensajes = db.TablaMensajes.Where(x => x.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(receptor.NombreDeUsuario) && x.IdCurso == curso.Id
         || x.NombreDeUsuarioEmisor.Equals(receptor.NombreDeUsuario) && x.NombreDeUsuarioReceptor.Equals(emisor.NombreDeUsuario) && x.IdCurso == curso.Id).OrderBy(x => x.Fecha).ToList();
-
         return mensajes;
 
     }

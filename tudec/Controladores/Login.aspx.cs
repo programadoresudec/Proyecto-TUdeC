@@ -37,7 +37,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
             }
             if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
-                LB_Validacion.CssClass = "alertHome alert-danger";
+                LB_Validacion.CssClass = "alert alert-danger";
                 LB_Validacion.Text = "El nombre de la cuenta, correo y/ o la contraseña que has introducido son incorrectos.";
                 LB_Validacion.Visible = true;
                 Session.Contents.Remove(Constantes.USUARIO_LOGEADO);
@@ -47,7 +47,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
             }
             else if (usuario.Estado.Equals(Constantes.ESTADO_REPORTADO))
             {
-                LB_Validacion.CssClass = "alertHome alert-danger";
+                LB_Validacion.CssClass = "alert alert-danger";
                 LB_Validacion.Text = "Su cuenta esta reportada por: "
                     + ((TimeSpan)(usuario.FechaDesbloqueo.Value.Date - DateTime.Now.Date)).Days.ToString() + " Días";
                 LB_Validacion.Visible = true;
@@ -58,7 +58,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
             }
             else if (usuario.Estado.Equals(Constantes.ESTADO_BLOQUEADO))
             {
-                LB_Validacion.CssClass = "alertHome alert-danger";
+                LB_Validacion.CssClass = "alert alert-danger";
                 LB_Validacion.Text = "Su cuenta esta bloqueada comuniquese con el administrador via E-mail.";
                 LB_Validacion.Visible = true;
                 usuario = null;
@@ -84,7 +84,7 @@ public partial class Views_Account_Login : System.Web.UI.Page
         }
         else
         {
-            LB_Validacion.CssClass = "alertHome alert-danger";
+            LB_Validacion.CssClass = "alert alert-danger";
             LB_Validacion.Text = "El nombre de la cuenta, correo  y/o la contraseña que has introducido son incorrectos.";
             LB_Validacion.Visible = true;
             CleanControl(this.Controls);

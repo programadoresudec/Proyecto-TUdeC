@@ -32,23 +32,19 @@ public partial class Controles_InterfazInscribirseCurso_InterfazInscribirseCurso
             inscripcion.FechaInscripcion = DateTime.Now;
             inscripcion.NombreUsuario = nombreDeUsuario;
             inscripcion.IdCurso = idCurso;
-
+            LB_Validacion.CssClass = "alertHome alert-success";
+            LB_Validacion.Text = "¡Se ha inscrito Satisfactoriamente!";
+            LB_Validacion.Visible = true;
             Base.Insertar(inscripcion);
-            
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "alert('Se ha inscrito con éxito al curso');", true);
-
             Session["inscribiendose"] = false;
-            Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
-
+ 
         }
         else
         {
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "alert('El código que ha digitado es erróneo');", true);
-
+            LB_Validacion.CssClass = "alertHome alert-danger";
+            LB_Validacion.Text = "El codigo es incorrecto.";
+            LB_Validacion.Visible = true;
             Session["inscribiendose"] = false;
-            Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
-
         }
 
     }

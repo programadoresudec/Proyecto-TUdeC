@@ -20,15 +20,17 @@ public class DaoReporte
 
     public List<EReporte> reportesDelUsuario(string nombreDeUsuarioDenunciado)
     {
-        return (from reporte in db.TablaReportes
-                join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id
-                join message in db.TablaMensajes on reporte.IdMensaje equals message.Id
+        return (from reporte in db.TablaReportes 
+                join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id into reportexComentario
+                from rc in reportexComentario.DefaultIfEmpty()
+                join mensaje in db.TablaMensajes on reporte.IdMensaje equals mensaje.Id into reportexMensaje
+                from rm in reportexMensaje.DefaultIfEmpty()
                 where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
                 select new
                 {
-                    comentario,
+                    rc,
+                    rm,
                     reporte,
-                    message
                 }).ToList().Select(x => new EReporte
                 {
                     Id = x.reporte.Id,
@@ -37,13 +39,16 @@ public class DaoReporte
                     NombreDeUsuarioDenunciado = x.reporte.NombreDeUsuarioDenunciado,
                     NombreDeUsuarioDenunciante = x.reporte.NombreDeUsuarioDenunciante,
                     IdComentario = x.reporte.IdComentario,
+                    Comentario = x?.rc == null ? String.Empty : x?.rc.Comentario,
+                    ImagenesComentario = x?.rc.Imagenes,
+                    Estado = x.reporte.Estado,
                     IdMensaje = x.reporte.IdMensaje,
+
+                    Mensaje = x?.rm == null ? String.Empty : x.rm.Contenido,
+                   
                     Descripcion = x.reporte.Descripcion,
-                    Comentario = x.comentario.Comentario,
-                    Mensaje = x.message.Contenido,
-                    ImagenesComentario = x.comentario.Imagenes,
-                    ImagenesMensaje = x.message.Imagenes
                 }).OrderByDescending(x => x.Fecha).ToList();
+
     }
 
     public void actualizarMotivo(EReporte reporte)
@@ -58,8 +63,7 @@ public class DaoReporte
     public void quitarReporte(int id)
     {
         EReporte reportado = db.TablaReportes.Where(x => x.Id == id).First();
-        reportado.Estado = true;
-        Base.Actualizar(reportado);
+        Base.Eliminar(reportado);
     }
 
     private void validarMotivoDelReporte(string motivoDelReporte, string nombre)
@@ -148,7 +152,7 @@ public class DaoReporte
     private int? sumarPuntuacionDeBloqueo(string nombreDeUsuario, int puntuacionMotivo)
     {
         Nullable<int> puntuacionActual = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).Select(x => x.PuntuacionDeBloqueo).SingleOrDefault();
-        return puntuacionActual == null ? puntuacionActual = puntuacionMotivo 
+        return puntuacionActual == null ? puntuacionActual = puntuacionMotivo
             : (puntuacionActual.Value + puntuacionMotivo);
     }
 }

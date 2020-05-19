@@ -20,31 +20,37 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         emisor = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
         curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
-        EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
-
-        if(emisor != creadorCurso)
+        if (curso != null)
         {
+            EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
 
-            receptor = creadorCurso;
-            Table1.Rows[0].Cells[0].Width = Unit.Percentage(0);
-            Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
+            if (emisor != creadorCurso)
+            {
+
+                receptor = creadorCurso;
+                Table1.Rows[0].Cells[0].Width = Unit.Percentage(0);
+                Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
+
+            }
+
+
+            etiquetaCurso.Text = curso.Nombre;
+            etiquetaNombre.Text = receptor.NombreDeUsuario;
+
+            panelMensajes.Controls.Add(GetTablaMensajes());
+
+            if (Session["subiendoImagen"] != null && (bool)Session["subiendoImagen"])
+            {
+
+                MostrarModal();
+
+            }
 
         }
-
-
-        etiquetaCurso.Text = curso.Nombre;
-        etiquetaNombre.Text = receptor.NombreDeUsuario;
-
-        panelMensajes.Controls.Add(GetTablaMensajes());
-
-        if(Session["subiendoImagen"] != null && (bool)Session["subiendoImagen"])
+        else
         {
-
-            MostrarModal();
-
+            Response.Redirect("~/Vistas/Home.aspx");
         }
-     
-
     }
 
     public Panel GetModal()
@@ -74,7 +80,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         List<EMensaje> mensajes = gestorMensajes.GetMensajes(emisor, receptor, curso);
 
-        foreach(EMensaje mensaje in mensajes)
+        foreach (EMensaje mensaje in mensajes)
         {
 
             TableRow fila = new TableRow();
@@ -93,7 +99,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             if (mensaje.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario))
             {
-                
+
                 interfazMensaje.Mensaje = mensaje.Contenido;
                 celdaEmisor.Controls.Add(interfazMensaje);
 
@@ -132,7 +138,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
     protected void temporizador_Tick(object sender, EventArgs e)
     {
-        
+
         panelMensajes.Controls.Clear();
         panelMensajes.Controls.Add(GetTablaMensajes());
 
