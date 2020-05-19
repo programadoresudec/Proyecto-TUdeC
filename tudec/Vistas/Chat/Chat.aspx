@@ -25,6 +25,7 @@
 
         }
 
+   
 
         window.onload = function () {
 
@@ -93,13 +94,15 @@
                         </asp:TableCell>
                         <asp:TableCell  Width="79%">
 
+                            
+
                             <asp:UpdatePanel ID="panelActualizar" runat="server">
 
                                 <ContentTemplate>
 
-
                                     <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="500" ScrollBars="Vertical"></asp:Panel>
-                                    <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="5000" runat="server"></asp:Timer>
+                                    
+                                    <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
 
                                 </ContentTemplate>
 

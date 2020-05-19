@@ -15,7 +15,7 @@ public partial class Controles_Chat_Mensaje : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        etiquetaMensaje.Text = mensaje;
+        espacioMensaje.Text = mensaje;
 
     }
 }

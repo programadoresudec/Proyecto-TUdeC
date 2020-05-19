@@ -44,6 +44,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             TableCell celdaEditarTema = fila.Cells[6];
             TableCell celdaExpulsar = fila.Cells[7];
             TableCell celdaCalificar = fila.Cells[8];
+            TableCell celdaChat = fila.Cells[9];
 
             string nombreArea = celdaArea.Text;
 
@@ -54,11 +55,13 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             ImageButton botonEditarTema = new ImageButton();
             ImageButton botonExpulsar = new ImageButton();
             ImageButton botonCalificar = new ImageButton();
+            ImageButton botonChat = new ImageButton();
 
             botonEditarCurso.ImageUrl = "~/Recursos/GestionCursos/Editar Curso.png";
             botonExpulsar.ImageUrl = "~/Recursos/GestionCursos/Expulsar Usuarios.png";
             botonEditarTema.ImageUrl = "~/Recursos/GestionCursos/Crear y Editar Temas.png";
             botonCalificar.ImageUrl = "~/Recursos/GestionCursos/Calificar Exámenes.png";
+            botonChat.ImageUrl = "~/Recursos/GestionCursos/Chat.png";
 
             iconoArea.Width = 32;
             iconoArea.Height = 32;
@@ -70,11 +73,14 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             botonEditarTema.Height = 32;
             botonCalificar.Width = 32;
             botonCalificar.Height = 32;
+            botonChat.Width = 32;
+            botonChat.Height = 32;
 
             botonEditarCurso.Click += new ImageClickEventHandler(EditarCurso);
             botonEditarTema.Click += new ImageClickEventHandler(CrearYEditarTemas);
             botonExpulsar.Click += new ImageClickEventHandler(ExpulsarAlumnos);
             botonCalificar.Click += new ImageClickEventHandler(CalificarExamenes);
+            botonChat.Click += new ImageClickEventHandler(VerChat);
 
             if (fila.RowIndex > -1)
             {
@@ -104,6 +110,8 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
                 celdaExpulsar.Controls.Add(botonExpulsar);
                 celdaEditarTema.Controls.Add(botonEditarTema);
                 celdaCalificar.Controls.Add(botonCalificar);
+                celdaChat.Controls.Add(botonChat);
+                
 
             }
 
@@ -268,6 +276,38 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
     }
 
+
+    public void VerChat(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[9].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT] = curso;
+
+        Response.Redirect("~/Vistas/Chat/Chat.aspx");
+
+    
+    }
 
     [WebMethod]
     public static List<string> GetNombresCursos(string prefixText)

@@ -108,6 +108,9 @@
                                 <asp:TemplateField HeaderText="Calificar<br/>Exámenes">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Ver Chat">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="CodigoInscripcion" HeaderText="Código" SortExpression="CodigoInscripcion">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>

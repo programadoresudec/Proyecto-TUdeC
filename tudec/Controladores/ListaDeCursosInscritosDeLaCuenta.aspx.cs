@@ -39,7 +39,7 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[6].Controls.Contains(boton))
+            if (fila.Cells[7].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
@@ -108,16 +108,19 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             TableCell celdaArea = fila.Cells[1];
             TableCell celdaCalificacion = fila.Cells[4];
             TableCell celdaBoleta = fila.Cells[5];
-            TableCell celdaCancelar = fila.Cells[6];
+            TableCell celdaChat = fila.Cells[6];
+            TableCell celdaCancelar = fila.Cells[7];
 
             string nombreArea = celdaArea.Text;
 
             Image iconoArea = new Image();
             ImageButton botonBoleta = new ImageButton();
             ImageButton botonCancelar = new ImageButton();
+            ImageButton botonChat = new ImageButton();
 
             botonBoleta.ImageUrl = "~/Recursos/GestionCursos/Boleta Calificaciones.png";
             botonCancelar.ImageUrl = "~/Recursos/GestionCursos/Cancelar Inscripción.png";
+            botonChat.ImageUrl = "~/Recursos/GestionCursos/Chat.png";
 
             iconoArea.Width = 32;
             iconoArea.Height = 32;
@@ -125,9 +128,12 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
             botonBoleta.Height = 32;
             botonCancelar.Width = 32;
             botonCancelar.Height = 32;
+            botonChat.Width = 32;
+            botonChat.Height = 32;
 
             botonBoleta.Click += new ImageClickEventHandler(VerCalificaciones);
             botonCancelar.Click += new ImageClickEventHandler(EliminarInscripcion);
+            botonChat.Click += new ImageClickEventHandler(VerChat);
 
             if (fila.RowIndex > -1)
             {
@@ -150,7 +156,7 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
                 iconoArea.ImageUrl = area.Icono;
 
                 celdaArea.Controls.Add(iconoArea);
-
+                celdaChat.Controls.Add(botonChat);
                 celdaBoleta.Controls.Add(botonBoleta);
                 celdaCancelar.Controls.Add(botonCancelar);
 
@@ -220,6 +226,36 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
 
     }
 
+    public void VerChat(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaCursos.Rows)
+        {
+
+            if (fila.Cells[6].Controls.Contains(boton))
+            {
+
+                filaAEncontrar = fila;
+
+            }
+
+        }
+
+        int idCurso = Int32.Parse(tablaCursos.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionCurso gestorCursos = new GestionCurso();
+
+        ECurso curso = gestorCursos.GetCurso(idCurso);
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT] = curso;
+
+        Response.Redirect("~/Vistas/Chat/Chat.aspx");
+
+
+    }
 
     protected void botonCreados_Click(object sender, EventArgs e)
     {
