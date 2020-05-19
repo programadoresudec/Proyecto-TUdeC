@@ -5,14 +5,14 @@
     <br />
     <br />
     <div class="container mt-5">
-
+        
         <div class="row justify-content-center mt-5">
             <h1 class="w3l_header text-center mb-4 mt-5"><strong>Sugerencias</strong></h1>
         </div>
         <div class="form-row justify-content-center">
             <div class="col-mb-6 text-center mb-4">
                 <div class="input-group">
-                     <asp:TextBox ID="cajaBuscador" runat="server" CssClass="fa fa-search form-control" Width="200px" placeHolder="Buscar"></asp:TextBox>
+                     <asp:TextBox AutoPostBack="true" ID="cajaBuscador" runat="server" CssClass="fa fa-search form-control" Width="200px" placeHolder="Buscar"></asp:TextBox>
                     <ajaxToolkit:AutoCompleteExtender
                         MinimumPrefixLength="1"
                         CompletionInterval="10"

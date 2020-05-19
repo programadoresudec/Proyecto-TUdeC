@@ -12,6 +12,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         EUsuario usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
         if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
         {
@@ -96,7 +97,7 @@ public partial class Vistas_VisualizacionDeSugerencias : System.Web.UI.Page
 
     private void VerDetalles(object sender, EventArgs e)
     {
-
+        
         ImageButton boton = (ImageButton)sender;
         Sugerencia gestorSugerencias = new Sugerencia();
         ESugerencia sugerencia = gestorSugerencias.GetSugerencia(Int32.Parse(boton.ID));
