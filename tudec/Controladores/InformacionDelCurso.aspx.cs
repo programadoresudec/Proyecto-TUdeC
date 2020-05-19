@@ -98,6 +98,17 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         }
 
+        if(tablaTemas.Rows.Count == 0)
+        {
+
+            Label etiquetaSinTemas = new Label();
+            etiquetaSinTemas.Text = "El curso no dispone actualmente de temas";
+
+            panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
+            panelTemas.Controls.Add(etiquetaSinTemas);
+
+        }
+
     }
 
     protected void tablaTemas_RowDataBound(object sender, GridViewRowEventArgs e)
