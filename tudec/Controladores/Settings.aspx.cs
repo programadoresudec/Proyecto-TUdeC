@@ -13,6 +13,11 @@ public partial class Vistas_Account_Settings : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        Response.Cache.SetNoStore();
+        Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
         usuario = (EUsuario)(Session[Constantes.USUARIO_LOGEADO]);
         if (usuario != null)
         {

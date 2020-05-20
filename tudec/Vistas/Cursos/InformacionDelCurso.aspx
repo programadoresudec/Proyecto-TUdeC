@@ -64,7 +64,7 @@
         <div class="row justify-content-end">
             <div class="col-lg-6">
                 <h5 class="mb-4"><strong>Descripción Del Curso</strong></h5>
-                <asp:TextBox Enabled="false" ID="campoDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox Enabled="false" ID="campoDescripcion" runat="server" TextMode="MultiLine" BackColor="White"></asp:TextBox>
             </div>
         </div>
         <br />

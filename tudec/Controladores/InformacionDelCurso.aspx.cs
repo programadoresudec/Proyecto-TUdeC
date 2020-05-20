@@ -70,6 +70,21 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             }
 
 
+            if(tablaTemas.Rows.Count == 0)
+            {
+
+              
+
+                Literal sinTemas = new Literal();
+                sinTemas.Text = "Este curso no dispone de temas por el momento";
+                panelTemas.Controls.Clear();
+                panelTemas.Controls.Add(sinTemas);
+                panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
+
+
+            }
+
+        
             if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
             {
 
