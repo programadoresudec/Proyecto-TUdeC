@@ -84,7 +84,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
             }
 
-            tablaTemas.DataBind();
+            //tablaTemas.DataBind();
         }
         else
         {

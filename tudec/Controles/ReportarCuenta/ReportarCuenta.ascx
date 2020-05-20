@@ -58,10 +58,13 @@
                 </div>
             </div>
             </div>
-        </ContentTemplate>
-         <Triggers>
+
+            <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnEnviar" EventName="btnEnviar" />
         </Triggers>
+
+        </ContentTemplate>
+         
     </asp:UpdatePanel>
 </asp:Panel>
 
