@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="CreacionExamen.ascx.cs" Inherits="Controles_CreacionExamen" %>
-<ajaxToolkit:CalendarExtender ID="cajaFecha_CalendarExtender" runat="server" BehaviorID="cajaFecha_CalendarExtender"  TargetControlID="cajaFecha" />
+<ajaxToolkit:CalendarExtender ID="cajaFecha_CalendarExtender" runat="server" BehaviorID="cajaFecha_CalendarExtender" Format="dd/MM/yyyy" TargetControlID="cajaFecha" />
 <asp:ObjectDataSource ID="sourceTipos" runat="server" SelectMethod="GetTiposPregunta" TypeName="GestionExamen"></asp:ObjectDataSource>
             
  
@@ -46,6 +46,7 @@
                     });
 
                     alert("Se ha creado el tema");
+                    window.location.href = "ListaDeTemasDelCurso.aspx"
 
                 }
 

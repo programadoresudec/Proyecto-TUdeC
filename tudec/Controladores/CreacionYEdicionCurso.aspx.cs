@@ -13,6 +13,8 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        cajaFechaInicio_CalendarExtender.StartDate = DateTime.Now;
+
         cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR];
 
         if(cursoExistente != null)
@@ -103,6 +105,10 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "alert('Él código de su curso es " + codigo + "');", true);
 
+
+                Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS] = curso;
+
+                Response.Redirect("~/Vistas/Cursos/ListaDeTemasDelCurso.aspx");
 
             }
             else

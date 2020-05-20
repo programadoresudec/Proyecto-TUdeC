@@ -23,9 +23,9 @@ public static class Constantes
     /// Constantes para el proyecto.
     /// </summary>
     public const string MENSAJE_VALIDAR_CUENTA = "Cuenta Exitosa.";
-    public const string URL_VALIDAR_CUENTA = "~/Vistas/Account/CuentaActivada.aspx?";
+    public const string URL_VALIDAR_CUENTA = "/TUdec/Vistas/Account/CuentaActivada.aspx?";
     public const string MENSAJE_CAMBIO_PASS = "Cambio De Contraseña";
-    public const string URL_CAMBIO_PASS = "~/Vistas/Account/ChangePassword.aspx?";
+    public const string URL_CAMBIO_PASS = "/TUdec/Vistas/Account/ChangePassword.aspx?";
     public const string CORREO = "tudec2020@gmail.com";
     public const string PASSWORD = "programadoresudec2020";
     public const string CORREO_INSTITUCIONAL = "@ucundinamarca.edu.co";

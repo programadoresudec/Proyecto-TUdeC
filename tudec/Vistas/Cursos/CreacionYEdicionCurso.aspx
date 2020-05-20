@@ -78,7 +78,7 @@
                         </td>
                         <td style="width: 10%">
                 <asp:TextBox ID="cajaFechaInicio" placeholder="Fecha inicio" runat="server"></asp:TextBox>
-                <ajaxToolkit:CalendarExtender ID="cajaFechaInicio_CalendarExtender" runat="server" BehaviorID="cajaFechaInicio_CalendarExtender" TargetControlID="cajaFechaInicio" />
+                <ajaxToolkit:CalendarExtender ID="cajaFechaInicio_CalendarExtender" runat="server" Format="dd/MM/yyyy" BehaviorID="cajaFechaInicio_CalendarExtender" TargetControlID="cajaFechaInicio" />
                         </td>
                     </tr>
                 </table>

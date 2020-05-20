@@ -54,8 +54,9 @@ public partial class Views_Account_Register : System.Web.UI.Page
 
         if (usuarioEnRegistro != null)
         {
+          
             new Correo().enviarCorreo(usuarioEnRegistro.CorreoInstitucional, usuarioEnRegistro.Token,
-                Constantes.MENSAJE_VALIDAR_CUENTA, Constantes.URL_VALIDAR_CUENTA, usuarioEnRegistro.Estado);
+                Constantes.MENSAJE_VALIDAR_CUENTA, Constantes.URL_VALIDAR_CUENTA , usuarioEnRegistro.Estado);
             labelValidar.CssClass = "alert alert-success";
             labelValidar.Text = "Revise el correo para activar su cuenta.";
             labelValidar.Visible = true;

@@ -39,7 +39,7 @@ public partial class Correo
             Emailtemplate.Dispose();
             Emailtemplate = null;
             string hostPuerto = HttpContext.Current.Request.Url.Authority;
-            strBody = strBody.Replace("token", "http://" + hostPuerto + url + userToken);
+            strBody = strBody.Replace("token", "http://" + hostPuerto +  url + userToken);
             //Configuración del Mensaje
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");

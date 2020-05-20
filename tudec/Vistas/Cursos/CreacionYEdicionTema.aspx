@@ -102,6 +102,7 @@
                 } else {
 
                     alert("Se ha creado el tema");
+                    window.location.href = "ListaDeTemasDelCurso.aspx"
 
                 }
 
