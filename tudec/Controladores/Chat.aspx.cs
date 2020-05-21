@@ -29,6 +29,13 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             Table1.Rows[0].Cells[0].Width = Unit.Percentage(0);
             Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
 
+            Table2.Rows[0].Cells[0].Width = Unit.Percentage(0);
+            Table2.Rows[0].Cells[1].Width = Unit.Percentage(100);
+            Table2.Rows[1].Cells[0].Width = Unit.Percentage(0);
+            Table2.Rows[1].Cells[1].Width = Unit.Percentage(100);
+
+            panelChats.ScrollBars = ScrollBars.None;
+
         }
         else
         {
@@ -60,7 +67,20 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             etiquetaNombre.Text = receptor.NombreDeUsuario;
 
+            imagenPerfil.ImageUrl = receptor.ImagenPerfil;
+
+            if(imagenPerfil.ImageUrl == "")
+            {
+
+                imagenPerfil.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
+
+            }
+
+           
+
             panelMensajes.Controls.Add(GetTablaMensajes());
+
+
 
         }
         else
@@ -75,6 +95,8 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             botonEnviarImagen.Enabled = false;
 
             temporizador.Enabled = false;
+
+            imagenPerfil.Visible = false;
 
         }
 
@@ -132,16 +154,19 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             ASP.controles_chat_mensaje_ascx interfazMensaje = new ASP.controles_chat_mensaje_ascx();
 
+            interfazMensaje.Mensaje = mensaje.Contenido;
+            interfazMensaje.Fecha = mensaje.Fecha;
+
             if (mensaje.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario))
             {
                 
-                interfazMensaje.Mensaje = mensaje.Contenido;
+                
                 celdaEmisor.Controls.Add(interfazMensaje);
 
             }
             else
             {
-                interfazMensaje.Mensaje = mensaje.Contenido;
+                
                 celdaReceptor.Controls.Add(interfazMensaje);
 
             }
@@ -170,16 +195,37 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         {
 
             TableRow fila = new TableRow();
+            TableCell celdaImagen = new TableCell();
             TableCell celdaBoton = new TableCell();
 
-            Button botonChat = new Button();
+            ImageButton imagenUsuario = new ImageButton();
+            imagenUsuario.ImageUrl = usuario.ImagenPerfil;
+            imagenUsuario.CssClass = "card-img rounded-circle";
+
+            if (imagenUsuario.ImageUrl == "")
+            {
+
+                imagenUsuario.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
+
+            }
+
+            imagenUsuario.Width = Unit.Percentage(100);
+            imagenUsuario.Height = 40;
+
+            imagenUsuario.Click += new ImageClickEventHandler(CambiarDeChatPorImagen);
+
+            LinkButton botonChat = new LinkButton();
             botonChat.Text = usuario.NombreDeUsuario;
             botonChat.Width = Unit.Percentage(100);
+            botonChat.Height = 40;
             botonChat.Click += new EventHandler(CambiarDeChat);
 
-            celdaBoton.Width = Unit.Percentage(100);
+            celdaImagen.Width = Unit.Percentage(20);
+            celdaBoton.Width = Unit.Percentage(79);
+            celdaImagen.Controls.Add(imagenUsuario);
             celdaBoton.Controls.Add(botonChat);
 
+            fila.Cells.Add(celdaImagen);
             fila.Cells.Add(celdaBoton);
 
             tabla.Rows.Add(fila);
@@ -209,11 +255,27 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
     protected void temporizador_Tick(object sender, EventArgs e)
     {
+      
+        Table tablaActual = GetTablaMensajes();
 
-        panelMensajes.Controls.Clear();
-        panelMensajes.Controls.Add(GetTablaMensajes());
+        if (Session["numeroFilas"] != null)
+        {
 
-        ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "bajarBarrita()", true);
+            if (tablaActual.Rows.Count > (int)Session["numeroFilas"])
+            {
+
+                panelMensajes.Controls.Clear();
+                panelMensajes.Controls.Add(GetTablaMensajes());
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "bajarBarrita()", true);
+
+                panelActualizarTabla.Update();
+
+
+            }
+        }
+
+        Session["numeroFilas"] = tablaActual.Rows.Count;
 
     }
 
@@ -247,11 +309,40 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     public void CambiarDeChat(object sender, EventArgs e)
     {
 
-        Button boton = (Button)sender;
+        LinkButton boton = (LinkButton)sender;
 
         DaoUsuario gestorUsuarios = new DaoUsuario();
 
         EUsuario usuario = gestorUsuarios.GetUsuario(boton.Text);
+
+        Session[Constantes.USUARIO_SELECCIONADO_CHAT] = usuario;
+
+        Response.Redirect("~/Vistas/Chat/Chat.aspx");
+
+    }
+
+    public void CambiarDeChatPorImagen(object sender, EventArgs e)
+    {
+
+        ImageButton boton = (ImageButton)sender;
+        Table tablaChats = (Table)panelChats.Controls[0];
+        string nombreDeUsuario = "";
+
+        foreach(TableRow fila in tablaChats.Rows)
+        {
+
+            if (fila.Cells[0].Controls.Contains(boton))
+            {
+                LinkButton botonEnlace = (LinkButton)fila.Cells[1].Controls[0];
+                nombreDeUsuario = botonEnlace.Text;
+
+            }
+
+        }
+
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        EUsuario usuario = gestorUsuarios.GetUsuario(nombreDeUsuario);
 
         Session[Constantes.USUARIO_SELECCIONADO_CHAT] = usuario;
 

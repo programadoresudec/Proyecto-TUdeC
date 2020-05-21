@@ -58,25 +58,44 @@
         <tr>
             <td>
 
-         
-                    <table class="auto-style1">
-                        <tr>
-                            <td>
-                                <center>
+
+
+                <asp:Table ID="Table2" Width="100%" runat="server">
+
+                    <asp:TableRow>
+
+                        <asp:TableCell Width="20%">
+
+                        </asp:TableCell>
+                        <asp:TableCell Width="79%">
+
+                            <center>
                                     <asp:Label ID="etiquetaCurso" runat="server" Text="Nombre del curso"></asp:Label>
                                 </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center>
 
-                                    <asp:Label ID="etiquetaNombre" runat="server" Text="Nombre del usuario"></asp:Label>
+                        </asp:TableCell>
 
-                                </center>
-                            </td>
-                        </tr>
-                    </table>
+                    </asp:TableRow>
+                    <asp:TableRow>
+
+                        <asp:TableCell Width="20%">
+
+                        </asp:TableCell>
+                        <asp:TableCell Width="79%">
+
+                            <center>
+
+                                    <asp:Image ID="imagenPerfil" CssClass="card-img rounded-circle" runat="server" Width="64" Height="64"></asp:Image>
+                                    <asp:Label ID="etiquetaNombre"  runat="server" Text="Nombre del usuario"></asp:Label>
+                            </center>
+                                
+
+                        </asp:TableCell>
+
+                    </asp:TableRow>
+
+                </asp:Table>
+               
 
             </td>
         </tr>
@@ -89,19 +108,26 @@
 
                         <asp:TableCell Width="20%">
 
-                            <asp:Panel ID="panelChats" runat="server" Width="100%" Height="500"></asp:Panel>
+                            <asp:Panel ID="panelChats" runat="server" Width="100%" Height="400" ScrollBars="Vertical"></asp:Panel>
 
                         </asp:TableCell>
                         <asp:TableCell  Width="79%">
 
-                            
+                            <asp:UpdatePanel ID="panelActualizarTabla" runat="server" UpdateMode="Conditional">
+
+
+                                <ContentTemplate>
+
+                                    <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="400" ScrollBars="Vertical"></asp:Panel>
+
+                                </ContentTemplate>
+
+                                 </asp:UpdatePanel>
 
                             <asp:UpdatePanel ID="panelActualizar" runat="server">
 
                                 <ContentTemplate>
 
-                                    <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="500" ScrollBars="Vertical"></asp:Panel>
-                                    
                                     <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
 
                                 </ContentTemplate>
