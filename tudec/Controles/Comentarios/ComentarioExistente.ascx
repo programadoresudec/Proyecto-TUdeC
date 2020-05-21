@@ -7,8 +7,11 @@
         <div class="col-lg-8 text-center mb-4">
             <div class="card">
                 <div class="card-header">
+                    <asp:Image ID="imagenUsuario" Width="32" Height="32" runat="server" />
                     <strong>
-                        <asp:Label ID="etiquetaUsuario" runat="server" Text="Usuario"></asp:Label></strong>
+                        <asp:Label ID="etiquetaUsuario" runat="server" Text="Usuario"></asp:Label>
+                        <asp:Label ID="etiquetaFecha" runat="server" Text="<br>Fecha de envío: "></asp:Label>
+                    </strong>
                     <uc1:ReportarCuenta runat="server" ID="ReportarCuenta" />
                 </div>
                 <div class="card-header">

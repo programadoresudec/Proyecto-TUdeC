@@ -23,10 +23,26 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        etiquetaUsuario.Text = nombreUsuario;
-        cajaComentarios.Text = contenido;
-
         GestionComentarios gestorComentarios = new GestionComentarios();
+        DaoUsuario gestorUsuarios = new DaoUsuario();
+
+        EComentario comentario = gestorComentarios.GetComentario(idComentario);
+        EUsuario usuario = gestorUsuarios.GetUsuario(comentario.Emisor);
+
+        etiquetaUsuario.Text = usuario.NombreDeUsuario;
+        imagenUsuario.ImageUrl = usuario.ImagenPerfil;
+        etiquetaFecha.Text = "<br>Fecha de envío: " + comentario.FechaEnvio;
+
+        imagenUsuario.CssClass = "card-img rounded-circle";
+
+        if (imagenUsuario.ImageUrl == "")
+        {
+
+            imagenUsuario.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
+
+        }
+
+        cajaComentarios.Text = comentario.Comentario;
 
         ReportarCuenta.IdComentario = IdComentario;
 
@@ -77,8 +93,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
             ASP.controles_comentarios_comentarioexistente_ascx comentarioHilo = new ASP.controles_comentarios_comentarioexistente_ascx();
             comentarioHilo.idComentario = comentario.Id;
             comentarioHilo.IdComentarioSuperior = comentario.IdComentario;
-            comentarioHilo.nombreUsuario = comentario.Emisor;
-            comentarioHilo.contenido = comentario.Comentario;
+            
 
             panelHilo.Controls.Add(comentarioHilo);
 
