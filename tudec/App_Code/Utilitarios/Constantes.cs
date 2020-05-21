@@ -63,6 +63,7 @@ public static class Constantes
     public const string CURSO_SELECCIONADO_PARA_VER_NOTAS = "cursoSeleccionadoParaVerNotas";
     public const string CURSO_SELECCIONADO_PARA_CHAT = "cursoSeleccionadoParaChat";
     public const string TEMA_CREADO = "temaCreado";
+    public const string NOTIFICACIONES = "notificacionesUsuario";
     public const string TEMA_SELECCIONADO = "temaSeleccionado";
     public const string USUARIO_ID = "usuarioId";
     public const string VALIDAR_TOKEN = "validarToken";

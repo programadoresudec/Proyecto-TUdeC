@@ -32,13 +32,13 @@
 <script>
     $(document).ready(function () {
         window.setTimeout(function () {
-            $(".alert").fadeTo(1000, 0).slideUp(800, function () {
+            $(".alert").fadeTo(1000, 0).slideUp(500, function () {
                 {
                     window.top.location = "InformacionDelCurso.aspx"
                 }
                 $(this).remove();
             });
-        }, 3000);
+        }, 1000);
 
     });
 </script>
