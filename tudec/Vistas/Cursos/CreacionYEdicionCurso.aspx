@@ -65,8 +65,9 @@
             <td>
                 
                 <asp:TextBox CssClass="cajaTitulo" ID="cajaTitulo" placeholder="Título" runat="server"></asp:TextBox>
-            
-                <asp:RequiredFieldValidator ID="validadorCaja" ControlToValidate="cajaTitulo" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
+                <asp:RequiredFieldValidator ID="validadorCaja" ControlToValidate="cajaTitulo" runat="server" ErrorMessage="*" ValidationGroup="creacionCurso"></asp:RequiredFieldValidator>
 
             </td>
         </tr>
@@ -82,7 +83,7 @@
                         </td>
                         <td style="width: 10%">
                 <asp:TextBox ID="cajaFechaInicio" placeholder="Fecha inicio" runat="server" ReadOnly="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="validadorFecha" ControlToValidate="cajaFechaInicio"  runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="validadorFecha" ControlToValidate="cajaFechaInicio"  runat="server" ErrorMessage="*" ValidationGroup="creacionCurso"></asp:RequiredFieldValidator>
                 <ajaxToolkit:CalendarExtender ID="cajaFechaInicio_CalendarExtender" runat="server" Format="dd/MM/yyyy" BehaviorID="cajaFechaInicio_CalendarExtender" TargetControlID="cajaFechaInicio" />
                         </td>
                     </tr>
@@ -100,6 +101,7 @@
         <tr>
             <td>
                 <asp:TextBox ID="cajaDescripcion" CssClass="cajaDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaDescripcion" ID="cajaDescripcion_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"> </ajaxToolkit:FilteredTextBoxExtender>
             </td>
         </tr>
         <tr>
@@ -107,7 +109,7 @@
 
                 
 
-                        <asp:Button ID="botonCrearCurso" CssClass="cajaDescripcion" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" />
+                        <asp:Button ID="botonCrearCurso" CssClass="cajaDescripcion" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" ValidationGroup="creacionCurso" />
 
                    
                 

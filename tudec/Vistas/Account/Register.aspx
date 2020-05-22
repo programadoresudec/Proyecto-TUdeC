@@ -35,9 +35,10 @@
                         <ajaxToolkit:FilteredTextBoxExtender runat="server" 
                             TargetControlID="cajaNombreUsuario" 
                             ID="cajaNombreUsuario_FilteredTextBoxExtender"
-                            FilterType="Custom"
-                            FilterMode="InvalidChars"
-                            InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
+                            FilterType="LowercaseLetters, UppercaseLetters, Custom"
+                            FilterMode="ValidChars"
+                            ValidChars="[ñÑáéíóúÁÉÍÓÚ]"
+                     ></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -48,12 +49,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="filtroPrimerNombre" runat="server"
-                            TargetControlID="cajaPrimerNombre" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
+                            TargetControlID="cajaPrimerNombre" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"/>
                         <asp:TextBox ID="cajaPrimerNombre" MaxLength="40" runat="server" placeHolder="Primer Nombre" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoNombre" runat="server" FilterType="LowercaseLetters, UppercaseLetters, Custom"
-                            TargetControlID="cajaSegundoNombre" FilterMode="InvalidChars" InvalidChars="<>"/>
+                            TargetControlID="cajaSegundoNombre" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"/>
                         <asp:TextBox ID="cajaSegundoNombre"  MaxLength="50" runat="server" placeHolder="Segundo Nombre" CssClass="mb-4 form-control" />
                     </div>
                 </div>
@@ -64,12 +65,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroPrimerApellido" runat="server"
-                            TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
+                            TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"/>
                         <asp:TextBox ID="cajaPrimerApellido" MaxLength="40" ValidationGroup="register" runat="server" placeHolder="Primer Apellido" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoApellido" runat="server"
-                            TargetControlID="cajaSegundoApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
+                            TargetControlID="cajaSegundoApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
                         <asp:TextBox ID="cajaSegundoApellido" MaxLength="40" runat="server" placeHolder="Segundo Apellido" CssClass="mb-4 form-control" />
                     </div>
                 </div>
@@ -85,7 +86,7 @@
                             </div>
                         </div>
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltrarCaja" runat="server"
-                            TargetControlID="cajaEmail" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="InvalidChars" InvalidChars="<>"/>
+                            TargetControlID="cajaEmail" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"/>
                         <asp:TextBox ID="cajaEmail" MaxLength="30" runat="server" ValidationGroup="register" placeHolder="E-mail" CssClass="form-control" />
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -115,7 +116,7 @@
                         </div>
                         <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -134,7 +135,7 @@
                         </div>
                         <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
