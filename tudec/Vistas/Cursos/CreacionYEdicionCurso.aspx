@@ -66,7 +66,7 @@
                 
                 <asp:TextBox CssClass="cajaTitulo" ID="cajaTitulo" placeholder="Título" runat="server"></asp:TextBox>
 
-                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars=""></ajaxToolkit:FilteredTextBoxExtender>
                 <asp:RequiredFieldValidator ID="validadorCaja" ControlToValidate="cajaTitulo" runat="server" ErrorMessage="*" ValidationGroup="creacionCurso"></asp:RequiredFieldValidator>
 
             </td>

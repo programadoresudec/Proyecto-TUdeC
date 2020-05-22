@@ -35,7 +35,7 @@
                         <ajaxToolkit:FilteredTextBoxExtender runat="server" 
                             TargetControlID="cajaNombreUsuario" 
                             ID="cajaNombreUsuario_FilteredTextBoxExtender"
-                            FilterType="LowercaseLetters, UppercaseLetters, Custom"
+                            FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom"
                             FilterMode="ValidChars"
                             ValidChars="[ñÑáéíóúÁÉÍÓÚ]"
                      ></ajaxToolkit:FilteredTextBoxExtender>
@@ -116,7 +116,7 @@
                         </div>
                         <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -135,7 +135,7 @@
                         </div>
                         <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
