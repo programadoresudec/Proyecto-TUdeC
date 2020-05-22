@@ -124,7 +124,13 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
             
 
         }
-        
+        else
+        {
+            
+            Response.Write("<script>alert('Seleccione un área')</script>");
+
+
+        }
 
     }
 }

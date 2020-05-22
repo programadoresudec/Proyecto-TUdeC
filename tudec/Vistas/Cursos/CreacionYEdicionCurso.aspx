@@ -63,7 +63,11 @@
         </tr>
         <tr>
             <td>
+                
                 <asp:TextBox CssClass="cajaTitulo" ID="cajaTitulo" placeholder="Título" runat="server"></asp:TextBox>
+            
+                <asp:RequiredFieldValidator ID="validadorCaja" ControlToValidate="cajaTitulo" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+
             </td>
         </tr>
         <tr>
@@ -77,7 +81,8 @@
                             <asp:ObjectDataSource ID="AreasDataSource" runat="server" SelectMethod="GetAreasSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
                         </td>
                         <td style="width: 10%">
-                <asp:TextBox ID="cajaFechaInicio" placeholder="Fecha inicio" runat="server"></asp:TextBox>
+                <asp:TextBox ID="cajaFechaInicio" placeholder="Fecha inicio" runat="server" ReadOnly="true"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="validadorFecha" ControlToValidate="cajaFechaInicio"  runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                 <ajaxToolkit:CalendarExtender ID="cajaFechaInicio_CalendarExtender" runat="server" Format="dd/MM/yyyy" BehaviorID="cajaFechaInicio_CalendarExtender" TargetControlID="cajaFechaInicio" />
                         </td>
                     </tr>
@@ -99,7 +104,13 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="botonCrearCurso" CssClass="cajaDescripcion" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" />
+
+                
+
+                        <asp:Button ID="botonCrearCurso" CssClass="cajaDescripcion" runat="server" Text="Crear curso" OnClick="botonCrearCurso_Click" />
+
+                   
+                
             </td>
         </tr>
     </table>

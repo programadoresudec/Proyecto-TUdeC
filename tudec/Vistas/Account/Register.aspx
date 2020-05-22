@@ -16,7 +16,7 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
                         runat="server" ErrorMessage="El apodo solo puede contener letras, números, guiones y guiones bajos."
                         ControlToValidate="cajaNombreUsuario" Display="Dynamic" CssClass="alertHome alert-danger"
-                        ValidationExpression="[A-Za-z0-9-_]*$" />
+                        ValidationExpression="[A-Za-z0-9-_ñÑ]*$" />
                 </div>
                 <asp:RequiredFieldValidator ID="NombreUsuarioRequerido"
                     runat="server" ValidationGroup="register"
@@ -32,6 +32,12 @@
                         </div>
                         <asp:TextBox ID="cajaNombreUsuario" MaxLength="60" placeHolder="Nombre De Usuario (nick)" runat="server"
                             CssClass="form-control" ValidationGroup="register" />
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" 
+                            TargetControlID="cajaNombreUsuario" 
+                            ID="cajaNombreUsuario_FilteredTextBoxExtender"
+                            FilterType="Custom"
+                            FilterMode="InvalidChars"
+                            InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -42,12 +48,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="filtroPrimerNombre" runat="server"
-                            TargetControlID="cajaPrimerNombre" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
+                            TargetControlID="cajaPrimerNombre" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
                         <asp:TextBox ID="cajaPrimerNombre" MaxLength="40" runat="server" placeHolder="Primer Nombre" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoNombre" runat="server" FilterType="LowercaseLetters, UppercaseLetters, Custom"
-                            TargetControlID="cajaSegundoNombre" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
+                            TargetControlID="cajaSegundoNombre" FilterMode="InvalidChars" InvalidChars="<>"/>
                         <asp:TextBox ID="cajaSegundoNombre"  MaxLength="50" runat="server" placeHolder="Segundo Nombre" CssClass="mb-4 form-control" />
                     </div>
                 </div>
@@ -58,12 +64,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroPrimerApellido" runat="server"
-                            TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
+                            TargetControlID="cajaPrimerApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
                         <asp:TextBox ID="cajaPrimerApellido" MaxLength="40" ValidationGroup="register" runat="server" placeHolder="Primer Apellido" CssClass="mb-4 form-control" />
                     </div>
                     <div class="col-md-6">
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltroSegundoApellido" runat="server"
-                            TargetControlID="cajaSegundoApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" />
+                            TargetControlID="cajaSegundoApellido" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="InvalidChars" InvalidChars="<>" />
                         <asp:TextBox ID="cajaSegundoApellido" MaxLength="40" runat="server" placeHolder="Segundo Apellido" CssClass="mb-4 form-control" />
                     </div>
                 </div>
@@ -79,7 +85,7 @@
                             </div>
                         </div>
                         <ajaxToolkit:FilteredTextBoxExtender ID="FiltrarCaja" runat="server"
-                            TargetControlID="cajaEmail" FilterType="LowercaseLetters, UppercaseLetters, Numbers" />
+                            TargetControlID="cajaEmail" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="InvalidChars" InvalidChars="<>"/>
                         <asp:TextBox ID="cajaEmail" MaxLength="30" runat="server" ValidationGroup="register" placeHolder="E-mail" CssClass="form-control" />
                         <div class="input-group-prepend">
                             <div class="input-group-text">
@@ -109,6 +115,7 @@
                         </div>
                         <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -127,6 +134,7 @@
                         </div>
                         <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
