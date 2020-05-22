@@ -78,10 +78,10 @@
             <li data-index="4"></li>
         </ul>
         <div class="banner-texto-posicion">
-            <div class="banner-texto">
-                <h3 class="text-capitalize text-white text-center p-4">Crea-Aprende-Enseña con <strong>TUdeC</strong>
+            <div class="banner-texto text-center">
+                <h3 class="text-capitalize text-white  p-4">Crea-Aprende-Enseña con <strong>TUdeC</strong>
                 </h3>
-                <p class="px-4 py-3 text-center text-white mx-auto">
+                <p class="px-4 py-3 text-white mx-auto">
                     Plataforma web Ingenieria De Sistemas universidad
 					Cundinamarca. Hecha por: Miguel Tellez, Frand Casas, Diego Parra.
                 </p>

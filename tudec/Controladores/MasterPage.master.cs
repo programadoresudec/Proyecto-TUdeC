@@ -21,10 +21,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 Notificaciones.Text = "No Tiene Notificaciones.";
             }
             BtnNotificaciones.Visible = true;
-            acercaDeNosotros.CssClass = "nav-link mt-2";
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
             ImagenPerfil.Visible = true;
             ImagenPerfil.DataBind();
+            apodo.Text = usuario.NombreDeUsuario;
             iniciarSesion.Visible = false;
             registrarse.Visible = false;
             if (usuario.Rol.Equals(Constantes.ROL_USER))

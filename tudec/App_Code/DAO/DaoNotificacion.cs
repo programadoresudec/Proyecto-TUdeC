@@ -16,6 +16,6 @@ public class DaoNotificacion
 
     public int numeroDeNotificaciones(string nombreUsuario)
     {
-        return db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).Count();
+        return db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreUsuario) && x.Estado == false).Count();
     }
 }

@@ -14,10 +14,14 @@ using System.Web;
 public class ETiposPregunta
 {
 
+    #region attributes
     private string tipo;
+    #endregion
 
+    #region properties
     [Key]
     [Column("tipo")]
-    public string Tipo { get => tipo; set => tipo = value; }
+    public string Tipo { get => tipo; set => tipo = value; } 
+    #endregion
 
 }

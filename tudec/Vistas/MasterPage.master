@@ -75,11 +75,8 @@
                     <div class="form-group">
                         <br />
                         <div class="input-group mb-3">
-
-
                             <asp:TextBox AutoPostBack="true" ToolTip="Busque algún curso" ID="cajaBuscador" runat="server" placeHolder="Texto de Busqueda" CssClass="form-control" OnTextChanged="cajaBuscador_TextChanged">
                             </asp:TextBox>
-
                             <ajaxToolkit:AutoCompleteExtender
                                 MinimumPrefixLength="1"
                                 CompletionInterval="10"
@@ -100,33 +97,33 @@
                         </div>
                     </div>
                     <ul class="navbar-nav ml-auto text-center mr-xl-5 mt-lg-0 mt-5">
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                        <li class="nav-item mr-lg-2 mb-auto mt-auto">
                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server"
                                 NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:HyperLink CssClass="nav-link" ID="iniciarSesion" runat="server"
+                        <li class="nav-item mb-auto mt-auto">
+                            <asp:HyperLink CssClass="nav-link mr-lg-2" ID="iniciarSesion" runat="server"
                                 NavigateUrl="~/Vistas/Account/Login.aspx">Iniciar Sesión</asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <asp:HyperLink CssClass="nav-link" ID="registrarse" runat="server"
+                        <li class="nav-item mb-auto mt-auto">
+                            <asp:HyperLink CssClass="nav-link mr-lg-2" ID="registrarse" runat="server"
                                 NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2 mt-2">
-                            <asp:HyperLink CssClass="nav-link" ID="AdministrarUser" runat="server"
+                        <li class="nav-item mb-auto mt-auto">
+                            <asp:HyperLink CssClass="nav-link mr-lg-auto" ID="AdministrarUser" runat="server"
                                 NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
                                         <i class="fa fa-users"></i></asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2 mt-2">
-                            <asp:HyperLink CssClass="nav-link" ID="Sugerencias" runat="server"
+                        <li class="nav-item mb-auto mt-auto">
+                            <asp:HyperLink CssClass="nav-link mr-lg-auto" ID="Sugerencias" runat="server"
                                 NavigateUrl="~/Vistas/Sugerencias/VisualizacionDeSugerencias.aspx" Visible="false">Sugerencias
                             </asp:HyperLink>
                         </li>
-                        <li class="nav-item mr-lg-2 mb-lg-2 mb-2 mt-2">
+                        <li class="nav-item mr-lg-2 mb-auto mt-auto">
                             <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
                                 NavigateUrl="~/Vistas/Cursos/CreacionYEdicionCurso.aspx"><i class="fa fa-plus-circle"></i> Crear Curso</asp:HyperLink>
                         </li>
-                        <li class="nav-item dropdown mr-lg-2 mb-lg-2 mb-2 mt-2">
+                        <li class="nav-item dropdown mr-lg-2 mb-auto mt-auto">
                             <asp:LinkButton Text="text" runat="server" CssClass="nav-link dropdown-toggle" ID="misCursos"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">Mis Cursos
                             </asp:LinkButton>
@@ -139,8 +136,8 @@
                                 </asp:HyperLink>
                             </div>
                         </li>
-                        <li class="nav-item dropdown mr-lg-3 mb-lg-2 mt-4">
-                            <asp:Timer runat="server" ID="tiempoDeRefresco" OnTick="tiempoDeRefresco_Tick" Interval="5000" />
+                        <li class="nav-item dropdown mr-lg-2 mb-auto mt-3">
+                            <asp:Timer runat="server" ID="tiempoDeRefresco" OnTick="tiempoDeRefresco_Tick" Interval="3000" />
                             <asp:UpdatePanel runat="server" ID="NotificacionUpdate" UpdateMode="Conditional">
                                 <Triggers>
                                     <asp:AsyncPostBackTrigger ControlID="tiempoDeRefresco" EventName="Tick" />
@@ -150,7 +147,7 @@
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">
                                         <asp:Label CssClass="fas fa-sms fa-xs" ID="LB_campana" Visible="false" ForeColor="#ee0606" runat="server" />
                                     </asp:LinkButton>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
                                         <asp:LinkButton CssClass="btn btn-outline-success" OnClick="Notificaciones_Click" ID="Notificaciones" runat="server"
                                             Visible="true"></asp:LinkButton>
                                     </div>
@@ -158,10 +155,13 @@
                             </asp:UpdatePanel>
                         </li>
 
-                        <li class="nav-item dropdown dropdown mr-lg-2 mb-lg-2 mb-2 mt-2">
+                        <li class="nav-item dropdown dropdown mr-lg-2 mb-auto mt-auto">
                             <asp:Image ID="ImagenPerfil" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 CssClass="btn btn-outline-light img-user-avatar rounded-circle" Width="80px" Height="70px" runat="server" Visible="false" />
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                                <asp:HyperLink CssClass="btn btn-outline-success" ID="apodo" runat="server"
+                                    NavigateUrl="~/Vistas/Account/Settings.aspx" Visible="true">
+                                </asp:HyperLink>
                                 <asp:HyperLink CssClass="btn btn-outline-success" ID="ConfiguracionCuenta" runat="server"
                                     NavigateUrl="~/Vistas/Account/Settings.aspx" Visible="true">
                                     <i class="fas fa-user-cog mr-2"></i>Configuración</asp:HyperLink>

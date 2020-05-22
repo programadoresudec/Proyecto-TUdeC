@@ -1,25 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ReportarCuenta.ascx.cs" Inherits="Controles_ReportarCuenta_ReportarCuenta" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-<script>
-        $(document).ready(function () {
-            window.setTimeout(function () {
-                $(".alert").fadeTo(1000, 0).slideUp(800, function () {
-                    {
-                        window.top.location = "InformacionDelCurso.aspx"
-                    }
-                    $(this).remove();
-                });
-            }, 3000);
-
-        });
-    </script>
 <asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
 <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="BtnMostrarModal" PopupControlID="PanelModalBloqueo"
     CancelControlID="btnCerrar" BackgroundCssClass="modalBackground">
 </cc1:ModalPopupExtender>
 <asp:Panel ID="PanelModalBloqueo" runat="server" Style="display: none">
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -40,7 +26,7 @@
                             <div class="col">
                                 <i class="fas fa-pencil-alt prefix mr-2">Descripción Detallada</i>
                                 <br />
-                                <asp:TextBox ID="TB_Descripcion" runat="server" Height="150px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="TB_Descripcion" AutoPostBack="true" runat="server" Height="150px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
 
                             </div>
                         </div>
@@ -57,14 +43,7 @@
                     </div>
                 </div>
             </div>
-            </div>
-
-            <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="btnEnviar" EventName="btnEnviar" />
-        </Triggers>
-
         </ContentTemplate>
-         
     </asp:UpdatePanel>
 </asp:Panel>
 

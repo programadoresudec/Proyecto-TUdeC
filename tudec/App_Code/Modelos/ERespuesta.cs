@@ -14,11 +14,15 @@ using System.Web;
 public class ERespuesta
 {
 
+    #region attributes
     private int id;
     private int idPregunta;
     private string respuesta;
     private bool estado;
 
+    #endregion
+
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -27,6 +31,7 @@ public class ERespuesta
     [Column("respuesta")]
     public string Respuesta { get => respuesta; set => respuesta = value; }
     [Column("estado")]
-    public bool Estado { get => estado; set => estado = value; }
+    public bool Estado { get => estado; set => estado = value; } 
+    #endregion
 
 }

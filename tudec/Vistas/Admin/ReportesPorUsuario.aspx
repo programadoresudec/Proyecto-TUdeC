@@ -6,6 +6,7 @@
     <br />
     <br />
     <br />
+
     <div class="container flex-md-row">
         <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
             NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Style="font-size: medium;">
@@ -15,7 +16,7 @@
     <div class="container-fluid">
         <br />
         <div class="row justify-content-center">
-            <asp:ListView ID="LV_Reportes" runat="server" DataKeyNames="Id" DataSourceID="ODS_Reportes">
+            <asp:ListView ID="LV_Reportes" runat="server" DataKeyNames="Id" OnItemDataBound="LV_Reportes_ItemDataBound" DataSourceID="ODS_Reportes">
                 <EditItemTemplate>
                     <asp:TextBox ID="IdTextBox" runat="server" Visible="false" Text='<%# Bind("Id") %>' />
                     <div class="card ml-md-5 mr-md-5 mb-4">
@@ -78,7 +79,7 @@
                                                 <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
                                             </div>
                                             <div class="row justify-content-center">
-                                                <asp:Image ID="ImagenesMensaje" runat="server" ImageUrl="~/Recursos/Imagenes/SugerenciasEnviadas/Sugerencia28Imagen0.jpg" />
+                                                <asp:Image ID="ImagenesMensaje" runat="server" ImageUrl='<%# Eval("ImagenesMensaje") %>' />
                                             </div>
                                         </div>
                                     </div>
@@ -102,9 +103,9 @@
                     </div>
                 </EditItemTemplate>
                 <EmptyDataTemplate>
-                    <div class="row justify-content-center mb-5 mt-5" style="padding-top:3%">
+                    <div class="row justify-content-center mb-5 mt-5" style="padding-top: 3%">
                         <div class="col-lg-auto text-center">
-                        <h1 class="text-info"><i class="fa fa-info-circle mr-2"></i><strong>No tiene Reportes Por Ver.</strong></h1>
+                            <h1 class="text-info"><i class="fa fa-info-circle mr-2"></i><strong>No tiene Reportes Por Ver.</strong></h1>
 
                         </div>
                     </div>
@@ -140,10 +141,12 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center" id="comentarios">
+                                        <asp:LinkButton ID="LinkB_Comentario" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Comentario" %>"
                                             role="button" aria-expanded="false" aria-controls="collapseComentarios">Información De Los Comentarios
                                         </a>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="collapse" id="<%#Eval("Id")+"Comentario"%>">
                                         <div class="card card-body mt-3">
@@ -151,25 +154,29 @@
                                                 <asp:Label ID="ComentarioLabel" runat="server" Text='<%# Eval("Comentario") %>' />
                                             </div>
                                             <div class="row justify-content-center">
-                                                <asp:Image ID="ImagenesComentarioLabel" Width="75px" runat="server" ImageUrl='<%# Eval("ImagenesComentario") %>' />
+                                                <asp:Image ID="ImagenesComentario" Width="75px" runat="server" ImageUrl='<%# Eval("ImagenesComentario") %>' />
                                             </div>
                                         </div>
                                     </div>
                                 </li>
 
                                 <li class="list-group-item">
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center" id="mensajes">
+                                          <asp:LinkButton ID="LinkB_Mensaje" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Mensaje" %>"
                                             role="button" aria-expanded="false" aria-controls="collapseMensajes">Información De Los Mensajes
                                         </a>
+                                            </asp:LinkButton>
                                     </div>
-                                    <div class="collapse" id="<%# Eval("Id")+"Mensaje" %>">
-                                        <div class="card card-body mt-3">
-                                            <div class="row justify-content-center">
-                                                <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <asp:Image ID="ImagenesMensaje" Width="75px" runat="server" ImageUrl='<%# Eval("ImagenesMensaje") %>' />
+                                    <div id="mensajesID">
+                                        <div class="collapse" id="<%# Eval("Id")+"Mensaje" %>">
+                                            <div class="card card-body mt-3">
+                                                <div class="row justify-content-center">
+                                                    <asp:Label ID="MensajeLabel" runat="server" Text='<%# Eval("Mensaje") %>' />
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <asp:Image ID="ImagenesMensaje" Width="75px" runat="server" ImageUrl='<%# Eval("ImagenesMensaje") %>' />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

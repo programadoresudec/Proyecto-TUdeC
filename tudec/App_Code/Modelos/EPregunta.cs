@@ -14,12 +14,16 @@ using System.Web;
 public class EPregunta
 {
 
+    #region attributes
     private int id;
     private int idExamen;
     private string tipoPregunta;
     private string pregunta;
     private int porcentaje;
 
+    #endregion
+
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -31,4 +35,5 @@ public class EPregunta
     public string Pregunta { get => pregunta; set => pregunta = value; }
     [Column("porcentaje")]
     public int Porcentaje { get => porcentaje; set => porcentaje = value; }
+    #endregion
 }

@@ -10,6 +10,7 @@ public class EEstadoUsuario
     #region attributes
     private string estado;
     #endregion
+
     #region properties
     [Key]
     [Column("estado")]

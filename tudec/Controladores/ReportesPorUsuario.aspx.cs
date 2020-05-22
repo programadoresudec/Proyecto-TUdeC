@@ -39,4 +39,24 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
         LV_Reportes.DataBind();
         new DaoUsuario().bloquearUsuariosConCuenta(usuarioDenunciado);
     }
+
+    protected void LV_Reportes_ItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        LinkButton botonMensaje = (LinkButton)e.Item.FindControl("LinkB_Mensaje");
+        LinkButton botonComentario = (LinkButton)e.Item.FindControl("LinkB_Comentario");
+        string labelComentario = ((Label)e.Item.FindControl("ComentarioLabel")).Text;
+        string imagenComentario = ((Image)e.Item.FindControl("ImagenesComentario")).ImageUrl;
+
+        string labelMensaje = ((Label)e.Item.FindControl("MensajeLabel")).Text;
+        string imagenMensaje = ((Image)e.Item.FindControl("ImagenesMensaje")).ImageUrl;
+
+        if (string.IsNullOrEmpty(labelComentario) && string.IsNullOrEmpty(imagenComentario))
+        {
+            botonComentario.Visible = false;
+        }
+        else if (string.IsNullOrEmpty(labelMensaje) && string.IsNullOrEmpty(imagenMensaje))
+        {
+            botonMensaje.Visible = false;
+        }
+    }
 }

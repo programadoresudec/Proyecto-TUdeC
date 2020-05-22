@@ -20,35 +20,33 @@ public class DaoReporte
 
     public List<EReporte> reportesDelUsuario(string nombreDeUsuarioDenunciado)
     {
-        return (from reporte in db.TablaReportes 
+        return (from reporte in db.TablaReportes
                 join comentario in db.TablaComentarios on reporte.IdComentario equals comentario.Id into reportexComentario
                 from rc in reportexComentario.DefaultIfEmpty()
                 join mensaje in db.TablaMensajes on reporte.IdMensaje equals mensaje.Id into reportexMensaje
                 from rm in reportexMensaje.DefaultIfEmpty()
-                where reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado) && reporte.Estado.Equals(false)
+                where reporte.Estado == false && reporte.NombreDeUsuarioDenunciado.Equals(nombreDeUsuarioDenunciado)
                 select new
                 {
-                    rc,
-                    rm,
                     reporte,
+                    rm,
+                    rc
                 }).ToList().Select(x => new EReporte
                 {
                     Id = x.reporte.Id,
-                    Fecha = x.reporte.Fecha,
+                    Descripcion = x.reporte.Descripcion,
                     MotivoDelReporte = x.reporte.MotivoDelReporte,
                     NombreDeUsuarioDenunciado = x.reporte.NombreDeUsuarioDenunciado,
                     NombreDeUsuarioDenunciante = x.reporte.NombreDeUsuarioDenunciante,
-                    IdComentario = x.reporte.IdComentario,
-                    Comentario = x?.rc == null ? String.Empty : x?.rc.Comentario,
-                    ImagenesComentario = x?.rc.Imagenes,
-                    Estado = x.reporte.Estado,
-                    IdMensaje = x.reporte.IdMensaje,
-
-                    Mensaje = x?.rm == null ? String.Empty : x.rm.Contenido,
-                   
-                    Descripcion = x.reporte.Descripcion,
-                }).OrderByDescending(x => x.Fecha).ToList();
-
+                    Fecha = x.reporte.Fecha,
+                    IdComentario = x.reporte.IdComentario == null ? 0 : x.reporte.IdComentario,
+                    Comentario = x.rc == null ? string.Empty : x.rc.Comentario,
+                    ImagenesComentario = x.rc == null ? null : x.rc.Imagenes,
+                    IdMensaje = x.reporte.IdMensaje == null ? 0 : x.reporte.IdMensaje,
+                    Mensaje = x.rm == null ? string.Empty : x.rm.Contenido,
+                    ImagenesMensaje = x.rm == null ? null : x.rm.Imagenes
+                }
+        ).OrderByDescending(x => x.Fecha).ToList();
     }
 
     public void actualizarMotivo(EReporte reporte)

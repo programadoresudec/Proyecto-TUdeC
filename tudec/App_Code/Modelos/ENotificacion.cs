@@ -11,6 +11,7 @@ public class ENotificacion
     private string mensaje;
     private Boolean estado;
     private string nombreDeUsuario;
+    private DateTime fecha;
     #endregion
 
     #region properties
@@ -22,6 +23,8 @@ public class ENotificacion
     [Column("estado")]
     public bool Estado { get => estado; set => estado = value; }
     [Column("fk_nombre_de_usuario")]
-    public string NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; } 
+    public string NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; }
+    [Column("fecha")]
+    public DateTime Fecha { get => fecha; set => fecha = value; }
     #endregion
 }

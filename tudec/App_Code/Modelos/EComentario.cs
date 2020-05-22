@@ -14,6 +14,7 @@ using System.Web;
 public class EComentario
 {
 
+    #region attributes
     private int id;
     private string emisor;
     private Nullable<int> idCurso;
@@ -22,7 +23,9 @@ public class EComentario
     private string comentario;
     private DateTime fechaEnvio;
     private List<string> imagenes;
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -39,5 +42,6 @@ public class EComentario
     [Column("fecha_envio")]
     public DateTime FechaEnvio { get => fechaEnvio; set => fechaEnvio = value; }
     [Column("imagenes")]
-    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
+    public List<string> Imagenes { get => imagenes; set => imagenes = value; } 
+    #endregion
 }

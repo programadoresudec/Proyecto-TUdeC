@@ -14,13 +14,16 @@ using System.Web;
 public class EEjecucionExamen
 {
 
+    #region attributes
     private int id;
     private string nombreUsuario;
     private int idExamen;
     private DateTime fechaEjecucion;
     private string calificacion;
     private string respuestas;
+    #endregion
 
+    #region properties
     [Key]
     [Column("id")]
     public int Id { get => id; set => id = value; }
@@ -33,6 +36,7 @@ public class EEjecucionExamen
     [Column("calificacion")]
     public string Calificacion { get => calificacion; set => calificacion = value; }
     [Column("respuestas")]
-    public string Respuestas { get => respuestas; set => respuestas = value; }
-    
+    public string Respuestas { get => respuestas; set => respuestas = value; } 
+    #endregion
+
 }

@@ -4,49 +4,39 @@
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .auto-style1 {
             width: 100%;
         }
 
-       
 
-        .etiquetaCrearTema{
 
+        .etiquetaCrearTema {
             font-size: 50px;
-
         }
 
-        .cajaTitulo, .botonCrearExamen, .botonCrearTema{
-
+        .cajaTitulo, .botonCrearExamen, .botonCrearTema {
             width: 60%;
-
         }
 
-        .cajaTitulo{
-
+        .cajaTitulo {
             height: 30px;
             text-align: center;
-
         }
 
-        .editor{
-
+        .editor {
             width: 58.5%;
             height: 500px
-
         }
 
         .ajax__html_editor_extender_popupDiv {
-            display:none;
+            display: none;
         }
-
-     
     </style>
 
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
- 
+
 
 
     <script>
@@ -62,48 +52,52 @@
                 var editor = document.getElementById("editor_HtmlEditorExtender_ExtenderContentEditable");
                 var botonCrearExamen = <%=botonCrearExamen.ClientID%>;
                 var idCurso = <%=((ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS]).Id%>;
+                if (idCurso != null) {
+                    var titulo = cajaTitulo.value;
+                    var contenido = editor.innerHTML;
+                    var textoBoton = botonCrearExamen.value;
 
-                var titulo = cajaTitulo.value;
-                var contenido = editor.innerHTML;
-                var textoBoton = botonCrearExamen.value;
+                    var existeExamen;
 
-                var existeExamen;
+                    if (textoBoton == "Crear examen") {
 
-                if (textoBoton == "Crear examen") {
+                        existeExamen = false;
 
-                    existeExamen = false;
-                    
-                } else {
+                    } else {
 
-                    existeExamen = true;
+                        existeExamen = true;
 
+                    }
+
+                    var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: 'CreacionYEdicionTema.aspx/CrearTema',
+                        data: datos,
+
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: false,
+
+                    });
+
+                    //Examen
+
+                    if (existeExamen) {
+
+                        enviarExamen(titulo, contenido, idCurso);
+
+                    } else {
+
+                        alert("Se ha creado el tema");
+                        window.location.href = "ListaDeTemasDelCurso.aspx"
+
+                    }
                 }
-
-                var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
-
-                $.ajax({
-
-                    type: "POST",
-                    url: 'CreacionYEdicionTema.aspx/CrearTema',
-                    data: datos,
-
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: false,
-
-                });
-
-                //Examen
-
-                if (existeExamen) {
-
-                    enviarExamen(titulo, contenido, idCurso);
-
-                } else {
-
-                    alert("Se ha creado el tema");
-                    window.location.href = "ListaDeTemasDelCurso.aspx"
-
+                else {
+                    window.location.href="Vistas/Home.aspx"
                 }
 
             });
@@ -113,7 +107,7 @@
     </script>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
 
     <br />
     <br />
@@ -139,10 +133,10 @@
             </td>
         </tr>
         <tr>
-            <td >
+            <td>
                 <div class="row justify-content-center">
-                <asp:TextBox CssClass="editor" ID="editor" runat="server" TextMode="MultiLine" ></asp:TextBox>
-                  </div>
+                    <asp:TextBox CssClass="editor" ID="editor" runat="server" TextMode="MultiLine"></asp:TextBox>
+                </div>
                 <ajaxToolkit:HtmlEditorExtender ID="editor_HtmlEditorExtender" runat="server" BehaviorID="editor_HtmlEditorExtender" TargetControlID="editor">
                 </ajaxToolkit:HtmlEditorExtender>
             </td>
@@ -157,10 +151,7 @@
         <tr>
             <td>
 
-                <asp:Panel ID="panelExamen"  runat="server">
-
-                    
-
+                <asp:Panel ID="panelExamen" runat="server">
                 </asp:Panel>
 
 

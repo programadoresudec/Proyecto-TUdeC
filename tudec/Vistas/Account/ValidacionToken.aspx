@@ -3,14 +3,14 @@
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <div class="text-center mt-4" style="padding:17% 8% 8%">
         <asp:Label ID="LB_TextoOne" runat="server" Text="Label" 
-            class="text-capitalize text-dark text-center p-4 font-weight-bold"
+            CssClass="text-capitalize text-dark text-center p-4 font-weight-bold"
             Style="font-size: 40px !important">
         <strong>NO SE PUDO VERIFICAR LA DIRECCIÓN DE EMAIL</strong>
         </asp:Label>
         <br />
         <br />
         <asp:Label ID="LB_TextoTwo" runat="server"
-            class="px-4 py-3 text-center text-danger mx-auto" Text="Label">
+            CssClass="px-4 py-3 text-center text-danger mx-auto" Text="Label">
         <strong>OOPS! Se produjo un problema al verificar tu dirección de email!</strong>
         </asp:Label>
     </div>
