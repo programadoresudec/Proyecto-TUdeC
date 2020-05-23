@@ -203,9 +203,15 @@ public partial class Vistas_Inicio : System.Web.UI.Page
 
         sugerencia.ImagenesJson = JsonConvert.SerializeObject(sugerencia.Imagenes);
 
-        gestorSugerencias.Enviar(sugerencia);
+        Base.Insertar(sugerencia);
+        string admin = new DaoNotificacion().buscarNombreAdministrador();
 
-
+        ENotificacion notificacionDeSugerencia = new ENotificacion();
+        notificacionDeSugerencia.Estado = true;
+        notificacionDeSugerencia.Fecha = DateTime.Now;
+        notificacionDeSugerencia.NombreDeUsuario = admin;
+        notificacionDeSugerencia.Mensaje = "Ha llegado una sugerencia.";
+        Base.Insertar(notificacionDeSugerencia);
     }
 
     [WebMethod]

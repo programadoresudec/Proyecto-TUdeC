@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web.Services;
 
 public partial class MasterPage : System.Web.UI.MasterPage
@@ -10,17 +11,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
-            int numDeNotificaciones = new DaoNotificacion().numeroDeNotificaciones(usuario.NombreDeUsuario);
-            if (numDeNotificaciones > 0)
-            {
-                LB_campana.Visible = true;
-                Notificaciones.Text = "Tiene " + numDeNotificaciones.ToString() + "Notificaciones";
-            }
-            else
-            {
-                Notificaciones.Text = "No Tiene Notificaciones.";
-            }
-            BtnNotificaciones.Visible = true;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
             ImagenPerfil.Visible = true;
             ImagenPerfil.DataBind();
@@ -73,29 +63,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Buscador gestorBuscador = new Buscador();
         List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
         return nombres;
-    }
-
-    protected void tiempoDeRefresco_Tick(object sender, EventArgs e)
-    {
-        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-        if (usuario != null)
-        {
-            int numDeNotificaciones = new DaoNotificacion().numeroDeNotificaciones(usuario.NombreDeUsuario);
-            if (numDeNotificaciones > 0)
-            {
-                LB_campana.Visible = true;
-                Notificaciones.Text = "Tiene " + numDeNotificaciones.ToString() + "Notificaciones";
-            }
-            else
-            {
-                Notificaciones.Text = "No Tiene Notificaciones.";
-            }
-        }
-    }
-
-    protected void Notificaciones_Click(object sender, EventArgs e)
-    {
-        Session[Constantes.NOTIFICACIONES] = usuario.NombreDeUsuario;
-        Response.Redirect("~/Vistas/Notificaciones/Notificaciones.aspx");
     }
 }

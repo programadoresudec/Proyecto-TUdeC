@@ -13,8 +13,10 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
-            if (new DaoNotificacion().notificacionesDelUsuario(usuario.NombreDeUsuario) == null)
+            Session[Constantes.NOTIFICACIONES] = usuario.NombreDeUsuario;
+            if (new DaoNotificacion().tieneNotificaciones(usuario.NombreDeUsuario) == 0)
             {
+                LNB_EnVistoTodos.Visible = false;
                 LB_TieneNotificaciones.Visible = true;
             }
         }
@@ -22,5 +24,22 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
+    }
+
+    protected void LNB_EnVistoTodos_Click(object sender, EventArgs e)
+    {
+        new DaoNotificacion().MarcarEnVistoTodas(usuario.NombreDeUsuario);
+    }
+
+    protected void LNB_Borrar_Click(object sender, EventArgs e)
+    {
+        
+        DataListItem Item = ((LinkButton)sender).NamingContainer as DataListItem;
+        if (Item != null)
+        {
+            int id = int.Parse(((Label)Item.FindControl("LB_id")).Text);
+            new DaoNotificacion().eliminar(id);
+        }
+        DL_Notificaciones.DataBind();
     }
 }

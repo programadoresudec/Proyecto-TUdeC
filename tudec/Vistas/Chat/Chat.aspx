@@ -69,10 +69,13 @@
                                             <asp:Panel ID="panelMensajes" runat="server" Width="100%" Height="400" ScrollBars="Vertical"></asp:Panel>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-                                    <asp:UpdatePanel ID="panelActualizar" runat="server">
+                                    <asp:UpdatePanel ID="panelActualizar" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
                                             <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="temporizador" EventName="Tick"/>
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </asp:TableCell>
                             </asp:TableRow>

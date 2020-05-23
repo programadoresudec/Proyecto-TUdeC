@@ -12,7 +12,7 @@ public class GestionCurso
     private Base db = new Base();
     public GestionCurso()
     {
-      
+
     }
 
     public EInscripcionesCursos GetInscripcion(EUsuario usuario, ECurso curso)
@@ -44,49 +44,30 @@ public class GestionCurso
 
     public List<ECurso> GetCursosCreados(EUsuario usuario, string nombre, string fechaCreacion, string area, string estado)
     {
-        if (nombre == null)
-        {
-
-            nombre = "";
-
-        }
-        
-
-        if(fechaCreacion == null)
-        {
-
-            fechaCreacion = "";
-
-        }
-;
         List<ECurso> cursos;
-
-        if (nombre.Equals("") && fechaCreacion.Equals("") && (area == null || area.Equals("Área del conocimiento")) && (estado == null || estado.Equals("Estado")))
+        if (string.IsNullOrEmpty(nombre)  && string.IsNullOrEmpty(fechaCreacion) && (area == null || area.Equals("Área del conocimiento")) && (estado == null || estado.Equals("Estado")))
         {
-
             cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario)).ToList();
-
         }
         else
         {
-
             DateTime fecha = new DateTime();
+            if (fechaCreacion != "")
+            {
+                try
+                {
+                    fecha = DateTime.Parse(fechaCreacion);
+                }
+                catch (Exception)
+                {
 
-            if(fechaCreacion != "") {
-
-                string dia = fechaCreacion.Split('/')[0];
-                string mes = fechaCreacion.Split('/')[1];
-                string anio = fechaCreacion.Split('/')[2];
-                fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
-
+                    throw;
+                }
+                
             }
-            
             cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area)) && (estado.Equals("Estado") || x.Estado.Equals(estado))).ToList();
         }
-
-
         return cursos;
-
     }
 
     public List<ECurso> GetCursosInscritos(EUsuario usuario, string nombre, string tutor, string fechaCreacion, string area)
@@ -96,13 +77,10 @@ public class GestionCurso
 
         List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario)).ToList();
 
-        foreach(EInscripcionesCursos inscripcion in inscripciones)
+        foreach (EInscripcionesCursos inscripcion in inscripciones)
         {
-
             ECurso curso = db.TablaCursos.Where(x => x.Id == inscripcion.IdCurso).FirstOrDefault();
-
             cursos.Add(curso);
-
         }
 
         //Filtro
@@ -114,7 +92,7 @@ public class GestionCurso
 
         }
 
-        if(tutor == null)
+        if (tutor == null)
         {
 
             tutor = "";
@@ -128,7 +106,7 @@ public class GestionCurso
 
         }
 
-        if(!(nombre.Equals("") && fechaCreacion.Equals("") && (area == null || area.Equals("Área del conocimiento"))))
+        if (!(nombre.Equals("") && fechaCreacion.Equals("") && (area == null || area.Equals("Área del conocimiento"))))
         {
             DateTime fecha = new DateTime();
 
@@ -138,7 +116,7 @@ public class GestionCurso
                 string dia = fechaCreacion.Split('/')[0];
                 string mes = fechaCreacion.Split('/')[1];
                 string anio = fechaCreacion.Split('/')[2];
-                    fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
+                fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
 
             }
             cursos = cursos.Where(x => (tutor.Equals("") || x.Creador.Equals(tutor)) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area))).ToList();
@@ -152,7 +130,7 @@ public class GestionCurso
     public List<EArea> GetAreasSrc()
     {
 
-        List<EArea> areas =  db.TablaAreas.ToList();
+        List<EArea> areas = db.TablaAreas.ToList();
 
         EArea areaPorDefecto = new EArea();
         areaPorDefecto.Area = "Área del conocimiento";
@@ -184,7 +162,7 @@ public class GestionCurso
 
         List<string> nombresCursos = new List<string>();
 
-        foreach(ECurso curso in cursos)
+        foreach (ECurso curso in cursos)
         {
 
             nombresCursos.Add(curso.Nombre);
@@ -207,7 +185,7 @@ public class GestionCurso
 
             ECurso curso = db.TablaCursos.Where(x => x.Id == inscripcion.IdCurso && x.Nombre.ToLower().Contains(nombre.ToLower())).FirstOrDefault();
 
-            if(curso != null) cursos.Add(curso);
+            if (curso != null) cursos.Add(curso);
 
         }
 
@@ -239,7 +217,7 @@ public class GestionCurso
 
         }
 
-        foreach(ECurso curso in cursos)
+        foreach (ECurso curso in cursos)
         {
 
             nombresTutores.Add(curso.Creador);
@@ -260,7 +238,7 @@ public class GestionCurso
 
         EInscripcionesCursos inscripcion = db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario) && x.IdCurso == curso.Id).FirstOrDefault();
 
-        if(inscripcion == null)
+        if (inscripcion == null)
         {
 
             retorno = false;

@@ -36,13 +36,19 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row justify-content-center">
+                             <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
+                        runat="server" ErrorMessage="Ingrese una fecha valida." ValidationGroup="FechaCursosCreados"
+                        ControlToValidate="cajaFechaCreacion" Display="Dynamic" CssClass="alertHome alert-danger"
+                        ValidationExpression="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$" />
+                        </div>
                         <div class="col input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <asp:TextBox ID="cajaFechaCreacion" runat="server" placeHolder="Fecha de creación"
+                            <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosCreados" runat="server" placeHolder="Fecha de creación"
                                 CssClass="form-control" />
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server"
                                 BehaviorID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" TargetControlID="cajaFechaCreacion" />
@@ -66,7 +72,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <asp:LinkButton CssClass="btn btn-info" ID="botonFiltrar" Width="50%"  runat="server">
+                    <asp:LinkButton CssClass="btn btn-info" ID="botonFiltrar" ValidationGroup="FechaCursosCreados" Width="50%"  runat="server">
                             <i class="fa fa-filter mr-2"></i>Filtrar
                     </asp:LinkButton>
                 </div>

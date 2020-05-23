@@ -13,6 +13,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         cajaFechaCreacion_CalendarExtender.EndDate = DateTime.Now;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario == null)
@@ -24,7 +25,6 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
-
         tablaCursos.DataBind();
 
     }
@@ -33,7 +33,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     {
 
         GridViewRow fila = e.Row;
-     
+
         if (fila.Cells.Count > 1)
         {
 
@@ -49,7 +49,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
             string nombreArea = celdaArea.Text;
 
             Image iconoArea = new Image();
-            
+
 
             ImageButton botonEditarCurso = new ImageButton();
             ImageButton botonEditarTema = new ImageButton();
@@ -111,7 +111,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
                 celdaEditarTema.Controls.Add(botonEditarTema);
                 celdaCalificar.Controls.Add(botonCalificar);
                 celdaChat.Controls.Add(botonChat);
-                
+
 
             }
 
@@ -217,7 +217,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         ImageButton boton = (ImageButton)sender;
         GridViewRow filaAEncontrar = null;
 
-        foreach(GridViewRow fila in tablaCursos.Rows)
+        foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
             if (fila.Cells[8].Controls.Contains(boton))
@@ -306,7 +306,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
-    
+
     }
 
     [WebMethod]
@@ -314,7 +314,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
     {
 
         GestionCurso gestorCurso = new GestionCurso();
-        
+
         List<string> nombres = gestorCurso.GetCursosCreadosSrc(usuario, prefixText);
 
         return nombres;
@@ -329,5 +329,5 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
     }
 
-   
+
 }

@@ -8,8 +8,6 @@ using System.Web.UI.WebControls;
 
 public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Page
 {
-
-
     private static EUsuario usuario;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -25,14 +23,11 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
-
         tablaCursos.DataBind();
-
     }
 
     public void EliminarInscripcion(object sender, EventArgs e)
     {
-
         ImageButton boton = (ImageButton)sender;
         GridViewRow filaAEncontrar = null;
 

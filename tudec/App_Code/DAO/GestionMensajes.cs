@@ -26,4 +26,10 @@ public class GestionMensajes
         return mensajes;
 
     }
+
+    public EMensaje GetMensaje(int id)
+    {
+        EMensaje mensaje = db.TablaMensajes.Where(x => x.Id == id).FirstOrDefault();
+        return mensaje;
+    }
 }

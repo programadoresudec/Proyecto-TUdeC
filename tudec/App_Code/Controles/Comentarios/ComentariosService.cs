@@ -53,7 +53,6 @@ public class ComentariosService : System.Web.Services.WebService
 
             comentario.Comentario = contenidoCaja;
             comentario.FechaEnvio = System.DateTime.Now;
-
             Base.Insertar(comentario);
 
         }

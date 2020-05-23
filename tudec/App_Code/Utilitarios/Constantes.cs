@@ -9,6 +9,7 @@ using System.Web;
 public static class Constantes
 {
     #region const attributes
+    #region Constantes de estados
     /// <summary>
     /// Constantes de estados en los atributos de algunas entidades.
     /// </summary>
@@ -18,7 +19,9 @@ public static class Constantes
     public const string ESTADO_CAMBIO_PASS = "change pass";
     public const string ESTADO_PK = "pk";
     public const string ESTADO_UNIQUE = "unique";
-    public const string ESTADO_ACTIVO = "activo";
+    public const string ESTADO_ACTIVO = "activo"; 
+    #endregion
+    #region Constantes Del Proyecto
     /// <summary>
     /// Constantes para el proyecto.
     /// </summary>
@@ -49,7 +52,9 @@ public static class Constantes
     public const int PUNTUACION_MOTIVO_4 = 4;
     public const int PUNTUACION_MOTIVO_5 = 5;
     public const int PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO = 20;
-    public const int LONGITUD_CODIGO = 6;
+    public const int LONGITUD_CODIGO = 6; 
+    #endregion
+    #region Constantes De SESSION
     /// <summary>
     /// Constantes De Session
     /// </summary>
@@ -69,5 +74,7 @@ public static class Constantes
     public const string VALIDAR_TOKEN = "validarToken";
     public const string EXAMEN_A_REALIZAR = "examenARealizar";
     public const string USUARIO_CON_REPORTES = "usuarioConReportes";
+    public const string RECEPTOR_DEL_REPORTE = "receptorParaReporte"; 
+    #endregion
     #endregion
 }

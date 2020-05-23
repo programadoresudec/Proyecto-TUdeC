@@ -28,27 +28,24 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
         EComentario comentario = gestorComentarios.GetComentario(idComentario);
         EUsuario usuario = gestorUsuarios.GetUsuario(comentario.Emisor);
-
         etiquetaUsuario.Text = usuario.NombreDeUsuario;
         imagenUsuario.ImageUrl = usuario.ImagenPerfil;
         etiquetaFecha.Text = "<br>Fecha de envío: " + comentario.FechaEnvio;
 
         imagenUsuario.CssClass = "card-img rounded-circle";
 
-        if (imagenUsuario.ImageUrl == "")
+        if (string.IsNullOrEmpty(imagenUsuario.ImageUrl))
         {
 
-            imagenUsuario.ImageUrl = "~/Recursos/Imagenes/PerfilUsuarios/DefaultUsuario.jpg";
+            imagenUsuario.ImageUrl = Constantes.IMAGEN_DEFAULT;
 
         }
 
         cajaComentarios.Text = comentario.Comentario;
-
         ReportarCuenta.IdComentario = IdComentario;
-
         if (IdComentarioSuperior == null)
         {
-           comentariosHilo = gestorComentarios.GetComentarios(gestorComentarios.GetComentario(idComentario));
+            comentariosHilo = gestorComentarios.GetComentarios(gestorComentarios.GetComentario(idComentario));
             opcionHilo = new LinkButton();
             opcionHilo.Click += new EventHandler(VerHilo);
 
@@ -67,7 +64,7 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
             panelOpcion.Controls.Add(opcionHilo);
 
-        }        
+        }
 
     }
 
@@ -87,13 +84,13 @@ public partial class Controles_Comentarios_ComentarioExistente : System.Web.UI.U
 
         panelHilo.Controls.Add(nuevoComentario);
 
-        foreach(EComentario comentario in comentariosHilo)
+        foreach (EComentario comentario in comentariosHilo)
         {
 
             ASP.controles_comentarios_comentarioexistente_ascx comentarioHilo = new ASP.controles_comentarios_comentarioexistente_ascx();
             comentarioHilo.idComentario = comentario.Id;
             comentarioHilo.IdComentarioSuperior = comentario.IdComentario;
-            
+
 
             panelHilo.Controls.Add(comentarioHilo);
 

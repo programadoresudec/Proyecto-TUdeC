@@ -10,16 +10,7 @@ using System.Web;
 public class Sugerencia
 {
     private Base db = new Base();
-  
-
-    public void Enviar(ESugerencia sugerencia)
-    {
-        
-        db.TablaSugerencias.Add(sugerencia);
-        db.SaveChanges();
-
-    }
-
+ 
     public ESugerencia GetSugerencia(int id)
     {
 

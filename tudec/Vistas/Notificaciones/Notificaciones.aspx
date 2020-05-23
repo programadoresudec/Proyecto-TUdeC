@@ -21,7 +21,7 @@
             </asp:Label>
         </div>
         <div class="row">
-            <asp:LinkButton CssClass="btn btn-link btn-lg" runat="server">
+            <asp:LinkButton CssClass="btn btn-link btn-lg" ID="LNB_EnVistoTodos" runat="server" OnClick="LNB_EnVistoTodos_Click">
                 <i class="fa fa-check-circle"></i> Marcar Todos Como Leidos.
             </asp:LinkButton>
         </div>
@@ -30,10 +30,13 @@
                 <div class="row mt-3">
                     <div class="card">
                         <div class="card-body">
+                             <asp:Label ID="LB_id" Visible="false" runat="server" Text='<%# Eval("Id") %>' />
                             <asp:Label ID="MensajeLabel" Font-Size="X-Large" runat="server" Text='<%# Eval("Mensaje") %>' />
                         </div>
                         <div class="card-footer text-center">
                             <asp:Label ID="FechaLabel" runat="server" Text='<%# Eval("Fecha") %>' />
+                            <br />
+                            <asp:LinkButton runat="server" ID="LNB_Borrar" CssClass="btn btn-danger" OnClick="LNB_Borrar_Click"><i class="fa fa-trash"></i></asp:LinkButton>
                         </div>
                     </div>
                     <br />

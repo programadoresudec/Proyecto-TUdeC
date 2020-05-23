@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Src="~/Controles/CampanaNotificacion/CampanaNotifcacion.ascx" TagPrefix="uc1" TagName="CampanaNotificacion" %>
 
 
 <!DOCTYPE html>
@@ -56,7 +56,6 @@
             </Scripts>
         </asp:ScriptManager>
         <!-- //SCRIPTS FINAL -->
-
         <!-- header -->
         <header>
             <!-- navbar -->
@@ -137,22 +136,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown mr-lg-2 mb-auto mt-3">
-                            <asp:Timer runat="server" ID="tiempoDeRefresco" OnTick="tiempoDeRefresco_Tick" Interval="3000" />
-                            <asp:UpdatePanel runat="server" ID="NotificacionUpdate" UpdateMode="Conditional">
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="tiempoDeRefresco" EventName="Tick" />
-                                </Triggers>
-                                <ContentTemplate>
-                                    <asp:LinkButton runat="server" CssClass="btn btn-outline-light fa fa-bell fa-lg mt-2" ID="BtnNotificaciones"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="false">
-                                        <asp:Label CssClass="fas fa-sms fa-xs" ID="LB_campana" Visible="false" ForeColor="#ee0606" runat="server" />
-                                    </asp:LinkButton>
-                                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                                        <asp:LinkButton CssClass="btn btn-outline-success" OnClick="Notificaciones_Click" ID="Notificaciones" runat="server"
-                                            Visible="true"></asp:LinkButton>
-                                    </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                            <uc1:CampanaNotificacion runat="server" ID="CampanaNotificacion" />
                         </li>
 
                         <li class="nav-item dropdown dropdown mr-lg-2 mb-auto mt-auto">

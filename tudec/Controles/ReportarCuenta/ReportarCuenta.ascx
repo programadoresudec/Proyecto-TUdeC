@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ReportarCuenta.ascx.cs" Inherits="Controles_ReportarCuenta_ReportarCuenta" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
+<asp:LinkButton ID="BtnMostrarModal"  CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
 <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="BtnMostrarModal" PopupControlID="PanelModalBloqueo"
     CancelControlID="btnCerrar" BackgroundCssClass="modalBackground">
 </cc1:ModalPopupExtender>

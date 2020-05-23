@@ -13,10 +13,6 @@ public partial class Controles_Comentarios_NuevoComentario : System.Web.UI.UserC
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
-        Session["idComentario"] = IdComentario;
-        
+        Session["idComentario"] = IdComentario;   
     }
-
 }
