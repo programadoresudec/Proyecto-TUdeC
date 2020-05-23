@@ -56,10 +56,21 @@
                 botonCrear.value = "Editar tema";
 
 
+                <%if(Session[Constantes.TEMA_SELECCIONADO] != null)
+                {
 
-                var contenido = "<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"")%>";
+            string contenido = ((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"");
+
+
+            %>
+
+                var contenido = '<%=contenido%>';
 
                 CKEDITOR.instances.editor.setData(contenido);
+
+            <%}%>
+
+                
 
 
             }
@@ -166,7 +177,7 @@
            
                     </center>
 
-                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" ></ajaxToolkit:FilteredTextBoxExtender>
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]" ></ajaxToolkit:FilteredTextBoxExtender>
         
             </td>
         </tr>

@@ -82,6 +82,7 @@ public partial class Vistas_Cursos_ListaDeTemasDelCurso : System.Web.UI.Page
     protected void botonAgregarTema_Click(object sender, EventArgs e)
     {
 
+        Session[Constantes.TEMA_SELECCIONADO] = null;
         Response.Redirect("~/Vistas/Cursos/CreacionYEdicionTema.aspx");
 
     }
