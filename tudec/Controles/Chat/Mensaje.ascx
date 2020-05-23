@@ -3,11 +3,11 @@
 <%@ Register Src="~/Controles/ReportarCuenta/ReportarCuenta.ascx" TagPrefix="uc1" TagName="ReportarCuenta" %>
 
 <div class="row ml-4">
-    <uc1:ReportarCuenta runat="server" ID="ReportarCuenta"/>
+    <uc1:ReportarCuenta  runat="server" ID="ReportarCuenta"/>
 
 </div>
  
 <asp:Panel style="background-color:cadetblue; padding: 20px; border-radius: 20px" ID="panelMensaje" runat="server">
-
+ 
 </asp:Panel>
     

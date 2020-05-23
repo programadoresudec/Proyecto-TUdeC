@@ -142,8 +142,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             ASP.controles_chat_mensaje_ascx interfazMensaje = new ASP.controles_chat_mensaje_ascx();
 
-            interfazMensaje.Mensaje = mensaje.Contenido;
-            interfazMensaje.Fecha = mensaje.Fecha;
+            interfazMensaje.IdMensaje = mensaje.Id;
 
             if (mensaje.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario))
             {

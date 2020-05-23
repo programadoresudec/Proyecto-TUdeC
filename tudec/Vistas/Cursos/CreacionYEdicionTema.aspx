@@ -49,6 +49,16 @@
             var cajaTitulo = <%=cajaTitulo.ClientID%>;
             var titulo = cajaTitulo.value;
 
+            var existenciaExamen = "<%=Session["existenciaExamen"]%>";
+
+            if (existenciaExamen == "True") {
+
+                var zonaBoton = document.getElementById("zonaBoton");
+
+                zonaBoton.innerHTML = "El examen no se puede editar una vez publicado el tema";
+
+            }
+
             if (titulo != "") {
 
 
@@ -56,22 +66,11 @@
                 botonCrear.value = "Editar tema";
 
 
-                <%if(Session[Constantes.TEMA_SELECCIONADO] != null)
-                {
-
-            string contenido = ((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"");
-
-
-            %>
-
-                var contenido = '<%=contenido%>';
-
-                CKEDITOR.instances.editor.setData(contenido);
-
-            <%}%>
-
+             
+                var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"")%>';
                 
 
+                CKEDITOR.instances.editor.setData(contenido);
 
             }
 
@@ -82,8 +81,8 @@
                 //Tema
 
                 var cajaTitulo = <%=cajaTitulo.ClientID%>;
-      
-                var botonCrearExamen = <%=botonCrearExamen.ClientID%>;
+
+                var botonCrearExamen = document.getElementById("botonCrearExamen");
                 var idCurso = <%=((ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS]).Id%>;
                 if (idCurso != null) {
                     var titulo = cajaTitulo.value;
@@ -92,45 +91,78 @@
 
                         var contenido = CKEDITOR.instances.editor.getData();
 
-                        var textoBoton = botonCrearExamen.value;
+                        if (botonCrearExamen != null) {
 
-                        var existeExamen;
-
-                        if (textoBoton == "Crear examen") {
-
-                            existeExamen = false;
-
-                        } else {
-
-                            existeExamen = true;
+                            var textoBoton = botonCrearExamen.value;
 
                         }
 
-                        var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+                        var botonCrearTema = document.getElementById("botonCrearTema");
 
-                        $.ajax({
+                        var textoBotonCrearTema = botonCrearTema.value;
 
-                            type: "POST",
-                            url: 'CreacionYEdicionTema.aspx/CrearTema',
-                            data: datos,
+                        if (textoBotonCrearTema == "Editar tema") {
 
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            async: false,
 
-                        });
+                            var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "'}";
 
-                        //Examen
+                            $.ajax({
 
-                        if (existeExamen) {
+                                type: "POST",
+                                url: 'CreacionYEdicionTema.aspx/EditarTema',
+                                data: datos,
 
-                            enviarExamen(titulo, contenido, idCurso);
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                async: false,
+
+                            });
+
+                            alert("Se ha editado el tema");
+
+                            window.location.href = "ListaDeTemasDelCurso.aspx"
+
 
                         } else {
 
-                            alert("Se ha creado el tema");
-                            window.location.href = "ListaDeTemasDelCurso.aspx"
+                            var existeExamen;
 
+                            if (textoBoton == "Crear examen") {
+
+                                existeExamen = false;
+
+                            } else {
+
+                                existeExamen = true;
+
+                            }
+
+                            var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: 'CreacionYEdicionTema.aspx/CrearTema',
+                                data: datos,
+
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                async: false,
+
+                            });
+
+                            //Examen
+
+                            if (existeExamen) {
+
+                                enviarExamen(titulo, contenido, idCurso);
+
+                            } else {
+
+                                alert("Se ha creado el tema");
+                                window.location.href = "ListaDeTemasDelCurso.aspx"
+
+                            }
                         }
 
                     } else {
@@ -147,6 +179,45 @@
 
         });
 
+        function agregarExamen() {
+
+
+            var boton = document.getElementById("botonCrearExamen");
+
+            if (boton.value == "Crear examen") {
+
+                boton.value = "Eliminar examen";
+
+                var herramientaExamen = document.getElementById("BodyContentMaster_CreacionExamen_panelito");
+
+                var panel = <%=panelExamen.ClientID%>;
+
+                if (panel.style.display == "none") {
+
+                    panel.style.display = "contents";
+
+                   
+
+
+                } else {
+
+                    panel.append(herramientaExamen);
+
+                }
+                
+
+            } else {
+
+                boton.value = "Crear examen";
+
+                var panel = <%=panelExamen.ClientID%>;
+
+                panel.style.display = "none";
+
+            }
+
+        }
+
     </script>
 
 </asp:Content>
@@ -158,8 +229,12 @@
     <br />
     <br />
 
+    <div style="display:none">
 
+    <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
 
+        </div>
+   
     <table class="auto-style1">
         <tr>
             <td>
@@ -218,14 +293,22 @@
         <tr>
             <td>
                 <center>
-                <asp:Button CssClass="botonCrearExamen" ID="botonCrearExamen" runat="server" Text="Crear examen" OnClick="botonCrearExamen_Click" />
+
+                    <div id="zonaBoton">
+
+                <input class="botonCrearExamen" id="botonCrearExamen" type="button" onclick="agregarExamen()" value="Crear examen" />
+
+                        </div>
+
                     </center>
             </td>
         </tr>
         <tr>
             <td>
 
-                <asp:Panel ID="panelExamen" runat="server">
+               
+
+                <asp:Panel ID="panelExamen"  runat="server">
                 </asp:Panel>
 
 

@@ -22,7 +22,10 @@
 <body>
 
     <form id="form1" runat="server">
-       
+       <asp:ScriptManager runat="server"></asp:ScriptManager>
+
+        <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
+
       <textarea name="editor1" id="editor1" >
                 This is my textarea to be replaced with CKEditor.
             </textarea>

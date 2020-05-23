@@ -7,27 +7,33 @@ using System.Web.UI.WebControls;
 
 public partial class Controles_Chat_Mensaje : System.Web.UI.UserControl
 {
+    private int idMensaje;
 
-    private string mensaje;
-    private DateTime fecha;
-    public string Mensaje { get => mensaje; set => mensaje = value; }
-    public DateTime Fecha { get => fecha; set => fecha = value; }
+    public int IdMensaje { get => idMensaje; set => idMensaje = value; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (!mensaje.Contains("<img"))
+        GestionMensajes gestorMensajes = new GestionMensajes();
+
+        EMensaje mensaje = gestorMensajes.GetMensaje(idMensaje);
+
+        ReportarCuenta.IdMensaje = mensaje.Id;
+
+        string cuerpoMensaje = mensaje.Contenido;
+
+        if (!cuerpoMensaje.Contains("<img"))
         {
 
             TextBox cajaTexto = new TextBox();
 
             cajaTexto.Width = Unit.Percentage(100);
 
-            cajaTexto.Height = (int)(Math.Ceiling((double)(mensaje.Length / 56.0))*25);
+            cajaTexto.Height = (int)(Math.Ceiling((double)(cuerpoMensaje.Length / 56.0))*25);
             
             cajaTexto.TextMode = TextBoxMode.MultiLine;
 
-            cajaTexto.Text = mensaje;
+            cajaTexto.Text = cuerpoMensaje;
 
             cajaTexto.Enabled = false;
 
@@ -49,7 +55,7 @@ public partial class Controles_Chat_Mensaje : System.Web.UI.UserControl
         {
 
             Literal imagen = new Literal();
-            imagen.Text = mensaje;
+            imagen.Text = cuerpoMensaje;
 
             panelMensaje.Controls.Add(imagen);
 
@@ -58,7 +64,7 @@ public partial class Controles_Chat_Mensaje : System.Web.UI.UserControl
 
         Label etiquetaFecha = new Label();
 
-        etiquetaFecha.Text = Fecha.ToString();
+        etiquetaFecha.Text = mensaje.Fecha.ToString();
         panelMensaje.Controls.Add(etiquetaFecha);
 
     }
