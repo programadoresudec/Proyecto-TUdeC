@@ -82,8 +82,8 @@
                 //Tema
 
                 var cajaTitulo = <%=cajaTitulo.ClientID%>;
-      
-                var botonCrearExamen = <%=botonCrearExamen.ClientID%>;
+
+                var botonCrearExamen = document.getElementById("botonCrearExamen");
                 var idCurso = <%=((ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS]).Id%>;
                 if (idCurso != null) {
                     var titulo = cajaTitulo.value;
@@ -147,6 +147,43 @@
 
         });
 
+        function agregarExamen() {
+
+
+            var boton = document.getElementById("botonCrearExamen");
+
+            if (boton.value == "Crear examen") {
+
+                boton.value = "Eliminar examen";
+
+                var herramientaExamen = document.getElementById("BodyContentMaster_CreacionExamen_panelito");
+
+                var panel = <%=panelExamen.ClientID%>;
+
+                if (panel.style.display == "none") {
+
+                    panel.style.display = "contents";
+
+
+                } else {
+
+                    panel.append(herramientaExamen);
+
+                }
+                
+
+            } else {
+
+                boton.value = "Crear examen";
+
+                var panel = <%=panelExamen.ClientID%>;
+
+                panel.style.display = "none";
+
+            }
+
+        }
+
     </script>
 
 </asp:Content>
@@ -158,8 +195,12 @@
     <br />
     <br />
 
+    <div style="display:none">
 
+    <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
 
+        </div>
+   
     <table class="auto-style1">
         <tr>
             <td>
@@ -218,14 +259,18 @@
         <tr>
             <td>
                 <center>
-                <asp:Button CssClass="botonCrearExamen" ID="botonCrearExamen" runat="server" Text="Crear examen" OnClick="botonCrearExamen_Click" />
+
+                <input class="botonCrearExamen" id="botonCrearExamen" type="button" onclick="agregarExamen()" value="Crear examen" />
+
                     </center>
             </td>
         </tr>
         <tr>
             <td>
 
-                <asp:Panel ID="panelExamen" runat="server">
+               
+
+                <asp:Panel ID="panelExamen"  runat="server">
                 </asp:Panel>
 
 

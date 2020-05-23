@@ -10,7 +10,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     #region attributes
     private int idComentario;
-
+    private int idMensaje;
     EUsuario usuarioDenunciante;
     EComentario comentarios;
     EMensaje mensajes;
@@ -19,6 +19,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     #region properties
     public int IdComentario { get => idComentario; set => idComentario = value; }
+    public int IdMensaje { get => idMensaje; set => idMensaje = value; }
     #endregion
 
 
@@ -29,7 +30,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         {
             usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
             comentarios = new GestionComentarios().GetComentario(IdComentario);
-            mensajes = new GestionMensajes().GetMensaje(idMensaje);
+            mensajes = new GestionMensajes().GetMensaje(IdMensaje);
             if (comentarios != null && comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
             {
                 BtnMostrarModal.Visible = false;
