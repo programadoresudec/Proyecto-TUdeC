@@ -14,23 +14,26 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-
+    <script src="../CKEditor4/ckeditor.js"></script>
   
+
 </head>
 
 <body>
-    
-    
 
     <form id="form1" runat="server">
        
-        <asp:ScriptManager runat="server"></asp:ScriptManager>
+      <textarea name="editor1" id="editor1" >
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
 
-        <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
+        <script>
 
-        <%--<uc1:ElaboracionExamen runat="server" ID="ElaboracionExamen" />--%>
+            
+            CKEDITOR.replace("editor1");
+      
 
-        <%--<uc1:CalificacionExamen runat="server" ID="CalificacionExamen" />--%>
+        </script>
 
         </form>
 </body>

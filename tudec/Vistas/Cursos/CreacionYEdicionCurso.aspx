@@ -66,7 +66,7 @@
                 
                 <asp:TextBox CssClass="cajaTitulo" ID="cajaTitulo" placeholder="Título" runat="server"></asp:TextBox>
 
-                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars=""></ajaxToolkit:FilteredTextBoxExtender>
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]"></ajaxToolkit:FilteredTextBoxExtender>
                 <asp:RequiredFieldValidator ID="validadorCaja" ControlToValidate="cajaTitulo" runat="server" ErrorMessage="*" ValidationGroup="creacionCurso"></asp:RequiredFieldValidator>
 
             </td>
@@ -101,7 +101,7 @@
         <tr>
             <td>
                 <asp:TextBox ID="cajaDescripcion" CssClass="cajaDescripcion" runat="server" TextMode="MultiLine"></asp:TextBox>
-                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaDescripcion" ID="cajaDescripcion_FilteredTextBoxExtender" FilterType="Custom" FilterMode="InvalidChars" InvalidChars="<>"> </ajaxToolkit:FilteredTextBoxExtender>
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaDescripcion" ID="cajaDescripcion_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]"> </ajaxToolkit:FilteredTextBoxExtender>
             </td>
         </tr>
         <tr>

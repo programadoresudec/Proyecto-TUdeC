@@ -33,15 +33,37 @@
         .ajax__html_editor_extender_popupDiv {
             display: none;
         }
+
+       
+
     </style>
 
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-
+    <script src="../../CKEditor4/ckeditor.js"></script>
 
     <script>
 
         $(document).ready(function () {
+
+            var cajaTitulo = <%=cajaTitulo.ClientID%>;
+            var titulo = cajaTitulo.value;
+
+            if (titulo != "") {
+
+
+                var botonCrear = document.getElementById("botonCrearTema");
+                botonCrear.value = "Editar tema";
+
+
+
+                var contenido = "<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"")%>";
+
+                CKEDITOR.instances.editor.setData(contenido);
+
+
+            }
+
 
             $('#botonCrearTema').click(function () {
 
@@ -49,50 +71,60 @@
                 //Tema
 
                 var cajaTitulo = <%=cajaTitulo.ClientID%>;
-                var editor = document.getElementById("editor_HtmlEditorExtender_ExtenderContentEditable");
+      
                 var botonCrearExamen = <%=botonCrearExamen.ClientID%>;
                 var idCurso = <%=((ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS]).Id%>;
                 if (idCurso != null) {
                     var titulo = cajaTitulo.value;
-                    var contenido = editor.innerHTML;
-                    var textoBoton = botonCrearExamen.value;
 
-                    var existeExamen;
+                    if (titulo != "") {
 
-                    if (textoBoton == "Crear examen") {
+                        var contenido = CKEDITOR.instances.editor.getData();
 
-                        existeExamen = false;
+                        var textoBoton = botonCrearExamen.value;
+
+                        var existeExamen;
+
+                        if (textoBoton == "Crear examen") {
+
+                            existeExamen = false;
+
+                        } else {
+
+                            existeExamen = true;
+
+                        }
+
+                        var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: 'CreacionYEdicionTema.aspx/CrearTema',
+                            data: datos,
+
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            async: false,
+
+                        });
+
+                        //Examen
+
+                        if (existeExamen) {
+
+                            enviarExamen(titulo, contenido, idCurso);
+
+                        } else {
+
+                            alert("Se ha creado el tema");
+                            window.location.href = "ListaDeTemasDelCurso.aspx"
+
+                        }
 
                     } else {
 
-                        existeExamen = true;
-
-                    }
-
-                    var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
-
-                    $.ajax({
-
-                        type: "POST",
-                        url: 'CreacionYEdicionTema.aspx/CrearTema',
-                        data: datos,
-
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        async: false,
-
-                    });
-
-                    //Examen
-
-                    if (existeExamen) {
-
-                        enviarExamen(titulo, contenido, idCurso);
-
-                    } else {
-
-                        alert("Se ha creado el tema");
-                        window.location.href = "ListaDeTemasDelCurso.aspx"
+                        alert("El tema debe tener un título");
 
                     }
                 }
@@ -128,17 +160,48 @@
         <tr>
             <td>
                 <center>
+
                 <asp:TextBox CssClass="cajaTitulo" placeholder="Título" ID="cajaTitulo" runat="server"></asp:TextBox>
+
+           
                     </center>
+
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]" ></ajaxToolkit:FilteredTextBoxExtender>
+        
             </td>
         </tr>
         <tr>
+
+            <td>
+                <center>
+
+                    <input id="botonSubirImagen" onclick="" type="button" value="Agregar imagen" />
+                <asp:FileUpload ID="gestorImagen" runat="server" />
+              
+                    </center>
+
+
+        </tr>
+        
+        <tr>
             <td>
                 <div class="row justify-content-center">
-                    <asp:TextBox CssClass="editor" ID="editor" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    
+
+                    <textarea class="editor" id="editor">
+
+
+
+                    </textarea>
+
+                    <script>
+
+                        CKEDITOR.replace("editor");
+
+                    </script>
+
                 </div>
-                <ajaxToolkit:HtmlEditorExtender ID="editor_HtmlEditorExtender" runat="server" BehaviorID="editor_HtmlEditorExtender" TargetControlID="editor">
-                </ajaxToolkit:HtmlEditorExtender>
+                
             </td>
         </tr>
         <tr>

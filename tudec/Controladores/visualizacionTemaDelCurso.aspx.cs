@@ -15,7 +15,11 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
         if (tema != null)
         {
             etiquetaTitulo.Text = tema.Titulo;
-            cajaInformacion.Text = tema.Informacion;
+
+            LiteralControl informacion = new LiteralControl();
+            informacion.Text = tema.Informacion;
+
+            panelContenido.Controls.Add(informacion);
 
 
             GestionExamen gestorExamenes = new GestionExamen();

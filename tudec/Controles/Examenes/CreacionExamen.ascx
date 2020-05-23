@@ -122,7 +122,7 @@
         
         </td>
         <td align="right">
-            <asp:TextBox placeHolder="Fecha de finalización" ID="cajaFecha" runat="server"></asp:TextBox>
+            <asp:TextBox placeHolder="Fecha de finalización" ID="cajaFecha" runat="server" ReadOnly="true"></asp:TextBox>
             <asp:DropDownList ID="desplegableHora" runat="server">
                 <asp:ListItem>Hora</asp:ListItem>
             </asp:DropDownList>
