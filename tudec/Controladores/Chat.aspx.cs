@@ -14,27 +14,24 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         emisor = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-
+        Uri urlAnterior = Request.UrlReferrer;
         if (emisor != null)
         {
+            Hyperlink_Devolver.NavigateUrl = urlAnterior.ToString();
             DaoUsuario gestorUsuarios = new DaoUsuario();
             curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT];
             EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
 
             if (emisor.NombreDeUsuario != creadorCurso.NombreDeUsuario)
             {
-
                 receptor = creadorCurso;
                 Table1.Rows[0].Cells[0].Width = Unit.Percentage(0);
                 Table1.Rows[0].Cells[1].Width = Unit.Percentage(100);
-
                 Table2.Rows[0].Cells[0].Width = Unit.Percentage(0);
                 Table2.Rows[0].Cells[1].Width = Unit.Percentage(100);
                 Table2.Rows[1].Cells[0].Width = Unit.Percentage(0);
                 Table2.Rows[1].Cells[1].Width = Unit.Percentage(100);
-
                 panelChats.ScrollBars = ScrollBars.None;
-
             }
             else
             {
@@ -53,34 +50,26 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
                     usuarioChat = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO_CHAT];
 
                 }
-
                 receptor = usuarioChat;
                 panelChats.Controls.Add(GetTablaChats());
-
             }
 
             if (receptor != null)
             {
-
+                Session[Constantes.RECEPTOR_DEL_REPORTE] = receptor.NombreDeUsuario;
                 etiquetaCurso.Text = curso.Nombre;
 
                 etiquetaNombre.Text = receptor.NombreDeUsuario;
 
                 imagenPerfil.ImageUrl = receptor.ImagenPerfil;
 
-                if (imagenPerfil.ImageUrl == "")
+                if (string.IsNullOrEmpty(imagenPerfil.ImageUrl))
                 {
 
                     imagenPerfil.ImageUrl = Constantes.IMAGEN_DEFAULT;
 
                 }
-
-
-
                 panelMensajes.Controls.Add(GetTablaMensajes());
-
-
-
             }
             else
             {
@@ -118,13 +107,10 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         Panel fondoModal = new Panel();
         fondoModal.Style.Add(HtmlTextWriterStyle.ZIndex, "1030");
         fondoModal.Style.Add("background-color", "rgba(0,0,0,0.8)");
-
         fondoModal.Width = Unit.Percentage(100);
         fondoModal.Height = Unit.Percentage(100);
         fondoModal.Style.Add(HtmlTextWriterStyle.Position, "fixed");
         fondoModal.Style.Add(HtmlTextWriterStyle.Top, "0px");
-
-
         return fondoModal;
 
     }
@@ -161,59 +147,37 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             if (mensaje.NombreDeUsuarioEmisor.Equals(emisor.NombreDeUsuario))
             {
-
-
                 celdaEmisor.Controls.Add(interfazMensaje);
-
             }
             else
             {
-
                 celdaReceptor.Controls.Add(interfazMensaje);
-
             }
-
             tabla.Rows.Add(fila);
-
         }
-
-
         return tabla;
-
     }
 
     public Table GetTablaChats()
     {
-
-
         Table tabla = new Table();
         tabla.Width = Unit.Percentage(100);
-
         DaoUsuario gestorUsuarios = new DaoUsuario();
-
         List<EUsuario> usuarios = gestorUsuarios.GetUsuarios(curso);
-
         foreach (EUsuario usuario in usuarios)
         {
-
             TableRow fila = new TableRow();
             TableCell celdaImagen = new TableCell();
             TableCell celdaBoton = new TableCell();
-
             ImageButton imagenUsuario = new ImageButton();
             imagenUsuario.ImageUrl = usuario.ImagenPerfil;
             imagenUsuario.CssClass = "card-img rounded-circle";
-
-            if (imagenUsuario.ImageUrl == "")
+            if ( string.IsNullOrEmpty(imagenUsuario.ImageUrl))
             {
-
                 imagenUsuario.ImageUrl = Constantes.IMAGEN_DEFAULT;
-
             }
-
             imagenUsuario.Width = Unit.Percentage(100);
             imagenUsuario.Height = 40;
-
             imagenUsuario.Click += new ImageClickEventHandler(CambiarDeChatPorImagen);
 
             LinkButton botonChat = new LinkButton();
@@ -221,7 +185,6 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             botonChat.Width = Unit.Percentage(100);
             botonChat.Height = 40;
             botonChat.Click += new EventHandler(CambiarDeChat);
-
             celdaImagen.Width = Unit.Percentage(20);
             celdaBoton.Width = Unit.Percentage(79);
             celdaImagen.Controls.Add(imagenUsuario);
@@ -233,11 +196,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             tabla.Rows.Add(fila);
 
         }
-
-
         return tabla;
-
-
     }
     protected void botonEnviar_Click(object sender, EventArgs e)
     {
@@ -248,9 +207,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         mensaje.Contenido = cajaMensaje.Text;
         mensaje.Fecha = DateTime.Now;
         mensaje.IdCurso = curso.Id;
-
         Base.Insertar(mensaje);
-
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }
@@ -259,26 +216,17 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     {
 
         Table tablaActual = GetTablaMensajes();
-
         if (Session["numeroFilas"] != null)
         {
-
             if (tablaActual.Rows.Count > (int)Session["numeroFilas"])
             {
-
                 panelMensajes.Controls.Clear();
                 panelMensajes.Controls.Add(GetTablaMensajes());
-
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "bajarBarrita()", true);
-
                 panelActualizarTabla.Update();
-
-
             }
         }
-
         Session["numeroFilas"] = tablaActual.Rows.Count;
-
     }
 
     public void MostrarModal()
@@ -306,17 +254,11 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
     public void CambiarDeChat(object sender, EventArgs e)
     {
-
         LinkButton boton = (LinkButton)sender;
-
         DaoUsuario gestorUsuarios = new DaoUsuario();
-
         EUsuario usuario = gestorUsuarios.GetUsuario(boton.Text);
-
         Session[Constantes.USUARIO_SELECCIONADO_CHAT] = usuario;
-
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
-
     }
 
     public void CambiarDeChatPorImagen(object sender, EventArgs e)
@@ -328,14 +270,11 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         foreach (TableRow fila in tablaChats.Rows)
         {
-
             if (fila.Cells[0].Controls.Contains(boton))
             {
                 LinkButton botonEnlace = (LinkButton)fila.Cells[1].Controls[0];
                 nombreDeUsuario = botonEnlace.Text;
-
             }
-
         }
 
         DaoUsuario gestorUsuarios = new DaoUsuario();

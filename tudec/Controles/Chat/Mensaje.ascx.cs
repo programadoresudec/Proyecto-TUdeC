@@ -10,7 +10,6 @@ public partial class Controles_Chat_Mensaje : System.Web.UI.UserControl
 
     private string mensaje;
     private DateTime fecha;
-
     public string Mensaje { get => mensaje; set => mensaje = value; }
     public DateTime Fecha { get => fecha; set => fecha = value; }
 

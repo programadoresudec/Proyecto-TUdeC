@@ -28,6 +28,11 @@
     <br />
     <br />
     <br />
+    <div class="container flex-md-row">
+        <asp:HyperLink ID="Hyperlink_Devolver" CssClass="btn btn-info" runat="server" Style="font-size: medium;">
+                      <i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+        </asp:HyperLink>
+    </div>
     <div class="container-fluid">
         <div class="row justify-content-center">
             <table class="auto-style1">
@@ -74,7 +79,7 @@
                                             <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="temporizador" EventName="Tick"/>
+                                            <asp:AsyncPostBackTrigger ControlID="temporizador" EventName="Tick" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </asp:TableCell>

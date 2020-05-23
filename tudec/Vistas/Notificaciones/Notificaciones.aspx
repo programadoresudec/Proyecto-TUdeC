@@ -6,12 +6,18 @@
         <br />
         <br />
         <br />
-        <br />
-        <div class="container flex-md-row">
-            <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
-                NavigateUrl="~/Vistas/Home.aspx" Style="font-size: medium;">
-                    <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Devolver</strong> 
-            </asp:HyperLink>
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <asp:HyperLink ID="Hyperlink_Devolver" CssClass="btn btn-info" runat="server" Style="font-size: medium;">
+                    <i class="fas fa-arrow-alt-circle-left fa-lg"></i>
+                </asp:HyperLink>
+                <asp:LinkButton CssClass="btn btn-link btn-lg" ID="LNB_EnVistoTodos" runat="server" OnClick="LNB_EnVistoTodos_Click">
+                <i class="fa fa-check-circle"></i> Marcar como Leidas.
+                </asp:LinkButton>
+                <asp:LinkButton CssClass="btn btn-link btn-lg" ID="LNB_BorrarTodas" runat="server" OnClick="LNB_BorrarTodas_Click">
+                <i class="fa fa-trash"></i> Eliminar Todas.
+                </asp:LinkButton>
+            </div>
         </div>
         <div class="row justify-content-center mt-5">
             <asp:Label ID="LB_TieneNotificaciones" runat="server" Visible="false"
@@ -20,23 +26,18 @@
         <strong>NO Tiene Notificaciones Por Ahora.</strong>
             </asp:Label>
         </div>
-        <div class="row">
-            <asp:LinkButton CssClass="btn btn-link btn-lg" ID="LNB_EnVistoTodos" runat="server" OnClick="LNB_EnVistoTodos_Click">
-                <i class="fa fa-check-circle"></i> Marcar Todos Como Leidos.
-            </asp:LinkButton>
-        </div>
         <asp:DataList ID="DL_Notificaciones" runat="server" DataSourceID="ODS_Notificaciones">
             <ItemTemplate>
                 <div class="row mt-3">
                     <div class="card">
                         <div class="card-body">
-                             <asp:Label ID="LB_id" Visible="false" runat="server" Text='<%# Eval("Id") %>' />
+                            <asp:Label ID="LB_id" Visible="false" runat="server" Text='<%# Eval("Id") %>' />
                             <asp:Label ID="MensajeLabel" Font-Size="X-Large" runat="server" Text='<%# Eval("Mensaje") %>' />
                         </div>
                         <div class="card-footer text-center">
                             <asp:Label ID="FechaLabel" runat="server" Text='<%# Eval("Fecha") %>' />
                             <br />
-                            <asp:LinkButton runat="server" ID="LNB_Borrar" CssClass="btn btn-danger" OnClick="LNB_Borrar_Click"><i class="fa fa-trash"></i></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LNB_Borrar" CssClass="btn btn-danger btn-sm" OnClick="LNB_Borrar_Click"><i class="fa fa-trash"></i></asp:LinkButton>
                         </div>
                     </div>
                     <br />

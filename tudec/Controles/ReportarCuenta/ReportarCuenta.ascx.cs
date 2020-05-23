@@ -10,7 +10,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     #region attributes
     private int idComentario;
-
+    private int idMensaje;
     EUsuario usuarioDenunciante;
     EComentario comentarios;
     EMensaje mensajes;
@@ -19,6 +19,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     #region properties
     public int IdComentario { get => idComentario; set => idComentario = value; }
+    public int IdMensaje { get => idMensaje; set => idMensaje = value; }
     #endregion
 
 
@@ -29,7 +30,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         {
             usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
             comentarios = new GestionComentarios().GetComentario(IdComentario);
-            mensajes = new GestionMensajes().GetMensaje(idMensaje);
+            mensajes = new GestionMensajes().GetMensaje(IdMensaje);
             if (comentarios != null && comentarios.Emisor.Equals(usuarioDenunciante.NombreDeUsuario))
             {
                 BtnMostrarModal.Visible = false;
@@ -93,6 +94,18 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         }
         else if (Session[Constantes.RECEPTOR_DEL_REPORTE] != null)
         {
+
+            reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
+            reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
+      
+            reportes.ImagenesComentario = comentarios.Imagenes;
+            reportes.NombreDeUsuarioDenunciado = Session[Constantes.RECEPTOR_DEL_REPORTE].ToString();
+            reportes.Descripcion = TB_Descripcion.Text;
+            reportes.Fecha = DateTime.Now;
+            Base.Insertar(reportes);
+            LB_validar.CssClass = "alert alert-success";
+            LB_validar.Text = "Su reporte se ha enviado.";
+            LB_validar.Visible = true;
 
             admin = new DaoNotificacion().buscarNombreAdministrador();
             notificacionDeSugerencia = new ENotificacion();

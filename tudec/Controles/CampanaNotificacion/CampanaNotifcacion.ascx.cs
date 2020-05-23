@@ -17,6 +17,7 @@ public partial class Controles_CampanaNotificacion_CampanaNotifcacion : System.W
             int numDeNotificaciones = new DaoNotificacion().numeroDeNotificaciones(usuario.NombreDeUsuario);
             if (numDeNotificaciones > 0)
             {
+                LB_campana.Text = numDeNotificaciones.ToString();
                 LB_campana.Visible = true;
                 if (numDeNotificaciones == 1)
                 {

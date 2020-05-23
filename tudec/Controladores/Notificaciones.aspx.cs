@@ -10,14 +10,24 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
     EUsuario usuario;
     protected void Page_Load(object sender, EventArgs e)
     {
+        Uri urlAnterior = Request.UrlReferrer;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
+            if (urlAnterior.ToString().Contains("Notificaciones"))
+            {
+                Hyperlink_Devolver.NavigateUrl = "~/Vistas/Home.aspx";
+            }
+            else
+            {
+                Hyperlink_Devolver.NavigateUrl = urlAnterior.ToString();
+            }
             Session[Constantes.NOTIFICACIONES] = usuario.NombreDeUsuario;
             if (new DaoNotificacion().tieneNotificaciones(usuario.NombreDeUsuario) == 0)
             {
                 LNB_EnVistoTodos.Visible = false;
                 LB_TieneNotificaciones.Visible = true;
+                LNB_BorrarTodas.Visible = false;
             }
         }
         else
@@ -28,7 +38,7 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
 
     protected void LNB_EnVistoTodos_Click(object sender, EventArgs e)
     {
-        new DaoNotificacion().MarcarEnVistoTodas(usuario.NombreDeUsuario);
+        new DaoNotificacion().marcarEnVistoTodas(usuario.NombreDeUsuario);
     }
 
     protected void LNB_Borrar_Click(object sender, EventArgs e)
@@ -41,5 +51,13 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
             new DaoNotificacion().eliminar(id);
         }
         DL_Notificaciones.DataBind();
+        Response.Redirect("~/Vistas/Notificaciones/Notificaciones.aspx");
+    }
+
+    protected void LNB_BorrarTodas_Click(object sender, EventArgs e)
+    {
+        new DaoNotificacion().eliminarTodas(usuario.NombreDeUsuario);
+        DL_Notificaciones.DataBind();
+        Response.Redirect("~/Vistas/Notificaciones/Notificaciones.aspx");
     }
 }
