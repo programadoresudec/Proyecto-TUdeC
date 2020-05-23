@@ -17,7 +17,24 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
         cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR];
 
-        if(cursoExistente != null)
+        cajaFechaInicio.Attributes.Add("readonly", "readonly");
+
+        if (Session["actualizando"] != null)
+        {
+
+            if (DateTime.Now >= cursoExistente.FechaInicio && (bool)Session["actualizando"])
+            {
+                cajaFechaInicio.Enabled = false;
+                Session["actualizando"] = false;
+
+                cursoExistente.Estado = "activo";
+
+                Base.Actualizar(cursoExistente);
+
+            }
+        }
+
+        if (cursoExistente != null && !IsPostBack)
         {
 
             etiquetaCrearCurso.Text = "Editar curso";
@@ -31,7 +48,13 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
             cajaDescripcion.Text = cursoExistente.Descripcion;
 
             desplegableArea.Enabled = false;
-            cajaFechaInicio.Enabled = false;
+
+
+            if (DateTime.Now >= cursoExistente.FechaInicio)
+            {
+                cajaFechaInicio.Enabled = false;
+          
+            }
 
         }
 
@@ -116,8 +139,15 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
                 cursoExistente.Nombre = curso.Nombre;
                 cursoExistente.Descripcion = curso.Descripcion;
+                cursoExistente.FechaInicio = curso.FechaInicio;
 
                 Base.Actualizar(cursoExistente);
+
+                Session["actualizando"] = true;
+
+                Response.Redirect("~/Vistas/Cursos/CreacionYEdicionCurso.aspx");
+
+                
 
             }
 

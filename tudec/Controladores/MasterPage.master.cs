@@ -64,4 +64,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         List<string> nombres = gestorBuscador.GetCursosSrc(prefixText);
         return nombres;
     }
+
+    protected void CrearCurso_Click(object sender, EventArgs e)
+    {
+
+        Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR] = null;
+        Response.Redirect("~/Vistas/Cursos/CreacionYEdicionCurso.aspx");
+
+    }
 }

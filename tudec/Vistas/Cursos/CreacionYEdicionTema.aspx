@@ -49,6 +49,16 @@
             var cajaTitulo = <%=cajaTitulo.ClientID%>;
             var titulo = cajaTitulo.value;
 
+            var existenciaExamen = "<%=Session["existenciaExamen"]%>";
+
+            if (existenciaExamen == "True") {
+
+                var zonaBoton = document.getElementById("zonaBoton");
+
+                zonaBoton.innerHTML = "El examen no se puede editar una vez publicado el tema";
+
+            }
+
             if (titulo != "") {
 
 
@@ -56,22 +66,11 @@
                 botonCrear.value = "Editar tema";
 
 
-                <%if(Session[Constantes.TEMA_SELECCIONADO] != null)
-                {
-
-            string contenido = ((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"");
-
-
-            %>
-
-                var contenido = '<%=contenido%>';
-
-                CKEDITOR.instances.editor.setData(contenido);
-
-            <%}%>
-
+             
+                var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"")%>';
                 
 
+                CKEDITOR.instances.editor.setData(contenido);
 
             }
 
@@ -92,45 +91,78 @@
 
                         var contenido = CKEDITOR.instances.editor.getData();
 
-                        var textoBoton = botonCrearExamen.value;
+                        if (botonCrearExamen != null) {
 
-                        var existeExamen;
-
-                        if (textoBoton == "Crear examen") {
-
-                            existeExamen = false;
-
-                        } else {
-
-                            existeExamen = true;
+                            var textoBoton = botonCrearExamen.value;
 
                         }
 
-                        var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+                        var botonCrearTema = document.getElementById("botonCrearTema");
 
-                        $.ajax({
+                        var textoBotonCrearTema = botonCrearTema.value;
 
-                            type: "POST",
-                            url: 'CreacionYEdicionTema.aspx/CrearTema',
-                            data: datos,
+                        if (textoBotonCrearTema == "Editar tema") {
 
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            async: false,
 
-                        });
+                            var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "'}";
 
-                        //Examen
+                            $.ajax({
 
-                        if (existeExamen) {
+                                type: "POST",
+                                url: 'CreacionYEdicionTema.aspx/EditarTema',
+                                data: datos,
 
-                            enviarExamen(titulo, contenido, idCurso);
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                async: false,
+
+                            });
+
+                            alert("Se ha editado el tema");
+
+                            window.location.href = "ListaDeTemasDelCurso.aspx"
+
 
                         } else {
 
-                            alert("Se ha creado el tema");
-                            window.location.href = "ListaDeTemasDelCurso.aspx"
+                            var existeExamen;
 
+                            if (textoBoton == "Crear examen") {
+
+                                existeExamen = false;
+
+                            } else {
+
+                                existeExamen = true;
+
+                            }
+
+                            var datos = "{'titulo':'" + titulo + "','contenido':'" + contenido + "','existeExamen':'" + existeExamen + "'}";
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: 'CreacionYEdicionTema.aspx/CrearTema',
+                                data: datos,
+
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                async: false,
+
+                            });
+
+                            //Examen
+
+                            if (existeExamen) {
+
+                                enviarExamen(titulo, contenido, idCurso);
+
+                            } else {
+
+                                alert("Se ha creado el tema");
+                                window.location.href = "ListaDeTemasDelCurso.aspx"
+
+                            }
                         }
 
                     } else {
@@ -163,6 +195,8 @@
                 if (panel.style.display == "none") {
 
                     panel.style.display = "contents";
+
+                   
 
 
                 } else {
@@ -260,7 +294,11 @@
             <td>
                 <center>
 
+                    <div id="zonaBoton">
+
                 <input class="botonCrearExamen" id="botonCrearExamen" type="button" onclick="agregarExamen()" value="Crear examen" />
+
+                        </div>
 
                     </center>
             </td>

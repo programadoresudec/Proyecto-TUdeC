@@ -21,8 +21,20 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
 
             etiquetaCrearTema.Text = "Editar tema";
             cajaTitulo.Text = tema.Titulo;
-         
+            GestionExamen gestorExamenes = new GestionExamen();
+            EExamen examen = gestorExamenes.GetExamen(tema);
 
+            bool existenciaExamen = false;
+
+            if(examen != null)
+            {
+
+                existenciaExamen = true;
+
+            }
+
+            Session["existenciaExamen"] = existenciaExamen;
+            
         }
 
     }
@@ -49,6 +61,22 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
 
         }
         
+    }
+
+
+    [WebMethod]
+    public static void EditarTema(string titulo, string contenido)
+    {
+
+        ETema tema = (ETema)HttpContext.Current.Session[Constantes.TEMA_SELECCIONADO];
+
+        contenido = contenido.Replace("\n", "");
+
+        tema.Titulo = titulo;
+        tema.Informacion = contenido;
+
+        Base.Actualizar(tema);
+
     }
 
 }

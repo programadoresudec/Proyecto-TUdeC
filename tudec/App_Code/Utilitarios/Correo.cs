@@ -34,6 +34,8 @@ public partial class Correo
                (AppDomain.CurrentDomain.BaseDirectory.Length,
                "Recursos\\SendMail\\CambiarPassword.html"));
             }    
+
+            
             var strBody = string.Format(Emailtemplate.ReadToEnd(), userToken);
             Emailtemplate.Close();
             Emailtemplate.Dispose();

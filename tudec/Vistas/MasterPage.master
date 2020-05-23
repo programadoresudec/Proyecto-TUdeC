@@ -119,8 +119,8 @@
                             </asp:HyperLink>
                         </li>
                         <li class="nav-item mr-lg-2 mb-auto mt-auto">
-                            <asp:HyperLink CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false"
-                                NavigateUrl="~/Vistas/Cursos/CreacionYEdicionCurso.aspx"><i class="fa fa-plus-circle"></i> Crear Curso</asp:HyperLink>
+                          
+                            <asp:LinkButton CssClass="nav-link"  ID="CrearCurso" runat="server" Visible="false" OnClick="CrearCurso_Click"><i class="fa fa-plus-circle"></i> Crear Curso</asp:LinkButton>
                         </li>
                         <li class="nav-item dropdown mr-lg-2 mb-auto mt-auto">
                             <asp:LinkButton Text="text" runat="server" CssClass="nav-link dropdown-toggle" ID="misCursos"
