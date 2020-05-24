@@ -14,14 +14,8 @@ public partial class Vistas_Notificaciones_Notificaciones : System.Web.UI.Page
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
-            if (urlAnterior.ToString().Contains("Notificaciones"))
-            {
-                Hyperlink_Devolver.NavigateUrl = "~/Vistas/Home.aspx";
-            }
-            else
-            {
-                Hyperlink_Devolver.NavigateUrl = urlAnterior.ToString();
-            }
+            Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx" 
+                : urlAnterior.ToString().Contains("Notificaciones") ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
             Session[Constantes.NOTIFICACIONES] = usuario.NombreDeUsuario;
             if (new DaoNotificacion().tieneNotificaciones(usuario.NombreDeUsuario) == 0)
             {

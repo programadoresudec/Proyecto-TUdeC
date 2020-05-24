@@ -19,7 +19,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
         if (curso != null)
         {
-            Hyperlink_Devolver.NavigateUrl = urlAnterior.ToString();
+            Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
             creador = gestorUsuarios.GetUsuario(curso.Creador);
 
             usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
@@ -71,7 +71,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             }
 
 
-            if(tablaTemas.Rows.Count == 0)
+            if (tablaTemas.Rows.Count == 0)
             {
 
                 Literal sinTemas = new Literal();
@@ -81,7 +81,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
                 panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
             }
 
-        
+
             if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
             {
 
