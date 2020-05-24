@@ -44,48 +44,29 @@ public class GestionCurso
 
     public List<ECurso> GetCursosCreados(EUsuario usuario, string nombre, string fechaCreacion, string area, string estado)
     {
-        if (nombre == null)
-        {
-
-            nombre = "";
-
-        }
-
-
-        if (fechaCreacion == null)
-        {
-
-            fechaCreacion = "";
-
-        }
-;
         List<ECurso> cursos;
-
-        if (nombre.Equals("") && fechaCreacion.Equals("") && (area == null || area.Equals("Área del conocimiento")) && (estado == null || estado.Equals("Estado")))
+        if (string.IsNullOrEmpty(nombre)  && string.IsNullOrEmpty(fechaCreacion) && (area == null || area.Equals("Área del conocimiento")) && (estado == null || estado.Equals("Estado")))
         {
-
             cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario)).ToList();
-
         }
         else
         {
-
             DateTime fecha = new DateTime();
-
             if (fechaCreacion != "")
             {
+                try
+                {
+                    fecha = DateTime.Parse(fechaCreacion);
+                }
+                catch (Exception)
+                {
 
-                string dia = fechaCreacion.Split('/')[0];
-                string mes = fechaCreacion.Split('/')[1];
-                string anio = fechaCreacion.Split('/')[2];
-                fecha = new DateTime(Int32.Parse(anio), Int32.Parse(mes), Int32.Parse(dia));
-
+                    throw;
+                }
+                
             }
-
             cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario) && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento") || x.Area.Equals(area)) && (estado.Equals("Estado") || x.Estado.Equals(estado))).ToList();
         }
-
-
         return cursos;
     }
 
