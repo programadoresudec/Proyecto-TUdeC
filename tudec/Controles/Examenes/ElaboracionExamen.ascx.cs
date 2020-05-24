@@ -367,140 +367,150 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
     protected void botonResponder_Click(object sender, EventArgs e)
     {
 
-
-        foreach(EPregunta pregunta in preguntas)
+        if (DateTime.Now < examen.FechaFin)
         {
 
-            if(pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
+            foreach (EPregunta pregunta in preguntas)
             {
 
-                List<EPregunta> preguntasUnicas = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con única respuesta")).ToList();
-
-                int indicePregunta = preguntasUnicas.IndexOf(pregunta);
-
-                List<Button> botonesMarcarPregunta = botonesMarcar[indicePregunta];
-
-                int indiceRespuesta = -1;
-
-                foreach(Button botonMarcar in botonesMarcarPregunta)
+                if (pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
                 {
 
-                    if(botonMarcar.BackColor == Color.Black)
+                    List<EPregunta> preguntasUnicas = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con única respuesta")).ToList();
+
+                    int indicePregunta = preguntasUnicas.IndexOf(pregunta);
+
+                    List<Button> botonesMarcarPregunta = botonesMarcar[indicePregunta];
+
+                    int indiceRespuesta = -1;
+
+                    foreach (Button botonMarcar in botonesMarcarPregunta)
                     {
 
-                        indiceRespuesta = botonesMarcarPregunta.IndexOf(botonMarcar);
-                        break;
+                        if (botonMarcar.BackColor == Color.Black)
+                        {
+
+                            indiceRespuesta = botonesMarcarPregunta.IndexOf(botonMarcar);
+                            break;
+
+                        }
+
+                    }
+
+                    int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indiceRespuesta.ToString());
+
+                }
+                else if (pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
+                {
+
+                    List<EPregunta> preguntasMultiples = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con múltiple respuesta")).ToList();
+
+                    int indicePregunta = preguntasMultiples.IndexOf(pregunta);
+
+                    List<CheckBox> botonesCheckboxPregunta = botonesCheckbox[indicePregunta];
+
+                    List<int> indicesRespuestas = new List<int>();
+
+
+                    foreach (CheckBox checker in botonesCheckboxPregunta)
+                    {
+
+                        if (checker.Checked)
+                        {
+
+                            int indicesito = botonesCheckboxPregunta.IndexOf(checker);
+                            indicesRespuestas.Add(botonesCheckboxPregunta.IndexOf(checker));
+
+                        }
+
+                    }
+
+                    int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+
+                    foreach (int indice in indicesRespuestas)
+                    {
+
+                        respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indice.ToString());
 
                     }
 
                 }
-
-                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
-
-                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-                respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indiceRespuesta.ToString());
-
-            }
-            else if(pregunta.TipoPregunta.Equals("Múltiple con múltiple respuesta"))
-            {
-
-                List<EPregunta> preguntasMultiples = preguntas.Where(x => x.TipoPregunta.Equals("Múltiple con múltiple respuesta")).ToList();
-
-                int indicePregunta = preguntasMultiples.IndexOf(pregunta);
-
-                List<CheckBox> botonesCheckboxPregunta = botonesCheckbox[indicePregunta];
-
-                List<int> indicesRespuestas = new List<int>();
-
-
-                foreach (CheckBox checker in botonesCheckboxPregunta)
+                else if (pregunta.TipoPregunta.Equals("Abierta"))
                 {
 
-                    if (checker.Checked)
+                    List<EPregunta> preguntasAbiertas = preguntas.Where(x => x.TipoPregunta.Equals("Abierta")).ToList();
+
+                    int indicePregunta = preguntasAbiertas.IndexOf(pregunta);
+
+                    string respuesta = camposAbierta[indicePregunta].Text;
+
+                    int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+
+                    if (respuesta != "")
                     {
 
-                        int indicesito = botonesCheckboxPregunta.IndexOf(checker);
-                        indicesRespuestas.Add(botonesCheckboxPregunta.IndexOf(checker));
+                        respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
 
                     }
 
                 }
-
-                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
-
-                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-
-                foreach(int indice in indicesRespuestas)
+                else
                 {
 
-                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(indice.ToString());
+                    List<EPregunta> preguntasArchivos = preguntas.Where(x => x.TipoPregunta.Equals("Solicitud archivo")).ToList();
+
+                    int indicePregunta = preguntasArchivos.IndexOf(pregunta);
+
+                    string valor = botonesSubirArchivo[indicePregunta].FileName;
+
+                    int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
+
+                    respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
+
+                    if (valor != "")
+                    {
+
+                        botonesSubirArchivo[indicePregunta].SaveAs(Server.MapPath("~/Recursos/ArchivosExamenes") + "/" + botonesSubirArchivo[indicePregunta].FileName);
+
+                        string respuesta = "~/Recursos/ArchivosExamenes" + "/" + botonesSubirArchivo[indicePregunta].FileName;
+
+                        respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
+
+                    }
+
+
 
                 }
 
-            }
-            else if(pregunta.TipoPregunta.Equals("Abierta"))
-            {
-
-                List<EPregunta> preguntasAbiertas = preguntas.Where(x => x.TipoPregunta.Equals("Abierta")).ToList();
-
-                int indicePregunta = preguntasAbiertas.IndexOf(pregunta);
-
-                string respuesta = camposAbierta[indicePregunta].Text;
-
-                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
-
-                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-
-                if(respuesta != "")
-                {
-
-                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
-
-                }
-
-            }
-            else
-            {
-
-                List<EPregunta> preguntasArchivos = preguntas.Where(x => x.TipoPregunta.Equals("Solicitud archivo")).ToList();
-
-                int indicePregunta = preguntasArchivos.IndexOf(pregunta);
-
-                string valor = botonesSubirArchivo[indicePregunta].FileName;
-
-                int indicePreguntaEnExamen = preguntas.IndexOf(pregunta);
-
-                respuestasExamen[indicePreguntaEnExamen].Respuestas = new List<string>();
-
-                if (valor != "")
-                {
-
-                    botonesSubirArchivo[indicePregunta].SaveAs(Server.MapPath("~/Recursos/ArchivosExamenes") + "/" + botonesSubirArchivo[indicePregunta].FileName);
-
-                    string respuesta = "~/Recursos/ArchivosExamenes" + "/" + botonesSubirArchivo[indicePregunta].FileName;
-
-                    respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
-
-                }
-              
 
 
             }
-            
 
+
+            string respuestasExamenJson = JsonConvert.SerializeObject(respuestasExamen);
+
+
+            EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+            gestorExamenes.ResponderExamen(examen, usuario, respuestasExamenJson);
+
+
+            Response.Write("<script>alert('Examen enviado')</script>");
 
         }
+        else
+        {
 
+            Response.Write("<script>alert('Ya pasó la fecha y hora establecidas para realizar el examen')</script>");
 
-        string respuestasExamenJson = JsonConvert.SerializeObject(respuestasExamen);
-
-
-        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
-
-        gestorExamenes.ResponderExamen(examen, usuario, respuestasExamenJson);
-
-
-        Response.Write("<script>alert('Examen enviado')</script>");
+        }
 
         Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
 

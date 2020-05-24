@@ -37,6 +37,37 @@ public partial class Vistas_Cursos_VerMisNotas : System.Web.UI.Page
     public void VerNota(object sender, EventArgs e)
     {
 
+        LinkButton hiperEnlace = (LinkButton)sender;
+
+        GridViewRow filaAEncontrar = null;
+
+        foreach (GridViewRow fila in tablaTemario.Rows)
+        {
+
+            if (fila.Cells[0].Controls.Contains(hiperEnlace))
+            {
+
+                filaAEncontrar = fila;
+                break;
+
+            }
+
+        }
+
+        int indiceTema = Int32.Parse(tablaTemario.DataKeys[filaAEncontrar.RowIndex].Value.ToString());
+
+        GestionTemas gestorTemas = new GestionTemas();
+
+        ETema tema = gestorTemas.GetTema(indiceTema);
+
+        Session[Constantes.TEMA_SELECCIONADO] = tema;
+
+        Session[Constantes.USUARIO_SELECCIONADO] = Session[Constantes.USUARIO_LOGEADO];
+
+        Session[Constantes.CALIFICACION_EXAMEN] = false;
+
+        Response.Redirect("~/Vistas/Examen/CalificarExamen.aspx");
+
     }
 
 

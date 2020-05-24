@@ -16,7 +16,10 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
+        bool isCalificando = (bool)Session[Constantes.CALIFICACION_EXAMEN];
+       
+
         EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO];
 
         GestionExamen gestorExamenes = new GestionExamen();
@@ -26,6 +29,15 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
         EExamen examen = gestorExamenes.GetExamen(tema);
 
         ejecucion = gestorExamenes.GetEjecucion(examen, usuario);
+
+        bool isExamenCalificado = gestorExamenes.IsExamenCalificado(ejecucion);
+
+        if (!isCalificando || isExamenCalificado)
+        {
+
+            botonCalificar.Visible = false;
+
+        }
 
         JArray respuestasExamenJson = JArray.Parse(ejecucion.Respuestas);
 
@@ -480,7 +492,13 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                 celdaNota.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
                 filaNota.Cells.Add(celdaNota);
-                tablaPregunta.Rows.Add(filaNota);
+
+                if (isCalificando && !isExamenCalificado)
+                {
+
+                    tablaPregunta.Rows.Add(filaNota);
+
+                }
 
             }
             else
@@ -594,8 +612,13 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                 celdaNota.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
                 filaNota.Cells.Add(celdaNota);
-                tablaPregunta.Rows.Add(filaNota);
 
+                if (isCalificando && !isExamenCalificado)
+                {
+
+                    tablaPregunta.Rows.Add(filaNota);
+
+                }
 
 
             }
@@ -609,6 +632,8 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
             panelContenido.Controls.Add(saltoDeLinea);
 
         }
+
+        etiquetaNota.Text = "Nota: " + GetNotaPonderada();
 
     }
 
@@ -668,27 +693,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
             Base.Actualizar(ejecucion);
 
-            List<int> porcentajes = new List<int>();
-
-            foreach(EPregunta pregunta in preguntas)
-            {
-
-                porcentajes.Add(pregunta.Porcentaje);
-
-            }
-
-            double notaAcumulada = 0;
-
-            foreach(JToken nota in notasJson)
-            {
-
-                notaAcumulada += double.Parse(nota.ToString()) * porcentajes[notasJson.IndexOf(nota)]/100.0;
-
-            }
-
-            string notaTotal = ((int)notaAcumulada).ToString();
-
-            etiquetaNota.Text = "Nota: " +  notaTotal;
+            etiquetaNota.Text = "Nota: " +  GetNotaPonderada();
 
         }
         else
@@ -699,8 +704,46 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
         }
 
-        
+    }
 
+    public int GetNotaPonderada()
+    {
+
+        JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+
+        List<int> porcentajes = new List<int>();
+
+        foreach (EPregunta pregunta in preguntas)
+        {
+
+            porcentajes.Add(pregunta.Porcentaje);
+
+        }
+
+        double notaAcumulada = 0;
+
+        foreach (JToken nota in notasJson)
+        {
+
+            double notaReemplazo = double.Parse(nota.ToString());
+
+            if(notaReemplazo == -1)
+            {
+
+                notaReemplazo = 0;
+
+            }
+
+            notaAcumulada += notaReemplazo * porcentajes[notasJson.IndexOf(nota)] / 100.0;
+
+        }
+
+        int notaTotal = (int)notaAcumulada;
+
+        return notaTotal;
 
     }
+
+
+
 }

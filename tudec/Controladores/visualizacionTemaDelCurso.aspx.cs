@@ -39,8 +39,22 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
                 {
                     if (examen != null)
                     {
-                        ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
-                        panelExamen.Controls.Add(examenARealizar);
+
+                        if (DateTime.Now < examen.FechaFin)
+                        {
+
+                            ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
+                            panelExamen.Controls.Add(examenARealizar);
+
+                        }
+                        else
+                        {
+
+                            Label etiquetaTiempo = new Label();
+                            etiquetaTiempo.Text = "Ya pasó la fecha y hora establecidas para realizar el examen";
+                            panelExamen.Controls.Add(etiquetaTiempo);
+
+                        }
                     }
                 }
             }

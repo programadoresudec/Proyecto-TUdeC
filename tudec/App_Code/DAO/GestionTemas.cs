@@ -44,6 +44,54 @@ public class GestionTemas
 
     }
 
+    public List<ETema> GetTemasExamenesCalificados(EUsuario usuario, ECurso curso)
+    {
+
+        List<ETema> temasExamenesResueltos = GetTemasExamenResueltos(usuario, curso);
+
+        GestionExamen gestorExamenes = new GestionExamen();
+
+        List<EEjecucionExamen> ejecuciones = new List<EEjecucionExamen>();
+
+        foreach(ETema tema in temasExamenesResueltos)
+        {
+
+            ejecuciones.Add(gestorExamenes.GetEjecucion(usuario, tema));
+
+        }
+
+        List<ETema> temasExamenesCalificados = new List<ETema>();
+
+        foreach(EEjecucionExamen ejecucion in ejecuciones)
+        {
+
+            if (gestorExamenes.IsExamenCalificado(ejecucion))
+            {
+
+                temasExamenesCalificados.Add(GetTema(ejecucion));
+
+            }
+
+        }
+
+        return temasExamenesCalificados;
+
+    }
+
+    public ETema GetTema(EEjecucionExamen ejecucion)
+    {
+        GestionExamen gestorExamenes = new GestionExamen();
+
+        EExamen examen = gestorExamenes.GetExamen(ejecucion.IdExamen);
+
+        ETema tema = GetTema(examen.IdTema);
+
+        return tema;
+
+    }
+
+
+
     public List<ETema> GetTemas(ECurso curso)
     {
 

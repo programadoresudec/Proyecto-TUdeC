@@ -31,25 +31,51 @@
                 }
                 else {
 
-                    var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "','tituloTema':'" + tituloTema + "','contenidoTema':'" + contenidoTema + "','idCurso':'"  + idCurso +  "'} ";
+                    var cajaFecha = <%=cajaFecha.ClientID%>;
 
-                    $.ajax({
+                    var diaElegido = cajaFecha.value.split('/')[0];
+                    var mesElegido = cajaFecha.value.split('/')[1];
+                    var anioElegido = cajaFecha.value.split('/')[2];
 
-                        type: "POST",
-                        url: '../../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
-                        data: datos,
+                    var fechaElegida = new Date(anioElegido, mesElegido - 1, diaElegido, hora.value, minuto.value);
 
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        async: false,
+                    <% DateTime fechaPlazo = DateTime.Now.AddMinutes(10); %>
 
-                    });
+                    var diaPlazo = <%=fechaPlazo.Day%>;
+                    var mesPlazo = <%=fechaPlazo.Month%>;
+                    var anioPlazo = <%=fechaPlazo.Year%>;
+                    var horaPlazo = <%=fechaPlazo.Hour%>;
+                    var minutoPlazo = <%=fechaPlazo.Minute%>;
 
-                    alert("Se ha creado el tema");
-                    window.location.href = "ListaDeTemasDelCurso.aspx"
+                    var fechaPlazo = new Date(anioPlazo, mesPlazo - 1, diaPlazo, horaPlazo, minutoPlazo);
+
+                    alert("Fecha elegida: " + fechaElegida);
+                    alert("Fecha plazo: " + fechaPlazo);
+
+                    if (fechaElegida > fechaPlazo) {
+
+                        var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "','tituloTema':'" + tituloTema + "','contenidoTema':'" + contenidoTema + "','idCurso':'" + idCurso + "'} ";
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: '../../Controles/Examenes/CreacionExamenServicio.asmx/EnviarExamen',
+                            data: datos,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            async: false,
+
+                        });
+
+                        alert("Se ha creado el tema");
+                        window.location.href = "ListaDeTemasDelCurso.aspx"
+                    } else {
+
+                        alert("Debe dejar un plazo de al menos 10 minutos para la realización del examen");
+
+                    }
 
                 }
-
             }
 
         } else {

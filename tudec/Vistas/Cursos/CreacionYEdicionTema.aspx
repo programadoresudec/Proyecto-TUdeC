@@ -59,20 +59,20 @@
 
             }
 
-            if (titulo != "") {
+            <%if (cajaTitulo.Text != "")
+        {%>
 
 
                 var botonCrear = document.getElementById("botonCrearTema");
                 botonCrear.value = "Editar tema";
+                
 
-
-             
-                var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"","\\\"")%>';
+                var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"", "\\\"")%>';
                 
 
                 CKEDITOR.instances.editor.setData(contenido);
 
-            }
+            <%}%>
 
 
             $('#botonCrearTema').click(function () {

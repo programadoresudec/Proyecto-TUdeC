@@ -45,6 +45,7 @@ public class GestionExamen
 
     }
 
+
     public EExamen GetExamen(int id)
     {
 
@@ -195,6 +196,44 @@ public class GestionExamen
         ejecucion.Calificacion = notasJson;
 
         Base.Insertar(ejecucion);
+
+    }
+
+    public EEjecucionExamen GetEjecucion(EUsuario usuario, ETema tema)
+    {
+
+        EExamen examen = GetExamen(tema);
+
+        EEjecucionExamen ejecucion = GetEjecucion(examen, usuario);
+
+        return ejecucion;
+
+    }
+
+    public bool IsExamenCalificado(EEjecucionExamen ejecucion)
+    {
+
+        bool respuesta = true;
+
+        JArray notasJson = JArray.Parse(ejecucion.Calificacion);
+
+        foreach(JToken notaJson in notasJson)
+        {
+
+            int nota = Int32.Parse(notaJson.ToString());
+
+            if(nota == -1)
+            {
+
+                respuesta = false;
+                break;
+
+            }
+
+        }
+
+        return respuesta;
+
 
     }
 

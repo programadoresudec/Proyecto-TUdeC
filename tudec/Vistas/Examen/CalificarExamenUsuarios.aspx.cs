@@ -45,6 +45,8 @@ public partial class Vistas_Examen_CalificarExamenUsuarios : System.Web.UI.Page
 
         Session[Constantes.USUARIO_SELECCIONADO] = usuario;
 
+        Session[Constantes.CALIFICACION_EXAMEN] = true;
+
         Response.Redirect("~/Vistas/Examen/CalificarExamen.aspx");
 
     }

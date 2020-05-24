@@ -74,7 +74,8 @@ public static class Constantes
     public const string VALIDAR_TOKEN = "validarToken";
     public const string EXAMEN_A_REALIZAR = "examenARealizar";
     public const string USUARIO_CON_REPORTES = "usuarioConReportes";
-    public const string RECEPTOR_DEL_REPORTE = "receptorParaReporte"; 
+    public const string RECEPTOR_DEL_REPORTE = "receptorParaReporte";
+    public const string CALIFICACION_EXAMEN = "calificacionExamen";
     #endregion
     #endregion
 }

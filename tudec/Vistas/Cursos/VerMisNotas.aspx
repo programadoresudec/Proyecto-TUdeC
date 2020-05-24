@@ -20,7 +20,7 @@
 
     </center>
 
-    <asp:ObjectDataSource ID="temarioDataSource" runat="server" SelectMethod="GetTemasExamenResueltos" TypeName="GestionTemas">
+    <asp:ObjectDataSource ID="temarioDataSource" runat="server" SelectMethod="GetTemasExamenesCalificados" TypeName="GestionTemas">
         <SelectParameters>
             <asp:SessionParameter Name="usuario" SessionField="usuarioLogeado" Type="Object" />
             <asp:SessionParameter Name="curso" SessionField="cursoSeleccionadoParaVerNotas" Type="Object" />
