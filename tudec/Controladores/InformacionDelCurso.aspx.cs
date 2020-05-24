@@ -14,11 +14,12 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Uri urlAnterior = Request.UrlReferrer;
         DaoUsuario gestorUsuarios = new DaoUsuario();
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
         if (curso != null)
         {
+            Hyperlink_Devolver.NavigateUrl = urlAnterior.ToString();
             creador = gestorUsuarios.GetUsuario(curso.Creador);
 
             usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
@@ -73,15 +74,11 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             if(tablaTemas.Rows.Count == 0)
             {
 
-              
-
                 Literal sinTemas = new Literal();
                 sinTemas.Text = "Este curso no dispone de temas por el momento";
                 panelTemas.Controls.Clear();
                 panelTemas.Controls.Add(sinTemas);
                 panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
-
-
             }
 
         

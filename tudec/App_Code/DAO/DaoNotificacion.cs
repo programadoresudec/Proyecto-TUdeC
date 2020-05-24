@@ -24,7 +24,7 @@ public class DaoNotificacion
         return db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreUsuario)).Count();
     }
 
-    public void MarcarEnVistoTodas(string nombreDeUsuario)
+    public void marcarEnVistoTodas(string nombreDeUsuario)
     {
         List<ENotificacion> notificaciones = db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).ToList();
         notificaciones.ForEach(x => x.Estado = false);
@@ -49,5 +49,23 @@ public class DaoNotificacion
         ENotificacion notificacion = db.TablaNotificaciones.Where(x => x.Id == id).First();
         Base.Eliminar(notificacion);
         
+    }
+
+    public string buscarNombreReceptor(int? idComentario)
+    {
+        return db.TablaComentarios.Where(x => x.IdComentario == idComentario).Select(x => x.Emisor).First();
+    }
+
+    public void eliminarTodas(string nombreDeUsuario)
+    {
+        List<ENotificacion> notificaciones = db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).ToList();
+        if (notificaciones.Count > 0)
+        {
+            foreach (var notificacion in notificaciones)
+            {
+                db.TablaNotificaciones.Remove(notificacion);
+            }
+        }
+        db.SaveChanges();
     }
 }

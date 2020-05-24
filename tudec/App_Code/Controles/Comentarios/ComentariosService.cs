@@ -37,24 +37,31 @@ public class ComentariosService : System.Web.Services.WebService
 
             comentario.Emisor = usuario.NombreDeUsuario;
 
-            
             if (idComentario != 0)
             {
-
                 comentario.IdComentario = idComentario;
-
             }
             else
             {
-
                 comentario.IdCurso = curso.Id;
-
             }
 
             comentario.Comentario = contenidoCaja;
             comentario.FechaEnvio = System.DateTime.Now;
             Base.Insertar(comentario);
-
+            if (comentario.IdComentario != null)
+            {
+                string nombreReceptor = new DaoNotificacion().buscarNombreReceptor(comentario.IdComentario);
+                if (nombreReceptor != usuario.NombreDeUsuario)
+                {
+                    ENotificacion notificacionComentario = new ENotificacion();
+                    notificacionComentario.Estado = true;
+                    notificacionComentario.Fecha = DateTime.Now;
+                    notificacionComentario.Mensaje = "Tiene un nuevo comentario: " + comentario.Comentario;
+                    notificacionComentario.NombreDeUsuario = nombreReceptor;
+                    Base.Insertar(notificacionComentario);
+                }
+            }
         }
         else
         {
@@ -69,18 +76,12 @@ public class ComentariosService : System.Web.Services.WebService
 
             if (idComentario != 0)
             {
-
                 comentario.IdComentario = idComentario;
-
             }
             else
             {
-
                 comentario.IdTema = tema.Id;
-
             }
-
-
             comentario.Comentario = contenidoCaja;
             comentario.FechaEnvio = System.DateTime.Now;
 

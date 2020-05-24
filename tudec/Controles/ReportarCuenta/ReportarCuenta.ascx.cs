@@ -95,6 +95,18 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         else if (Session[Constantes.RECEPTOR_DEL_REPORTE] != null)
         {
 
+            reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
+            reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
+      
+            reportes.ImagenesComentario = comentarios.Imagenes;
+            reportes.NombreDeUsuarioDenunciado = Session[Constantes.RECEPTOR_DEL_REPORTE].ToString();
+            reportes.Descripcion = TB_Descripcion.Text;
+            reportes.Fecha = DateTime.Now;
+            Base.Insertar(reportes);
+            LB_validar.CssClass = "alert alert-success";
+            LB_validar.Text = "Su reporte se ha enviado.";
+            LB_validar.Visible = true;
+
             admin = new DaoNotificacion().buscarNombreAdministrador();
             notificacionDeSugerencia = new ENotificacion();
             notificacionDeSugerencia.Estado = true;
