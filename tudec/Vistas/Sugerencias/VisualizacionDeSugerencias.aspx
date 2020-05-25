@@ -4,8 +4,7 @@
     <link href="../../App_Themes/Estilos/Estilos.css" rel="stylesheet" />
     <br />
     <br />
-    <div class="container mt-5">
-        
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center mt-5">
             <h1 class="w3l_header text-center mb-4 mt-5"><strong>Sugerencias</strong></h1>
         </div>
@@ -40,7 +39,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="table-responsive">
                 <table class="table">
                     <asp:GridView ID="tablaSugerencias" CssClass="tablas" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" DataSourceID="SugerenciasSource" OnRowDataBound="tablaSugerencias_RowDataBound" AllowPaging="True">
@@ -78,5 +77,7 @@
             </div>
         </div>
     </div>
+    <br />
+    <br />
 </asp:Content>
 

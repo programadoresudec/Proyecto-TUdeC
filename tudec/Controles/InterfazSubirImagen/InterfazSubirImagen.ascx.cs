@@ -72,6 +72,12 @@ public partial class Controles_InterfazSubirImagen_InterfazSubirImagen : System.
         Base.Actualizar(mensaje);
         gestorArchivo.SaveAs(Server.MapPath("~/Recursos/Imagenes/Chat/" + mensaje.Id) + Path.GetExtension(gestorArchivo.FileName));
         Session["subiendoImagen"] = false;
+        ENotificacion notificacionDeMensajes = new ENotificacion();
+        notificacionDeMensajes.Estado = true;
+        notificacionDeMensajes.Fecha = DateTime.Now;
+        notificacionDeMensajes.NombreDeUsuario = mensaje.NombreDeUsuarioReceptor;
+        notificacionDeMensajes.Mensaje = "Tiene un nuevo mensaje en el buzón del chat del usuario: " + mensaje.NombreDeUsuarioEmisor;
+        Base.Insertar(notificacionDeMensajes);
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }

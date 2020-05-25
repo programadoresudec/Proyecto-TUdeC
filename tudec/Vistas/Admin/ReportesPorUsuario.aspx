@@ -5,14 +5,13 @@
     <br />
     <br />
     <br />
-    <br />
-    <div class="container flex-md-row">
+    <div class="container flex-md-row mt-5">
         <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
             NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Style="font-size: medium;">
                 <i class="fas fa-arrow-alt-circle-left fa-lg"></i>
         </asp:HyperLink>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <br />
         <div class="row justify-content-center">
             <asp:ListView ID="LV_Reportes" runat="server" DataKeyNames="Id" OnItemDataBound="LV_Reportes_ItemDataBound" DataSourceID="ODS_Reportes">
@@ -223,6 +222,8 @@
             </asp:ObjectDataSource>
         </div>
     </div>
+    <br />
+    <br />
 </asp:Content>
 
 

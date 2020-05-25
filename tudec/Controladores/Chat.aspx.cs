@@ -17,7 +17,8 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         Uri urlAnterior = Request.UrlReferrer;
         if (emisor != null)
         {
-            Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
+            Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
+               : urlAnterior.ToString().Contains("Chat") ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
             DaoUsuario gestorUsuarios = new DaoUsuario();
             curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT];
             EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
@@ -171,7 +172,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
             ImageButton imagenUsuario = new ImageButton();
             imagenUsuario.ImageUrl = usuario.ImagenPerfil;
             imagenUsuario.CssClass = "card-img rounded-circle";
-            if ( string.IsNullOrEmpty(imagenUsuario.ImageUrl))
+            if (string.IsNullOrEmpty(imagenUsuario.ImageUrl))
             {
                 imagenUsuario.ImageUrl = Constantes.IMAGEN_DEFAULT;
             }
@@ -199,7 +200,6 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     }
     protected void botonEnviar_Click(object sender, EventArgs e)
     {
-
         EMensaje mensaje = new EMensaje();
         mensaje.NombreDeUsuarioEmisor = emisor.NombreDeUsuario;
         mensaje.NombreDeUsuarioReceptor = receptor.NombreDeUsuario;
@@ -207,6 +207,13 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         mensaje.Fecha = DateTime.Now;
         mensaje.IdCurso = curso.Id;
         Base.Insertar(mensaje);
+
+        ENotificacion notificacionDeMensajes = new ENotificacion();
+        notificacionDeMensajes.Estado = true;
+        notificacionDeMensajes.Fecha = DateTime.Now;
+        notificacionDeMensajes.NombreDeUsuario = mensaje.NombreDeUsuarioReceptor;
+        notificacionDeMensajes.Mensaje = "Tiene un nuevo mensaje en el buzón del chat del usuario: " + mensaje.NombreDeUsuarioEmisor;
+        Base.Insertar(notificacionDeMensajes);
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }
