@@ -45,7 +45,12 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
         string labelComentario = ((Label)e.Item.FindControl("ComentarioLabel")).Text;
         string imagenComentario = ((Image)e.Item.FindControl("ImagenesComentario")).ImageUrl;
 
-        string labelMensaje = ((Label)e.Item.FindControl("MensajeLabel")).Text;
+        LiteralControl mensajeCompleto = new LiteralControl();
+
+       
+        mensajeCompleto.Text = ((Label)e.Item.FindControl("MensajeLabel")).Text;
+        string labelMensaje = mensajeCompleto.Text;
+
         string imagenMensaje = ((Image)e.Item.FindControl("ImagenesMensaje")).ImageUrl;
 
         if (string.IsNullOrEmpty(labelComentario) && string.IsNullOrEmpty(imagenComentario))

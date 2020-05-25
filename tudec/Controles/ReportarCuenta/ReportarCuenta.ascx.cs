@@ -76,7 +76,6 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
                 reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
                 reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
                 reportes.IdComentario = comentarios.Id;
-                reportes.ImagenesComentario = comentarios.Imagenes;
                 reportes.NombreDeUsuarioDenunciado = comentarios.Emisor;
                 reportes.Descripcion = TB_Descripcion.Text;
                 reportes.Fecha = DateTime.Now;
@@ -98,10 +97,18 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         }
         else if (mensajes!= null)
         {
+            if (DDL_MotivoReporte.SelectedItem.Text.Equals("Motivo"))
+            {
+                LB_validar.CssClass = "alert alert-danger";
+                LB_validar.Text = "Debe escoger un motivo";
+                LB_validar.Visible = true;
+                return;
+            }
             reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
             reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
             reportes.NombreDeUsuarioDenunciado = mensajes.NombreDeUsuarioEmisor;
             reportes.Descripcion = TB_Descripcion.Text;
+            reportes.IdMensaje = mensajes.Id;
             reportes.Mensaje = mensajes.Contenido;
             reportes.Fecha = DateTime.Now;
             Base.Insertar(reportes);
