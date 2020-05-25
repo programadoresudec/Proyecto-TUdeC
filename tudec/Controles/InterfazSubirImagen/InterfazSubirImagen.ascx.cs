@@ -21,25 +21,25 @@ public partial class Controles_InterfazSubirImagen_InterfazSubirImagen : System.
     }
 
     protected void botonEnviar_Click(object sender, EventArgs e)
-    {
-
-        Session["subiendoImagen"] = false;
-
+    {        
+        string extension = System.IO.Path.GetExtension(gestorArchivo.PostedFile.FileName);
+        if (String.IsNullOrEmpty(extension))
+        {
+            LB_subioImagen.Visible = true;
+            return;
+        }
         EUsuario emisor = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT];
-
         EMensaje mensaje = new EMensaje();
         mensaje.NombreDeUsuarioEmisor = emisor.NombreDeUsuario;
         mensaje.NombreDeUsuarioReceptor = Receptor.NombreDeUsuario;
         mensaje.Contenido = "";
         mensaje.Fecha = DateTime.Now;
         mensaje.IdCurso = curso.Id;
-
         Base.Insertar(mensaje);
-
         //
-
         MemoryStream datosImagen = new MemoryStream(gestorArchivo.FileBytes);
+
         System.Drawing.Image imagen = System.Drawing.Image.FromStream(datosImagen);
 
         int anchoImagen = 0;
@@ -67,26 +67,17 @@ public partial class Controles_InterfazSubirImagen_InterfazSubirImagen : System.
 
             }
         }
-
         //
-
         mensaje.Contenido = "<img width='" + anchoImagen + "px' heigth='" + altoImagen + "px' src='" + "../../Recursos/Imagenes/Chat/" + mensaje.Id + Path.GetExtension(gestorArchivo.FileName) + "'>";
-
         Base.Actualizar(mensaje);
-
         gestorArchivo.SaveAs(Server.MapPath("~/Recursos/Imagenes/Chat/" + mensaje.Id) + Path.GetExtension(gestorArchivo.FileName));
-
+        Session["subiendoImagen"] = false;
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
 
     }
-
-    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    protected void botonCancelar_Click(object sender, EventArgs e)
     {
-
-        
         Session["subiendoImagen"] = false;
-
         Response.Redirect("~/Vistas/Chat/Chat.aspx");
-
     }
 }

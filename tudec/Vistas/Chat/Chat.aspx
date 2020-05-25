@@ -3,8 +3,6 @@
 <%@ Register Src="~/Controles/Chat/Mensaje.ascx" TagPrefix="uc1" TagName="Mensaje" %>
 <%@ Register Src="~/Controles/InterfazSubirImagen/InterfazSubirImagen.ascx" TagPrefix="uc1" TagName="InterfazSubirImagen" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .auto-style1 {
@@ -78,9 +76,6 @@
                                         <ContentTemplate>
                                             <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
                                         </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="temporizador" EventName="Tick" />
-                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </asp:TableCell>
                             </asp:TableRow>

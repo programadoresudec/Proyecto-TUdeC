@@ -91,7 +91,7 @@
                                     <asp:RegularExpressionValidator runat="server" ControlToValidate="subirImagen"
                                         ErrorMessage="tiene una extensión no válida. Extensiones válidas: gif, jpg, jpeg, png."
                                         Font-Size="Medium" CssClass="alertHome alert-danger" Display="Dynamic"
-                                        ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$" />
+                                        ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$" ValidationGroup="subioimagen" />
                                 </div>
                                 <div class="row justify-content-center">
                                     <asp:Label ID="LB_subioImagen" runat="server" Visible="false"></asp:Label>

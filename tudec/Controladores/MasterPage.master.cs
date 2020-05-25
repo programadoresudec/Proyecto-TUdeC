@@ -24,6 +24,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
+                PanelFooterUser.Visible = false;
+                PanelFooterAdmin.Visible = true;
+                acercaDeNosotros.Visible = false;
                 AdministrarUser.Visible = true;
                 Sugerencias.Visible = true;
             }

@@ -50,11 +50,18 @@ public partial class Vistas_Admin_ReportesPorUsuario : System.Web.UI.Page
 
         if (string.IsNullOrEmpty(labelComentario) && string.IsNullOrEmpty(imagenComentario))
         {
-            botonComentario.Visible = false;
+            if (botonMensaje != null)
+            {
+                botonComentario.Visible = false;
+            }
         }
         else if (string.IsNullOrEmpty(labelMensaje) && string.IsNullOrEmpty(imagenMensaje))
         {
-            botonMensaje.Visible = false;
+            if (botonMensaje != null)
+            {
+                
+                botonMensaje.Visible = false;
+            }
         }
     }
 }

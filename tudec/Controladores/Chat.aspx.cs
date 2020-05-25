@@ -106,7 +106,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
         Panel fondoModal = new Panel();
         fondoModal.Style.Add(HtmlTextWriterStyle.ZIndex, "1030");
-        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.8)");
+        fondoModal.Style.Add("background-color", "rgba(0,0,0,0.5)");
         fondoModal.Width = Unit.Percentage(100);
         fondoModal.Height = Unit.Percentage(100);
         fondoModal.Style.Add(HtmlTextWriterStyle.Position, "fixed");
@@ -231,18 +231,10 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
     public void MostrarModal()
     {
         Panel modal = GetModal();
-
         ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx interfazImagen = new ASP.controles_interfazsubirimagen_interfazsubirimagen_ascx();
-
         interfazImagen.Receptor = receptor;
-
         modal.Controls.Add(interfazImagen);
-
-        modal.Style.Add(HtmlTextWriterStyle.PaddingLeft, "37%");
-        modal.Style.Add(HtmlTextWriterStyle.PaddingTop, "15%");
-
         panelModal.Controls.Add(modal);
-
     }
 
     protected void botonEnviarImagen_Click(object sender, EventArgs e)

@@ -6,7 +6,6 @@
     <br />
     <br />
     <br />
-
     <div class="container flex-md-row">
         <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
             NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Style="font-size: medium;">
@@ -50,10 +49,11 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center" id="comentarios">
+                                        <asp:LinkButton ID="LinkB_Comentario" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Comentario" %>"
-                                            role="button" aria-expanded="false" aria-controls="collapseComentarios">Información De Los Comentarios
-                                        </a>
+                                            role="button" aria-expanded="false" aria-controls="collapseComentarios">Información De Los Comentarios</a>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="collapse" id="<%#Eval("Id")+"Comentario"%>">
                                         <div class="card card-body mt-3">
@@ -61,17 +61,18 @@
                                                 <asp:Label ID="ComentarioLabel" runat="server" Text='<%# Eval("Comentario") %>' />
                                             </div>
                                             <div class="row justify-content-center">
-                                                <asp:Image ID="ImagenesComentarioLabel" runat="server" ImageUrl='<%# Eval("ImagenesComentario") %>' />
+                                                <asp:Image ID="ImagenesComentario" runat="server" ImageUrl='<%# Eval("ImagenesComentario") %>' />
                                             </div>
                                         </div>
                                     </div>
                                 </li>
 
                                 <li class="list-group-item">
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center" id="mensajes">
+                                        <asp:LinkButton ID="LinkB_Mensaje" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Mensaje" %>"
-                                            role="button" aria-expanded="false" aria-controls="collapseMensajes">Información De Los Mensajes
-                                        </a>
+                                            role="button" aria-expanded="false" aria-controls="collapseMensajes">Información De Los Mensajes</a>
+                                        </asp:LinkButton>
                                     </div>
                                     <div class="collapse" id="<%# Eval("Id")+"Mensaje" %>">
                                         <div class="card card-body mt-3">
@@ -144,8 +145,7 @@
                                     <div class="row justify-content-center" id="comentarios">
                                         <asp:LinkButton ID="LinkB_Comentario" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Comentario" %>"
-                                            role="button" aria-expanded="false" aria-controls="collapseComentarios">Información De Los Comentarios
-                                        </a>
+                                            role="button" aria-expanded="false" aria-controls="collapseComentarios">Información De Los Comentarios</a>
                                         </asp:LinkButton>
                                     </div>
                                     <div class="collapse" id="<%#Eval("Id")+"Comentario"%>">
@@ -162,11 +162,10 @@
 
                                 <li class="list-group-item">
                                     <div class="row justify-content-center" id="mensajes">
-                                          <asp:LinkButton ID="LinkB_Mensaje" runat="server">
+                                        <asp:LinkButton ID="LinkB_Mensaje" runat="server">
                                         <a class="btn btn-dark" data-toggle="collapse" href="#<%# Eval("Id")+"Mensaje" %>"
-                                            role="button" aria-expanded="false" aria-controls="collapseMensajes">Información De Los Mensajes
-                                        </a>
-                                            </asp:LinkButton>
+                                            role="button" aria-expanded="false" aria-controls="collapseMensajes">Información De Los Mensajes</a>
+                                        </asp:LinkButton>
                                     </div>
                                     <div id="mensajesID">
                                         <div class="collapse" id="<%# Eval("Id")+"Mensaje" %>">

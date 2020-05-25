@@ -2,7 +2,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:LinkButton ID="BtnMostrarModal"  CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
 <cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="BtnMostrarModal" PopupControlID="PanelModalBloqueo"
-    CancelControlID="btnCerrar" BackgroundCssClass="modalBackground">
+    BackgroundCssClass="modalBackground">
 </cc1:ModalPopupExtender>
 <asp:Panel ID="PanelModalBloqueo" runat="server" Style="display: none">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -36,7 +36,6 @@
                         <asp:LinkButton ID="btnCerrar" CssClass="btn btn-info btn-block" runat="server" OnClick="btnCerrar_Click">
                                     <strong>Cerrar</strong><i class="fa fa-window-close ml-2"></i>
                         </asp:LinkButton>
-
                         <asp:LinkButton ID="btnEnviar" CssClass="btn btn-success btn-block" runat="server" OnClick="btnEnviar_Click">
                                      <strong>Enviar</strong><i class="fa fa-share-square ml-2"></i>
                         </asp:LinkButton>

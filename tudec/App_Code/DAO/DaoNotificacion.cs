@@ -53,7 +53,7 @@ public class DaoNotificacion
 
     public string buscarNombreReceptor(int? idComentario)
     {
-        return db.TablaComentarios.Where(x => x.IdComentario == idComentario).Select(x => x.Emisor).First();
+        return db.TablaComentarios.Where(x => x.Id == idComentario).Select(x => x.Emisor).First();
     }
 
     public void eliminarTodas(string nombreDeUsuario)

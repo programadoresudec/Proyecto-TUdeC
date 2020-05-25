@@ -55,8 +55,18 @@ public class DaoReporte
         reportado.MotivoDelReporte = reporte.MotivoDelReporte;
         reportado.Estado = true;
         Base.Actualizar(reportado);
-        validarMotivoDelReporte(reportado.MotivoDelReporte, reportado.NombreDeUsuarioDenunciado);
+        List<int> listaDiasYpuntuacion = buscarDiasYPuntuacionParaReportar(reportado.MotivoDelReporte);
+        validarMotivoDelReporte(reportado.MotivoDelReporte, reportado.NombreDeUsuarioDenunciado, listaDiasYpuntuacion);
     }
+
+    public List<int> buscarDiasYPuntuacionParaReportar(string motivoDelReporte)
+    {
+        int dias = db.TablaMotivos.Where(x => x.Motivo.Equals(motivoDelReporte)).Select(c => c.DiasxReporte).First();
+        int puntuacionParaBloquear = db.TablaMotivos.Where(x => x.Motivo.Equals(motivoDelReporte)).Select(c => c.PuntuacionxBloqueo).First();
+        List<int> lista = new List<int> { dias, puntuacionParaBloquear };
+        return lista;
+    }
+
 
     public void quitarReporte(int id)
     {
@@ -64,14 +74,14 @@ public class DaoReporte
         Base.Eliminar(reportado);
     }
 
-    private void validarMotivoDelReporte(string motivoDelReporte, string nombre)
+    private void validarMotivoDelReporte(string motivoDelReporte, string nombre, List<int> lista)
     {
         EUsuario user = new DaoUsuario().GetUsuario(nombre);
         switch (motivoDelReporte)
         {
             case Constantes.MOTIVO_1:
-                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_1);
-                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_1);
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, lista[0]);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, lista[1]);
                 if (user.PuntuacionDeBloqueo < Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
                 {
                     user.Estado = Constantes.ESTADO_REPORTADO;
@@ -83,8 +93,8 @@ public class DaoReporte
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_2:
-                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_2);
-                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_2);
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, lista[0]);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, lista[1]);
                 if (user.PuntuacionDeBloqueo < Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
                 {
                     user.Estado = Constantes.ESTADO_REPORTADO;
@@ -96,8 +106,8 @@ public class DaoReporte
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_3:
-                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_3);
-                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_3);
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, lista[0]);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, lista[1]);
                 if (user.PuntuacionDeBloqueo < Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
                 {
                     user.Estado = Constantes.ESTADO_REPORTADO;
@@ -109,8 +119,8 @@ public class DaoReporte
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_4:
-                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_4);
-                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_4);
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, lista[0]);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, lista[1]);
                 if (user.PuntuacionDeBloqueo < Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
                 {
                     user.Estado = Constantes.ESTADO_REPORTADO;
@@ -122,8 +132,8 @@ public class DaoReporte
                 Base.Actualizar(user);
                 break;
             case Constantes.MOTIVO_5:
-                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, Constantes.DIAS_MOTIVO_5);
-                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, Constantes.PUNTUACION_MOTIVO_5);
+                user.FechaDesbloqueo = agregarDiasDeBloqueo(user.NombreDeUsuario, lista[0]);
+                user.PuntuacionDeBloqueo = sumarPuntuacionDeBloqueo(user.NombreDeUsuario, lista[1]);
                 if (user.PuntuacionDeBloqueo < Constantes.PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO)
                 {
                     user.Estado = Constantes.ESTADO_REPORTADO;

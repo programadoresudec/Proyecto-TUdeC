@@ -41,16 +41,6 @@ public static class Constantes
     public const string MOTIVO_3 = "SPAM";
     public const string MOTIVO_4 = "Contenido +18";
     public const string MOTIVO_5 = "Ofender Grupo";
-    public const double DIAS_MOTIVO_1 = 1;
-    public const double DIAS_MOTIVO_2 = 3;
-    public const double DIAS_MOTIVO_3 = 5;
-    public const double DIAS_MOTIVO_4 = 10;
-    public const double DIAS_MOTIVO_5 = 10;
-    public const int PUNTUACION_MOTIVO_1 = 1;
-    public const int PUNTUACION_MOTIVO_2 = 2;
-    public const int PUNTUACION_MOTIVO_3 = 3;
-    public const int PUNTUACION_MOTIVO_4 = 4;
-    public const int PUNTUACION_MOTIVO_5 = 5;
     public const int PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO = 20;
     public const int LONGITUD_CODIGO = 6; 
     #endregion

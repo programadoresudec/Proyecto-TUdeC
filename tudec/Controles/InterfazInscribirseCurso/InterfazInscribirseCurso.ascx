@@ -42,3 +42,12 @@
 
     });
 </script>
+<script>
+    $(document).ready(function () {
+        window.setTimeout(function () {
+            $(".alertHome").fadeTo(1500, 0).slideDown(500, function () {
+                $(this).remove();
+            });
+        }, 1000);
+    });
+</script>

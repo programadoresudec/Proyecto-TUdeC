@@ -40,7 +40,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     protected void btnCerrar_Click(object sender, EventArgs e)
     {
-        ModalBloquearUsuario.Hide();
+      
         if (comentarios != null)
         {
             Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");

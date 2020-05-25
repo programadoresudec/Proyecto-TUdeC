@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/Controladores/MasterPage.master.cs" Inherits="MasterPage" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Src="~/Controles/CampanaNotificacion/CampanaNotifcacion.ascx" TagPrefix="uc1" TagName="CampanaNotificacion" %>
 
@@ -119,8 +120,8 @@
                             </asp:HyperLink>
                         </li>
                         <li class="nav-item mr-lg-2 mb-auto mt-auto">
-                          
-                            <asp:LinkButton CssClass="nav-link"  ID="CrearCurso" runat="server" Visible="false" OnClick="CrearCurso_Click"><i class="fa fa-plus-circle"></i> Crear Curso</asp:LinkButton>
+
+                            <asp:LinkButton CssClass="nav-link" ID="CrearCurso" runat="server" Visible="false" OnClick="CrearCurso_Click"><i class="fa fa-plus-circle"></i> Crear Curso</asp:LinkButton>
                         </li>
                         <li class="nav-item dropdown mr-lg-2 mb-auto mt-auto">
                             <asp:LinkButton Text="text" runat="server" CssClass="nav-link dropdown-toggle" ID="misCursos"
@@ -164,35 +165,53 @@
             <asp:ContentPlaceHolder ID="BodyContentMaster" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <!--footer-->
+        <!--footer Admin y User-->
         <footer>
-            <div class="container py-md-4 mt-md-3">
-                <div class="row footer-top-w3layouts-agile py-5">
-                    <div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
-                        <div class="footer-title">
-                            <h3>TUdeC</h3>
+            <asp:Panel ID="PanelFooterUser" runat="server">
+                <div class="container py-md-4 mt-md-3">
+                    <div class="row footer-top-w3layouts-agile py-5">
+                        <div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+                            <div class="footer-title">
+                                <h3>TUdeC</h3>
+                            </div>
+                            <div class="footer-text">
+                                <p>Crea y diviertete aprendiendo en TUdeC</p>
+                            </div>
                         </div>
-                        <div class="footer-text">
-                            <p>Crea y diviertete aprendiendo en TUdeC</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
-                        <div class="footer-title">
-                            <h3>Contactanos</h3>
-                        </div>
-                        <div class="contact-info">
-                            <h4>Nos puedes ubicar :</h4>
-                            <p>Universidad Cundinamarca Ingenieria de Sistemas.</p>
-                            <div class="phone">
-                                <h4>Telefono:</h4>
-                                <p>telefono: +57 3142061847</p>
-                                <p>Email : <a href="mailto:tudec2020gmail.com">tudec2020.gmail.com</a></p>
+                        <div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+                            <div class="footer-title">
+                                <h3>Contactanos</h3>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Nos puedes ubicar :</h4>
+                                <p>Universidad Cundinamarca Ingenieria de Sistemas.</p>
+                                <div class="phone">
+                                    <h4>Telefono:</h4>
+                                    <p>telefono: +57 3142061847</p>
+                                    <p>Email : <a href="mailto:tudec2020gmail.com">tudec2020.gmail.com</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </asp:Panel>
         </footer>
+        <footer>
+            <asp:Panel ID="PanelFooterAdmin" Visible="false" runat="server">
+                <div class="container py-md-4 mt-md-3">
+                    <div class="row justify-content-center">
+                        <img runat="server" src="~/App_Themes/Master/img/LogoTudec.png" alt="Logo" title="TUdeC" style="width: 20%" />
+
+                        <div class="col-lg-5">
+                            <div class="alertHome text-center alert-info alert-dismissible fade show" role="alert">
+                                <strong>Reporte y Bloqueo Del Usuario</strong><br /> motivos para reportar: 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+        </footer>
+
         <div class="copyright py-3">
             <div class="container">
                 <div class="copyrighttop">
