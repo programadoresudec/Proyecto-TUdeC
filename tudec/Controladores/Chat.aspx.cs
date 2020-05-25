@@ -57,7 +57,6 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
 
             if (receptor != null)
             {
-                Session[Constantes.RECEPTOR_DEL_REPORTE] = receptor.NombreDeUsuario;
                 etiquetaCurso.Text = curso.Nombre;
 
                 etiquetaNombre.Text = receptor.NombreDeUsuario;

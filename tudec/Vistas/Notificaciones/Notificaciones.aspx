@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/Notificaciones.aspx.cs" Inherits="Vistas_Notificaciones_Notificaciones" %>
 
 <asp:Content ID="Contenido" ContentPlaceHolderID="BodyContentMaster" runat="Server">
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <br />
         <br />
         <br />
@@ -19,7 +19,7 @@
                 </asp:LinkButton>
             </div>
         </div>
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-5 mb-5">
             <asp:Label ID="LB_TieneNotificaciones" runat="server" Visible="false"
                 CssClass="text-capitalize text-center p-4 font-weight-bold alertHome alert-info"
                 Style="font-size: 40px !important">
@@ -51,6 +51,7 @@
                 <asp:SessionParameter Name="nombreUsuario" SessionField="notificacionesUsuario" Type="String" />
             </SelectParameters>
         </asp:ObjectDataSource>
+        <br />
         <br />
         <br />
     </div>

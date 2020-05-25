@@ -35,17 +35,21 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             {
                 BtnMostrarModal.Visible = false;
             }
+            else if (mensajes != null && mensajes.NombreDeUsuarioEmisor.Equals(usuarioDenunciante.NombreDeUsuario))
+            {
+                BtnMostrarModal.Visible = false;
+            }
         }
     }
 
     protected void btnCerrar_Click(object sender, EventArgs e)
     {
-      
+
         if (comentarios != null)
         {
             Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
         }
-        else if (Session[Constantes.RECEPTOR_DEL_REPORTE] != null)
+        else if (mensajes != null)
         {
             Response.Redirect("~/Vistas/Chat/Chat.aspx");
         }
@@ -84,7 +88,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
                 admin = new DaoNotificacion().buscarNombreAdministrador();
                 notificacionDeSugerencia = new ENotificacion();
                 notificacionDeSugerencia.Estado = true;
-                notificacionDeSugerencia.Fecha = DateTime.Now;
+                notificacionDeSugerencia.Fecha = reportes.Fecha;
                 notificacionDeSugerencia.NombreDeUsuario = admin;
                 notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
                 Base.Insertar(notificacionDeSugerencia);
@@ -92,15 +96,13 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             }
 
         }
-        else if (Session[Constantes.RECEPTOR_DEL_REPORTE] != null)
+        else if (mensajes!= null)
         {
-
             reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
             reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
-      
-            reportes.ImagenesComentario = comentarios.Imagenes;
-            reportes.NombreDeUsuarioDenunciado = Session[Constantes.RECEPTOR_DEL_REPORTE].ToString();
+            reportes.NombreDeUsuarioDenunciado = mensajes.NombreDeUsuarioEmisor;
             reportes.Descripcion = TB_Descripcion.Text;
+            reportes.Mensaje = mensajes.Contenido;
             reportes.Fecha = DateTime.Now;
             Base.Insertar(reportes);
             LB_validar.CssClass = "alert alert-success";
@@ -110,7 +112,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             admin = new DaoNotificacion().buscarNombreAdministrador();
             notificacionDeSugerencia = new ENotificacion();
             notificacionDeSugerencia.Estado = true;
-            notificacionDeSugerencia.Fecha = DateTime.Now;
+            notificacionDeSugerencia.Fecha = reportes.Fecha;
             notificacionDeSugerencia.NombreDeUsuario = admin;
             notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
             Base.Insertar(notificacionDeSugerencia);
