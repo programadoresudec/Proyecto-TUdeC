@@ -83,7 +83,7 @@
                 <h1 class="text-center"><strong>Cursos Inscritos</strong></h1>
                 <div class="table-responsive">
                     <table class="table">
-                        <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True" DataKeyNames="Id">
+                        <asp:GridView ID="tablaCursos" CssClass="tablas" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated" Width="853px" AllowPaging="True" DataKeyNames="Id">
                             <Columns>
                                 <asp:BoundField DataField="Nombre" HeaderText="Curso" SortExpression="Nombre">
                                     <ItemStyle HorizontalAlign="Center" />

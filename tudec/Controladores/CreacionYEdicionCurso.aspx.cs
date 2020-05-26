@@ -12,11 +12,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         cajaFechaInicio_CalendarExtender.StartDate = DateTime.Now;
-        Lb_validacion.Visible = false;
-        LB_creado.Visible = false;
-        LB_editado.Visible = false;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario == null)
         {
@@ -63,10 +59,8 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
     protected void botonCrearCurso_Click(object sender, EventArgs e)
     {
-
         if (desplegableArea.SelectedItem.Text != "Área del conocimiento")
         {
-
             ECurso curso = new ECurso();
 
             EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
@@ -108,10 +102,6 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
                 curso.Descripcion = cajaDescripcion.Text;
 
             }
-
-
-
-
             if (cursoExistente == null)
             {
 
@@ -128,6 +118,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
                 Base.Insertar(curso);
                 Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS] = curso;
                 Lb_validacion.Visible = false;
+                LB_creado.CssClass = "alertCursoCreado alert-success";
                 LB_creado.Text = " <strong>¡Satisfactorio!</strong> Su curso se ha creado. Él código de su curso es: " + "<strong>" + codigo + "</strong>";
                 LB_creado.Visible = true;
             }
@@ -139,11 +130,13 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
                 Base.Actualizar(cursoExistente);
                 Session["actualizando"] = true;
                 Lb_validacion.Visible = false;
+                LB_editado.CssClass = "alertCursoEditado alert-success";
                 LB_editado.Visible = true;
             }
         }
         else
         {
+            Lb_validacion.CssClass = "alert alert-danger";
             Lb_validacion.Visible = true;
         }
     }

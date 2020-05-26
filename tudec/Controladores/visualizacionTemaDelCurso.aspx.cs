@@ -7,53 +7,65 @@ using System.Web.UI.WebControls;
 
 public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Page
 {
+    private static EUsuario usuario;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
-
-        if (tema != null)
+        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+        if (usuario == null)
         {
-            etiquetaTitulo.Text = tema.Titulo;
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
+        else if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
+        {
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
+        else
+        {
 
-            LiteralControl informacion = new LiteralControl();
-            informacion.Text = tema.Informacion;
+            ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
-            panelContenido.Controls.Add(informacion);
-
-
-            GestionExamen gestorExamenes = new GestionExamen();
-
-            EExamen examen = (EExamen)gestorExamenes.GetExamen(tema);
-
-            Session[Constantes.EXAMEN_A_REALIZAR] = examen;
-            if (examen != null)
+            if (tema != null)
             {
-                if (gestorExamenes.GetEjecucion(examen, (EUsuario)Session[Constantes.USUARIO_LOGEADO]) != null)
+                etiquetaTitulo.Text = tema.Titulo;
+
+                LiteralControl informacion = new LiteralControl();
+                informacion.Text = tema.Informacion;
+
+                panelContenido.Controls.Add(informacion);
+
+
+                GestionExamen gestorExamenes = new GestionExamen();
+
+                EExamen examen = (EExamen)gestorExamenes.GetExamen(tema);
+
+                Session[Constantes.EXAMEN_A_REALIZAR] = examen;
+                if (examen != null)
                 {
-                    Label etiquetaExamenRealizado = new Label();
-                    etiquetaExamenRealizado.Text = "Ya ha realizado el examen";
-                    panelExamen.Controls.Add(etiquetaExamenRealizado);
-                }
-                else
-                {
-                    if (examen != null)
+                    if (gestorExamenes.GetEjecucion(examen, (EUsuario)Session[Constantes.USUARIO_LOGEADO]) != null)
                     {
-
-                        if (DateTime.Now < examen.FechaFin)
+                        Label etiquetaExamenRealizado = new Label();
+                        etiquetaExamenRealizado.Text = "Ya ha realizado el examen";
+                        panelExamen.Controls.Add(etiquetaExamenRealizado);
+                    }
+                    else
+                    {
+                        if (examen != null)
                         {
 
-                            ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
-                            panelExamen.Controls.Add(examenARealizar);
+                            if (DateTime.Now < examen.FechaFin)
+                            {
 
-                        }
-                        else
-                        {
+                                ASP.controles_examenes_elaboracionexamen_ascx examenARealizar = new ASP.controles_examenes_elaboracionexamen_ascx();
+                                panelExamen.Controls.Add(examenARealizar);
 
-                            Label etiquetaTiempo = new Label();
-                            etiquetaTiempo.Text = "Ya pasó la fecha y hora establecidas para realizar el examen";
-                            panelExamen.Controls.Add(etiquetaTiempo);
+                            }
+                            else
+                            {
 
+                                Label etiquetaTiempo = new Label();
+                                etiquetaTiempo.Text = "Ya pasó la fecha y hora establecidas para realizar el examen";
+                                panelExamen.Controls.Add(etiquetaTiempo);
+                            }
                         }
                     }
                 }

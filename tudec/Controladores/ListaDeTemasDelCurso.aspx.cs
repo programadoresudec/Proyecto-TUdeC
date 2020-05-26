@@ -20,9 +20,10 @@ public partial class Vistas_Cursos_ListaDeTemasDelCurso : System.Web.UI.Page
         {
             Response.Redirect("~/Vistas/Home.aspx");
         }
-
-        tablaTemario.DataBind();
-
+        else
+        {
+            tablaTemario.DataBind();
+        }
     }
 
     protected void tablaTemario_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -91,11 +91,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <h1 class="text-center"><strong>Cursos</strong></h1>
                 <div class="table-responsive">
-                    <table class="table">
-                        <asp:GridView ID="tablaCursos" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound" AllowPaging="True" DataKeyNames="Id">
+                    <table class="table text-center">
+                        <asp:GridView ID="tablaCursos" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowDataBound" AllowPaging="True" DataKeyNames="Id">
                             <Columns>
                                 <asp:BoundField DataField="Area" HeaderText="Área" SortExpression="Area" HtmlEncode="False">
                                     <ItemStyle HorizontalAlign="Center" />

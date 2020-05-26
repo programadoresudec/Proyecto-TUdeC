@@ -56,7 +56,7 @@
                 <h1 class="text-center"><strong>Tutores</strong></h1>
                 <div class="table-responsive">
                     <table class="table">
-                        <asp:GridView ID="tablaTutores" CssClass="tablas" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound" AllowPaging="True">
+                        <asp:GridView ID="tablaTutores" CssClass="tablas" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False" DataSourceID="TutoresSource" OnRowDataBound="tablaTutores_RowDataBound" AllowPaging="True">
                             <Columns>
                                 <asp:BoundField DataField="ImagenPerfil" HeaderText="Imagen de la cuenta" ControlStyle-CssClass="card-img rounded-circle" HtmlEncode="false" SortExpression="ImagenPerfil">
                                     <ItemStyle HorizontalAlign="Center" />

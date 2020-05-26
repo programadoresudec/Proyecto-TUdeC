@@ -80,7 +80,7 @@
                 <h1 class="text-center"><strong>Cursos Creados</strong></h1>
                 <div class="table-responsive">
                     <table class="table">
-                        <asp:GridView ID="tablaCursos" CssClass="tablas" Style="align-content: center" runat="server"
+                        <asp:GridView ID="tablaCursos" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" CssClass="tablas" runat="server"
                             AutoGenerateColumns="False" DataSourceID="CursosSource" OnRowDataBound="tablaCursos_RowCreated"
                             AllowPaging="True" DataKeyNames="Id">
                             <Columns>

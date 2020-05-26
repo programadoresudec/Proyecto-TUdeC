@@ -15,13 +15,13 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="row justify-content-center">
-                    <asp:Label runat="server" ID="Lb_validacion" CssClass="alert alert-danger" Visible="false"> <strong>¡Error! Debe escoger un área de conocimiento.</strong></asp:Label>
+                    <asp:Label runat="server" ID="Lb_validacion" Visible="false"> <strong>¡Error! Debe escoger un área de conocimiento.</strong></asp:Label>
                 </div>
                 <div class="row justify-content-center">
-                    <asp:Label runat="server" ID="LB_editado" CssClass="alertCursoEditado alert alert-success" Visible="false"> <strong>¡Satisfactorio! Su curso se ha editado.</strong> </asp:Label>
+                    <asp:Label runat="server" ID="LB_editado" Visible="false"> <strong>¡Satisfactorio! Su curso se ha editado.</strong> </asp:Label>
                 </div>
                 <div class="row justify-content-center" id="creado">
-                    <asp:Label runat="server" ID="LB_creado" Width="100%" CssClass="alertCursoCreado alert alert-success" Visible="false"></asp:Label>
+                    <asp:Label runat="server" ID="LB_creado" Width="100%" Visible="false"></asp:Label>
                 </div>
                 <div class="row justify-content-center mb-4">
                     <asp:Label CssClass="fa fa-plus-circle fa-3x" ID="etiquetaCrearCurso" runat="server" Text="Crear curso"></asp:Label>
@@ -83,27 +83,27 @@
     <script>
         $(document).ready(function () {
             window.setTimeout(function () {
-                $(".alertCursoCreado").fadeTo(1000, 0).slideUp(800, function () {
+                $(".alertCursoEditado").fadeTo(1000, 0).slideUp(500, function () {
                     {
-                        window.top.location = "ListaDeTemasDelCurso.aspx"
+                        window.location.href = "ListaDeCursosCreadosDeLaCuenta.aspx"
                     }
                     $(this).remove();
                 });
-            }, 3000);
+            }, 1000);
 
         });
     </script>
+
     <script>
         $(document).ready(function () {
             window.setTimeout(function () {
-                $(".alertCursoEditado").fadeTo(1000, 0).slideUp(800, function () {
+                $(".alertCursoCreado").fadeTo(1000, 0).slideUp(500, function () {
                     {
-
-                        window.top.location = "ListaDeCursosCreadosDeLaCuenta.aspx"
+                        window.location.href = "ListaDeTemasDelCurso.aspx"
                     }
                     $(this).remove();
                 });
-            }, 2000);
+            }, 1000);
 
         });
     </script>

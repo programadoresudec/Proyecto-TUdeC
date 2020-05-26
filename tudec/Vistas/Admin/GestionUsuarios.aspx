@@ -37,7 +37,7 @@
         <div class="row justify-content-center">
             <div class="table-responsive">
                 <table class="table">
-                    <asp:GridView ID="GridViewGestionUsuario" runat="server" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" HorizontalAlign="Center" DataSourceID="ODS_DaoUsuario">
+                    <asp:GridView ID="GridViewGestionUsuario" runat="server" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" DataSourceID="ODS_DaoUsuario">
                         <Columns>
                             <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="70px" ControlStyle-Height="70px" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
                                 <HeaderStyle HorizontalAlign="Center" />

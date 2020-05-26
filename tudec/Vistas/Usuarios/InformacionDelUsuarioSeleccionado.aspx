@@ -12,7 +12,7 @@
      <div class="container flex-md-row">
         <asp:HyperLink ID="BtnDevolver" CssClass="btn btn-info" runat="server"
             NavigateUrl="~/Vistas/Buscador/ListaDeResultadosDelBuscadorTutores.aspx" Style="font-size: medium;">
-                <i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Devolver</strong> 
+                <i class="fas fa-arrow-alt-circle-left fa-lg"></i>
         </asp:HyperLink>
     </div>
     <div class="container-fluid mt-5 mb-5">

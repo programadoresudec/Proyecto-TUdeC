@@ -151,10 +151,23 @@
                 </div>
 
                 <div class="form-group row justify-content-center">
-                    <asp:Label ID="labelValidar" runat="server" CssClass="alert alert-danger" Visible="False"></asp:Label>
+                    <asp:Label ID="labelValidar" runat="server" Visible="False"></asp:Label>
                 </div>
             </div>
         </div>
     </div>
+      <script>
+        $(document).ready(function () {
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(500, function () {
+                    {
+                        window.location.href = "Login.aspx"
+                    }
+                    $(this).remove();
+                });
+            }, 2000);
+
+        });
+    </script>
 </asp:Content>
 

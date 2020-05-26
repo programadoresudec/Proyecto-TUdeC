@@ -94,9 +94,7 @@ public class GestionTemas
 
     public List<ETema> GetTemas(ECurso curso)
     {
-
         List<ETema> temas = db.TablaTemas.Where(x => x.IdCurso == curso.Id).OrderBy(x => x.Id).ToList();
-
         return temas;
 
     }

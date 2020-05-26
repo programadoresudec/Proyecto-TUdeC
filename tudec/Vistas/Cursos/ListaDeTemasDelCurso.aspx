@@ -19,7 +19,7 @@
                 <div class="row justify-content-center">
                     <div class="table-responsive text-center">
                         <table class="table">
-                            <asp:GridView CssClass="tablas" Width="100%" ID="tablaTemario" runat="server" AutoGenerateColumns="False" DataSourceID="temarioDataSource" AllowPaging="True" OnRowDataBound="tablaTemario_RowDataBound" DataKeyNames="Id">
+                            <asp:GridView CssClass="tablas" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" Width="100%" ID="tablaTemario" runat="server" AutoGenerateColumns="False" DataSourceID="temarioDataSource" AllowPaging="True" OnRowDataBound="tablaTemario_RowDataBound" DataKeyNames="Id">
                                 <Columns>
                                     <asp:BoundField DataField="Titulo" HeaderText="Temas" SortExpression="Titulo" />
                                 </Columns>
@@ -34,8 +34,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-4 mb-5">
-                <asp:LinkButton ID="botonAgregarTema" runat="server" CssClass="btn btn-success btn-lg" OnClick="botonAgregarTema_Click"> <i class="fa fa-plus mr-2"></i> <strong>Agregar Tema</strong> </asp:LinkButton>
+        </div>
+        <div class="row justify-content-center mt-4 mb-5">
+            <div class="col-lg-auto">
+                <asp:LinkButton ID="botonAgregarTema" runat="server" CssClass="btn btn-success btn-lg" OnClick="botonAgregarTema_Click"> 
+                        <i class="fa fa-plus mr-2"></i> <strong>Agregar Tema</strong> </asp:LinkButton>
             </div>
         </div>
     </div>

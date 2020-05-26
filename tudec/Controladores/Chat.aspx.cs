@@ -18,7 +18,7 @@ public partial class Vistas_Chat_Chat : System.Web.UI.Page
         if (emisor != null)
         {
             Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
-               : urlAnterior.ToString().Contains("Chat") ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
+               : urlAnterior.ToString().Contains("Chat.aspx") ? "~/Vistas/Home.aspx" : urlAnterior.ToString();
             DaoUsuario gestorUsuarios = new DaoUsuario();
             curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CHAT];
             EUsuario creadorCurso = gestorUsuarios.GetUsuario(curso.Creador);
