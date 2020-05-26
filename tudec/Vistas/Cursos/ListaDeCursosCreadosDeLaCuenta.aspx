@@ -7,7 +7,6 @@
     <br />
     <br />
     <br />
-    <br />
     <div class="container-fluid mt-5 mb-5">
         <div class="row justify-content-around">
             <div class="col-lg-auto mb-5">

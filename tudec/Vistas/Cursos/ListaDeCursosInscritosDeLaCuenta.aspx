@@ -50,7 +50,6 @@
                             </div>
                             <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosInscritos" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
-
                         </div>
                         <br />
                         <div class="row">

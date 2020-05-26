@@ -5,7 +5,7 @@
         window.onload = function () {
             var buzon = $find("<%= cajaSugerencia_HtmlEditorExtender.ClientID %>");
             <%
-
+        
         ESugerencia sugerencia = (ESugerencia)Session["Sugerencia"];
         string imagenesJson = sugerencia.ImagenesJson;
         List<string> imagenes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(imagenesJson);

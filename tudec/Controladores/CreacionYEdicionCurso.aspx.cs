@@ -7,57 +7,58 @@ using System.Web.UI.WebControls;
 
 public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 {
-
+    private static EUsuario usuario;
     private ECurso cursoExistente;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         cajaFechaInicio_CalendarExtender.StartDate = DateTime.Now;
-
-        cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR];
-
-        cajaFechaInicio.Attributes.Add("readonly", "readonly");
-
-        if (Session["actualizando"] != null)
+        Lb_validacion.Visible = false;
+        LB_creado.Visible = false;
+        LB_editado.Visible = false;
+        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+        if (usuario == null)
         {
-
-            if (DateTime.Now >= cursoExistente.FechaInicio && (bool)Session["actualizando"])
-            {
-                cajaFechaInicio.Enabled = false;
-                Session["actualizando"] = false;
-
-                cursoExistente.Estado = "activo";
-
-                Base.Actualizar(cursoExistente);
-
-            }
+            Response.Redirect("~/Vistas/Home.aspx");
         }
-
-        if (cursoExistente != null && !IsPostBack)
+        else if (usuario != null && usuario.Rol.Equals(Constantes.ROL_ADMIN))
         {
-
-            etiquetaCrearCurso.Text = "Editar curso";
-            botonCrearCurso.Text = "Editar curso";
-
-            cajaTitulo.Text = cursoExistente.Nombre;
-            desplegableArea.SelectedValue = cursoExistente.Area;
-
-            cajaFechaInicio.Text = cursoExistente.FechaInicio.ToString("dd/MM/yyyy");
-
-            cajaDescripcion.Text = cursoExistente.Descripcion;
-
-            desplegableArea.Enabled = false;
-
-
-            if (DateTime.Now >= cursoExistente.FechaInicio)
+            Response.Redirect("~/Vistas/Home.aspx");
+        }
+        else
+        {
+            cursoExistente = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR];
+            cajaFechaInicio.Attributes.Add("readonly", "readonly");
+            if (Session["actualizando"] != null && cursoExistente != null)
             {
-                cajaFechaInicio.Enabled = false;
-          
+                if (DateTime.Now >= cursoExistente.FechaInicio && (bool)Session["actualizando"])
+                {
+                    cajaFechaInicio.Enabled = false;
+                    Session["actualizando"] = false;
+                    cursoExistente.Estado = "activo";
+                    Base.Actualizar(cursoExistente);
+                    LB_editado.Visible = true;
+                }
             }
 
-        }
+            if (cursoExistente != null && !IsPostBack)
+            {
+                etiquetaCrearCurso.CssClass = "fa fa-edit fa-3x";
+                etiquetaCrearCurso.Text = "Editar curso";
+                botonCrearCurso.Text = "<strong>Editar curso</strong>";
 
+                cajaTitulo.Text = cursoExistente.Nombre;
+                desplegableArea.SelectedValue = cursoExistente.Area;
+                cajaFechaInicio.Text = cursoExistente.FechaInicio.ToString("dd/MM/yyyy");
+                cajaDescripcion.Text = cursoExistente.Descripcion;
+                desplegableArea.Enabled = false;
+                if (DateTime.Now >= cursoExistente.FechaInicio)
+                {
+                    cajaFechaInicio.Enabled = false;
+                }
+            }
+        }
     }
 
     protected void botonCrearCurso_Click(object sender, EventArgs e)
@@ -108,7 +109,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
 
             }
 
-            
+
 
 
             if (cursoExistente == null)
@@ -125,42 +126,25 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
                 curso.CodigoInscripcion = codigo;
 
                 Base.Insertar(curso);
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallFunction", "alert('Él código de su curso es " + codigo + "');", true);
-
-
                 Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR_TEMAS] = curso;
-
-                Response.Redirect("~/Vistas/Cursos/ListaDeTemasDelCurso.aspx");
-
+                Lb_validacion.Visible = false;
+                LB_creado.Text = " <strong>¡Satisfactorio!</strong> Su curso se ha creado. Él código de su curso es: " + "<strong>" + codigo + "</strong>";
+                LB_creado.Visible = true;
             }
             else
             {
-
                 cursoExistente.Nombre = curso.Nombre;
                 cursoExistente.Descripcion = curso.Descripcion;
                 cursoExistente.FechaInicio = curso.FechaInicio;
-
                 Base.Actualizar(cursoExistente);
-
                 Session["actualizando"] = true;
-
-                Response.Redirect("~/Vistas/Cursos/CreacionYEdicionCurso.aspx");
-
-                
-
+                Lb_validacion.Visible = false;
+                LB_editado.Visible = true;
             }
-
-            
-
         }
         else
         {
-            
-            Response.Write("<script>alert('Seleccione un área')</script>");
-
-
+            Lb_validacion.Visible = true;
         }
-
     }
 }

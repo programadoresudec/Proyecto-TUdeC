@@ -32,13 +32,6 @@
                         </div>
                         <asp:TextBox ID="cajaNombreUsuario" MaxLength="60" placeHolder="Nombre De Usuario (nick)" runat="server"
                             CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" 
-                            TargetControlID="cajaNombreUsuario" 
-                            ID="cajaNombreUsuario_FilteredTextBoxExtender"
-                            FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom"
-                            FilterMode="ValidChars"
-                            ValidChars="[ñÑáéíóúÁÉÍÓÚ]"
-                     ></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
