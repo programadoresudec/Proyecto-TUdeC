@@ -43,4 +43,39 @@ public partial class Vistas_Admin_GestionUsuarios : System.Web.UI.Page
     {
         Console.WriteLine();
     }
+
+    protected void GridViewGestionUsuario_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.FindControl("Estado") != null)
+        {
+            string estado = ((Label)e.Row.FindControl("Estado")).Text;
+            LinkButton btnDesbloquear = (LinkButton)e.Row.FindControl("botonDesbloquear");
+            if (estado.Equals(Constantes.ESTADO_BLOQUEADO))
+            {
+                btnDesbloquear.Enabled = true;
+                btnDesbloquear.ForeColor = System.Drawing.Color.Red;
+                btnDesbloquear.CssClass = "fa fa-lock fa-lg";
+            }
+            else
+            {
+
+                btnDesbloquear.ForeColor = System.Drawing.Color.Green;
+                btnDesbloquear.CssClass = "fas fa-unlock fa-lg";
+            }
+        }
+    }
+
+    protected void botonDesbloquear_Click(object sender, EventArgs e)
+    {
+        LinkButton btnDesbloquear = sender as LinkButton;
+        GridViewRow gridV = (GridViewRow)btnDesbloquear.NamingContainer;
+        string estado = ((Label)gridV.FindControl("Estado")).Text;
+        if (estado.Equals(Constantes.ESTADO_BLOQUEADO))
+        {
+            new DaoReporte().desbloquearUsuario(Session[Constantes.USUARIO_CON_REPORTES].ToString());
+            lB_Exito.CssClass = "alert alert-success";
+            lB_Exito.Visible = true;
+            GridViewGestionUsuario.DataBind();
+        }
+    }
 }

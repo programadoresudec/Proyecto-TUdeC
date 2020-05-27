@@ -158,6 +158,7 @@ public class DaoUsuario
     {
         EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).First();
         usuario.Pass = passNueva;
+        usuario.LastModify = DateTime.Now;
         Base.Actualizar(usuario);
     }
 
@@ -170,6 +171,7 @@ public class DaoUsuario
     {
         EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).First();
         usuario.Descripcion = descripcion;
+        usuario.LastModify = DateTime.Now;
         Base.Actualizar(usuario);
     }
 
@@ -195,6 +197,7 @@ public class DaoUsuario
     {
         EUsuario usuario = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).First();
         usuario.ImagenPerfil = saveLocation;
+        usuario.LastModify = DateTime.Now;
         Base.Actualizar(usuario);
     }
 

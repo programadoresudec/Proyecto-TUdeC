@@ -49,6 +49,15 @@ public class DaoReporte
         ).OrderByDescending(x => x.Fecha).ToList();
     }
 
+    public void desbloquearUsuario(string usuario)
+    {
+        EUsuario desbloquear = db.TablaUsuarios.Where(x => x.NombreDeUsuario.Equals(usuario)).First();
+        desbloquear.Estado = Constantes.ESTADO_ACTIVO;
+        desbloquear.PuntuacionDeBloqueo = 0;
+        desbloquear.LastModify = DateTime.Now;
+        Base.Actualizar(desbloquear);
+    }
+
     public void actualizarMotivo(EReporte reporte)
     {
         EReporte reportado = db.TablaReportes.Where(x => x.Id == reporte.Id).First();

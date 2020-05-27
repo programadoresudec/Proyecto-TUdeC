@@ -31,6 +31,7 @@ public partial class Views_Account_Register : System.Web.UI.Page
         usuarioEnRegistro.Rol = Constantes.ROL_USER;
         usuarioEnRegistro.Estado = Constantes.ESTADO_EN_ESPERA;
         usuarioEnRegistro.Token = Reutilizables.encriptar(JsonConvert.SerializeObject(usuarioEnRegistro));
+        usuarioEnRegistro.LastModify = DateTime.Now;
         usuarioEnRegistro.VencimientoToken = DateTime.Now.AddHours(8);
         new DaoRegister().registroUsuario(usuarioEnRegistro);
 

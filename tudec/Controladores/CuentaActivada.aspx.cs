@@ -30,6 +30,7 @@ public partial class Vistas_Account_CuentaActivada : System.Web.UI.Page
                 {
                     Session[Constantes.USUARIO_ID] = usuario;
                     usuario.Estado = Constantes.ESTADO_ACTIVO;
+                    usuario.LastModify = DateTime.Now;
                     usuario.Token = null;
                     usuario.VencimientoToken = null;
                     usuario.Session = usuario.NombreDeUsuario;

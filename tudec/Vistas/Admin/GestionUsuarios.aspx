@@ -13,7 +13,7 @@
             <div class="col-mb-6 text-center mb-4">
                 <div class="input-group">
                     <asp:TextBox ID="cajaBuscador" CssClass="fa fa-search form-control" runat="server" placeHolder="Nombre De Usuario" Width="200px" Height="38px">
-                        </asp:TextBox>
+                    </asp:TextBox>
                     <ajaxToolkit:AutoCompleteExtender
                         MinimumPrefixLength="1"
                         CompletionInterval="10"
@@ -34,10 +34,15 @@
                 <asp:ObjectDataSource ID="ODS_EstadosUsuario" runat="server" SelectMethod="obtenerEstadosUsuario" TypeName="DaoUsuario"></asp:ObjectDataSource>
             </div>
         </div>
+        <div class="row justify-content-center text-center">
+            <asp:Label runat="server" ID="lB_Exito" Visible="false">
+                <strong>¡Satisfactorio!</strong> Ha desbloqueado el usuario.
+            </asp:Label>
+        </div>
         <div class="row justify-content-center">
             <div class="table-responsive">
                 <table class="table">
-                    <asp:GridView ID="GridViewGestionUsuario" runat="server" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" DataSourceID="ODS_DaoUsuario">
+                    <asp:GridView ID="GridViewGestionUsuario" OnRowDataBound="GridViewGestionUsuario_RowDataBound" runat="server" PagerStyle-HorizontalAlign="Center" HorizontalAlign="Center" CssClass="tablas" AutoGenerateColumns="False" AllowPaging="True" DataSourceID="ODS_DaoUsuario">
                         <Columns>
                             <asp:ImageField DataImageUrlField="ImagenPerfil" ControlStyle-Width="70px" ControlStyle-Height="70px" ControlStyle-CssClass="card-img rounded-circle" HeaderText="Imagen de perfil" SortExpression="ImagenPerfil">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -47,10 +52,13 @@
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Estado" HeaderText="Estado Del Usuario" SortExpression="Estado">
+                             <asp:TemplateField HeaderText="Estado Del Usuario">
+                                <ItemTemplate>
+                                      <asp:Label ID="Estado" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
+                                </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
-                            </asp:BoundField>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha De Registro" SortExpression="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}">
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
@@ -75,6 +83,14 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="botonVerReportes" runat="server"
                                         OnClick="botonVerReportes_Click" CssClass="fa fa-eye fa-lg" />
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Desbloquear usuario">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="botonDesbloquear" Enabled="false" runat="server"
+                                        OnClick="botonDesbloquear_Click" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
