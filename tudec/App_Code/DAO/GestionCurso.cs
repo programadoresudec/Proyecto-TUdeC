@@ -45,6 +45,24 @@ public class GestionCurso
 
     }
 
+    public EPuntuacion GetPuntuacion(EUsuario emisor, ECurso curso)
+    {
+
+        EPuntuacion puntuacion = db.TablaPuntuaciones.Where(x => x.Emisor.Equals(emisor.NombreDeUsuario) && x.IdCurso == curso.Id).FirstOrDefault();
+        return puntuacion;
+
+    }
+
+    public List<EPuntuacion> GetPuntuacionesCurso(ECurso curso)
+    {
+
+        List<EPuntuacion> puntuaciones = db.TablaPuntuaciones.Where(x => x.IdCurso == curso.Id).ToList();
+
+        return puntuaciones;
+
+
+    }
+
     public EInscripcionesCursos GetInscripcion(EUsuario usuario, ECurso curso)
     {
         return db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario) && x.IdCurso == curso.Id).First();

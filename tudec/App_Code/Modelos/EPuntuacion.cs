@@ -19,6 +19,7 @@ public class EPuntuacion
     private string emisor;
     private string receptor;
     private int puntuacion;
+    private Nullable<int> idCurso;
     #endregion
 
     #region properties
@@ -30,6 +31,8 @@ public class EPuntuacion
     [Column("receptor")]
     public string Receptor { get => receptor; set => receptor = value; }
     [Column("puntuacion")]
-    public int Puntuacion { get => puntuacion; set => puntuacion = value; } 
+    public int Puntuacion { get => puntuacion; set => puntuacion = value; }
+    [Column("id_curso")]
+    public int? IdCurso { get => idCurso; set => idCurso = value; }
     #endregion
 }

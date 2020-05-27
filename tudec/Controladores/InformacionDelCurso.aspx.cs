@@ -17,6 +17,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         Uri urlAnterior = Request.UrlReferrer;
         DaoUsuario gestorUsuarios = new DaoUsuario();
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+
         if (curso != null)
         {
             Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
@@ -27,6 +28,34 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
             GestionCurso gestorCursos = new GestionCurso();
+
+            panelEstrellas.Style.Add("pointer-events", "none");
+
+            if(curso.Puntuacion != null)
+            {
+
+                EstrellasPuntuacion.Calificacion = (int)curso.Puntuacion;
+
+            }
+            else
+            {
+
+                EstrellasPuntuacion.Calificacion = 0;
+
+            }
+
+            
+
+            etiquetaTitulo.Text = curso.Nombre;
+            etiquetaNombreUsuario.Text = curso.Creador;
+            etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
+            etiquetaCorreo.Text = creador.CorreoInstitucional;
+            etiquetaArea.Text = curso.Area;
+            campoDescripcion.Text = curso.Descripcion;
+            imagenArea.Width = 32;
+            imagenArea.Height = 32;
+            imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
+
             if (usuario == null)
             {
                 inscripcion = false;
@@ -35,11 +64,36 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             {
                 inscripcion = gestorCursos.IsInscrito(usuario, curso);
             }
+
             if (!inscripcion)
             {
                 botonInbox.Visible = false;
                 CajaComentarios.Visible = false;
                 etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
+                EstrellasPuntuacionCurso.Visible = false;
+
+            }
+            else
+            {
+
+
+
+                EPuntuacion puntuacion = gestorCursos.GetPuntuacion(usuario, curso);
+
+                if (puntuacion != null)
+                {
+
+                    EstrellasPuntuacionCurso.Calificacion = puntuacion.Puntuacion;
+
+                }
+                else
+                {
+
+                    EstrellasPuntuacionCurso.Calificacion = 0;
+
+                }
+
+
             }
 
 
@@ -59,19 +113,9 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
             }
 
-            if (curso != null)
-            {
-                etiquetaTitulo.Text = curso.Nombre;
-                etiquetaNombreUsuario.Text = curso.Creador;
-                etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
-                etiquetaCorreo.Text = creador.CorreoInstitucional;
-                etiquetaArea.Text = curso.Area;
-                campoDescripcion.Text = curso.Descripcion;
-                imagenArea.Width = 32;
-                imagenArea.Height = 32;
-                imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
-            }
 
+           
+       
 
             if (tablaTemas.Rows.Count == 0)
             {

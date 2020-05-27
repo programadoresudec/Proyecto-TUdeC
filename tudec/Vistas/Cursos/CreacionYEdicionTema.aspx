@@ -256,18 +256,7 @@
         
             </td>
         </tr>
-        <tr>
-
-            <td>
-                <center>
-
-                    <input id="botonSubirImagen" onclick="" type="button" value="Agregar imagen" />
-                <asp:FileUpload ID="gestorImagen" runat="server" />
-              
-                    </center>
-
-
-        </tr>
+       
         
         <tr>
             <td>

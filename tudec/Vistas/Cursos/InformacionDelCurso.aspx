@@ -2,6 +2,10 @@
 
 <%@ Register Src="~/Controles/Comentarios/CajaComentarios.ascx" TagPrefix="uc1" TagName="CajaComentarios" %>
 <%@ Register Src="~/Controles/InterfazInscribirseCurso/InterfazInscribirseCurso.ascx" TagPrefix="uc1" TagName="InterfazInscribirseCurso" %>
+<%@ Register Src="~/Controles/Estrellas/EstrellasPuntuacionCurso.ascx" TagPrefix="uc1" TagName="EstrellasPuntuacionCurso" %>
+<%@ Register Src="~/Controles/Estrellas/EstrellasPuntuacion.ascx" TagPrefix="uc1" TagName="EstrellasPuntuacion" %>
+
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
     <asp:Panel ID="panelModal" runat="server" Width="0px" Height="0px"></asp:Panel>
@@ -31,12 +35,19 @@
                         <asp:Image ImageUrl="Ícono" runat="server" ID="imagenArea" />
                         <br />
                         <asp:Label Text="área" runat="server" ID="etiquetaArea" />
+
+                        <asp:Panel ID="panelEstrellas" runat="server">
+
+                        <uc1:EstrellasPuntuacion runat="server" ID="EstrellasPuntuacion" />
+
+                            </asp:Panel>
                     </div>
 
                 </div>
                 <div class="card-footer text-center">
                     <asp:LinkButton Text="¡Habla Conmigo!" runat="server" CssClass="btn btn-dark" ID="botonInbox" OnClick="botonInbox_Click" />
                     <asp:LinkButton Text="Inscribirse" runat="server" BackColor="#003300" CssClass="btn btn-info" ForeColor="White" ID="botonInscribirse" OnClick="botonInscribirse_Click" />
+                    <uc1:EstrellasPuntuacionCurso runat="server" ID="EstrellasPuntuacionCurso" />
                 </div>
             </div>
             <div class="col-lg-6 text-center">
