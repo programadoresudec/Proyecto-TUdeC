@@ -48,6 +48,7 @@
                     <asp:LinkButton Text="¡Habla Conmigo!" runat="server" CssClass="btn btn-dark" ID="botonInbox" OnClick="botonInbox_Click" />
                     <asp:LinkButton Text="Inscribirse" runat="server" BackColor="#003300" CssClass="btn btn-info" ForeColor="White" ID="botonInscribirse" OnClick="botonInscribirse_Click" />
                     <uc1:EstrellasPuntuacionCurso runat="server" ID="EstrellasPuntuacionCurso" />
+                    <asp:Label ID="etiquetaFechaInicio" Visible="false" runat="server" Text="Fecha inicio: xx/xx/xx"></asp:Label>
                 </div>
             </div>
             <div class="col-lg-6 text-center">

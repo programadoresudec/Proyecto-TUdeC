@@ -16,7 +16,7 @@
                     <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
                         runat="server" ErrorMessage="El apodo solo puede contener letras, números, guiones y guiones bajos."
                         ControlToValidate="cajaNombreUsuario" Display="Dynamic" CssClass="alertHome alert-danger"
-                        ValidationExpression="[A-Za-z0-9-_ñÑ]*$" />
+                        ValidationExpression="[A-Za-z0-9-_ñÑ]*$" ValidationGroup="register" />
                 </div>
                 <asp:RequiredFieldValidator ID="NombreUsuarioRequerido"
                     runat="server" ValidationGroup="register"
@@ -93,7 +93,7 @@
                     <asp:RegularExpressionValidator ID="validarCaracteresPass"
                         runat="server" ErrorMessage="La contraseña debe contener entre 8 y 20 caracteres."
                         ControlToValidate="cajaPass" Display="Dynamic" CssClass="alertHome alert-danger"
-                        ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" />
+                        ValidationExpression="^[a-zA-Z0-9'@&#.\S]{8,20}$" ValidationGroup="register"/>
                 </div>
                 <asp:RequiredFieldValidator ID="passRequerida"
                     runat="server"
@@ -109,7 +109,6 @@
                         </div>
                         <asp:TextBox ID="cajaPass" placeHolder="Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaPass" ID="cajaPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
                     </div>
                 </div>
                 <br />
@@ -128,8 +127,7 @@
                         </div>
                         <asp:TextBox ID="cajaConfirmarPass" placeHolder="Confirmar Contraseña" runat="server"
                             TextMode="Password" CssClass="form-control" ValidationGroup="register" />
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaConfirmarPass" ID="cajaConfirmarPass_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
-                    </div>
+                   </div>
                 </div>
                 <br />
                 <div class="row justify-content-center">
@@ -144,7 +142,7 @@
                 <div class="form-group row">
                     <div class="col-12">
                         <strong>
-                            <asp:Button runat="server" OnClick="btnRegistrar_Click" ValidationGroup="register" TabIndex="-1" Text="Registrar"
+                            <asp:Button runat="server" OnClick="btnRegistrar_Click" ValidationGroup="register" Text="Registrar"
                                 CssClass="btn btn-dark btn-lg btn-block" Style="font-size: medium;" />
                         </strong>
                     </div>
