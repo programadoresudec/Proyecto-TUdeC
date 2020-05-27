@@ -10,6 +10,15 @@ public partial class Vistas_Examen_CalificarExamenUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN];
+
+        if(tema == null)
+        {
+
+            Response.Redirect("~/Vistas/Home.aspx");
+
+        }
+
         tablaUsuarios.DataBind();
 
     }

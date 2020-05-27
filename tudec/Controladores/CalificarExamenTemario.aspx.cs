@@ -10,6 +10,15 @@ public partial class Vistas_CalificarExamenTemario : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_CALIFICAR_EXAMEN];
+
+        if(curso == null)
+        {
+
+            Response.Redirect("~/Vistas/Home.aspx");
+
+        }
+
         tablaTemario.DataBind();
 
     }
@@ -60,7 +69,7 @@ public partial class Vistas_CalificarExamenTemario : System.Web.UI.Page
 
         ETema tema = gestorTemas.GetTema(indiceTema);
 
-        Session[Constantes.TEMA_SELECCIONADO] = tema;
+        Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN] = tema;
 
         Response.Redirect("~/Vistas/Examen/CalificarExamenUsuarios.aspx");
 

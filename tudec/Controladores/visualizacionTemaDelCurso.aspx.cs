@@ -11,6 +11,10 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
     protected void Page_Load(object sender, EventArgs e)
     {
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+
+        ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
+
+
         if (usuario == null)
         {
             Response.Redirect("~/Vistas/Home.aspx");
@@ -24,23 +28,33 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
 
             ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
-            if (tema != null)
+            if(tema == null)
             {
-                etiquetaTitulo.Text = tema.Titulo;
 
-                LiteralControl informacion = new LiteralControl();
-                informacion.Text = tema.Informacion;
+                Response.Redirect("~/Vistas/Home.aspx");
 
-                panelContenido.Controls.Add(informacion);
+            }
+
+            etiquetaTitulo.Text = tema.Titulo;
+
+            LiteralControl informacion = new LiteralControl();
+            informacion.Text = tema.Informacion;
+
+            panelContenido.Controls.Add(informacion);
 
 
-                GestionExamen gestorExamenes = new GestionExamen();
+            GestionExamen gestorExamenes = new GestionExamen();
 
-                EExamen examen = (EExamen)gestorExamenes.GetExamen(tema);
+            EExamen examen = (EExamen)gestorExamenes.GetExamen(tema);
 
-                Session[Constantes.EXAMEN_A_REALIZAR] = examen;
-                if (examen != null)
+            Session[Constantes.EXAMEN_A_REALIZAR] = examen;
+            if (examen != null)
+            {
+
+                if (!usuario.NombreDeUsuario.Equals(curso.Creador))
                 {
+
+                    
                     if (gestorExamenes.GetEjecucion(examen, (EUsuario)Session[Constantes.USUARIO_LOGEADO]) != null)
                     {
                         Label etiquetaExamenRealizado = new Label();
@@ -68,8 +82,10 @@ public partial class Vistas_Cursos_visualizacionTemaDelCurso : System.Web.UI.Pag
                             }
                         }
                     }
+
                 }
             }
         }
     }
+    
 }

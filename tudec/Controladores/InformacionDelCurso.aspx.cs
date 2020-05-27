@@ -18,137 +18,139 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         DaoUsuario gestorUsuarios = new DaoUsuario();
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
 
-        if (curso != null)
+        
+        if(curso == null)
         {
-            Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
-                : urlAnterior.ToString().Contains("InformacionDelCurso.aspx") 
-                ? "~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx" : urlAnterior.ToString();
-            creador = gestorUsuarios.GetUsuario(curso.Creador);
 
-            usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
+            Response.Redirect("~/Vistas/Home.aspx");
 
-            GestionCurso gestorCursos = new GestionCurso();
+        }
 
-            panelEstrellas.Style.Add("pointer-events", "none");
+        Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
+            : urlAnterior.ToString().Contains("InformacionDelCurso.aspx") 
+            ? "~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx" : urlAnterior.ToString();
+        creador = gestorUsuarios.GetUsuario(curso.Creador);
 
-            if(curso.Puntuacion != null)
-            {
+        usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
-                EstrellasPuntuacion.Calificacion = (int)curso.Puntuacion;
+        GestionCurso gestorCursos = new GestionCurso();
 
-            }
-            else
-            {
+        panelEstrellas.Style.Add("pointer-events", "none");
 
-                EstrellasPuntuacion.Calificacion = 0;
+        if(curso.Puntuacion != null)
+        {
 
-            }
+            EstrellasPuntuacion.Calificacion = (int)curso.Puntuacion;
+
+        }
+        else
+        {
+
+            EstrellasPuntuacion.Calificacion = 0;
+
+        }
 
             
 
-            etiquetaTitulo.Text = curso.Nombre;
-            etiquetaNombreUsuario.Text = curso.Creador;
-            etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
-            etiquetaCorreo.Text = creador.CorreoInstitucional;
-            etiquetaArea.Text = curso.Area;
-            campoDescripcion.Text = curso.Descripcion;
-            imagenArea.Width = 32;
-            imagenArea.Height = 32;
-            imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
+        etiquetaTitulo.Text = curso.Nombre;
+        etiquetaNombreUsuario.Text = curso.Creador;
+        etiquetaNombre.Text = creador.PrimerNombre + " " + creador.SegundoNombre + " " + creador.PrimerApellido + " " + creador.SegundoApellido; ;
+        etiquetaCorreo.Text = creador.CorreoInstitucional;
+        etiquetaArea.Text = curso.Area;
+        campoDescripcion.Text = curso.Descripcion;
+        imagenArea.Width = 32;
+        imagenArea.Height = 32;
+        imagenArea.ImageUrl = "~/Recursos/Imagenes/IconosAreas/" + curso.Area + ".png";
 
-            if (usuario == null)
+        if (usuario == null)
+        {
+            inscripcion = false;
+        }
+        else
+        {
+            inscripcion = gestorCursos.IsInscrito(usuario, curso);
+        }
+
+        if (!inscripcion)
+        {
+            botonInbox.Visible = false;
+            CajaComentarios.Visible = false;
+            etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
+            EstrellasPuntuacionCurso.Visible = false;
+
+        }
+        else
+        {
+
+
+
+            EPuntuacion puntuacion = gestorCursos.GetPuntuacion(usuario, curso);
+
+            if (puntuacion != null)
             {
-                inscripcion = false;
+
+                EstrellasPuntuacionCurso.Calificacion = puntuacion.Puntuacion;
+
             }
             else
             {
-                inscripcion = gestorCursos.IsInscrito(usuario, curso);
-            }
 
-            if (!inscripcion)
-            {
-                botonInbox.Visible = false;
-                CajaComentarios.Visible = false;
-                etiquetaComentarios.Text = "Debes inscribirte al curso para poder comentar y ver los comentarios";
-                EstrellasPuntuacionCurso.Visible = false;
-
-            }
-            else
-            {
-
-
-
-                EPuntuacion puntuacion = gestorCursos.GetPuntuacion(usuario, curso);
-
-                if (puntuacion != null)
-                {
-
-                    EstrellasPuntuacionCurso.Calificacion = puntuacion.Puntuacion;
-
-                }
-                else
-                {
-
-                    EstrellasPuntuacionCurso.Calificacion = 0;
-
-                }
-
+                EstrellasPuntuacionCurso.Calificacion = 0;
 
             }
 
 
-            if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-            {
-
-                botonInscribirse.Visible = false;
-
-            }
+        }
 
 
-            if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-            {
+        if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
 
-                botonInbox.Visible = false;
+            botonInscribirse.Visible = false;
+
+        }
 
 
-            }
+        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
+
+            botonInbox.Visible = false;
+
+
+        }
 
 
            
        
 
-            if (tablaTemas.Rows.Count == 0)
-            {
-
-                Literal sinTemas = new Literal();
-                sinTemas.Text = "Este curso no dispone de temas por el momento";
-                panelTemas.Controls.Clear();
-                panelTemas.Controls.Add(sinTemas);
-                panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
-            }
-
-
-            if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
-            {
-
-                botonInbox.Visible = false;
-                botonInscribirse.Visible = false;
-
-            }
-            else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
-            {
-
-                botonInscribirse.Visible = false;
-
-            }
-
-            tablaTemas.DataBind();
-        }
-        else
+        if (tablaTemas.Rows.Count == 0)
         {
-            Response.Redirect("~/Vistas/Home.aspx");
+
+            Literal sinTemas = new Literal();
+            sinTemas.Text = "Este curso no dispone de temas por el momento";
+            panelTemas.Controls.Clear();
+            panelTemas.Controls.Add(sinTemas);
+            panelTemas.Style.Add(HtmlTextWriterStyle.Padding, "50px");
         }
 
+
+        if (usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        {
+
+            botonInbox.Visible = false;
+            botonInscribirse.Visible = false;
+
+        }
+        else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
+        {
+
+            botonInscribirse.Visible = false;
+
+        }
+
+        tablaTemas.DataBind();
+        
+        
         if (Session["inscribiendose"] != null && (bool)Session["inscribiendose"])
         {
 

@@ -22,7 +22,7 @@
 
     <asp:ObjectDataSource ID="temarioDataSource" runat="server" SelectMethod="GetTemasConExamen" TypeName="GestionTemas">
         <SelectParameters>
-            <asp:SessionParameter Name="curso" SessionField="cursoSeleccionado" Type="Object" />
+            <asp:SessionParameter Name="curso" SessionField="cursoSeleccionadoParaCalificarExamen" Type="Object" />
         </SelectParameters>
     </asp:ObjectDataSource>
 

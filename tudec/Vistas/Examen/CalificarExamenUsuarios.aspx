@@ -26,7 +26,7 @@
 
         <asp:ObjectDataSource ID="usuariosDataSource1" runat="server" SelectMethod="GetUsuariosExamen" TypeName="DaoUsuario">
             <SelectParameters>
-                <asp:SessionParameter Name="tema" SessionField="temaSeleccionado" Type="Object" />
+                <asp:SessionParameter Name="tema" SessionField="temaSeleccionadoParaCalificarExamen" Type="Object" />
             </SelectParameters>
         </asp:ObjectDataSource>
 

@@ -9,6 +9,14 @@ public partial class Vistas_Cursos_VerMisNotas : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_VER_NOTAS];
+
+        if(curso == null)
+        {
+
+            Response.Redirect("~/Vistas/Home.aspx");
+
+        }
 
         tablaTemario.DataBind();
 

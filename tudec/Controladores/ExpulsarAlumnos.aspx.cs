@@ -10,6 +10,15 @@ public partial class Vistas_Cursos_ExpulsarAlumnos : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO_PARA_EXPULSAR_ALUMNOS];
+
+        if(curso == null)
+        {
+
+            Response.Redirect("~/Vistas/Home.aspx");
+
+        }
+
         tablaUsuarios.DataBind();
 
     }

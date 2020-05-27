@@ -14,28 +14,36 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        
+
         ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
-        if (tema != null)
+
+        if(tema == null)
         {
 
-            etiquetaCrearTema.Text = "Editar tema";
-            cajaTitulo.Text = tema.Titulo;
-            GestionExamen gestorExamenes = new GestionExamen();
-            EExamen examen = gestorExamenes.GetExamen(tema);
+            Response.Redirect("~/Vistas/Home.aspx");
 
-            bool existenciaExamen = false;
-
-            if(examen != null)
-            {
-
-                existenciaExamen = true;
-
-            }
-
-            Session["existenciaExamen"] = existenciaExamen;
-            
         }
+       
+
+        etiquetaCrearTema.Text = "Editar tema";
+        cajaTitulo.Text = tema.Titulo;
+        GestionExamen gestorExamenes = new GestionExamen();
+        EExamen examen = gestorExamenes.GetExamen(tema);
+
+        bool existenciaExamen = false;
+
+        if(examen != null)
+        {
+
+            existenciaExamen = true;
+
+        }
+
+        Session["existenciaExamen"] = existenciaExamen;
+            
+      
 
     }
 
