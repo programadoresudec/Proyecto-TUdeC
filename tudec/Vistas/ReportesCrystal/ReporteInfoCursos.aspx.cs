@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,10 +36,10 @@ public partial class Vistas_ReportesCrystal_ReporteInfoCursos : System.Web.UI.Pa
            fila = tablaCursos.NewRow();
 
             fila["nombre"] = curso.Nombre;
-            fila["area"] = curso.Area;
+            fila["area"] = File.ReadAllBytes(Server.MapPath("~/Recursos/Imagenes/IconosAreas/" + curso.Area  + ".jpg"));
             fila["fechaCreacion"] = curso.FechaCreacion;
             fila["fechaInicio"] = curso.FechaInicio;
-            fila["puntuacion"] = curso.Puntuacion;
+            fila["puntuacion"] = File.ReadAllBytes(Server.MapPath("~/Recursos/Imagenes/Estrellas/Estrellas" + curso.Puntuacion + ".jpg"));
             fila["nEstudiantes"] = gestorCursos.GetNumEstudiantes(curso);
           
             tablaCursos.Rows.Add(fila);
