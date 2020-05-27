@@ -14,7 +14,6 @@ public class EMensaje
     private string nombreDeUsuarioEmisor;
     private string nombreDeUsuarioReceptor;
     private string contenido;
-    private List<string> imagenes;
     private DateTime fecha;
     private int? idCurso;
     #endregion
@@ -29,8 +28,6 @@ public class EMensaje
     public string NombreDeUsuarioReceptor { get => nombreDeUsuarioReceptor; set => nombreDeUsuarioReceptor = value; }
     [Column("contenido")]
     public string Contenido { get => contenido; set => contenido = value; }
-    [Column("imagenes")]
-    public List<string> Imagenes { get => imagenes; set => imagenes = value; }
     [Column("fecha")]
     public DateTime Fecha { get => fecha; set => fecha = value; }
     [Column("id_curso")]

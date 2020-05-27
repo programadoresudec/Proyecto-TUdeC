@@ -15,6 +15,36 @@ public class GestionCurso
 
     }
 
+    public List<ECurso> GetCursos()
+    {
+
+        List<ECurso> cursos = db.TablaCursos.ToList();
+
+        return cursos;
+
+
+    }
+
+    public List<EArea> GetAreas()
+    {
+
+        List<EArea> areas = db.TablaAreas.ToList();
+
+        return areas;
+
+    }
+
+    public int GetNumEstudiantes(ECurso curso)
+    {
+
+        List<EInscripcionesCursos> inscripciones = db.TablaInscripciones.Where(x => x.IdCurso == curso.Id).ToList();
+
+        int numEstudiantes = inscripciones.Count;
+
+        return numEstudiantes;
+
+    }
+
     public EInscripcionesCursos GetInscripcion(EUsuario usuario, ECurso curso)
     {
         return db.TablaInscripciones.Where(x => x.NombreUsuario.Equals(usuario.NombreDeUsuario) && x.IdCurso == curso.Id).First();

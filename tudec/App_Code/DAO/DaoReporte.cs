@@ -44,7 +44,7 @@ public class DaoReporte
                     ImagenesComentario = x.rc == null ? null : x.rc.Imagenes,
                     IdMensaje = x.reporte.IdMensaje == null ? 0 : x.reporte.IdMensaje,
                     Mensaje = x.rm == null ? string.Empty : x.rm.Contenido,
-                    ImagenesMensaje = x.rm == null ? null : x.rm.Imagenes
+  
                 }
         ).OrderByDescending(x => x.Fecha).ToList();
     }
