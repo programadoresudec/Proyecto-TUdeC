@@ -38,12 +38,12 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
             TableCell celdaNombreCurso = fila.Cells[0];
             TableCell celdaArea = fila.Cells[1];
-            TableCell celdaCalificacion = fila.Cells[4];
-            TableCell celdaEditar = fila.Cells[5];
-            TableCell celdaEditarTema = fila.Cells[6];
-            TableCell celdaExpulsar = fila.Cells[7];
-            TableCell celdaCalificar = fila.Cells[8];
-            TableCell celdaChat = fila.Cells[9];
+            TableCell celdaCalificacion = fila.Cells[5];
+            TableCell celdaEditar = fila.Cells[6];
+            TableCell celdaEditarTema = fila.Cells[7];
+            TableCell celdaExpulsar = fila.Cells[8];
+            TableCell celdaCalificar = fila.Cells[9];
+            TableCell celdaChat = fila.Cells[10];
 
             string nombreArea = celdaArea.Text;
 
@@ -126,7 +126,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[7].Controls.Contains(boton))
+            if (fila.Cells[8].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
@@ -157,7 +157,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[5].Controls.Contains(boton))
+            if (fila.Cells[6].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
@@ -188,7 +188,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[6].Controls.Contains(boton))
+            if (fila.Cells[7].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
@@ -219,7 +219,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[8].Controls.Contains(boton))
+            if (fila.Cells[9].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;
@@ -285,7 +285,7 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
         foreach (GridViewRow fila in tablaCursos.Rows)
         {
 
-            if (fila.Cells[9].Controls.Contains(boton))
+            if (fila.Cells[10].Controls.Contains(boton))
             {
 
                 filaAEncontrar = fila;

@@ -27,7 +27,7 @@
                                     <i class="fa fa-search"></i>
                                 </div>
                             </div>
-                            <asp:TextBox CssClass=" form-control" ID="cajaBuscador" runat="server"
+                            <asp:TextBox CssClass="form-control" AutoPostBack="true" ID="cajaBuscador" runat="server"
                                 placeHolder="Nombre del curso"> </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false" ID="cajaBuscador_AutoCompleteExtender"
@@ -47,14 +47,14 @@
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosCreados" runat="server" placeHolder="Fecha de creación"
+                            <asp:TextBox ID="cajaFechaCreacion" AutoPostBack="true" ValidationGroup="FechaCursosCreados" runat="server" placeHolder="Fecha de creación"
                                 CssClass="form-control" />
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server"
                                 BehaviorID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" TargetControlID="cajaFechaCreacion" />
                         </div>
                         <br />
                         <div class="row">
-                            <asp:DropDownList ID="desplegableArea" runat="server" CssClass="form-control" DataSourceID="AreasSource"
+                            <asp:DropDownList ID="desplegableArea" runat="server" AutoPostBack="true" CssClass="form-control" DataSourceID="AreasSource"
                                 DataTextField="Area" DataValueField="Area">
                             </asp:DropDownList>
                             <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc"
@@ -62,7 +62,7 @@
                         </div>
                         <br />
                         <div class="row">
-                            <asp:DropDownList ID="desplegableEstado" runat="server" CssClass="form-control" DataSourceID="EstadosCursoSource"
+                            <asp:DropDownList ID="desplegableEstado" runat="server" AutoPostBack="true" CssClass="form-control" DataSourceID="EstadosCursoSource"
                                 DataTextField="Estado" DataValueField="Estado">
                             </asp:DropDownList>
                             <asp:ObjectDataSource ID="EstadosCursoSource" runat="server" SelectMethod="GetEstadosSrc"
@@ -93,6 +93,10 @@
                                 </asp:BoundField>
                                 <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha de<br/>Creación"
                                     SortExpression="FechaCreacion" HtmlEncode="False" DataFormatString="{0:dd/MM/yyyy}">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de<br/>Inicio"
+                                    SortExpression="FechaInicio" HtmlEncode="False" DataFormatString="{0:dd/MM/yyyy}">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>
                                 <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado">

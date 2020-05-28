@@ -28,7 +28,7 @@
                                     <i class="fa fa-search"></i>
                                 </div>
                             </div>
-                            <asp:TextBox CssClass=" form-control" ID="cajaBuscador" runat="server"
+                            <asp:TextBox CssClass=" form-control" AutoPostBack="true" ID="cajaBuscador" runat="server"
                                 placeHolder="Nombre del curso"> </asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false" ID="AutoCompleteExtender1"
@@ -48,18 +48,18 @@
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosInscritos" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
+                            <asp:TextBox ID="cajaFechaCreacion" AutoPostBack="true" ValidationGroup="FechaCursosInscritos" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
                         </div>
                         <br />
                         <div class="row">
-                            <asp:DropDownList ID="desplegableArea" runat="server" CssClass="form-control" DataTextField="Area" DataValueField="Area" DataSourceID="AreasSource">
+                            <asp:DropDownList ID="desplegableArea" AutoPostBack="true" runat="server" CssClass="form-control" DataTextField="Area" DataValueField="Area" DataSourceID="AreasSource">
                             </asp:DropDownList>
                             <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc" TypeName="GestionCurso"></asp:ObjectDataSource>
                         </div>
                         <br />
                         <div class="row">
-                            <asp:TextBox ID="cajaTutor" runat="server" CssClass="form-control" placeHolder="Nombre del tutor"></asp:TextBox>
+                            <asp:TextBox ID="cajaTutor" AutoPostBack="true" runat="server" CssClass="form-control" placeHolder="Nombre del tutor"></asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender
                                 ID="cajaTutor_AutoCompleteExtender"
                                 runat="server" CompletionListItemCssClass="alert-link"
@@ -91,7 +91,7 @@
                                 <asp:BoundField DataField="Area" HeaderText="Área del<br/>conocimiento" SortExpression="Area" HtmlEncode="false">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="FechaCreacion" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fecha de<br/>Creación" SortExpression="FechaCreacion" HtmlEncode="false">
+                                <asp:BoundField DataField="FechaInicio" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fecha de<br/>Inicio" SortExpression="FechaInicio" HtmlEncode="false">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>
                                 <asp:BoundField DataField="Creador" HeaderText="Tutor" SortExpression="Creador">

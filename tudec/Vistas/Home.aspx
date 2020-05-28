@@ -5,6 +5,20 @@
     <script>
 
         $(document).ready(function () {
+
+            var buzon = $find("<%=buzon_HtmlEditorExtender.ClientID%>");
+            buzon = buzon._editableDiv;
+
+            buzon.onkeydown = function (event) {
+
+                if (event.keyCode == 226) {
+
+                    return false;
+
+                }
+             
+            }
+
             $("#alertaSatisfactoria").hide();
             $("#alertaError").hide();
             $('#enviar').click(function () {

@@ -68,7 +68,7 @@
                                         <i>Área</i>
                                     </div>
                                 </div>
-                                <asp:DropDownList ID="desplegableArea" runat="server" CssClass="form-control" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
+                                <asp:DropDownList ID="desplegableArea" AutoPostBack="true" runat="server" CssClass="form-control" DataSourceID="AreasSource" DataTextField="Area" DataValueField="Area">
                                 </asp:DropDownList>
                                 <asp:ObjectDataSource ID="AreasSource" runat="server" SelectMethod="GetAreasSrc" TypeName="Buscador"></asp:ObjectDataSource>
                             </div>

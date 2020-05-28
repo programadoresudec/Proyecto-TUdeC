@@ -60,6 +60,11 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
         ETema tema = new ETema();
 
         tema.Titulo = titulo;
+
+        contenido = contenido.Replace("\n\n", "");
+
+        contenido = contenido.Replace("\n", "");
+
         tema.Informacion = contenido;
 
 
@@ -83,9 +88,12 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
 
         ETema tema = (ETema)HttpContext.Current.Session[Constantes.TEMA_SELECCIONADO];
 
+        tema.Titulo = titulo;
+
+        contenido = contenido.Replace("\n\n", "");
+
         contenido = contenido.Replace("\n", "");
 
-        tema.Titulo = titulo;
         tema.Informacion = contenido;
 
         Base.Actualizar(tema);

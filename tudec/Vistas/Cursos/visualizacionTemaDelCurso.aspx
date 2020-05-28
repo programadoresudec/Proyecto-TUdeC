@@ -31,7 +31,7 @@
                 
 
                    
-                    <asp:Panel style="text-align:left" ID="panelContenido" Width="60%" Height="500px" runat="server" BorderStyle="Solid"></asp:Panel>
+                    <asp:Panel style="text-align:left" ID="panelContenido" Width="60%" Height="500px" runat="server" BorderStyle="Solid" ScrollBars="Vertical"></asp:Panel>
 
                     
     

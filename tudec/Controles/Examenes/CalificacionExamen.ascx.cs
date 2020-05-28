@@ -695,6 +695,8 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
             etiquetaNota.Text = "Nota: " +  GetNotaPonderada();
 
+            Response.Redirect("~/Vistas/Examen/CalificarExamen.aspx");
+
         }
         else
         {
