@@ -49,9 +49,6 @@
 
                     var fechaPlazo = new Date(anioPlazo, mesPlazo - 1, diaPlazo, horaPlazo, minutoPlazo);
 
-                    alert("Fecha elegida: " + fechaElegida);
-                    alert("Fecha plazo: " + fechaPlazo);
-
                     if (fechaElegida > fechaPlazo) {
 
                         var datos = "{'examen':'" + Examen.getJSON() + "','fecha':'" + fecha.value + "','hora':'" + hora.value + "','minuto':'" + minuto.value + "','tituloTema':'" + tituloTema + "','contenidoTema':'" + contenidoTema + "','idCurso':'" + idCurso + "'} ";

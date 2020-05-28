@@ -133,13 +133,13 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                         if (indiceRespuestaCorrecta == indiceRespuestaMarcada)
                         {
 
-                            indicadorCorrecto.ImageUrl = "https://wisdom-trek.com/wp-content/uploads/2019/05/The-Correct-Answer-1.png";
+                            indicadorCorrecto.ImageUrl = "Correcto.png";
 
                         }
                         else
                         {
 
-                            indicadorCorrecto.ImageUrl = "https://cdn.clipart.email/e9c7c978dd890a610ef4b53eb7e78352_download-red-cross-clipart-wrong-answer-red-cross-clipart-png-_1600-1600.png";
+                            indicadorCorrecto.ImageUrl = "Incorrecto.png";
 
 
 
@@ -286,13 +286,13 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                         if (indicesRespuestasCorrectas.Contains(respuestas.IndexOf(respuesta)))
                         {
 
-                            indicadorCorrecto.ImageUrl = "https://wisdom-trek.com/wp-content/uploads/2019/05/The-Correct-Answer-1.png";
+                            indicadorCorrecto.ImageUrl = "Correcto.png";
 
                         }
                         else
                         {
 
-                            indicadorCorrecto.ImageUrl = "https://cdn.clipart.email/e9c7c978dd890a610ef4b53eb7e78352_download-red-cross-clipart-wrong-answer-red-cross-clipart-png-_1600-1600.png";
+                            indicadorCorrecto.ImageUrl = "Incorrecto.png";
 
 
 

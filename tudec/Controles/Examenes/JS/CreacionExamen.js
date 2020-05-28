@@ -155,8 +155,8 @@ class PreguntaMultipleUnicaRespuesta {
         for (contador = 0; contador < cantidadRespuestas; contador++) {
 
             var imagen = espaciosMarcar[contador].src;
-           
-            if (imagen == "https://image.flaticon.com/icons/png/512/9/9022.png") {
+
+            if (imagen.includes("puntoMarcacion.png")) {
 
                 indice = contador;
 
@@ -202,7 +202,7 @@ class PreguntaMultipleUnicaRespuesta {
         this.botonInsertarRespuesta.setAttribute("value", "Insertar respuesta");
         var botonEliminarPregunta = document.createElement("img");
         
-        botonEliminarPregunta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+        botonEliminarPregunta.src = "../../Controles/Examenes/JS/Eliminar.png";
         botonEliminarPregunta.width = 16;
 
         botonEliminarPregunta.addEventListener("click", function () {
@@ -224,7 +224,7 @@ class PreguntaMultipleUnicaRespuesta {
             celdita.style.paddingBottom = "1%";
 
             var nuevoEspacioMarcar = document.createElement("img");
-            nuevoEspacioMarcar.src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+            nuevoEspacioMarcar.src = "../../Controles/Examenes/JS/puntoBlanco.png";
             nuevoEspacioMarcar.width = 16;
 
             objetoSustituto.espaciosMarcar.push(nuevoEspacioMarcar);
@@ -233,7 +233,7 @@ class PreguntaMultipleUnicaRespuesta {
 
                 var indice = objetoSustituto.espaciosMarcar.indexOf(nuevoEspacioMarcar);
 
-                objetoSustituto.espaciosMarcar[indice].src = "https://image.flaticon.com/icons/png/512/9/9022.png";
+                objetoSustituto.espaciosMarcar[indice].src = "../../Controles/Examenes/JS/puntoMarcacion.png";
 
                 var contadorEspacios;
 
@@ -241,7 +241,7 @@ class PreguntaMultipleUnicaRespuesta {
 
                     if (contadorEspacios != indice) {
 
-                        objetoSustituto.espaciosMarcar[contadorEspacios].src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+                        objetoSustituto.espaciosMarcar[contadorEspacios].src = "../../Controles/Examenes/JS/puntoBlanco.png";
 
                     }
 
@@ -251,7 +251,7 @@ class PreguntaMultipleUnicaRespuesta {
 
             var nuevaCajaRespuesta = document.createElement("input");
             var botonEliminarRespuesta = document.createElement("img");
-            botonEliminarRespuesta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+            botonEliminarRespuesta.src = "../../Controles/Examenes/JS/Eliminar.png";
             botonEliminarRespuesta.width = 16;
          
             botonEliminarRespuesta.addEventListener("click", function () {
@@ -291,11 +291,11 @@ class PreguntaMultipleUnicaRespuesta {
 
         this.espaciosMarcar = [];
         var botonEspacioMarcar1 = document.createElement("img");
-        botonEspacioMarcar1.src = "https://image.flaticon.com/icons/png/512/9/9022.png";
+        botonEspacioMarcar1.src = "../../Controles/Examenes/JS/puntoMarcacion.png";
         botonEspacioMarcar1.width = 16;
 
         var botonEspacioMarcar2 = document.createElement("img");
-        botonEspacioMarcar2.src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+        botonEspacioMarcar2.src = "../../Controles/Examenes/JS/puntoBlanco.png";
         botonEspacioMarcar2.width = 16;
 
         this.espaciosMarcar.push(botonEspacioMarcar1);
@@ -304,7 +304,7 @@ class PreguntaMultipleUnicaRespuesta {
 
         this.espaciosMarcar[0].addEventListener("click", function () {
 
-            objetoSustituto.espaciosMarcar[0].src = "https://image.flaticon.com/icons/png/512/9/9022.png";
+            objetoSustituto.espaciosMarcar[0].src = "../../Controles/Examenes/JS/puntoMarcacion.png";
 
             var contadorEspacios;
 
@@ -312,7 +312,7 @@ class PreguntaMultipleUnicaRespuesta {
 
                 if (contadorEspacios != 0) {
 
-                    objetoSustituto.espaciosMarcar[contadorEspacios].src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+                    objetoSustituto.espaciosMarcar[contadorEspacios].src = "../../Controles/Examenes/JS/puntoBlanco.png";
 
                 }
 
@@ -322,7 +322,7 @@ class PreguntaMultipleUnicaRespuesta {
 
         this.espaciosMarcar[1].addEventListener("click", function () {
 
-            objetoSustituto.espaciosMarcar[1].src = "https://image.flaticon.com/icons/png/512/9/9022.png";
+            objetoSustituto.espaciosMarcar[1].src = "../../Controles/Examenes/JS/puntoMarcacion.png";
 
             var contadorEspacios;
 
@@ -330,7 +330,7 @@ class PreguntaMultipleUnicaRespuesta {
 
                 if (contadorEspacios != 1) {
 
-                    objetoSustituto.espaciosMarcar[contadorEspacios].src = "https://www.definicionabc.com/wp-content/uploads/círculo-300x300.png";
+                    objetoSustituto.espaciosMarcar[contadorEspacios].src = "../../Controles/Examenes/JS/puntoBlanco.png";
 
                 }
 
@@ -496,7 +496,7 @@ class PreguntaMultipleMultipleRespuesta {
         this.botonInsertarRespuesta.setAttribute("value", "Insertar respuesta");
         var botonEliminarPregunta = document.createElement("img");
 
-        botonEliminarPregunta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+        botonEliminarPregunta.src = "../../Controles/Examenes/JS/Eliminar.png";
         botonEliminarPregunta.width = 16;
 
         botonEliminarPregunta.addEventListener("click", function () {
@@ -524,7 +524,7 @@ class PreguntaMultipleMultipleRespuesta {
 
             var nuevaCajaRespuesta = document.createElement("input");
             var botonEliminarRespuesta = document.createElement("img");
-            botonEliminarRespuesta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+            botonEliminarRespuesta.src = "../../Controles/Examenes/JS/Eliminar.png";
             botonEliminarRespuesta.width = 16;
 
             botonEliminarRespuesta.addEventListener("click", function () {
@@ -679,7 +679,7 @@ class PreguntaAbierta {
         this.cajaPregunta.style.width = "95%";
 
         var botonEliminarPregunta = document.createElement("img");
-        botonEliminarPregunta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+        botonEliminarPregunta.src = "../../Controles/Examenes/JS/Eliminar.png";
         botonEliminarPregunta.width = 16;
 
         botonEliminarPregunta.addEventListener("click", function () {
@@ -801,7 +801,7 @@ class PreguntaArchivo{
         this.campoPeticion.style.height = "100px";
 
         var botonEliminarPregunta = document.createElement("img");
-        botonEliminarPregunta.src = "https://s3.us-east-2.amazonaws.com/upload-icon/uploads/icons/png/20518457671581426692-256.png";
+        botonEliminarPregunta.src = "../../Controles/Examenes/JS/Eliminar.png";
         botonEliminarPregunta.width = 16;
 
         botonEliminarPregunta.addEventListener("click", function () {

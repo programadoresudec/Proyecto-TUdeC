@@ -31,6 +31,11 @@ public class CreacionExamenServicio : System.Web.Services.WebService
 
         ETema tema = new ETema();
 
+
+        contenidoTema = contenidoTema.Replace("\n\n", "");
+
+        contenidoTema = contenidoTema.Replace("\n", "");
+
         tema.IdCurso = idCurso;
         tema.Titulo = tituloTema;
         tema.Informacion = contenidoTema;
