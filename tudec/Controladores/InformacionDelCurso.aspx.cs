@@ -28,7 +28,9 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
             : urlAnterior.ToString().Contains("InformacionDelCurso.aspx") 
-            ? "~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx" : urlAnterior.ToString();
+            ? "~/Vistas/Buscador/ListaDeResultadosDelBuscadorCursos.aspx" 
+            : urlAnterior.ToString().Contains("Chat.aspx") ? "~/Vistas/Cursos/ListaDeCursosInscritosDeLaCuenta.aspx"
+            : urlAnterior.ToString();
         creador = gestorUsuarios.GetUsuario(curso.Creador);
 
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
