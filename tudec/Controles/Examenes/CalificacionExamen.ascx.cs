@@ -24,7 +24,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
         GestionExamen gestorExamenes = new GestionExamen();
 
-        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
+        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN];
 
         EExamen examen = gestorExamenes.GetExamen(tema);
 

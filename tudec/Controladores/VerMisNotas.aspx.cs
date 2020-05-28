@@ -68,7 +68,7 @@ public partial class Vistas_Cursos_VerMisNotas : System.Web.UI.Page
 
         ETema tema = gestorTemas.GetTema(indiceTema);
 
-        Session[Constantes.TEMA_SELECCIONADO] = tema;
+        Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN] = tema;
 
         Session[Constantes.USUARIO_SELECCIONADO] = Session[Constantes.USUARIO_LOGEADO];
 

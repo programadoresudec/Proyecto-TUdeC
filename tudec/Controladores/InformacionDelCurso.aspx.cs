@@ -18,13 +18,22 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         DaoUsuario gestorUsuarios = new DaoUsuario();
         ECurso curso = (ECurso)Session[Constantes.CURSO_SELECCIONADO];
 
-        
         if(curso == null)
         {
 
             Response.Redirect("~/Vistas/Home.aspx");
 
         }
+
+        if (DateTime.Now >= curso.FechaInicio)
+        {
+
+            curso.Estado = "activo";
+            Base.Actualizar(curso);
+
+
+        }
+
 
         Hyperlink_Devolver.NavigateUrl = urlAnterior == null ? "~/Vistas/Home.aspx"
             : urlAnterior.ToString().Contains("InformacionDelCurso.aspx") 
@@ -105,10 +114,19 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
         }
 
 
-        if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario))
+        if (inscripcion || usuario == null || usuario.NombreDeUsuario.Equals(creador.NombreDeUsuario) || curso.Estado.Equals("en_espera"))
         {
 
             botonInscribirse.Visible = false;
+
+        }
+
+        if (curso.Estado.Equals("en_espera"))
+        {
+
+            etiquetaFechaInicio.Visible = true;
+            etiquetaFechaInicio.Text = "Fecha de inicio: " + curso.FechaInicio.ToString("dd/MM/yyyy");
+            
 
         }
 
