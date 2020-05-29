@@ -126,6 +126,10 @@
                                 NavigateUrl="~/Vistas/Account/Register.aspx">Registrarse</asp:HyperLink>
                         </li>
                         <li class="nav-item mb-auto mt-auto">
+                            <asp:LinkButton CssClass="nav-link mr-lg-2" ID="Manual" runat="server"
+                                OnClick="Manual_Click"><i class="fa fa-file-pdf mr-2"></i> Manual</asp:LinkButton>
+                        </li>
+                        <li class="nav-item mb-auto mt-auto">
                             <asp:HyperLink CssClass="nav-link mr-lg-auto" ID="AdministrarUser" runat="server"
                                 NavigateUrl="~/Vistas/Admin/GestionUsuarios.aspx" Visible="false">Gestionar
                                         <i class="fa fa-users"></i></asp:HyperLink>
