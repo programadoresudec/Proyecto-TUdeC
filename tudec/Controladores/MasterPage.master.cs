@@ -27,7 +27,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             {
                 HL_crystalCursosAreas.Visible = false;
                 HL_crystalInfoCursos.Visible = false;
-                HL_crystalAdmin = true;
+                HL_crystalAdmin.Visible = true;
                 PanelFooterUser.Visible = false;
                 PanelFooterAdmin.Visible = true;
                 acercaDeNosotros.Visible = false;
