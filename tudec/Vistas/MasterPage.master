@@ -101,6 +101,22 @@
                             <asp:HyperLink CssClass="nav-link" ID="acercaDeNosotros" runat="server"
                                 NavigateUrl="~/Vistas/AcercaDeNosotros/About.aspx">Acerca de nosotros</asp:HyperLink>
                         </li>
+
+
+                        <li class="nav-item dropdown mr-lg-2 mb-auto mt-auto">
+                            <asp:LinkButton Text="text" runat="server" CssClass="nav-link dropdown-toggle" ID="LinkButton1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Visible="true">Reportes
+                            </asp:LinkButton>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <asp:HyperLink CssClass="btn btn-outline-success" ID="HyperLink1" runat="server"
+                                    NavigateUrl="~/Vistas/ReportesCrystal/ReporteInfoCursos.aspx" Visible="true"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Información de cursos
+                                </asp:HyperLink>
+                                <asp:HyperLink CssClass="btn btn-outline-success" ID="HyperLink2" runat="server"
+                                    NavigateUrl="~/Vistas/ReportesCrystal/ReporteCursosAreas.aspx" Visible="true"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Cantidad de cursos por áreas
+                                </asp:HyperLink>
+                            </div>
+                        </li>
+
                         <li class="nav-item mb-auto mt-auto">
                             <asp:HyperLink CssClass="nav-link mr-lg-2" ID="iniciarSesion" runat="server"
                                 NavigateUrl="~/Vistas/Account/Login.aspx">Iniciar Sesión</asp:HyperLink>

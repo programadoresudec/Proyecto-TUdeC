@@ -127,7 +127,7 @@
                         <asp:TextBox ID="cajaTitulo" runat="server" Width="300px" CssClass="form-control"
                             placeHolder="Título"></asp:TextBox>
 
-                        <ajaxToolkit:FilteredTextBoxExtender runat="server" BehaviorID="cajaTitulo_FilteredTextBoxExtender" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ]"></ajaxToolkit:FilteredTextBoxExtender>
+                        <ajaxToolkit:FilteredTextBoxExtender runat="server" BehaviorID="cajaTitulo_FilteredTextBoxExtender" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]"></ajaxToolkit:FilteredTextBoxExtender>
                         <br />
                         <asp:TextBox ID="buzon" runat="server" Height="300px" Width="300px" CssClass="form-control">
                         </asp:TextBox>

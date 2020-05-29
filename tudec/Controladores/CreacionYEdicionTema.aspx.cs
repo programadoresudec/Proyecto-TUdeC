@@ -29,6 +29,8 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
 
         ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO];
 
+        Session["existenciaExamen"] = false;
+
         if (tema != null)
         {
 
@@ -49,7 +51,7 @@ public partial class Vistas_Cursos_CreacionYEdicionTema : System.Web.UI.Page
             Session["existenciaExamen"] = existenciaExamen;
 
         }
-
+       
     }
 
  
