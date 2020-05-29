@@ -25,6 +25,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             else if (usuario.Rol.Equals(Constantes.ROL_ADMIN))
             {
+                HL_crystalCursosAreas.Visible = false;
+                HL_crystalInfoCursos.Visible = false;
+                HL_crystalAdmin = true;
                 PanelFooterUser.Visible = false;
                 PanelFooterAdmin.Visible = true;
                 acercaDeNosotros.Visible = false;

@@ -68,4 +68,9 @@ public class DaoNotificacion
         }
         db.SaveChanges();
     }
+
+    public string buscarCurso(int? idCurso)
+    {
+        return db.TablaCursos.Where(x => x.Id == idCurso).Select(x => x.Nombre).First();
+    }
 }
