@@ -82,7 +82,7 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
             inscripcion = gestorCursos.IsInscrito(usuario, curso);
         }
 
-        if (!inscripcion)
+        if (!inscripcion && !creador.NombreDeUsuario.Equals(usuario.NombreDeUsuario))
         {
             botonInbox.Visible = false;
             CajaComentarios.Visible = false;
