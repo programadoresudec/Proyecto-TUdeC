@@ -9,7 +9,8 @@ using System.Drawing;
 
 public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 {
-
+    private EUsuario usuario;
+    private ETema tema;
     private List<DropDownList> desplegablesNotas = new List<DropDownList>();
     private EEjecucionExamen ejecucion;
     List<EPregunta> preguntas;
@@ -18,13 +19,13 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
     {
 
         bool isCalificando = (bool)Session[Constantes.CALIFICACION_EXAMEN];
-       
 
-        EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO];
+
+        usuario = (EUsuario)Session[Constantes.USUARIO_SELECCIONADO];
 
         GestionExamen gestorExamenes = new GestionExamen();
 
-        ETema tema = (ETema)Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN];
+        tema = (ETema)Session[Constantes.TEMA_SELECCIONADO_PARA_CALIFICAR_EXAMEN];
 
         EExamen examen = gestorExamenes.GetExamen(tema);
 
@@ -45,8 +46,8 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
         int minutos = examen.FechaFin.Minute;
         string textoMinutos = minutos.ToString();
-        
-        if(minutos < 10)
+
+        if (minutos < 10)
         {
 
             textoMinutos = textoMinutos.Insert(0, "0");
@@ -472,18 +473,18 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                 Label textoNota = new Label();
                 textoNota.Text = "Nota: " + notaJson.ToString();
 
-                if(notaPregunta == -1)
+                if (notaPregunta == -1)
                 {
 
                     celdaNota.Controls.Add(desplegableNota);
                     desplegablesNotas.Add(desplegableNota);
-                   
+
                 }
                 else
                 {
 
                     celdaNota.Controls.Add(textoNota);
-                    
+
 
                 }
 
@@ -532,7 +533,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                 int notaPregunta = Int32.Parse(notaJson.ToString());
 
 
-                if(notaPregunta == -1)
+                if (notaPregunta == -1)
                 {
 
                     hiperEnlaceArchivo.Text = respuestasJsonPregunta["Respuestas"][0].ToString();
@@ -561,7 +562,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingTop, "1%");
                 celdaPorcentaje.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
 
-               
+
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
@@ -588,7 +589,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
                 }
 
-                
+
                 Label textoNota = new Label();
                 textoNota.Text = "Nota: " + notaJson.ToString();
 
@@ -653,10 +654,10 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
         bool notasAsignadas = true;
 
 
-        foreach(DropDownList desplegable in desplegablesNotas)
+        foreach (DropDownList desplegable in desplegablesNotas)
         {
 
-            if(desplegable.Text == "Nota")
+            if (desplegable.Text == "Nota")
             {
 
                 notasAsignadas = false;
@@ -688,22 +689,28 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
             }
 
-       
+
             ejecucion.Calificacion = notasJson.ToString();
 
             Base.Actualizar(ejecucion);
 
-            etiquetaNota.Text = "Nota: " +  GetNotaPonderada();
+            etiquetaNota.Text = "Nota: " + GetNotaPonderada();
 
+
+            string nombreCurso = new DaoNotificacion().buscarCurso(tema.IdCurso);
+            ENotificacion notificacionDeMensajes = new ENotificacion();
+            notificacionDeMensajes.Estado = true;
+            notificacionDeMensajes.Fecha = DateTime.Now;
+            notificacionDeMensajes.NombreDeUsuario = usuario.NombreDeUsuario;
+            notificacionDeMensajes.Mensaje = "se ha calificado su examen. <br> Curso: <strong>"
+                + nombreCurso + "</strong>" + "  Tema: <strong>" + tema.Titulo + "</strong>";
+            Base.Insertar(notificacionDeMensajes);
             Response.Redirect("~/Vistas/Examen/CalificarExamen.aspx");
 
         }
         else
         {
-
             Response.Write("<script>alert('No ha calificado todas las preguntas');</script>");
-
-
         }
 
     }
@@ -729,7 +736,7 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
 
             double notaReemplazo = double.Parse(nota.ToString());
 
-            if(notaReemplazo == -1)
+            if (notaReemplazo == -1)
             {
 
                 notaReemplazo = 0;

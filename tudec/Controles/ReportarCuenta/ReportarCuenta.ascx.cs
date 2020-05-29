@@ -92,6 +92,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
                 notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
                 Base.Insertar(notificacionDeSugerencia);
                 CleanControl(this.Controls);
+                Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
             }
 
         }
@@ -124,6 +125,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
             Base.Insertar(notificacionDeSugerencia);
             CleanControl(this.Controls);
+            Response.Redirect("~/Vistas/Chat/Chat.aspx");
         }
     }
     public void CleanControl(ControlCollection controles)
