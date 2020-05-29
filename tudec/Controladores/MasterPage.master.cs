@@ -11,6 +11,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario != null)
         {
+            Manual.Visible = false;
             ImagenPerfil.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
             ImagenPerfil.Visible = true;
             ImagenPerfil.DataBind();
@@ -74,5 +75,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session[Constantes.CURSO_SELECCIONADO_PARA_EDITAR] = null;
         Response.Redirect("~/Vistas/Cursos/CreacionYEdicionCurso.aspx");
 
+    }
+
+    protected void Manual_Click(object sender, EventArgs e)
+    {
+        Response.Write("<script> window.open('" + Constantes.MANUAL + "','_blank'); </script>");
     }
 }

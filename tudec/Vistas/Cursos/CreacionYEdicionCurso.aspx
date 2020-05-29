@@ -30,7 +30,7 @@
                     <div class="col input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <i class="fas fa-heading">
+                                <i class="fas fa">
                                     <label>Título</label>
                                 </i>
                             </div>

@@ -21,9 +21,9 @@
         </div>
         <div class="row justify-content-center mt-5 mb-5">
             <asp:Label ID="LB_TieneNotificaciones" runat="server" Visible="false"
-                CssClass="text-capitalize text-center p-4 font-weight-bold alertHome alert-info"
+                CssClass="text-center p-4 text-dark font-weight-bold"
                 Style="font-size: 40px !important">
-        <strong>NO Tiene Notificaciones Por Ahora.</strong>
+        <strong>No tiene notificaciones por ahora.</strong>
             </asp:Label>
         </div>
         <asp:DataList ID="DL_Notificaciones" runat="server" DataSourceID="ODS_Notificaciones">
