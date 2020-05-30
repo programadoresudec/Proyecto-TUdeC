@@ -43,7 +43,7 @@ public static class Constantes
     public const string MOTIVO_5 = "Ofender Grupo";
     public const int PUNTUACION_MAXIMA_PARA_SER_BLOQUEADO = 20;
     public const int LONGITUD_CODIGO = 6;
-    public const string MANUAL = "../Manual/Manual.pdf";
+    public const string MANUAL = "../Manual/Manual de Usuario.pdf";
     #endregion
     #region Constantes De SESSION
     /// <summary>
