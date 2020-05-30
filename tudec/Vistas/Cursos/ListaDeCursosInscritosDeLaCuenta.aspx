@@ -48,7 +48,7 @@
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <asp:TextBox ID="cajaFechaCreacion" AutoPostBack="true" ValidationGroup="FechaCursosInscritos" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
+                            <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosInscritos" CssClass="form-control" runat="server" placeHolder="Fecha de creación"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" runat="server" BehaviorID="cajaFechaCreacion_CalendarExtender" TargetControlID="cajaFechaCreacion" />
                         </div>
                         <br />

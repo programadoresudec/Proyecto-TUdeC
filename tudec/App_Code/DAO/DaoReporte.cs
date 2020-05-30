@@ -52,7 +52,7 @@ public class DaoReporte
     public List<EReporte> reportesVistos(string nombreUsuario)
     {
         return (from reporte in db.TablaReportes
-                where reporte.NombreDeUsuarioDenunciado.ToLower().Equals(nombreUsuario.ToLower()) && reporte.Estado == false
+                where reporte.NombreDeUsuarioDenunciado.ToLower().Equals(nombreUsuario.ToLower()) && reporte.Estado == true
                 select new
                 {
                     reporte

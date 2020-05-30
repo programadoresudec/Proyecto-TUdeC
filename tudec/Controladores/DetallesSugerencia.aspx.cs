@@ -25,7 +25,7 @@ public partial class Vistas_DetallesSugerencia : System.Web.UI.Page
             }
             else
             {
-                imagenUsuario.ImageUrl = new DaoUsuario().buscarImagen(usuario.NombreDeUsuario);
+                imagenUsuario.ImageUrl = new DaoUsuario().buscarImagen(sugerencia.Emisor);
             }
             sugerencia.Estado = true;
             Base.Actualizar(sugerencia);

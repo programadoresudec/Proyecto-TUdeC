@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Cursos Creados" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/ListaDeCursosCreadosDeLaCuenta.aspx.cs" Inherits="Vistas_ListaDeCursosDeLaCuenta" %>
+
 <%@ Register Src="~/Controles/Estrellas/Estrellas.ascx" TagPrefix="uc1" TagName="Estrellas" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContentMaster" runat="Server">
@@ -12,11 +13,11 @@
             <div class="col-lg-auto mb-5">
                 <div class="row justify-content-center">
                     <div class="col">
-                    <asp:LinkButton CssClass="btn botonPulsado btn-block mr-2 disabled" ID="botonCreados" runat="server" Text="Creados" />
+                        <asp:LinkButton CssClass="btn botonPulsado btn-block mr-2 disabled" ID="botonCreados" runat="server" Text="Creados" />
                     </div>
                     <div class="col">
-                         <asp:LinkButton CssClass="btn btn-outline-dark btn-block botones mr-2" ID="botonInscritos" runat="server" Text="Inscritos"
-                        OnClick="botonInscritos_Click" />
+                        <asp:LinkButton CssClass="btn btn-outline-dark btn-block botones mr-2" ID="botonInscritos" runat="server" Text="Inscritos"
+                            OnClick="botonInscritos_Click" />
                     </div>
                 </div>
                 <div class="card mt-4">
@@ -28,7 +29,7 @@
                                 </div>
                             </div>
                             <asp:TextBox CssClass="form-control" AutoPostBack="true" ID="cajaBuscador" runat="server"
-                                placeHolder="Nombre del curso"> </asp:TextBox>
+                                placeHolder="Nombre del curso"></asp:TextBox>
                             <ajaxToolkit:AutoCompleteExtender MinimumPrefixLength="1" CompletionInterval="10"
                                 CompletionSetCount="1" FirstRowSelected="false" ID="cajaBuscador_AutoCompleteExtender"
                                 runat="server" ServiceMethod="GetNombresCursos" TargetControlID="cajaBuscador" />
@@ -36,10 +37,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">
-                             <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
-                        runat="server" ErrorMessage="Ingrese una fecha valida." ValidationGroup="FechaCursosCreados"
-                        ControlToValidate="cajaFechaCreacion" Display="Dynamic" CssClass="alertHome alert-danger"
-                        ValidationExpression="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorNombreUsuario"
+                                runat="server" ErrorMessage="Ingrese una fecha valida." ValidationGroup="FechaCursosCreados"
+                                ControlToValidate="cajaFechaCreacion" Display="Dynamic" CssClass="alertHome alert-danger"
+                                ValidationExpression="^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$" />
                         </div>
                         <div class="col input-group">
                             <div class="input-group-prepend">
@@ -47,7 +48,7 @@
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
-                            <asp:TextBox ID="cajaFechaCreacion" AutoPostBack="true" ValidationGroup="FechaCursosCreados" runat="server" placeHolder="Fecha de creación"
+                            <asp:TextBox ID="cajaFechaCreacion" ValidationGroup="FechaCursosCreados" runat="server" placeHolder="Fecha de creación"
                                 CssClass="form-control" />
                             <ajaxToolkit:CalendarExtender ID="cajaFechaCreacion_CalendarExtender" runat="server"
                                 BehaviorID="cajaFechaCreacion_CalendarExtender" Format="dd/MM/yyyy" TargetControlID="cajaFechaCreacion" />
@@ -71,7 +72,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <asp:LinkButton CssClass="btn btn-info" ID="botonFiltrar" ValidationGroup="FechaCursosCreados" Width="50%"  runat="server">
+                    <asp:LinkButton CssClass="btn btn-info" ID="botonFiltrar" ValidationGroup="FechaCursosCreados" Width="50%" runat="server">
                             <i class="fa fa-filter mr-2"></i>Filtrar
                     </asp:LinkButton>
                 </div>

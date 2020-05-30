@@ -73,6 +73,9 @@
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                     <asp:UpdatePanel ID="panelActualizar" runat="server" UpdateMode="Conditional">
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="temporizador" EventName="Tick" />
+                                        </Triggers>
                                         <ContentTemplate>
                                             <asp:Timer ID="temporizador" OnTick="temporizador_Tick" Interval="3000" runat="server"></asp:Timer>
                                         </ContentTemplate>
