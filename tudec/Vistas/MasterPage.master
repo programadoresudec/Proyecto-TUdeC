@@ -115,7 +115,7 @@
                                     NavigateUrl="~/Vistas/ReportesCrystal/ReporteCursosAreas.aspx" Visible="true"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Cantidad de cursos por áreas
                                 </asp:HyperLink>
                                 <asp:HyperLink CssClass="btn btn-outline-success" ID="HL_crystalAdmin" runat="server"
-                                    NavigateUrl="~/Vistas/ReportesCrystal/ReporteCursosAreas.aspx" Visible="false"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Cantidad de cursos por áreas
+                                    NavigateUrl="~/Vistas/ReportesCrystal/ReporteAdmin.aspx" Visible="false"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Reportes Vistos-Aceptados
                                 </asp:HyperLink>
                             </div>
                         </li>

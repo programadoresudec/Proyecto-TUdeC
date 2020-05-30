@@ -44,9 +44,27 @@ public class DaoReporte
                     ImagenesComentario = x.rc == null ? null : x.rc.Imagenes,
                     IdMensaje = x.reporte.IdMensaje == null ? 0 : x.reporte.IdMensaje,
                     Mensaje = x.rm == null ? string.Empty : x.rm.Contenido,
-  
+
                 }
         ).OrderByDescending(x => x.Fecha).ToList();
+    }
+
+    public List<EReporte> reportesVistos(string nombreUsuario)
+    {
+        return (from reporte in db.TablaReportes
+                where reporte.NombreDeUsuarioDenunciado.ToLower().Equals(nombreUsuario.ToLower()) && reporte.Estado == false
+                select new
+                {
+                    reporte
+
+                }).ToList().Select(x => new EReporte
+                {
+                    MotivoDelReporte = x.reporte.MotivoDelReporte,
+                    Descripcion = x.reporte.Descripcion,
+                    NombreDeUsuarioDenunciado = x.reporte.NombreDeUsuarioDenunciado,
+                    NombreDeUsuarioDenunciante = x.reporte.NombreDeUsuarioDenunciante,
+                    Fecha = x.reporte.Fecha
+                }).ToList();
     }
 
     public void desbloquearUsuario(string usuario)

@@ -11,12 +11,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
         <CR:CrystalReportSource ID="sourceReporte" runat="server">
             <Report FileName="..\..\Crystal\CursosAreas.rpt">
             </Report>
         </CR:CrystalReportSource>
-
         <CR:CrystalReportViewer ID="viewerReporte" runat="server" AutoDataBind="true" ReportSourceID="sourceReporte" />
     </form>
 </body>

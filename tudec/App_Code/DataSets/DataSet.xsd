@@ -32,6 +32,17 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Usuario" msprop:Generator_TableClassName="UsuarioDataTable" msprop:Generator_TableVarName="tableUsuario" msprop:Generator_RowChangedName="UsuarioRowChanged" msprop:Generator_TablePropName="Usuario" msprop:Generator_RowDeletingName="UsuarioRowDeleting" msprop:Generator_RowChangingName="UsuarioRowChanging" msprop:Generator_RowEvHandlerName="UsuarioRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuarioRowDeleted" msprop:Generator_RowClassName="UsuarioRow" msprop:Generator_UserTableName="Usuario" msprop:Generator_RowEvArgName="UsuarioRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="usuarioDenunciado" msprop:Generator_ColumnVarNameInTable="columnusuarioDenunciado" msprop:Generator_ColumnPropNameInRow="usuarioDenunciado" msprop:Generator_ColumnPropNameInTable="usuarioDenunciadoColumn" msprop:Generator_UserColumnName="usuarioDenunciado" type="xs:string" minOccurs="0" />
+              <xs:element name="usuarioDenunciante" msprop:Generator_ColumnVarNameInTable="columnusuarioDenunciante" msprop:Generator_ColumnPropNameInRow="usuarioDenunciante" msprop:Generator_ColumnPropNameInTable="usuarioDenuncianteColumn" msprop:Generator_UserColumnName="usuarioDenunciante" type="xs:string" minOccurs="0" />
+              <xs:element name="Motivo" msprop:Generator_ColumnVarNameInTable="columnMotivo" msprop:Generator_ColumnPropNameInRow="Motivo" msprop:Generator_ColumnPropNameInTable="MotivoColumn" msprop:Generator_UserColumnName="Motivo" type="xs:string" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaReporte" msprop:Generator_ColumnVarNameInTable="columnFechaReporte" msprop:Generator_ColumnPropNameInRow="FechaReporte" msprop:Generator_ColumnPropNameInTable="FechaReporteColumn" msprop:Generator_UserColumnName="FechaReporte" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>
