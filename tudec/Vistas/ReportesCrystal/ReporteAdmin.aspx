@@ -7,7 +7,9 @@
     <br />
     <br />
     <br />
-    <div class="container mt-5 mb-5" style="padding-bottom:12%">
+    <br />
+    <br />
+    <div class="container mt-5 mb-5" padding-bottom:20%">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-6">
                 <div class="row">
@@ -20,13 +22,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5 mb-5">
             <CR:CrystalReportSource ID="sourceReporteAdmin" runat="server">
                 <Report FileName="..\..\Crystal\ReporteAdmin.rpt">
                 </Report>
             </CR:CrystalReportSource>
             <CR:CrystalReportViewer ID="CRV_Admin" Visible="false" runat="server" AutoDataBind="true" ReportSourceID="sourceReporteAdmin" />
-
         </div>
     </div>
 </asp:Content>
