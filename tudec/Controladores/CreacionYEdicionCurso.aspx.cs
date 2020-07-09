@@ -110,7 +110,7 @@ public partial class Vistas_Cursos_CreacionYEdicionCurso : System.Web.UI.Page
                 do
                 {
                     codigo = Reutilizables.generarCodigoCurso();
-                    validar = new GestionCurso().existeCodigoCurso(codigo);
+                    validar = new GestionCurso().ExisteCodigoCurso(codigo);
                 } while (validar != false);
 
                 curso.CodigoInscripcion = codigo;

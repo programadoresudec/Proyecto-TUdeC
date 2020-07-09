@@ -140,6 +140,10 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
         }
 
+        if (!IsPostBack)
+        {
+            Session.Contents.Remove("inscribiendose");
+        }
     }
 
     protected void tablaTemas_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -217,8 +221,16 @@ public partial class Vistas_Cursos_InformacionDelCurso : System.Web.UI.Page
 
     protected void botonInscribirse_Click(object sender, EventArgs e)
     {
-        MostrarModal();
-        Session["inscribiendose"] = true;
+
+        if (Session["inscribiendose"] == null)
+        {
+            MostrarModal();
+            Session["inscribiendose"] = true;
+        }
+        else
+        {
+            return;
+        }
     }
 
     protected void botonInbox_Click(object sender, EventArgs e)

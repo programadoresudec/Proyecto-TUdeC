@@ -12,7 +12,6 @@ public partial class Vistas_ListaDeCursosInscritosDeLaCuenta : System.Web.UI.Pag
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        cajaFechaCreacion_CalendarExtender.EndDate = DateTime.Now;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario == null)
         {

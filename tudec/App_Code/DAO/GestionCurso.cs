@@ -9,7 +9,7 @@ using System.Web;
 /// </summary>
 public class GestionCurso
 {
-    private Base db = new Base();
+    private readonly Base db = new Base();
     public GestionCurso()
     {
 
@@ -99,8 +99,7 @@ public class GestionCurso
             {
                 fechaCreacion = "";
             }
-            nombre = nombre == null ? "" : nombre;
-
+            nombre = nombre ?? "";
             cursos = db.TablaCursos.Where(x => x.Creador.Equals(usuario.NombreDeUsuario)
                 && (nombre.Equals("") || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("")
                 || x.FechaCreacion.Equals(fecha)) && (area.Equals("Área del conocimiento")
@@ -135,9 +134,9 @@ public class GestionCurso
             {
                 fechaCreacion = "";
             }
-            nombre = nombre == null ? "" : nombre;
-            tutor = tutor == null ? "" : tutor;
-            cursos = cursos.Where(x => (tutor.Equals("") || x.Creador.Equals(tutor)) && (nombre.Equals("") 
+            nombre = nombre ?? "";
+            tutor = tutor ?? "";
+            cursos = cursos.Where(x => (tutor.Equals("") || x.Creador.Equals(tutor)) && (nombre.Equals("")
             || x.Nombre.Equals(nombre)) && (fechaCreacion.Equals("") || x.FechaCreacion.Equals(fecha))
                 && (area.Equals("Área del conocimiento") || x.Area.Equals(area))).ToList();
         }
@@ -149,8 +148,10 @@ public class GestionCurso
 
         List<EArea> areas = db.TablaAreas.ToList();
 
-        EArea areaPorDefecto = new EArea();
-        areaPorDefecto.Area = "Área del conocimiento";
+        EArea areaPorDefecto = new EArea
+        {
+            Area = "Área del conocimiento"
+        };
 
         areas.Insert(0, areaPorDefecto);
 
@@ -163,8 +164,10 @@ public class GestionCurso
 
         List<EEstadosCurso> estados = db.TablaEstados.ToList();
 
-        EEstadosCurso estadoPorDefecto = new EEstadosCurso();
-        estadoPorDefecto.Estado = "Estado";
+        EEstadosCurso estadoPorDefecto = new EEstadosCurso
+        {
+            Estado = "Estado"
+        };
 
         estados.Insert(0, estadoPorDefecto);
 
@@ -219,6 +222,10 @@ public class GestionCurso
 
     public List<string> GetTutoresSrc(EUsuario usuario, string nombre)
     {
+        if (nombre is null)
+        {
+            throw new ArgumentNullException(nameof(nombre));
+        }
 
         List<ECurso> cursos = new List<ECurso>();
         List<string> nombresTutores = new List<string>();
@@ -271,7 +278,7 @@ public class GestionCurso
     /// </summary>
     /// <param name="codigo"></param>
     /// <returns></returns>
-    public bool existeCodigoCurso(string codigo)
+    public bool ExisteCodigoCurso(string codigo)
     {
         return db.TablaCursos.Any(x => x.CodigoInscripcion.Equals(codigo));
     }

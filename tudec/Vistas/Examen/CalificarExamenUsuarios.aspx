@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="CalificarExamenUsuarios.aspx.cs" Inherits="Vistas_Examen_CalificarExamenUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/CalificarExamenUsuarios.aspx.cs" Inherits="Vistas_Examen_CalificarExamenUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

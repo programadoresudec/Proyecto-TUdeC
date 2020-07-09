@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="~/App_Themes/Master/css/style.css" type="text/css" media="all" />
     <!-- Font-Awesome-Icons-CSS -->
     <link rel="stylesheet" href="~/App_Themes/Master/css/fontawesome-all.css">
+    <link rel="stylesheet" href="~/App_Themes/Master/SweetAlert/sweetalert.css">
     <!-- Web-Fonts -->
     <link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
@@ -54,6 +55,8 @@
                 <asp:ScriptReference Path="~/App_Themes/Master/js/move-top.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/easing.js" />
                 <asp:ScriptReference Path="~/App_Themes/Master/js/bootstrap.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/SweetAlert/sweetalert.js" />
+                <asp:ScriptReference Path="~/App_Themes/Master/SweetAlert/sweetalert.min.js" />
             </Scripts>
         </asp:ScriptManager>
         <!-- //SCRIPTS FINAL -->

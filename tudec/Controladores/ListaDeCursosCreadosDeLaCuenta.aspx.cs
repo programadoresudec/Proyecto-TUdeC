@@ -13,7 +13,6 @@ public partial class Vistas_ListaDeCursosDeLaCuenta : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        cajaFechaCreacion_CalendarExtender.EndDate = DateTime.Now;
         usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
         if (usuario == null)
         {

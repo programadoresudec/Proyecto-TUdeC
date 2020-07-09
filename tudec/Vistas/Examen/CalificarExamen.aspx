@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="CalificarExamen.aspx.cs" Inherits="Vistas_Examen_CalificarExamen" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vistas/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controladores/CalificarExamen.aspx.cs" Inherits="Vistas_Examen_CalificarExamen" %>
 
 <%@ Register Src="~/Controles/Examenes/CalificacionExamen.ascx" TagPrefix="uc1" TagName="CalificacionExamen" %>
 

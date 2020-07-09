@@ -25,7 +25,6 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session[Constantes.USUARIO_LOGEADO] != null)
         {
             usuarioDenunciante = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
@@ -47,10 +46,12 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
         if (comentarios != null)
         {
+            ModalBloquearUsuario.Hide();
             Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
         }
         else if (mensajes != null)
         {
+            ModalBloquearUsuario.Hide();
             Response.Redirect("~/Vistas/Chat/Chat.aspx");
         }
 
@@ -58,10 +59,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
 
     protected void btnEnviar_Click(object sender, EventArgs e)
     {
-        string admin = new DaoNotificacion().buscarNombreAdministrador();
-        EReporte reportes = new EReporte();
-        comentarios = new GestionComentarios().GetComentario(IdComentario);
-        EMensaje chat = new EMensaje();
+        ClientScriptManager cs = Page.ClientScript;
         if (usuarioDenunciante != null && comentarios != null)
         {
             if (DDL_MotivoReporte.SelectedItem.Text.Equals("Motivo"))
@@ -73,29 +71,14 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             }
             else
             {
-                reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
-                reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
-                reportes.IdComentario = comentarios.Id;
-                reportes.NombreDeUsuarioDenunciado = comentarios.Emisor;
-                reportes.Descripcion = TB_Descripcion.Text;
-                reportes.Fecha = DateTime.Now;
-                Base.Insertar(reportes);
-                LB_validar.CssClass = "alert alert-success";
-                LB_validar.Text = "Su reporte se ha enviado.";
-                LB_validar.Visible = true;
-
-                admin = new DaoNotificacion().buscarNombreAdministrador();
-                notificacionDeSugerencia = new ENotificacion();
-                notificacionDeSugerencia.Estado = true;
-                notificacionDeSugerencia.Fecha = reportes.Fecha;
-                notificacionDeSugerencia.NombreDeUsuario = admin;
-                notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
-                Base.Insertar(notificacionDeSugerencia);
-                CleanControl(this.Controls);
+                agregarReporte("comentarios");
+                ModalBloquearUsuario.Hide();
+                Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
+                cs.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Reporte Enviado!', 'Se realizo proceso con exito!', 'success')  </script>");
             }
 
         }
-        else if (mensajes!= null)
+        else if (mensajes != null)
         {
             if (DDL_MotivoReporte.SelectedItem.Text.Equals("Motivo"))
             {
@@ -104,6 +87,32 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
                 LB_validar.Visible = true;
                 return;
             }
+            else
+            {
+                agregarReporte("mensajes");
+                ModalBloquearUsuario.Hide();
+                Response.Redirect("~/Vistas/Chat/Chat.aspx");
+                cs.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Reporte Enviado!', 'Se realizo proceso con exito!', 'success') </script>");
+            }
+        }
+    }
+    protected void agregarReporte(string tipoDeReporte)
+    {
+        EReporte reportes = new EReporte();
+        comentarios = new GestionComentarios().GetComentario(IdComentario);
+        if (tipoDeReporte.Equals("comentarios"))
+        {
+            reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
+            reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
+            reportes.IdComentario = comentarios.Id;
+            reportes.NombreDeUsuarioDenunciado = comentarios.Emisor;
+            reportes.Descripcion = TB_Descripcion.Text;
+            reportes.Fecha = DateTime.Now;
+            Base.Insertar(reportes);
+            agregarNotificacion(reportes.Fecha, reportes.NombreDeUsuarioDenunciado);
+        }
+        else if (tipoDeReporte.Equals("mensajes"))
+        {
             reportes.NombreDeUsuarioDenunciante = usuarioDenunciante.NombreDeUsuario;
             reportes.MotivoDelReporte = DDL_MotivoReporte.SelectedItem.Text;
             reportes.NombreDeUsuarioDenunciado = mensajes.NombreDeUsuarioEmisor;
@@ -112,30 +121,23 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             reportes.Mensaje = mensajes.Contenido;
             reportes.Fecha = DateTime.Now;
             Base.Insertar(reportes);
-            LB_validar.CssClass = "alert alert-success";
-            LB_validar.Text = "Su reporte se ha enviado.";
-            LB_validar.Visible = true;
-
-            admin = new DaoNotificacion().buscarNombreAdministrador();
-            notificacionDeSugerencia = new ENotificacion();
-            notificacionDeSugerencia.Estado = true;
-            notificacionDeSugerencia.Fecha = reportes.Fecha;
-            notificacionDeSugerencia.NombreDeUsuario = admin;
-            notificacionDeSugerencia.Mensaje = "Se ha reportado un usuario.";
-            Base.Insertar(notificacionDeSugerencia);
-            CleanControl(this.Controls);
+            agregarNotificacion(reportes.Fecha, reportes.NombreDeUsuarioDenunciado);
         }
-    }
-    public void CleanControl(ControlCollection controles)
-    {
-        foreach (Control control in controles)
+        else
         {
-            if (control is TextBox)
-                ((TextBox)control).Text = string.Empty;
-            else if (control.HasControls())
-                //Esta linea detécta un Control que contenga otros Controles
-                //Así ningún control se quedará sin ser limpiado.
-                CleanControl(control.Controls);
+            return;
         }
+
+    }
+
+    protected void agregarNotificacion(DateTime fecha, string nombreDeUsuarioDenunciado)
+    {
+        string admin = new DaoNotificacion().buscarNombreAdministrador();
+        notificacionDeSugerencia = new ENotificacion();
+        notificacionDeSugerencia.Estado = true;
+        notificacionDeSugerencia.Fecha = fecha;
+        notificacionDeSugerencia.NombreDeUsuario = admin;
+        notificacionDeSugerencia.Mensaje = "Se ha reportado el usuario <strong>" + nombreDeUsuarioDenunciado + "<strong>";
+        Base.Insertar(notificacionDeSugerencia);
     }
 }

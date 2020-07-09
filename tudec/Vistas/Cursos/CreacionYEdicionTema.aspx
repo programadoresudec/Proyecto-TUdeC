@@ -33,9 +33,6 @@
         .ajax__html_editor_extender_popupDiv {
             display: none;
         }
-
-       
-
     </style>
 
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -63,14 +60,14 @@
         {%>
 
 
-                var botonCrear = document.getElementById("botonCrearTema");
-                botonCrear.value = "Editar tema";
-                
+            var botonCrear = document.getElementById("botonCrearTema");
+            botonCrear.value = "Editar tema";
 
-                var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"", "\\\"")%>';
-                
 
-                CKEDITOR.instances.editor.setData(contenido);
+            var contenido = '<%=((ETema)Session[Constantes.TEMA_SELECCIONADO]).Informacion.Replace("\"", "\\\"")%>';
+
+
+            CKEDITOR.instances.editor.setData(contenido);
 
             <%}%>
 
@@ -118,9 +115,20 @@
 
                             });
 
-                            alert("Se ha editado el tema");
+                            swal({
+                                title: "Satisfactorio.",
+                                text: "Se ha editado el tema.",
+                                type: "success",
+                                confirmButtonClass: "btn-success",
+                                showLoaderOnConfirm: true,
+                                closeOnConfirm: false
+                            }, function () {
+                                setTimeout(function () {
+                                    window.location.href = "ListaDeTemasDelCurso.aspx"
+                                }, 1000);
+                            });
 
-                            window.location.href = "ListaDeTemasDelCurso.aspx"
+
 
 
                         } else {
@@ -159,20 +167,36 @@
 
                             } else {
 
-                                alert("Se ha creado el tema");
-                                window.location.href = "ListaDeTemasDelCurso.aspx"
+                                swal({
+                                    title: "Satisfactorio.",
+                                    text: "Se ha creado el tema.",
+                                    type: "success",
+                                    confirmButtonClass: "btn-success",
+                                    showLoaderOnConfirm: true,
+                                    closeOnConfirm: false
+                                }, function () {
+                                    setTimeout(function () {
+                                        window.location.href = "ListaDeTemasDelCurso.aspx"
+                                    }, 1000);
+                                });
 
                             }
                         }
 
                     } else {
 
-                        alert("El tema debe tener un título");
+                        swal({
+                            title: "Error",
+                            text: "El Tema debe tener un titulo",
+                            type: "error",
+                            confirmButtonClass: "btn-danger",
+                            closeOnConfirm: false
+                        });
 
                     }
                 }
                 else {
-                    window.location.href="Vistas/Home.aspx"
+                    window.location.href = "Vistas/Home.aspx"
                 }
 
             });
@@ -196,7 +220,7 @@
 
                     panel.style.display = "contents";
 
-                   
+
 
 
                 } else {
@@ -204,7 +228,7 @@
                     panel.append(herramientaExamen);
 
                 }
-                
+
 
             } else {
 
@@ -222,19 +246,15 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentMaster" runat="Server">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div style="display: none">
+        <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
+    </div>
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <div style="display:none">
-
-    <uc1:CreacionExamen runat="server" ID="CreacionExamen" />
-
-        </div>
-   
     <table class="auto-style1">
         <tr>
             <td>
@@ -252,16 +272,16 @@
            
                     </center>
 
-                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]" ></ajaxToolkit:FilteredTextBoxExtender>
-        
+                <ajaxToolkit:FilteredTextBoxExtender runat="server" TargetControlID="cajaTitulo" ID="cajaTitulo_FilteredTextBoxExtender" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" FilterMode="ValidChars" ValidChars="[ñÑáéíóúÁÉÍÓÚ ]"></ajaxToolkit:FilteredTextBoxExtender>
+
             </td>
         </tr>
-       
-        
+
+
         <tr>
             <td>
                 <div class="row justify-content-center">
-                    
+
 
                     <textarea class="editor" id="editor">
 
@@ -276,7 +296,7 @@
                     </script>
 
                 </div>
-                
+
             </td>
         </tr>
         <tr>
@@ -295,9 +315,9 @@
         <tr>
             <td>
 
-               
 
-                <asp:Panel ID="panelExamen"  runat="server">
+
+                <asp:Panel ID="panelExamen" runat="server">
                 </asp:Panel>
 
 

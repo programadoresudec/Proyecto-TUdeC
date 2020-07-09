@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class Buscador
 {
-    private Base db = new Base();
+    private readonly Base db = new Base();
     public Buscador()
     {
 
@@ -18,8 +18,10 @@ public class Buscador
         
         List<EArea> areas = db.TablaAreas.ToList();
 
-        EArea areaPorDefecto = new EArea();
-        areaPorDefecto.Area = "Seleccionar";
+        EArea areaPorDefecto = new EArea
+        {
+            Area = "Seleccionar"
+        };
         areas.Insert(0, areaPorDefecto);
         return areas;
     }
@@ -27,9 +29,9 @@ public class Buscador
     public List<ECurso> GetCursos(string curso, string tutor, string area, int puntuacion)
     {
 
-        if (tutor == null) tutor = "";
+        if (tutor is null) tutor = "";
 
-        if (curso == null) curso = "";
+        if (curso is null) curso = "";
 
         List<ECurso> cursos;
 

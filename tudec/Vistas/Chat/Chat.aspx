@@ -88,7 +88,7 @@
                             <div class="justify-content-center input-group mb-3">
                                 <div class="input-group-append">
                                     <div class="col-lg-auto mb-3">
-                                        <asp:ImageButton Height="50px" ID="botonEnviarImagen" runat="server" ImageUrl="https://pngimage.net/wp-content/uploads/2018/06/upload-image-icon-png-8.png" OnClick="botonEnviarImagen_Click" />
+                                        <asp:ImageButton Height="50px" ID="botonEnviarImagen" runat="server" ImageUrl="~/Recursos/Imagenes/Chat/upload/uploadImage.png" OnClick="botonEnviarImagen_Click" />
                                     </div>
                                 </div>
                                 <div class="col-lg-10 mb-3">
