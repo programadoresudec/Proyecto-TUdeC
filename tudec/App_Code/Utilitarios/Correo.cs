@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Net.Mail;
 using System.Web;
-using System.Web.UI;
 
 /// <summary>
 /// Descripción breve de Correo
 /// </summary>
 public partial class Correo
 { 
-    public Correo()
-    {
-       
-    }
     public void enviarCorreo(string correoDestino, string userToken, string mensaje, string url, string estado)
     {
-
-       
         // inicializar variable var
         var Emailtemplate = (dynamic)null;
-        try
-        {
-            if (estado.Equals(Constantes.ESTADO_EN_ESPERA))
+         if (estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
                 Emailtemplate = new System.IO.StreamReader
                 (AppDomain.CurrentDomain.BaseDirectory.Insert
@@ -44,10 +35,8 @@ public partial class Correo
             strBody = strBody.Replace("token", "http://" + hostPuerto +  url + userToken);
             //Configuración del Mensaje
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
             mail.From = new MailAddress("tudec@tudecCundi.com", "TUdeC");
-            SmtpServer.Host = "smtp.gmail.com";
             //Aquí ponemos el asunto del correo
             mail.Subject = mensaje;
             //Aquí ponemos el mensaje que incluirá el correo
@@ -57,20 +46,30 @@ public partial class Correo
             //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
             //mail.Attachments.Add(new Attachment(@"C:\Documentos\carta.docx"));
             mail.IsBodyHtml = true;
-
             mail.Priority = MailPriority.Normal;
-            //Configuracion del SMTP
-            SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios
-            //Especificamos las credenciales con las que enviaremos el mail
-            SmtpServer.Credentials = new System.Net.NetworkCredential(Constantes.CORREO, Constantes.PASSWORD);
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
-            mail.Dispose();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-    }
+            String HOST = "smtp.gmail.com";
 
+            // The port you will connect to on the Amazon SES SMTP endpoint. We
+            // are choosing port 587 because we will use STARTTLS to encrypt
+            // the connection.
+            int PORT = 587;
+            using (var client = new SmtpClient(HOST, PORT))
+            {
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                // Pass SMTP credentials
+                client.Credentials = new System.Net.NetworkCredential(Constantes.CORREO, Constantes.PASSWORD);
+                // Enable SSL encryption
+                // Try to send the message. Show status in console.
+                try
+                {
+                    client.Send(mail);
+                    mail.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+    }
 }

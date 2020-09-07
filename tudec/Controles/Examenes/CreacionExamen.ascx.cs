@@ -45,4 +45,10 @@ public partial class Controles_CreacionExamen : System.Web.UI.UserControl
 
 
 
+
+    protected void crearTiempo_Click(object sender, EventArgs e)
+    {
+        DateTime tiempo = DateTime.Parse(TB_tiempo.Text);
+        Console.WriteLine(tiempo);
+    }
 }

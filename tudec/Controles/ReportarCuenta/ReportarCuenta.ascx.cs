@@ -72,9 +72,7 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
             else
             {
                 agregarReporte("comentarios");
-                ModalBloquearUsuario.Hide();
-                Response.Redirect("~/Vistas/Cursos/InformacionDelCurso.aspx");
-                cs.RegisterStartupScript(this.GetType(), "mensaje", "<script> swal('Reporte Enviado!', 'Se realizo proceso con exito!', 'success')  </script>");
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "successalert();", true);
             }
 
         }
@@ -139,5 +137,10 @@ public partial class Controles_ReportarCuenta_ReportarCuenta : System.Web.UI.Use
         notificacionDeSugerencia.NombreDeUsuario = admin;
         notificacionDeSugerencia.Mensaje = "Se ha reportado el usuario <strong>" + nombreDeUsuarioDenunciado + "<strong>";
         Base.Insertar(notificacionDeSugerencia);
+    }
+
+    protected void BtnMostrarModal_Click(object sender, EventArgs e)
+    {
+        ModalBloquearUsuario.Show();
     }
 }

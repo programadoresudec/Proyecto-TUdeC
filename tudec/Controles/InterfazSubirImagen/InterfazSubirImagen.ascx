@@ -2,7 +2,6 @@
 <div class="container h-100 mt-5" style="padding-top: 10%">
     <div class="row justify-content-center h-100">
         <div class="col-lg-4">
-
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">

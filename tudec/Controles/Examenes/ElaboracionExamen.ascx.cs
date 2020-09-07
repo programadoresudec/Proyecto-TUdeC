@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 {
 
-
     private GestionExamen gestorExamenes;
     private EExamen examen;
     private List<EPregunta> preguntas;
@@ -21,7 +20,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
     private List<FileUpload> botonesSubirArchivo;
 
     private List<RespuestasPreguntas> respuestasExamen;
-
 
     class RespuestasPreguntas
     {
@@ -36,7 +34,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        
         respuestasExamen = new List<RespuestasPreguntas>();
 
         botonesMarcar = new List<List<Button>>();
@@ -50,7 +47,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         preguntas = gestorExamenes.GetPreguntas(examen);
 
-        foreach(EPregunta pregunta in preguntas)
+        foreach (EPregunta pregunta in preguntas)
         {
 
             Panel panelPregunta = new Panel();
@@ -59,7 +56,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
             tablaPregunta.BackColor = Color.FromArgb(195, 201, 209);
             tablaPregunta.Width = Unit.Percentage(60);
             tablaPregunta.Style.Add("border-radius", "10px");
-            
+
             if (pregunta.TipoPregunta.Equals("Múltiple con única respuesta"))
             {
 
@@ -81,7 +78,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPregunta.Cells.Add(celdaPregunta);
                 tablaPregunta.Rows.Add(filaPregunta);
 
-                foreach(ERespuesta respuesta in respuestas)
+                foreach (ERespuesta respuesta in respuestas)
                 {
 
                     UpdatePanel zonaActualizar = new UpdatePanel();
@@ -97,10 +94,8 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                     Label textoRespuesta = new Label();
                     textoRespuesta.Text = respuesta.Respuesta;
 
-
                     zonaActualizar.ContentTemplateContainer.Controls.Add(botonMarcar);
                     zonaActualizar.ContentTemplateContainer.Controls.Add(textoRespuesta);
-
 
                     celda.Controls.Add(zonaActualizar);
                     celda.Style.Add(HtmlTextWriterStyle.PaddingLeft, "3%");
@@ -161,7 +156,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                     CheckBox checker = new CheckBox();
 
                     botonesCheckboxPregunta.Add(checker);
-                   
+
                     Label textoRespuesta = new Label();
                     textoRespuesta.Text = respuesta.Respuesta;
 
@@ -214,7 +209,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPregunta.Cells.Add(celdaPregunta);
                 tablaPregunta.Rows.Add(filaPregunta);
 
-
                 TextBox campoRespuesta = new TextBox();
                 campoRespuesta.TextMode = TextBoxMode.MultiLine;
                 campoRespuesta.Attributes.Add("placeholder", "Respuesta");
@@ -230,10 +224,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 celdaCampo.Style.Add(HtmlTextWriterStyle.PaddingBottom, "1%");
                 filaCampo.Controls.Add(celdaCampo);
 
-              
-
                 tablaPregunta.Rows.Add(filaCampo);
-                
 
                 TableRow filaPorcentaje = new TableRow();
                 TableCell celdaPorcentaje = new TableCell();
@@ -303,8 +294,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
                 filaPorcentaje.Cells.Add(celdaPorcentaje);
                 tablaPregunta.Rows.Add(filaPorcentaje);
 
-                
-
                 RespuestasPreguntas respuestaPreguntaArchivo = new RespuestasPreguntas();
                 respuestaPreguntaArchivo.TipoPregunta = "Solicitud archivo";
                 respuestasExamen.Add(respuestaPreguntaArchivo);
@@ -321,7 +310,6 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         }
 
-
     }
 
     public void MarcarBoton(object sender, EventArgs e)
@@ -329,11 +317,12 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         Button botonMarcar = (Button)sender;
         List<Button> botonesMarcarPregunta = null;
-        
-        foreach(List<Button> lista in botonesMarcar)
+
+        foreach (List<Button> lista in botonesMarcar)
         {
 
-            if (lista.Contains(botonMarcar)){
+            if (lista.Contains(botonMarcar))
+            {
 
                 botonesMarcarPregunta = lista;
                 break;
@@ -342,10 +331,10 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         }
 
-        foreach(Button boton in botonesMarcarPregunta)
+        foreach (Button boton in botonesMarcarPregunta)
         {
 
-            if(boton == botonMarcar)
+            if (boton == botonMarcar)
             {
 
                 boton.BackColor = Color.Black;
@@ -360,9 +349,7 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
         }
 
-
     }
-
 
     protected void botonResponder_Click(object sender, EventArgs e)
     {
@@ -414,16 +401,12 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
                     List<int> indicesRespuestas = new List<int>();
 
-
                     foreach (CheckBox checker in botonesCheckboxPregunta)
                     {
-
                         if (checker.Checked)
                         {
-
                             int indicesito = botonesCheckboxPregunta.IndexOf(checker);
                             indicesRespuestas.Add(botonesCheckboxPregunta.IndexOf(checker));
-
                         }
 
                     }
@@ -476,44 +459,34 @@ public partial class Controles_ElaboracionExamen : System.Web.UI.UserControl
 
                     if (valor != "")
                     {
+                        string rutaArchivosExamenes = "~/Recursos/ArchivosExamenes";
+                        new Reutilizables().FolderIsExist(rutaArchivosExamenes);
+                        botonesSubirArchivo[indicePregunta].SaveAs(Server.MapPath(rutaArchivosExamenes) + "/" + botonesSubirArchivo[indicePregunta].FileName);
 
-                        botonesSubirArchivo[indicePregunta].SaveAs(Server.MapPath("~/Recursos/ArchivosExamenes") + "/" + botonesSubirArchivo[indicePregunta].FileName);
-
-                        string respuesta = "~/Recursos/ArchivosExamenes" + "/" + botonesSubirArchivo[indicePregunta].FileName;
+                        string respuesta = rutaArchivosExamenes + "/" + botonesSubirArchivo[indicePregunta].FileName;
 
                         respuestasExamen[indicePreguntaEnExamen].Respuestas.Add(respuesta);
 
                     }
 
-
-
                 }
 
-
-
             }
-
-
             string respuestasExamenJson = JsonConvert.SerializeObject(respuestasExamen);
-
 
             EUsuario usuario = (EUsuario)Session[Constantes.USUARIO_LOGEADO];
 
             gestorExamenes.ResponderExamen(examen, usuario, respuestasExamenJson);
-
 
             Response.Write("<script>alert('Examen enviado')</script>");
 
         }
         else
         {
-
             Response.Write("<script>alert('Ya pasó la fecha y hora establecidas para realizar el examen')</script>");
-
         }
 
         Response.Redirect("~/Vistas/Cursos/visualizacionTemaDelCurso.aspx");
-
 
     }
 }

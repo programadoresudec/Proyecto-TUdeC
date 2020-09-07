@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ReportarCuenta.ascx.cs" Inherits="Controles_ReportarCuenta_ReportarCuenta" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:LinkButton ID="BtnMostrarModal"  CssClass="btn btn-danger" runat="server"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
-<cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server" TargetControlID="BtnMostrarModal" PopupControlID="PanelModalBloqueo"
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit"  TagPrefix="cc1" %>
+<asp:LinkButton ID="BtnMostrarModal" CssClass="btn btn-danger" runat="server" OnClick="BtnMostrarModal_Click"><i class="fas fa-ban mr-2"></i>Reportar</asp:LinkButton>
+<cc1:ModalPopupExtender ID="ModalBloquearUsuario" runat="server"  TargetControlID="BtnMostrarModal"  OnCancelScript="__doPostback('btnCerrar','')" OnOkScript="__doPostback('btnEnviar','')" DropShadow="false" CancelControlID="btnCerrar" PopupControlID="PanelModalBloqueo"
     BackgroundCssClass="modalBackground">
 </cc1:ModalPopupExtender>
 <asp:Panel ID="PanelModalBloqueo" runat="server" Style="display: none">
-    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel runat="server" ChildrenAsTriggers="true">
         <ContentTemplate>
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -26,7 +26,7 @@
                             <div class="col">
                                 <i class="fas fa-pencil-alt prefix mr-2">Descripción Detallada</i>
                                 <br />
-                                <asp:TextBox ID="TB_Descripcion" AutoPostBack="true" runat="server" Height="150px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="TB_Descripcion"  runat="server" Height="150px" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
 
                             </div>
                         </div>
@@ -45,4 +45,13 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Panel>
+  <script type="text/javascript">
+      function successalert() {
+          swal({
+              title: 'Congratulations!',
+              text: 'Your message has been succesfully sent',
+              type: 'success'
+          });
+      }
+  </script>
 

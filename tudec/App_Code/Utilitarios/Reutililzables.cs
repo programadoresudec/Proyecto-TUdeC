@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.UI;
 /// <summary>
 /// Clase que utiliza metodos reutlizables
 /// </summary>
@@ -83,5 +83,12 @@ public partial class Reutilizables : Page
             }
         }
         return codigo;
+    }
+
+    public void FolderIsExist(string path) 
+    { 
+        bool folderExists = Directory.Exists(Server.MapPath(path)); 
+        if (!folderExists)
+            Directory.CreateDirectory(Server.MapPath(path));
     }
 }

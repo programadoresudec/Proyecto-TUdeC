@@ -152,10 +152,16 @@
             <asp:DropDownList ID="desplegableMinuto" runat="server" >
                 <asp:ListItem>Minuto</asp:ListItem>
             </asp:DropDownList>
+           
         </td>
     </tr>
 </table>
+       <div class="col-lg-5">
+           <asp:TextBox runat="server" ID="TB_tiempo" CssClass="form-control" TextMode="Time">
 
+           </asp:TextBox>
+           <asp:Button runat="server" ID="crearTiempo" Text="crear" CssClass="btn btn-dark" OnClick="crearTiempo_Click"/>
+       </div>
 <br />
 
 <div id="contenedor">

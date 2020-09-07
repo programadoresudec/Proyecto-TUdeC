@@ -14,7 +14,6 @@ public partial class Controles_CalificacionExamen : System.Web.UI.UserControl
     private List<DropDownList> desplegablesNotas = new List<DropDownList>();
     private EEjecucionExamen ejecucion;
     List<EPregunta> preguntas;
-
     protected void Page_Load(object sender, EventArgs e)
     {
 
