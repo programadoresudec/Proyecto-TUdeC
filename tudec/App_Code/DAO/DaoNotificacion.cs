@@ -28,7 +28,7 @@ public class DaoNotificacion
     {
         List<ENotificacion> notificaciones = db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).ToList();
         notificaciones.ForEach(x => x.Estado = false);
-        if (notificaciones.Count > 0)
+        if (notificaciones.Count() > 0)
         {
             foreach (var notificacion in notificaciones)
             {
@@ -59,7 +59,7 @@ public class DaoNotificacion
     public void eliminarTodas(string nombreDeUsuario)
     {
         List<ENotificacion> notificaciones = db.TablaNotificaciones.Where(x => x.NombreDeUsuario.Equals(nombreDeUsuario)).ToList();
-        if (notificaciones.Count > 0)
+        if (notificaciones.Count() > 0)
         {
             foreach (var notificacion in notificaciones)
             {

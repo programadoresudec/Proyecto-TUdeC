@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.UI;
@@ -37,8 +38,13 @@ public partial class Views_Account_Login : System.Web.UI.Page
             }
             if (usuario.Estado.Equals(Constantes.ESTADO_EN_ESPERA))
             {
-                LB_Validacion.CssClass = "alert alert-danger";
-                LB_Validacion.Text = "El nombre de la cuenta, correo y/ o la contraseña que has introducido son incorrectos.";
+                usuario.VencimientoToken = DateTime.Now.AddHours(8);
+                usuario.Token = Reutilizables.encriptar(JsonConvert.SerializeObject(usuario));
+                Base.Actualizar(usuario);
+                new Correo().enviarCorreo(usuario.CorreoInstitucional, usuario.Token,
+           Constantes.MENSAJE_VALIDAR_CUENTA, Constantes.URL_VALIDAR_CUENTA, usuario.Estado);
+                LB_Validacion.CssClass = "alert alert-warning";
+                LB_Validacion.Text = "<Strong>Su cuenta esta por activar</strong>, se le ha vuelto a enviar un correo verifique.";
                 LB_Validacion.Visible = true;
                 Session.Contents.Remove(Constantes.USUARIO_LOGEADO);
                 usuario = null;
